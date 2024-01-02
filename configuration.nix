@@ -118,10 +118,14 @@
   };
 
   home-manager.users.sophia = { pkgs, ... }: {
-    home.packages = [
-      pkgs.atool
-      pkgs.httpie
+    home.packages = with pkgs; [
+      atool
+      httpie
+      zsh-powerlevel10k
+      nerdfonts
     ];
+    fonts.fontconfig.enable = true;
+
     programs = {
       git = {
         enable = true;
@@ -131,12 +135,19 @@
       zsh = {
         enable = true;
 	initExtra = ''
+	  [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
 	  eval "$(atuin init zsh)"
 	'';
+	plugins = [
+          {
+            name = "powerlevel10k";
+            src = pkgs.zsh-powerlevel10k;
+            file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+          }
+        ];
 	oh-my-zsh = {
           enable = true;
           plugins = [ "git" "systemd" "rsync" "kubectl" "docker" ];
-          theme = "robbyrussell";
         };
       };
     };
@@ -157,8 +168,6 @@
      neovim
      glfw-wayland-minecraft
      cantarell-fonts
-     nerdfonts
-     inconsolata-nerdfont
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];

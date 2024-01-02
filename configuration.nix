@@ -120,6 +120,7 @@
       google-chrome
       atuin
       kitty
+      neofetch
     ];
   };
 

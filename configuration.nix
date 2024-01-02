@@ -177,6 +177,17 @@
       };
       vscode = {
         enable = true;
+        userSettings = {
+          git.confirmSync = false;
+          "github.copilot.enable.*" = true;
+          files.autoSave = "afterDelay";
+          terminal.integrated.enableMultiLinePasteWarning = false;
+          prohe.serverAddress = "ws://192.168.67.26:12345";
+          prohe.typingWindow = 10000;
+          prohe.vibrationMax = 1;
+          workbench.iconTheme = "material-icon-theme";
+          workbench.colorTheme = "Default Light Modern";
+        };
         extensions = with pkgs.vscode-extensions; [
           yzhang.markdown-all-in-one
           github.copilot
@@ -185,13 +196,15 @@
           github.vscode-github-actions
           dbaeumer.vscode-eslint
           prisma.prisma
-          #ms-vscode-remote.remote-ssh
+          bbenoist.nix
+          pkief.material-icon-theme
+          ms-vscode-remote.remote-ssh
         ]  ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {
-            name = "remote-ssh-edit";
-            publisher = "ms-vscode-remote";
-            version = "0.47.2";
-            sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
+            name = "pretty-ts-errors";
+            publisher = "yoavbls";
+            version = "0.5.2";
+            sha256 = "g6JIiXfjQKQEtdXZgsQsluKuJZO0MsD1ijy+QLYE1uY=";
           }
         ];
       };

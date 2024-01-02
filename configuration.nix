@@ -121,6 +121,7 @@
       atuin
       kitty
       neofetch
+      fluffychat
     ];
   };
 

@@ -191,14 +191,8 @@
         };
         extensions = with pkgs.vscode-extensions; [
           yzhang.markdown-all-in-one
-          github.copilot
-          github.copilot-chat
           github.vscode-pull-request-github
           github.vscode-github-actions
-          dbaeumer.vscode-eslint
-          prisma.prisma
-          bbenoist.nix
-          pkief.material-icon-theme
           ms-vscode-remote.remote-ssh
         ]  ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {
@@ -206,6 +200,48 @@
             publisher = "yoavbls";
             version = "0.5.2";
             sha256 = "g6JIiXfjQKQEtdXZgsQsluKuJZO0MsD1ijy+QLYE1uY=";
+          }
+          {
+            name = "copilot";
+            publisher = "github";
+            version = "1.143.601";
+            sha256 = "Ge/q1fAfhI5EuJFLHZqZyuPahHSgES7G0ns9FbS9vzA=";
+          }
+          {
+            name = "copilot-chat";
+            publisher = "github";
+            version = "0.12.2023122001";
+            sha256 = "LsDcdlw+TdkCeHxpvY9qjAWEFjl9OXU7RNV9VLVFSdg=";
+          }
+          {
+            name = "nix-ide";
+            publisher = "jnoortheen";
+            version = "0.2.2";
+            sha256 = "jwOM+6LnHyCkvhOTVSTUZvgx77jAg6hFCCpBqY8AxIg=";
+          }
+          {
+            name = "prisma";
+            publisher = "prisma";
+            version = "5.7.1";
+            sha256 = "6xtXXZCNAtYNnoiAa5gySVaVITkNceLrj8H/A8mbTXA=";
+          }
+          {
+            name = "material-icon-theme";
+            publisher = "PKief";
+            version = "4.32.0";
+            sha256 = "6I9/nWv449PgO1tHJbLy/wxzG6BQF6X550l3Qx0IWpw=";
+          }
+          {
+            name = "prettier-vscode";
+            publisher = "esbenp";
+            version = "10.1.0";
+            sha256 = "SQuf15Jq84MKBVqK6UviK04uo7gQw9yuw/WEBEXcQAc=";
+          }
+          {
+            name = "vscode-eslint";
+            publisher = "dbaeumer";
+            version = "2.4.2";
+            sha256 = "eIjaiVQ7PNJUtOiZlM+lw6VmW07FbMWPtY7UoedWtbw=";
           }
         ];
       };

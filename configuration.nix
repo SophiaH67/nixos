@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      <home-manager/nixos>
     ];
 
   # Bootloader.
@@ -99,11 +100,13 @@
   # Group for managing NixOS config (so I can use git)
   users.groups.nixconfig = {};
 
+  programs.zsh.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sophia = {
     isNormalUser = true;
     description = "Sophia";
     extraGroups = [ "networkmanager" "wheel" "nixconfig" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
       firefox
       prismlauncher
@@ -112,6 +115,34 @@
       atuin
       kitty
     ];
+  };
+
+  home-manager.users.sophia = { pkgs, ... }: {
+    home.packages = [
+      pkgs.atool
+      pkgs.httpie
+    ];
+    programs = {
+      git = {
+        enable = true;
+        userName  = "Sophia Hage";
+        userEmail = "sophia@sophiah.gay";
+      };
+      zsh = {
+        enable = true;
+	initExtra = ''
+	  eval "$(atuin init zsh)"
+	'';
+	oh-my-zsh = {
+          enable = true;
+          plugins = [ "git" "systemd" "rsync" "kubectl" "docker" ];
+          theme = "robbyrussell";
+        };
+      };
+    };
+    # The state version is required and should stay at the version you
+    # originally installed.
+    home.stateVersion = "23.11";
   };
 
 

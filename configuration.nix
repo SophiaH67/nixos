@@ -156,8 +156,18 @@
         enable = true;
         package = pkgs.firefox-beta;
         policies = {
-          DisableFirefoxStudies = true;
           DisablePocket = true;
+          DisableFirefoxStudies = true;
+          DisableFeedbackCommands = true;
+          DisableMasterPasswordCreation = true;
+          DisablePasswordReveal = true;
+          DisableProfileImport = true;
+          DisableProfileRefresh = true;
+          DisableSetDesktopBackground = true;
+          DisableTelemetry = true;
+          DontCheckDefaultBrowser = true;
+          EnableTrackingProtection = true;
+          PasswordManagerEnabled = false;
           Extensions = {
             Install = [
               "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
@@ -168,8 +178,16 @@
               "https://addons.mozilla.org/firefox/downloads/latest/vimium-c/latest.xpi"
             ];
           };
+          FirefoxHome = {
+            SponsoredTopSites = false;
+            Pocket = false;
+            SponsoredPocket = false;
+          };
         };
-        profiles.sophia = {};
+        profiles.sophia = {
+          search.default = "DuckDuckGo";
+          search.privateDefault = "DuckDuckGo";
+        };
         #nativeMessagingHosts.packages = [ pkgs.plasma5Packages.plasma-browser-integration ];
         #preferences = {
         #  "widget.use-xdg-desktop-portal.file-picker" = 1;

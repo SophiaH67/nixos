@@ -123,6 +123,10 @@
     ];
   };
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  home-manager.useGlobalPkgs = true;
+
   home-manager.users.sophia = { pkgs, ... }: {
     home.packages = with pkgs; [
       atool
@@ -137,6 +141,26 @@
         enable = true;
         userName  = "Sophia Hage";
         userEmail = "sophia@sophiah.gay";
+      };
+      vscode = {
+        enable = true;
+        extensions = with pkgs.vscode-extensions; [
+          yzhang.markdown-all-in-one
+	  github.copilot
+	  github.copilot-chat
+	  github.vscode-pull-request-github
+	  github.vscode-github-actions
+	  dbaeumer.vscode-eslint
+	  prisma.prisma
+	  #ms-vscode-remote.remote-ssh
+        ]  ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            name = "remote-ssh-edit";
+            publisher = "ms-vscode-remote";
+            version = "0.47.2";
+            sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
+          }
+        ];
       };
       zsh = {
         enable = true;

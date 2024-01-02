@@ -15,7 +15,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.initrd.luks.devices."luks-3a1e08da-8901-488f-8250-dd555389259a".device = "/dev/disk/by-uuid/3a1e08da-8901-488f-8250-dd555389259a";
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "rina"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

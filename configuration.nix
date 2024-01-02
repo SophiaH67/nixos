@@ -202,6 +202,14 @@
         #  "widget.use-xdg-desktop-portal.file-picker" = 1;
         #};
       };
+      neovim = {
+        enable = true;
+	viAlias = true;
+	vimAlias = true;
+        plugins = [
+          pkgs.vimPlugins.LazyVim
+        ];
+      };
       vscode = {
         enable = true;
 	package = (pkgs.vscode.override { isInsiders = true; }).overrideAttrs (oldAttrs: rec {
@@ -332,7 +340,6 @@
   environment.systemPackages = with pkgs; [
      git
      gnupg
-     neovim
      glfw-wayland-minecraft
      cantarell-fonts
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.

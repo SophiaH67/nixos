@@ -176,6 +176,7 @@
               "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi"
               "https://addons.mozilla.org/firefox/downloads/latest/single-file/latest.xpi"
               "https://addons.mozilla.org/firefox/downloads/latest/vimium-c/latest.xpi"
+              "https://addons.mozilla.org/firefox/downloads/latest/simplelogin/latest.xpi"
             ];
           };
           FirefoxHome = {
@@ -183,10 +184,17 @@
             Pocket = false;
             SponsoredPocket = false;
           };
+	  Preferences = {
+            general.smoothScroll = true;
+	    browser.search.region = "NL";
+	    browser.startup.page = 3; # This means restore previous tabs
+	    trailhead.firstrun.didSeeAboutWelcome = true;
+	  };
         };
         profiles.sophia = {
           search.default = "DuckDuckGo";
           search.privateDefault = "DuckDuckGo";
+	  search.force = true;
         };
         #nativeMessagingHosts.packages = [ pkgs.plasma5Packages.plasma-browser-integration ];
         #preferences = {
@@ -195,6 +203,7 @@
       };
       vscode = {
         enable = true;
+	#package = pkgs.vscode-fhs;
         userSettings = {
           git.confirmSync = false;
           "github.copilot.enable.*" = true;

@@ -11,6 +11,12 @@
       <home-manager/nixos>
     ];
 
+  nixpkgs.config.packageOverrides = pkgs: {
+    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+      inherit pkgs;
+    };
+  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -114,7 +120,6 @@
     extraGroups = [ "networkmanager" "wheel" "nixconfig" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
-      firefox
       prismlauncher
       vesktop
       google-chrome
@@ -125,7 +130,10 @@
     ];
   };
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    MOZ_USE_XINPUT2 = "1";
+  };
 
   home-manager.useGlobalPkgs = true;
 
@@ -144,17 +152,40 @@
         userName  = "Sophia Hage";
         userEmail = "sophia@sophiah.gay";
       };
+      firefox = {
+        enable = true;
+        package = pkgs.firefox-beta;
+        policies = {
+          DisableFirefoxStudies = true;
+          DisablePocket = true;
+          Extensions = {
+            Install = [
+              "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
+              "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger/latest.xpi"
+              "https://addons.mozilla.org/firefox/downloads/latest/deadname-remover/latest.xpi"
+              "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi"
+              "https://addons.mozilla.org/firefox/downloads/latest/single-file/latest.xpi"
+              "https://addons.mozilla.org/firefox/downloads/latest/vimium-c/latest.xpi"
+            ];
+          };
+        };
+        profiles.sophia = {};
+        #nativeMessagingHosts.packages = [ pkgs.plasma5Packages.plasma-browser-integration ];
+        #preferences = {
+        #  "widget.use-xdg-desktop-portal.file-picker" = 1;
+        #};
+      };
       vscode = {
         enable = true;
         extensions = with pkgs.vscode-extensions; [
           yzhang.markdown-all-in-one
-	  github.copilot
-	  github.copilot-chat
-	  github.vscode-pull-request-github
-	  github.vscode-github-actions
-	  dbaeumer.vscode-eslint
-	  prisma.prisma
-	  #ms-vscode-remote.remote-ssh
+          github.copilot
+          github.copilot-chat
+          github.vscode-pull-request-github
+          github.vscode-github-actions
+          dbaeumer.vscode-eslint
+          prisma.prisma
+          #ms-vscode-remote.remote-ssh
         ]  ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
           {
             name = "remote-ssh-edit";
@@ -166,18 +197,18 @@
       };
       zsh = {
         enable = true;
-	initExtra = ''
-	  [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
-	  eval "$(atuin init zsh)"
-	'';
-	plugins = [
+        initExtra = ''
+          [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
+          eval "$(atuin init zsh)"
+        '';
+        plugins = [
           {
             name = "powerlevel10k";
             src = pkgs.zsh-powerlevel10k;
             file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
           }
         ];
-	oh-my-zsh = {
+        oh-my-zsh = {
           enable = true;
           plugins = [ "git" "systemd" "rsync" "kubectl" "docker" ];
         };

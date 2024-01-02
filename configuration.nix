@@ -278,6 +278,24 @@
             version = "2.4.2";
             sha256 = "eIjaiVQ7PNJUtOiZlM+lw6VmW07FbMWPtY7UoedWtbw=";
           }
+          {
+            name = "prohe";
+            publisher = "UncensorPat";
+            version = "0.1.0";
+            sha256 = "mq4SP+FM3rMOYf9e6lmPcxQQn2CpgN95L3J6mXlHY1s=";
+          }
+          {
+            name = "gitlens";
+            publisher = "eamodio";
+            version = "2023.12.2104";
+            sha256 = "dyrRdXw4+GUnrtJlXvgQdU5WI7A4g5uo5ygE6aG2jk8=";
+          }
+          {
+            name = "discord-vscode";
+            publisher = "icrawl";
+            version = "5.8.0";
+            sha256 = "IU/looiu6tluAp8u6MeSNCd7B8SSMZ6CEZ64mMsTNmU=";
+          }
         ];
       };
       zsh = {

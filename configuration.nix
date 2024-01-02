@@ -127,6 +127,7 @@
       kitty
       neofetch
       fluffychat
+      parsec-bin
     ];
   };
 

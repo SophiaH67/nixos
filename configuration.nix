@@ -97,6 +97,12 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Sudo
+  security.sudo = {
+    enable = true;
+    wheelNeedsPassword = false;
+  };
+
   # Group for managing NixOS config (so I can use git)
   users.groups.nixconfig = {};
 

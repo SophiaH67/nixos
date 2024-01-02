@@ -187,6 +187,7 @@
           prohe.vibrationMax = 1;
           workbench.iconTheme = "material-icon-theme";
           workbench.colorTheme = "Default Light Modern";
+          git.enableSmartCommit = true;
         };
         extensions = with pkgs.vscode-extensions; [
           yzhang.markdown-all-in-one

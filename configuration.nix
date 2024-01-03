@@ -130,6 +130,7 @@
       neofetch
       fluffychat
       parsec-bin
+      spotify
     ];
   };
 

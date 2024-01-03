@@ -154,6 +154,10 @@
         enable = true;
         userName  = "Sophia Hage";
         userEmail = "sophia@sophiah.gay";
+        signing = {
+          key = "1FB01D6AA1106525";
+          signByDefault = true;
+        };
       };
       firefox = {
         enable = true;
@@ -248,6 +252,7 @@ background_opacity 0.5
           workbench.colorTheme = "Default Light Modern";
           git.enableSmartCommit = true;
           git.autofetch = true;
+          editor.fontFamily = "CaskaydiaCove NFM Regular";
         };
         extensions = with pkgs.vscode-extensions; [
           yzhang.markdown-all-in-one

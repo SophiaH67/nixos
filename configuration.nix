@@ -394,6 +394,12 @@ background_opacity 0.5
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  networking.extraHosts =
+  ''
+#Print.one hosts
+127.0.0.1 local.print.one portal.local.print.one editor.local.print.one api.local.print.one help.local.print.one
+#End of Print.one hosts
+  '';
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

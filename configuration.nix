@@ -124,7 +124,6 @@
       vesktop
       google-chrome
       atuin
-      kitty
       neofetch
       fluffychat
       parsec-bin
@@ -212,6 +211,17 @@
       };
       gpg = {
         enable = true;
+      };
+      kitty = {
+        enable = true;
+        font = {
+          name = "CaskaydiaCove NF Regular";
+          size = 11;
+        };
+        # theme = "CLRS";
+        extraConfig = ''
+background_opacity 0.5
+'';
       };
       vscode = {
         enable = true;

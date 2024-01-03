@@ -210,6 +210,9 @@
           pkgs.vimPlugins.LazyVim
         ];
       };
+      gpg = {
+        enable = true;
+      };
       vscode = {
         enable = true;
 	package = (pkgs.vscode.override { isInsiders = true; }).overrideAttrs (oldAttrs: rec {
@@ -326,6 +329,15 @@
         };
       };
     };
+    services = {
+      gpg-agent = {
+        enable = true;
+        enableSshSupport = true;
+        sshKeys = [ "1FB01D6AA1106525" ];
+        maxCacheTtl = 300;
+        pinentryFlavor = "gtk2";
+      };
+    };
     # The state version is required and should stay at the version you
     # originally installed.
     home.stateVersion = "23.11";
@@ -339,7 +351,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
      git
-     gnupg
      glfw-wayland-minecraft
      cantarell-fonts
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.

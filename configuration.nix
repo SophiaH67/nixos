@@ -109,6 +109,9 @@
     wheelNeedsPassword = false;
   };
 
+  # Docker shenanigans
+  virtualisation.docker.enable = true;
+
   # Group for managing NixOS config (so I can use git)
   users.groups.nixconfig = {};
 
@@ -117,7 +120,7 @@
   users.users.sophia = {
     isNormalUser = true;
     description = "Sophia";
-    extraGroups = [ "networkmanager" "wheel" "nixconfig" ];
+    extraGroups = [ "networkmanager" "wheel" "nixconfig" "docker" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
       prismlauncher

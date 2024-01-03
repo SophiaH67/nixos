@@ -184,17 +184,17 @@
             Pocket = false;
             SponsoredPocket = false;
           };
-	  Preferences = {
+          Preferences = {
             general.smoothScroll = true;
-	    browser.search.region = "NL";
-	    browser.startup.page = 3; # This means restore previous tabs
-	    trailhead.firstrun.didSeeAboutWelcome = true;
-	  };
+            browser.search.region = "NL";
+            browser.startup.page = 3; # This means restore previous tabs
+            trailhead.firstrun.didSeeAboutWelcome = true;
+          };
         };
         profiles.sophia = {
           search.default = "DuckDuckGo";
           search.privateDefault = "DuckDuckGo";
-	  search.force = true;
+          search.force = true;
         };
         #nativeMessagingHosts.packages = [ pkgs.plasma5Packages.plasma-browser-integration ];
         #preferences = {
@@ -203,8 +203,8 @@
       };
       neovim = {
         enable = true;
-	viAlias = true;
-	vimAlias = true;
+        viAlias = true;
+        vimAlias = true;
         plugins = [
           pkgs.vimPlugins.LazyVim
         ];
@@ -225,7 +225,7 @@ background_opacity 0.5
       };
       vscode = {
         enable = true;
-	package = (pkgs.vscode.override { isInsiders = true; }).overrideAttrs (oldAttrs: rec {
+        package = (pkgs.vscode.override { isInsiders = true; }).overrideAttrs (oldAttrs: rec {
           src = (builtins.fetchTarball {
             url = "https://code.visualstudio.com/sha/download?build=insider&os=linux-x64";
             #sha256 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";

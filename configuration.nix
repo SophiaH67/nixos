@@ -199,6 +199,10 @@
             browser.search.region = "NL";
             browser.startup.page = 3; # This means restore previous tabs
             trailhead.firstrun.didSeeAboutWelcome = true;
+            # Make firefox not mess with pipewire
+            media.getusermedia.agc = 0;
+            media.getusermedia.agc2_forced = false;
+            media.getusermedia.agc_enabled = false;
           };
         };
         profiles.sophia = {

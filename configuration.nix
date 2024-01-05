@@ -116,6 +116,7 @@
   users.groups.nixconfig = {};
 
   programs.zsh.enable = true;
+  programs.steam.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sophia = {
     isNormalUser = true;
@@ -355,6 +356,9 @@ background_opacity 0.5
         sshKeys = [ "1FB01D6AA1106525" ];
         maxCacheTtl = 300;
         pinentryFlavor = "gtk2";
+      };
+      syncthing = {
+        enable = true;
       };
     };
     # The state version is required and should stay at the version you

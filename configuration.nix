@@ -118,11 +118,12 @@
 
   programs.zsh.enable = true;
   programs.steam.enable = true;
+  programs.adb.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sophia = {
     isNormalUser = true;
     description = "Sophia";
-    extraGroups = [ "networkmanager" "wheel" "nixconfig" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "nixconfig" "docker" "adbusers" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
       prismlauncher

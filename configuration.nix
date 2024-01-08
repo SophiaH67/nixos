@@ -135,6 +135,7 @@
       parsec-bin
       spotify
       filezilla
+      gedit
     ];
   };
 

@@ -133,6 +133,7 @@
       fluffychat
       parsec-bin
       spotify
+      filezilla
     ];
   };
 

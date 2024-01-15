@@ -119,6 +119,10 @@
   programs.zsh.enable = true;
   programs.steam.enable = true;
   programs.adb.enable = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0" # Screw you obsidian
+  ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sophia = {
     isNormalUser = true;
@@ -136,6 +140,7 @@
       spotify
       filezilla
       gedit
+      obsidian
     ];
   };
 

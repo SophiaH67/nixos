@@ -11,26 +11,22 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.kernelParams = [
-    "i915.enable_psr=1"
-  ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/73977967-f30c-402f-9610-219814aa8dee";
+    { device = "/dev/disk/by-uuid/f5c76d8c-aaf9-42f7-a6a9-ca2e33da0e1e";
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."luks-4d9edd3d-66d1-4286-ab5c-49e1ca3fdcba".device = "/dev/disk/by-uuid/4d9edd3d-66d1-4286-ab5c-49e1ca3fdcba";
+  boot.initrd.luks.devices."luks-e9d524bd-a8a6-4e75-9401-d7fde4daee05".device = "/dev/disk/by-uuid/e9d524bd-a8a6-4e75-9401-d7fde4daee05";
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/A950-A9A7";
+    { device = "/dev/disk/by-uuid/82D4-9F40";
       fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/0ae9088b-c5b4-4940-9df7-143b480d886b"; }
-    ];
+  swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -41,8 +37,4 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-  services.blueman.enable = true;
 }

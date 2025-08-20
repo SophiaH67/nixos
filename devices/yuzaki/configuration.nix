@@ -127,6 +127,7 @@
       signal-desktop
       obsidian
       dbeaver-bin
+      nixfmt
     ];
     shell = pkgs.zsh;
   };

@@ -91,7 +91,15 @@
   programs.zsh.enable = true;
   programs.steam.enable = true;
   programs.adb.enable = true;
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = ["sophia"];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 
+  systemd.tmpfiles.settings."10-nixos-directory"."/etc/nixos".d = {
+    group = "wheel";
+    mode = "0774";
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sophia = {
@@ -415,6 +423,10 @@ background_opacity 0.5
       };
       "org/gnome/desktop/peripherals/touchpad" = {
         natural-scroll = true;
+      };
+      "org/virt-manager/virt-manager/connections" = {
+        autoconnect = ["qemu:///system"];
+        uris = ["qemu:///system"];
       };
     };
     # The state version is required and should stay at the version you

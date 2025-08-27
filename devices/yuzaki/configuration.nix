@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      <home-manager/nixos>
     ];
 
   # Bootloader.
@@ -149,7 +148,6 @@
 
   home-manager.useGlobalPkgs = true;
   
-  # Install firefox.
   home-manager.users.sophia = { pkgs, ... }: {
     home.packages = with pkgs; [
       atool

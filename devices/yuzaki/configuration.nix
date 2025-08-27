@@ -332,13 +332,13 @@ background_opacity 0.5
               name = "pretty-ts-errors";
               publisher = "yoavbls";
               version = "0.6.1";
-              sha256 = "g6JIiXfjQKQEtdXZgsQsluKuJZO0MsD1ijy+QLYE1uY=";
+              sha256 = "LvX21nEjgayNd9q+uXkahmdYwzfWBZOhQaF+clFUUF4=";
             }
             {
               name = "copilot";
               publisher = "github";
               version = "1.352.1715";
-              sha256 = "Ge/q1fAfhI5EuJFLHZqZyuPahHSgES7G0ns9FbS9vzA=";
+              sha256 = "w9ts643RDDZMMr/PyX7v7luN7MpoUn70hVV7d4ZX/tE=";
             }
             # {
             #   name = "copilot-chat";
@@ -356,13 +356,13 @@ background_opacity 0.5
               name = "prisma";
               publisher = "prisma";
               version = "6.13.0";
-              sha256 = "6xtXXZCNAtYNnoiAa5gySVaVITkNceLrj8H/A8mbTXA=";
+              sha256 = "qx+2lKRx/4fS2xz9lBIQsTD5tcjTzow7WmYsHYyrfOw=";
             }
             {
               name = "material-icon-theme";
               publisher = "PKief";
               version = "5.25.0";
-              sha256 = "6I9/nWv449PgO1tHJbLy/wxzG6BQF6X550l3Qx0IWpw=";
+              sha256 = "sha256-jkTFfyeFJ4ygsKJj41tWDJ91XitSs2onW4ni3rMNJE8=";
             }
             {
               name = "prettier-vscode";
@@ -380,13 +380,13 @@ background_opacity 0.5
               name = "gitlens";
               publisher = "eamodio";
               version = "2025.8.105";
-              sha256 = "dyrRdXw4+GUnrtJlXvgQdU5WI7A4g5uo5ygE6aG2jk8=";
+              sha256 = "w9ONz+Fjjysg71qxjOqx30A4WHU2d0Ud/MD5eWDMZe0=";
             }
             {
               name = "discord-vscode";
               publisher = "icrawl";
               version = "5.9.2";
-              sha256 = "IU/looiu6tluAp8u6MeSNCd7B8SSMZ6CEZ64mMsTNmU=";
+              sha256 = "43ZAwaApQBqNzq25Uy/AmkQqprU7QlgJVVimfCaiu9k=";
             }
           ];
         };
@@ -463,7 +463,7 @@ background_opacity 0.5
   services.tailscale.enable = true;
   networking.nameservers = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
   services.resolved = {
-    enable = true;
+    enable = false;
     dnssec = "true";
     domains = [ "~." ];
     fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
@@ -483,4 +483,6 @@ background_opacity 0.5
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
+
+  nix.settings.experimental-features = [ "nix-command" "flakes"];
 }

@@ -8,10 +8,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../common/base.nix
     ];
 
   # Bootloader.
-  boot.kernelPackages = pkgs.linuxPackages_zen;
   # boot.kernelPackages = pkgs.linuxPackages_default;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -28,23 +28,9 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Europe/Berlin";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "tok";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
-    LANGUAGE = "tok";
-  };
+  
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -52,16 +38,6 @@
   # Enable the GNOME Desktop Environment.
   services.desktopManager.gnome.enable = true;
   services.displayManager.gdm.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-   # Configure console keymap
-  console.keyMap = "us";
-
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -79,10 +55,7 @@
     #media-session.enable = true;
   };
 
-  security.sudo = {
-    enable = true;
-    wheelNeedsPassword = false;
-  };
+
 
   # Docker shenanigans
   virtualisation.docker.enable = true;
@@ -95,10 +68,7 @@
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
 
-  systemd.tmpfiles.settings."10-nixos-directory"."/etc/nixos".d = {
-    group = "wheel";
-    mode = "0774";
-  };
+  
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sophia = {
@@ -108,29 +78,28 @@
     packages = with pkgs; [
       prismlauncher
       vesktop
-      neofetch
       parsec-bin
       spotify
       filezilla
       gedit
       gparted
       krita
-      file
-      nmap
       kdePackages.kleopatra
       (discord.override {
-        withOpenASAR = true;
+        withOpenASAR = false;
         # withVencord = true; # can do this here too
       })
-      hyfetch
       signal-desktop
       obsidian
       dbeaver-bin
       nixfmt
       dig
-      knot-dns
+      file
+      hyfetch
+      nmap
       lsof
       iperf
+      dig
     ];
     shell = pkgs.zsh;
   };
@@ -438,16 +407,6 @@ background_opacity 0.5
     home.stateVersion = "23.11";
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-  ];
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -458,7 +417,6 @@ background_opacity 0.5
 
   # List services that you want to enable:
 
-  services.openssh.enable = true;
   services.tailscale.enable = true;
   networking.nameservers = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
   services.resolved = {
@@ -485,7 +443,7 @@ background_opacity 0.5
 
   networking.extraHosts = ''
 10.101.8.121  wifi.bahn.de
+127.0.0.1     fritz.box
   '';
 
-  nix.settings.experimental-features = [ "nix-command" "flakes"];
 }

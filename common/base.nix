@@ -1,0 +1,59 @@
+{ config, pkgs, ... }:
+
+{
+  # -=-=- Boot -=-=-
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.loader.systemd-boot.enable = true;
+
+  # -=-=- Security -=-=-
+  systemd.tmpfiles.settings."10-nixos-directory"."/etc/nixos".d = {
+    group = "wheel";
+    mode = "0774";
+  };
+
+  security.sudo = {
+    enable = true;
+    wheelNeedsPassword = false;
+  };
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      X11Forwarding = true;
+      PrintMotd = true;
+      PermitRootLogin = "no";
+      PasswordAuthentication = false;
+      AllowGroups = [ "wheel" "sshable" ];
+    };
+    allowSFTP = true;
+    banner =''
+-=-=- Establishing hive connection... -=-=-
+[C]: Drone requesting to administer hive node ${config.networking.hostName}
+[S]: Identity
+[C]:
+'';
+    #TODO: Set up a jail for failure to authenticate
+  };
+
+  # -=-=- Locale -=-=-
+  console.keyMap = "us";
+  time.timeZone = "Europe/Berlin";
+  i18n.defaultLocale = "tok";
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "de_DE.UTF-8";
+    LC_IDENTIFICATION = "de_DE.UTF-8";
+    LC_MEASUREMENT = "de_DE.UTF-8";
+    LC_MONETARY = "de_DE.UTF-8";
+    LC_NAME = "de_DE.UTF-8";
+    LC_NUMERIC = "de_DE.UTF-8";
+    LC_PAPER = "de_DE.UTF-8";
+    LC_TELEPHONE = "de_DE.UTF-8";
+    LC_TIME = "de_DE.UTF-8";
+    LANGUAGE = "tok";
+  };
+
+
+  # -=-=- Nix -=-=-
+  nixpkgs.config.allowUnfree = true;
+  nix.settings.experimental-features = [ "nix-command" "flakes"];
+}

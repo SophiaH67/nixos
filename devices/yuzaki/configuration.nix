@@ -130,6 +130,7 @@
       dig
       knot-dns
       lsof
+      iperf
     ];
     shell = pkgs.zsh;
   };
@@ -481,6 +482,10 @@ background_opacity 0.5
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
+
+  networking.extraHosts = ''
+10.101.8.121  wifi.bahn.de
+  '';
 
   nix.settings.experimental-features = [ "nix-command" "flakes"];
 }

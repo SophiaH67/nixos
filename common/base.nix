@@ -27,9 +27,10 @@
     };
     allowSFTP = true;
     banner =''
--=-=- Establishing hive connection... -=-=-
-[C]: Drone requesting to administer hive node ${config.networking.hostName}
-[S]: Identity
+-=-=- Establishing encrypted connection... -=-=-
+[C]: Requesting Frontier Malitia administration for node ${config.networking.hostName}
+[S]: Receiving encrypted connection...
+[S]: Provide identity:
 [C]:
 '';
     #TODO: Set up a jail for failure to authenticate

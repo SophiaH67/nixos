@@ -298,66 +298,20 @@ background_opacity 0.5
             github.vscode-pull-request-github
             github.vscode-github-actions
             ms-vscode-remote.remote-ssh
+            yoavbls.pretty-ts-errors
+            github.copilot
+            jnoortheen.nix-ide
+            prisma.prisma
+            pkief.material-icon-theme
+            esbenp.prettier-vscode
+            eamodio.gitlens
+            leonardssh.vscord
           ]  ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-            {
-              name = "pretty-ts-errors";
-              publisher = "yoavbls";
-              version = "0.6.1";
-              sha256 = "LvX21nEjgayNd9q+uXkahmdYwzfWBZOhQaF+clFUUF4=";
-            }
-            {
-              name = "copilot";
-              publisher = "github";
-              version = "1.352.1715";
-              sha256 = "w9ts643RDDZMMr/PyX7v7luN7MpoUn70hVV7d4ZX/tE=";
-            }
-            # {
-            #   name = "copilot-chat";
-            #   publisher = "github";
-            #   version = "0.12.2023122001";
-            #   sha256 = "LsDcdlw+TdkCeHxpvY9qjAWEFjl9OXU7RNV9VLVFSdg=";
-            # }
-            {
-              name = "nix-ide";
-              publisher = "jnoortheen";
-              version = "0.4.22";
-              sha256 = "jwOM+6LnHyCkvhOTVSTUZvgx77jAg6hFCCpBqY8AxIg=";
-            }
-            {
-              name = "prisma";
-              publisher = "prisma";
-              version = "6.13.0";
-              sha256 = "qx+2lKRx/4fS2xz9lBIQsTD5tcjTzow7WmYsHYyrfOw=";
-            }
-            {
-              name = "material-icon-theme";
-              publisher = "PKief";
-              version = "5.25.0";
-              sha256 = "sha256-jkTFfyeFJ4ygsKJj41tWDJ91XitSs2onW4ni3rMNJE8=";
-            }
-            {
-              name = "prettier-vscode";
-              publisher = "esbenp";
-              version = "11.0.0";
-              sha256 = "SQuf15Jq84MKBVqK6UviK04uo7gQw9yuw/WEBEXcQAc=";
-            }
             {
               name = "prohe";
               publisher = "UncensorPat";
               version = "0.1.0";
               sha256 = "mq4SP+FM3rMOYf9e6lmPcxQQn2CpgN95L3J6mXlHY1s=";
-            }
-            {
-              name = "gitlens";
-              publisher = "eamodio";
-              version = "2025.8.105";
-              sha256 = "w9ONz+Fjjysg71qxjOqx30A4WHU2d0Ud/MD5eWDMZe0=";
-            }
-            {
-              name = "discord-vscode";
-              publisher = "icrawl";
-              version = "5.9.2";
-              sha256 = "43ZAwaApQBqNzq25Uy/AmkQqprU7QlgJVVimfCaiu9k=";
             }
           ];
         };
@@ -399,6 +353,7 @@ background_opacity 0.5
       };
       "org/gnome/desktop/peripherals/touchpad" = {
         natural-scroll = true;
+        tap-to-click = false;
       };
       "org/virt-manager/virt-manager/connections" = {
         autoconnect = ["qemu:///system"];

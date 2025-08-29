@@ -402,6 +402,10 @@ background_opacity 0.5
   networking.extraHosts = ''
 10.101.8.121  wifi.bahn.de
 127.0.0.1     fritz.box
+# Generated from asking 172.18.0.1 on an ice
+10.101.64.121 login.wifionice.de
+172.18.1.110  iceportal.de
+172.18.1.110  www.iceportal.de
   '';
 
 }

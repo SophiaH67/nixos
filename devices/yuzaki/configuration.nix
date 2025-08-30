@@ -408,4 +408,7 @@ background_opacity 0.5
 172.18.1.110  www.iceportal.de
   '';
 
+  services.fprintd.enable = true;
+  services.fprintd.tod.enable = true;
+  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
 }

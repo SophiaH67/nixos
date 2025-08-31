@@ -16,7 +16,7 @@
   # boot.kernelPackages = pkgs.linuxPackages_default;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 1;
+  boot.loader.systemd-boot.configurationLimit = 10;
 
   networking.hostName = "yuzaki"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -69,7 +69,9 @@
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
 
-  
+  environment.systemPackages = with pkgs; [
+    ntfs3g
+  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sophia = {

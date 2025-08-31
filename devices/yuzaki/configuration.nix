@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -14,7 +14,15 @@
 
   # Bootloader.
   # boot.kernelPackages = pkgs.linuxPackages_default;
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+  
+  # First, create keys with sudo sbctl create-keys
+  # Then, reboot and enter setup mode (wipe all keys)
+  # Finally, enroll with sudo sbctl enroll-keys --microsoft
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/var/lib/sbctl";
+  }; 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 10;
 

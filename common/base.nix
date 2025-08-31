@@ -36,6 +36,10 @@
     #TODO: Set up a jail for failure to authenticate
   };
 
+  environment.systemPackages = with pkgs; [
+    sbctl
+  ];
+
   # -=-=- Locale -=-=-
   console.keyMap = "us";
   time.timeZone = "Europe/Berlin";

@@ -7,9 +7,14 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager }: {
+  outputs = { self, nixpkgs, home-manager, lanzaboote }: {
 
     packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
 
@@ -21,6 +26,7 @@
         modules = [
           ./devices/yuzaki/configuration.nix
           home-manager.nixosModules.home-manager
+          lanzaboote.nixosModules.lanzaboote
         ];
       };
     };

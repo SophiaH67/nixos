@@ -91,6 +91,7 @@
       filezilla
       gedit
       gparted
+      bambu-studio
       krita
       kdePackages.kleopatra
       (discord.override {

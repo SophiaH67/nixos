@@ -92,6 +92,7 @@
       gedit
       gparted
       bambu-studio
+      tor-browser
       krita
       kdePackages.kleopatra
       (discord.override {

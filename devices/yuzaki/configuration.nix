@@ -92,6 +92,7 @@
       gedit
       gparted
       bambu-studio
+      fluffychat
       tor-browser
       krita
       kdePackages.kleopatra

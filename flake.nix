@@ -25,6 +25,7 @@
         system = "x86_64-linux";
         modules = [
           ./devices/yuzaki/configuration.nix
+          ./common/base.nix
           home-manager.nixosModules.home-manager
           lanzaboote.nixosModules.lanzaboote
         ];

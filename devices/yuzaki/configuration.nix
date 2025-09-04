@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../common/base.nix
       ../../common/sophia.nix
     ];
 
@@ -22,7 +21,7 @@
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/var/lib/sbctl";
-  }; 
+  };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 10;
 
@@ -93,6 +92,7 @@
       gparted
       bambu-studio
       fluffychat
+      xorg.xeyes
       tor-browser
       krita
       kdePackages.kleopatra

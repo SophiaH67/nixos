@@ -36,6 +36,10 @@
     #TODO: Set up a jail for failure to authenticate
   };
 
+  boot.kernelParams = [
+    "kernel.kexec_load_disabled=1"
+  ];
+
   environment.systemPackages = with pkgs; [
     sbctl
   ];

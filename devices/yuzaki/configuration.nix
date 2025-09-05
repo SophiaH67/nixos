@@ -111,7 +111,17 @@
       dig
       pv
       wireshark
+      spotify
     ];
+  };
+
+  services.asterisk = {
+    enable = true;
+    confFiles = {
+      "extensions.conf" = builtins.readFile ./extensions.conf;
+      "pjsip.conf" = builtins.readFile ./pjsip.conf;
+      "logger.conf" = builtins.readFile ./logger.conf;
+    };
   };
 
   # Enable automatic login for the user.

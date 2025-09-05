@@ -1,4 +1,3 @@
-configuration.nix
 *.qcow2
 result
 master

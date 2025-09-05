@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../common/sophia.nix
     ];
 
   # Bootloader.
@@ -23,22 +22,13 @@
     pkiBundle = "/var/lib/sbctl";
   };
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
 
-  networking.hostName = "yuzaki"; # Define your hostname.
+  networking.hostName = "yuzaki";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-  
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-
-  # Select internationalisation properties.
-  
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -66,7 +56,6 @@
   # Docker shenanigans
   virtualisation.docker.enable = true;
 
-  programs.zsh.enable = true;
   programs.steam.enable = true;
   programs.adb.enable = true;
   programs.virt-manager.enable = true;
@@ -113,15 +102,6 @@
       wireshark
       spotify
     ];
-  };
-
-  services.asterisk = {
-    enable = true;
-    confFiles = {
-      "extensions.conf" = builtins.readFile ./extensions.conf;
-      "pjsip.conf" = builtins.readFile ./pjsip.conf;
-      "logger.conf" = builtins.readFile ./logger.conf;
-    };
   };
 
   # Enable automatic login for the user.
@@ -334,7 +314,7 @@ background_opacity 0.5
     services = {
       gpg-agent = {
         enable = true;
-        enableSshSupport = true;
+        enableSshSupport = false;
         sshKeys = [ "1FB01D6AA1106525" ];
         maxCacheTtl = 300;
       };
@@ -356,9 +336,6 @@ background_opacity 0.5
         uris = ["qemu:///system"];
       };
     };
-    # The state version is required and should stay at the version you
-    # originally installed.
-    home.stateVersion = "23.11";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -366,7 +343,7 @@ background_opacity 0.5
   # programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
-    enableSSHSupport = true;
+    enableSSHSupport = false;
   };
 
   programs.calls.enable = true;
@@ -387,15 +364,6 @@ background_opacity 0.5
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
 
   networking.extraHosts = ''
 10.101.8.121  wifi.bahn.de

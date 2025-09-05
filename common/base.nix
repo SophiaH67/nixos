@@ -4,6 +4,12 @@
   # -=-=- Boot -=-=-
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
+
+  # -=-=- Networking -=-=-
+  networking.networkmanager.enable = true;
+  networking.firewall.enable = true;
+  networking.firewall.allowedTCPPorts = [ 22 ];
 
   # -=-=- Security -=-=-
   systemd.tmpfiles.settings."10-nixos-directory"."/etc/nixos".d = {
@@ -65,4 +71,5 @@
   # -=-=- Nix -=-=-
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes"];
+  system.stateVersion = "25.05"; # Did you read the comment?
 }

@@ -63,8 +63,6 @@
     #media-session.enable = true;
   };
 
-
-
   # Docker shenanigans
   virtualisation.docker.enable = true;
 
@@ -112,6 +110,7 @@
       iperf
       dig
       pv
+      wireshark
     ];
   };
 
@@ -127,9 +126,13 @@
     NIXOS_OZONE_WL = "1";
   };
 
+  security.pam.services.sophia.enableGnomeKeyring = true;
+
   home-manager.useGlobalPkgs = true;
   
   home-manager.users.sophia = { pkgs, ... }: {
+    services.gnome-keyring.enable = true;
+
     home.packages = with pkgs; [
       atool
       httpie
@@ -355,6 +358,8 @@ background_opacity 0.5
     enable = true;
     enableSSHSupport = true;
   };
+
+  programs.calls.enable = true;
 
   # List services that you want to enable:
 

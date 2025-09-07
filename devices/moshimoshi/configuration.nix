@@ -1,4 +1,6 @@
 {
+  imports = [ ./sounds.nix ];
+
   networking.hostName = "moshimoshi";
 
   # -=-=- Asterisk -=-=-
@@ -10,11 +12,7 @@
       "logger.conf" = builtins.readFile ./asterisk/logger.conf;
     };
   };
-  systemd.services.asterisk.restartTriggers = [
-    ./asterisk/extensions.conf
-    ./asterisk/pjsip.conf
-    ./asterisk/logger.conf
-  ];
+
   networking.firewall.allowedUDPPorts = [ 5060 5061 ];
   networking.firewall.allowedUDPPortRanges = [ { from = 1024; to = 65535; } ]; # I cannot figure out how to constrain asterisk, so whatever...
 

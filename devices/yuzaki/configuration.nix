@@ -101,9 +101,14 @@
       pv
       wireshark
       spotify
+      qpwgraph
+      pwvucontrol
+      plex-desktop
+      thunderbird-latest-unwrapped
     ];
   };
 
+  services.protonmail-bridge.enable = true;
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "sophia";

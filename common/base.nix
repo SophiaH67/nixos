@@ -4,7 +4,7 @@
   # -=-=- Boot -=-=-
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
+  boot.loader.systemd-boot.configurationLimit = 35;
 
   # -=-=- Networking -=-=-
   networking.networkmanager.enable = true;

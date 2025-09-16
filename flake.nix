@@ -76,9 +76,9 @@
       };
 
       schwi = {
-        hostname = "schwi.ex-machina.sophiah..gay";
+        hostname = "schwi.ex-machina.sophiah.gay";
         profiles.system = {
-          user = "sophia";
+          user = "root";
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.schwi;
         };
       };

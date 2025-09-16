@@ -3,3 +3,4 @@ result
 master
 worker
 *-swtpm
+*.fd

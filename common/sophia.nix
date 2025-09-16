@@ -20,9 +20,9 @@
     shell = pkgs.zsh;
   };
 
+  home-manager.useUserPackages = true;
   home-manager.users.sophia = { pkgs, ... }: {
     home.stateVersion = "23.11";
-
     home.packages = with pkgs; [
       zsh-powerlevel10k
     ];

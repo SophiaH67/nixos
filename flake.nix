@@ -60,6 +60,7 @@
           ./devices/kube/nodes/disko.nix
           ./common/base.nix
           ./common/sophia.nix
+          ./common/vm-able.nix
           home-manager.nixosModules.home-manager
         ];
       };

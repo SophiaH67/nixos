@@ -65,6 +65,7 @@
 
   environment.systemPackages = with pkgs; [
     ntfs3g
+    networkmanager-openvpn
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -242,7 +243,7 @@
           { id = "gppongmhjkpfnbhagpmjfkannfbllamg"; } # wappalyzer
           { id = "hlepfoohegkhhmjieoechaddaejaokhf"; } # refined github
           { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
-          { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; }
+          { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vimium
         ];
       };
       neovim = {
@@ -372,6 +373,7 @@ background_opacity 0.5
 172.18.1.110  iceportal.de
 172.18.1.110  zugportal.de
 172.18.1.110  www.iceportal.de
+185.189.112.21 de3.vpn.airdns.org
   '';
 
   services.fprintd.enable = true;

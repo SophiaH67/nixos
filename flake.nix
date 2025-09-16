@@ -59,7 +59,6 @@
           ./devices/kube/nodes/hardware-configuration.nix
           ./devices/kube/nodes/disko.nix
           ./common/base.nix
-          ./common/tailscale.nix
           ./common/sophia.nix
           home-manager.nixosModules.home-manager
         ];

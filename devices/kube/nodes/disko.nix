@@ -51,7 +51,7 @@
   };
   boot.initrd.systemd.enable = true;
   boot.initrd.availableKernelModules = ["tpm_tis" "tpm" ];
-  boot.initrd.systemd.enableTpm2 = true;
+  boot.initrd.systemd.tpm2.enable = true;
   boot.initrd.systemd.emergencyAccess = true;
 
   systemd.services.enroll-tpm = {

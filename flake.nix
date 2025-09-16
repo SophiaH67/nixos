@@ -64,19 +64,6 @@
           home-manager.nixosModules.home-manager
         ];
       };
-
-      mococo = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          disko.nixosModules.disko
-          ./devices/mococo/configuration.nix
-          ./devices/mococo/hardware-configuration.nix
-          ./common/base.nix
-          # ./common/tailscale.nix
-          ./common/sophia.nix
-          home-manager.nixosModules.home-manager
-        ];
-      };
     };
 
     deploy.nodes = {

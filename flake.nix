@@ -51,6 +51,20 @@
         ];
       };
 
+      schwi = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          ./devices/kube/nodes/schwi.nix
+          ./devices/kube/nodes/hardware-configuration.nix
+          ./devices/kube/nodes/disko.nix
+          ./common/base.nix
+          ./common/tailscale.nix
+          ./common/sophia.nix
+          home-manager.nixosModules.home-manager
+        ];
+      };
+
       mococo = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -71,6 +85,14 @@
         profiles.system = {
           user = "root";
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.moshimoshi;
+        };
+      };
+
+      schwi = {
+        hostname = "schwi.ex-machina.sophiah..gay";
+        profiles.system = {
+          user = "sophia";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.schwi;
         };
       };
     };

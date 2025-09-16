@@ -1,8 +1,13 @@
 { config, lib, ...} :
-{
-  virtualisation.vmVariant = {
+let v = {
     virtualisation.diskSize = 10240;
-    disko.devices.disk.main.device = "/dev/vda";
+    virtualisation.tpm.enable = true;
+    disko.devices.disk.main.device = lib.mkForce "/dev/vda";
     environment.etc."is-vm".text = "Mhm";
-  };
+};
+  in
+{
+  virtualisation.vmVariant = v;
+
+  virtualisation.vmVariantWithDisko = v;
 }

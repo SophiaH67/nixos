@@ -1,6 +1,6 @@
 {
   environment.etc."tailscale/auth.key".source = ./secrets/auth.key;
-    services.tailscale = {
+  services.tailscale = {
     enable = true;
     useRoutingFeatures = "both"; # optional: allow subnet exit routing
     openFirewall = true;

@@ -7,9 +7,10 @@
   boot.loader.systemd-boot.configurationLimit = 35;
 
   # -=-=- Networking -=-=-
-  networking.networkmanager.enable = true;
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.search = [ "ex-machina.sophiah.gay" ];
+  networking.nameservers = [ "2620:fe::fe" "9.9.9.9" ]; # Fallback to quad9 if nothing else configured
 
   # -=-=- Security -=-=-
   systemd.tmpfiles.settings."10-nixos-directory"."/etc/nixos".d = {

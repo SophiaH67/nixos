@@ -13,8 +13,12 @@
       fi
     '';
     postCreateHook = ''
-      cp /tmp/disk-encryption.key /etc/disk-encryption.key
-      chmod 0400 /etc/disk-encryption.key
+      mkdir /tmpmnt
+      mount -t bcachefs /dev/disk/by-partlabel/disk-main-root /tmpmnt
+      cp /tmp/disk-encryption.key /tmpmnt/etc/disk-encryption.key
+      umount /tmpmnt
+      rmdir /tmpmnt
+
       # TODO: Let's try to boot this with a real TPM, I think qemu might just suck
       # also, look at https://archive.fosdem.org/2023/schedule/event/nix_and_nixos_towards_secure_boot/attachments/slides/5484/export/events/attachments/nix_and_nixos_towards_secure_boot/slides/5484/fosdem_lanzaboote_slides.pdf
       # systemd-cryptenroll --tpm2-pcrs=7 --tpm2-device=auto --unlock-key-file=/tmp/disk-encryption.key
@@ -34,17 +38,33 @@
         root = {
           size = "100%";
           content = {
-            type = "luks";
-            name = "encwyptwed";
-            settings.allowDiscards = true;
-            passwordFile = "/tmp/disk-encryption.key";
-            content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/";
-            };
+            type = "bcachefs";
+            label = "encwyptwed";
+            # mountpoint = "/";
+            # passwordFile = "/tmp/disk-encryption.key";
+            
+            filesystem = "encwyptwed";
           };
         };
+      };
+    };
+  };
+
+  disko.devices.bcachefs_filesystems.encwyptwed = {
+    type = "bcachefs_filesystem";
+    passwordFile = "/etc/disk-encryption.key";
+    extraFormatArgs = [
+      "--compression=lz4"
+      "--background_compression=lz4"
+      "--discard"
+    ];
+    subvolumes = {
+    # Subvolume name is different from mountpoint.
+      "subvolumes/root" = {
+        mountpoint = "/";
+        mountOptions = [
+          "verbose"
+        ];
       };
     };
   };

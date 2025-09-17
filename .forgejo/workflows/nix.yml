@@ -1,0 +1,15 @@
+on: [push]
+jobs:
+  build:
+    runs-on: docker
+    concurrency:
+      cancel-in-progress: false
+    container:
+      image: nixos/nix
+    strategy:
+      matrix:
+        flake: [schwi, moshimoshi]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build-vm
+        run: nix run .#nixosConfigurations.${{ matrix.flake }}.config.system.build.vmWithDisko

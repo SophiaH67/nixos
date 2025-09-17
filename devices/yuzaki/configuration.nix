@@ -332,8 +332,8 @@ background_opacity 0.5
         tap-to-click = false;
       };
       "org/virt-manager/virt-manager/connections" = {
-        autoconnect = ["qemu:///system"];
-        uris = ["qemu:///system"];
+        autoconnect = ["qemu:///system" "qemu+ssh://sophia@mococo/system"];
+        uris = ["qemu+ssh://sophia@mococo/system" "qemu:///system"];
       };
     };
   };

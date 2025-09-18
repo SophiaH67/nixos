@@ -2,20 +2,20 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "git+https://git.muc.ccc.de/sophinya67/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lanzaboote = {
-      url = "git+https://git.muc.ccc.de/sophinya67/lanzaboote/v0.4.2";
+      url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    deploy-rs.url = "git+https://git.muc.ccc.de/sophinya67/deploy-rs";
+    deploy-rs.url = "github:serokell/deploy-rs";
 
-    disko.url = "git+https://git.muc.ccc.de/sophinya67/disko";
+    disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 

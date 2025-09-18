@@ -135,6 +135,7 @@
       httpie
       nerd-fonts._0xproto
       nerd-fonts.droid-sans-mono
+      cascadia-code
     ];
     fonts.fontconfig.enable = true;
 
@@ -274,6 +275,11 @@ background_opacity 0.5
         profiles.default = {
           userSettings = {
             git.confirmSync = false;
+            git.enableSmartCommit = true;
+            git.autofetch = true;
+            git.replaceTagsWhenPull" = true;
+            git.autoStash = true;
+            editor.cursorSmoothCaretAnimation = "on";
             "github.copilot.enable.*" = true;
             files.autoSave = "afterDelay";
             terminal.integrated.enableMultiLinePasteWarning = false;
@@ -281,11 +287,10 @@ background_opacity 0.5
             prohe.typingWindow = 10000;
             prohe.vibrationMax = 1;
             workbench.iconTheme = "material-icon-theme";
-            workbench.colorTheme = "Default Light Modern";
-            git.enableSmartCommit = true;
-            git.autofetch = true;
-            editor.fontFamily = "CaskaydiaCove NFM Regular";
+            workbench.colorTheme = "98878c8e-9f91-4e25-930d-dd7d280d9e35";
+            editor.fontFamily = "'Cascadia Code',Consolas, 'Courier New', monospace";
             terminal.integrated.stickyScroll.enabled = false;
+            terminal.integrated.enableMultiLinePasteWarning = false;
           };
           extensions = with pkgs.vscode-extensions; [
             yzhang.markdown-all-in-one
@@ -300,11 +305,18 @@ background_opacity 0.5
             esbenp.prettier-vscode
             eamodio.gitlens
             leonardssh.vscord
+            stkb.rewrap
           ]  ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             {
               name = "prohe";
               publisher = "UncensorPat";
               version = "0.1.0";
+              sha256 = "mq4SP+FM3rMOYf9e6lmPcxQQn2CpgN95L3J6mXlHY1s=";
+            }
+            {
+              name = "doki-theme";
+              publisher = "unthrottled";
+              version = "88.1.18";
               sha256 = "mq4SP+FM3rMOYf9e6lmPcxQQn2CpgN95L3J6mXlHY1s=";
             }
           ];

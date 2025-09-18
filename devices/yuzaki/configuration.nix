@@ -319,7 +319,7 @@ background_opacity 0.5
               name = "doki-theme";
               publisher = "unthrottled";
               version = "88.1.18";
-              sha256 = "mq4SP+FM3rMOYf9e6lmPcxQQn2CpgN95L3J6mXlHY1s=";
+              sha256 = "7Ditwj7U26t3v4ofpqw/sHar6uE46E4DWVwGZjziZfM=";
             }
           ];
         };

@@ -5,7 +5,7 @@ jobs:
     concurrency:
       cancel-in-progress: false
     container:
-      image: nixos/nix
+      image: xn--55q89qy6p.com/soph/ci-base:latest
     strategy:
       matrix:
         flake: [schwi, moshimoshi]

@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build-vm
-        run: nix --extra-experimental-features nix-command run .#nixosConfigurations.${{ matrix.flake }}.config.system.build.vmWithDisko
+        run: nix --extra-experimental-features nix-command --extra-experimental-features flakes run .#nixosConfigurations.${{ matrix.flake }}.config.system.build.vmWithDisko

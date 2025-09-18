@@ -66,6 +66,9 @@
   environment.systemPackages = with pkgs; [
     ntfs3g
     networkmanager-openvpn
+    networkmanager-vpnc
+    vpnc
+    openvpn
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -277,7 +280,7 @@ background_opacity 0.5
             git.confirmSync = false;
             git.enableSmartCommit = true;
             git.autofetch = true;
-            git.replaceTagsWhenPull" = true;
+            git.replaceTagsWhenPull = true;
             git.autoStash = true;
             editor.cursorSmoothCaretAnimation = "on";
             "github.copilot.enable.*" = true;
@@ -290,7 +293,6 @@ background_opacity 0.5
             workbench.colorTheme = "98878c8e-9f91-4e25-930d-dd7d280d9e35";
             editor.fontFamily = "'Cascadia Code',Consolas, 'Courier New', monospace";
             terminal.integrated.stickyScroll.enabled = false;
-            terminal.integrated.enableMultiLinePasteWarning = false;
           };
           extensions = with pkgs.vscode-extensions; [
             yzhang.markdown-all-in-one
@@ -386,7 +388,6 @@ background_opacity 0.5
 172.18.1.110  iceportal.de
 172.18.1.110  zugportal.de
 172.18.1.110  www.iceportal.de
-185.189.112.21 de3.vpn.airdns.org
   '';
 
   services.fprintd.enable = true;

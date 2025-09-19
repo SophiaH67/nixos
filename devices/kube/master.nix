@@ -42,8 +42,8 @@ in {
     } // (if cfg.init then {
       clusterInit = true;
     } else {
-      # serverAddr = "https://${cfg.virtualIp}:6443";
-      serverAddr = "https://[2a02:810d:6f83:ad00:acab::1]:6443";
+      serverAddr = "https://${cfg.virtualIp}:6443";
+      # serverAddr = "https://[2a02:810d:6f83:ad00:acab::1]:6443";
     });
   };
 }

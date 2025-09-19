@@ -38,7 +38,7 @@ in {
 
     services.k3s = {
       role = "server";
-      extraFlags = "--disable traefik --debug";
+      extraFlags = "--disable traefik --debug --tls-san 2a02:810d:6f83:ad00:3ac1::67";
       enable = true;
     } // (if cfg.init then {
       clusterInit = true;

@@ -308,6 +308,7 @@ background_opacity 0.5
             eamodio.gitlens
             leonardssh.vscord
             stkb.rewrap
+            jnoortheen.nix-ide
           ]  ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             {
               name = "prohe";

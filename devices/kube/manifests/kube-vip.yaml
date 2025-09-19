@@ -116,7 +116,7 @@ spec:
           value: 2a02:810d:6f83:ad00:acab::67
         - name: prometheus_server
           value: :2112
-        image: ghcr.io/kube-vip/kube-vip:v1.0.0
+        image: plndr/kube-vip:v1.0.0
         imagePullPolicy: IfNotPresent
         name: kube-vip
         resources: {}
@@ -135,4 +135,3 @@ spec:
       - effect: NoExecute
         operator: Exists
   updateStrategy: {}
-  

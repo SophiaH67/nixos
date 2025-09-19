@@ -6,3 +6,9 @@
 - Potentially set up my own flake server?
 - Start with helmfile
   
+
+
+  idk what thats about
+
+  - set v6 subnets for pods and services
+  - fix networking after that but maybe can just go with publically routable ips that would be nice maybe idk

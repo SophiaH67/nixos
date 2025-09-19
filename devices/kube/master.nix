@@ -33,6 +33,7 @@ in {
       role = "server";
       extraFlags = "--disable traefik --tls-san ${cfg.virtualIp} --node-ip ${cfg.nodeIp} --node-external-ip ${cfg.nodeIp}";
       enable = true;
+      token = "exmachinampXeJcPsGKDFgapj";
       manifests = {
         kube-vip-rbac = {
           source = ./manifests/kube-vip.yaml;

@@ -64,6 +64,20 @@
           home-manager.nixosModules.home-manager
         ];
       };
+
+      emir-eins = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          ./devices/kube/nodes/emir-eins.nix
+          ./devices/kube/nodes/hardware-configuration.nix
+          ./devices/kube/nodes/disko.nix
+          ./common/base.nix
+          ./common/sophia.nix
+          ./common/vm-able.nix
+          home-manager.nixosModules.home-manager
+        ];
+      };
     };
 
     deploy.nodes = {
@@ -80,6 +94,14 @@
         profiles.system = {
           user = "root";
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.schwi;
+        };
+      };
+
+      emir-eins = {
+        hostname = "emir-eins.ex-machina.sophiah.gay";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.emir-eins;
         };
       };
     };

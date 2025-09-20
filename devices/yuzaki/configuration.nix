@@ -110,6 +110,7 @@
       plex-desktop
       thunderbird-latest-unwrapped
       wget
+      kubectl
     ];
   };
 

@@ -30,20 +30,28 @@ in {
     networking.firewall.allowedTCPPorts = [ 6443 6444 2379 2380 10250 10251 10252 ];
 
     virtualisation.containerd.enable = true;
-    # Longhorn dependencies
-    services.openiscsi.enable = true;
+    # Longhorn - https://github.com/longhorn/longhorn/issues/2166#issuecomment-2994323945
+    services.openiscsi = {
+      enable = true;
+      name = "${config.networking.hostName}-initiatorhost";
+    };
+    systemd.services.iscsid.serviceConfig = {
+      PrivateMounts = "yes";
+      BindPaths = "/run/current-system/sw/bin:/bin";
+    };
+  
     environment.systemPackages = [ pkgs.nfs-utils ];
 
-    # Symlink the loopback plugin into /opt/cni/bin, as containerd expects to find it there.
-    # This is needed for flannel to work correctly.
     systemd.tmpfiles.rules = [
+      # Symlink CNI plugins into /opt/cni/bin, as containerd expects to find it there.
+      # This is needed for flannel to work correctly.
       "L+ /opt/cni/bin/loopback - - - - ${pkgs.cni-plugins}/bin/loopback"
-      # Same with bridge plugin
       "L+ /opt/cni/bin/bridge - - - - ${pkgs.cni-plugins}/bin/bridge"
-      # And host-local IPAM plugin
       "L+ /opt/cni/bin/host-local - - - - ${pkgs.cni-plugins}/bin/host-local"
-      # portmap
       "L+ /opt/cni/bin/portmap - - - - ${pkgs.cni-plugins}/bin/portmap"
+
+      # https://github.com/longhorn/longhorn/issues/2166#issuecomment-3094699127
+      "L /usr/bin/mount - - - - /run/current-system/sw/bin/mount"
     ];
 
     services.k3s = {
@@ -69,6 +77,10 @@ in {
         };
         flannel = {
           source = ./manifests/kube-flannel.yml;
+          enable = true;
+        };
+        longhorn = {
+          source = ./manifests/longhorn.yaml;
           enable = true;
         };
       };

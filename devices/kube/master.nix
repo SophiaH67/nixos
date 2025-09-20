@@ -29,9 +29,23 @@ in {
   config = lib.mkIf cfg.enable {
     networking.firewall.allowedTCPPorts = [ 6443 6444 2379 2380 10250 10251 10252 ];
 
+    virtualisation.containerd.enable = true;
+
     services.k3s = {
       role = "server";
-      extraFlags = "--disable traefik --tls-san ${cfg.virtualIp} --node-ip ${cfg.nodeIp} --node-external-ip ${cfg.nodeIp}";
+      extraFlags = [
+        "--disable traefik"
+        "--tls-san ${cfg.virtualIp}"
+        "--node-ip ${cfg.nodeIp}"
+        "--node-external-ip ${cfg.nodeIp}"
+        "--flannel-external-ip ${cfg.nodeIp}"
+        # "--kube-controller-manager-arg cluster-cidr=fd00:3ac1::/56"
+        "--cluster-cidr=fd00:3ac1::/56"
+        "--service-cidr=fd00:3ac1:7::/112"
+        "--flannel-ipv6-masq"
+        "--flannel-backend host-gw"
+        "--cluster-domain ex-machina.sophiah.gay"
+      ];
       enable = true;
       token = "exmachinampXeJcPsGKDFgapj";
       manifests = {

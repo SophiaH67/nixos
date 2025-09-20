@@ -60,6 +60,7 @@
           ./devices/kube/nodes/disko.nix
           ./common/base.nix
           ./common/sophia.nix
+          ./common/forgejo.nix
           ./common/vm-able.nix
           home-manager.nixosModules.home-manager
         ];
@@ -74,6 +75,7 @@
           ./devices/kube/nodes/disko.nix
           ./common/base.nix
           ./common/sophia.nix
+          ./common/forgejo.nix
           ./common/vm-able.nix
           home-manager.nixosModules.home-manager
         ];

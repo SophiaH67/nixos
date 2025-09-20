@@ -1,0 +1,22 @@
+on: [push]
+jobs:
+  build:
+    runs-on: docker
+    concurrency:
+      cancel-in-progress: false
+    container:
+      image: xn--55q89qy6p.com/soph/ci-base:latest
+    strategy:
+      matrix:
+        flake: [schwi, emir-eins]
+    steps:
+      - name: Copy ssh keys from secrets
+        run: |
+          mkdir -p /root/.ssh
+          echo "${{ secrets.SSH_PRIV }}" > /root/.ssh/id_ed25519
+          echo "${{ secrets.SSH_PUB }}" > /root/.ssh/id_ed25519.pub
+          chmod 600 /root/.ssh/id_rsa
+          chmod 644 /root/.ssh/id_rsa.pub
+      - uses: actions/checkout@v4
+      - name: Deploy ${{ matrix.flake }}
+        run: nix --extra-experimental-features "nix-command flakes" run github:serokell/deploy-rs .#${{ matrix.flake }} -- --ssh-user forgejo

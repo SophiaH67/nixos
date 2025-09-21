@@ -20,7 +20,13 @@
   # Hardstyle radio
   environment.systemPackages = with pkgs; [
     mpg123
+    ffmpeg
   ];
+
+  environment.etc."radio.sh" = {
+    source = ./radio.sh;
+    mode = "0755";
+  };
 
   # -=-=- Netboot -=-=-
   services.pixiecore = {

@@ -22,6 +22,16 @@ jobs:
           echo "schwi.ex-machina.sophiah.gay ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPHtJcY8q0xm/J8AkGbX+kx91zXpo8H893mUGqJblgh" >> ~/.ssh/known_hosts
           echo "schwi.ex-machina.sophiah.gay ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPHtJcY8q0xm/J8AkGbX+kx91zXpo8H893mUGqJblgh" >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
+      - uses: https://git.muc.ccc.de/sophinya67/cache-nix-action@v6
+        with:
+          primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
+          restore-prefixes-first-match: nix-${{ runner.os }}-
+          gc-max-store-size-linux: 10G
+          purge: true
+          purge-prefixes: nix-${{ runner.os }}-
+          purge-created: 0
+          purge-last-accessed: 0  
+          purge-primary-key: never
       - uses: actions/checkout@v4
       - name: Deploy ${{ matrix.flake }}
         run: nix --extra-experimental-features "nix-command flakes" run github:serokell/deploy-rs .#${{ matrix.flake }} -- --ssh-user forgejo

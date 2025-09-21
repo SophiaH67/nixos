@@ -310,6 +310,7 @@ background_opacity 0.5
             leonardssh.vscord
             stkb.rewrap
             jnoortheen.nix-ide
+            arrterian.nix-env-selector
           ]  ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             {
               name = "prohe";

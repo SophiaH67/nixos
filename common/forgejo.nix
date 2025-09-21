@@ -1,7 +1,7 @@
+{ config, pkgs, ... }:
 {
   users.groups.forgejo = {};
   users.users.forgejo = {
-    isNormalUser = false;
     description = "Forgejo CI (for automatic deploys)";
     extraGroups = [
       "wheel"
@@ -10,6 +10,9 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINxRWP14VnqsOH7ukPduWmotPLkkGzoEq4kr/URWQCoY root@244cfb52066d"
     ];
-    isSystemUser = true;
+    # Still needs a shell for deploy-rs :/
+    isNormalUser = true;
+    packages = with pkgs; [ zsh ];
+    shell = pkgs.zsh;
   };
 }

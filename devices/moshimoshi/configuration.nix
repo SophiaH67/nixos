@@ -25,7 +25,7 @@
 
   environment.etc."radio.sh" = {
     text = ''#!/bin/sh
-${pkgs.ffmpeg}/bin/ffmpeg -i http://listener3.mp3.tb-group.fm:80/hb.mp3 -ar 8000 -ac 1 -f mulaw -'';
+${pkgs.ffmpeg}/bin/ffmpeg -hide_banner -loglevel error -i http://listener3.mp3.tb-group.fm:80/hb.mp3 -ar 8000 -ac 1 -f mulaw - 2> /dev/null | cat'';
     mode = "0755";
   };
 

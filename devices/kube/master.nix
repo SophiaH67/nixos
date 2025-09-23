@@ -87,6 +87,12 @@ in {
           source = ./manifests/metallb.yaml;
           enable = true;
         };
+
+        # Soph
+        conduwuit = {
+          source = ./manifests/soph/conduwuit.yaml;
+          enable = true;
+        };
       };
     } // (if cfg.init then {
       clusterInit = true;

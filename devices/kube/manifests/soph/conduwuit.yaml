@@ -76,9 +76,11 @@ metadata:
   namespace: conduwuit-namespace
 spec:
   type: LoadBalancer
-  ports:
-    - protocol: TCP
-      port: 6167
+  externalTrafficPolicy: Local
   loadBalancerIP: "2a02:810d:6f83:ad00:acab::fafa"
   selector:
     app: conduwuit
+  ports:
+    - protocol: TCP
+      port: 6167
+      targetPort: 6167

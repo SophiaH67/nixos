@@ -83,6 +83,10 @@ in {
           source = ./manifests/longhorn.yaml;
           enable = true;
         };
+        metallb = {
+          source = ./manifests/metallb.yaml;
+          enable = true;
+        };
       };
     } // (if cfg.init then {
       clusterInit = true;

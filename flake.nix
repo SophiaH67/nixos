@@ -37,6 +37,17 @@
         ];
       };
 
+      yuuna = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          ./devices/yuuna/configuration.nix
+          ./devices/yuuna/hardware-configuration.nix
+          ./common/base.nix
+          ./common/sophia.nix
+          home-manager.nixosModules.home-manager
+        ];
+      };
+
       moshimoshi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -84,6 +95,13 @@
     };
 
     deploy.nodes = {
+      yuuna = {
+        hostname = "yuuna";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.yuuna;
+        };
+      };
       moshimoshi = {
         hostname = "moshimoshi";
         profiles.system = {

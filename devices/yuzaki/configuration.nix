@@ -395,4 +395,6 @@ background_opacity 0.5
   services.fprintd.enable = true;
   services.fprintd.tod.enable = true;
   services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
+
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 }

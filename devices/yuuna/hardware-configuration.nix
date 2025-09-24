@@ -1,3 +1,4 @@
+{ lib, config, pkgs, ... }:
 {
   networking.networkmanager.enable = true;
 
@@ -10,6 +11,8 @@
     { device = "/dev/disk/by-uuid/2178-694E";
       fsType = "vfat";
     };
+
+  boot.kernelPackages = pkgs.linuxPackages;
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }

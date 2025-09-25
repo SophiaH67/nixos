@@ -39,7 +39,7 @@ in {
       PrivateMounts = "yes";
       BindPaths = "/run/current-system/sw/bin:/bin";
     };
-  
+    
     environment.systemPackages = [ pkgs.nfs-utils ];
 
     systemd.tmpfiles.rules = [
@@ -56,6 +56,7 @@ in {
 
     services.k3s = {
       role = "server";
+      gracefulNodeShutdown.enable = true;
       extraFlags = [
         "--disable traefik"
         "--flannel-backend none"

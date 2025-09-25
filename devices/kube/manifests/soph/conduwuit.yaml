@@ -74,11 +74,11 @@ kind: Service
 metadata:
   name: conduwuit-service
   namespace: conduwuit-namespace
+  annotations:
+    metallb.io/loadBalancerIPs: 2a02:810d:6f83:ad00:acab::fafa
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
-  annotations:
-    metallb.io/loadBalancerIPs: "2a02:810d:6f83:ad00:acab::fafa"
   selector:
     app: conduwuit
   ports:

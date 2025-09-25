@@ -27,11 +27,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [
-      /*k3s*/6443 6444 2379 2380 10250 10251 10252
-      /*metallb*/7946
-    ];
-    networking.firewall.allowedUDPPorts = [ /*metallb*/7946 ];
+    networking.firewall.enable = lib.mkForce false;
 
     virtualisation.containerd.enable = true;
     # Longhorn - https://github.com/longhorn/longhorn/issues/2166#issuecomment-2994323945
@@ -88,11 +84,6 @@ in {
           source = ./manifests/longhorn.yaml;
           enable = true;
         };
-        # metallb = {
-        #   source = ./manifests/metallb.yaml;
-        #   enable = true;
-        # };
-
         # Soph
         conduwuit = {
           source = ./manifests/soph/conduwuit.yaml;

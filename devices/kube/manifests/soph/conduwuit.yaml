@@ -15,7 +15,32 @@ spec:
   resources:
     requests:
       storage: 4Gi
+---
+# Caddy conf
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: caddy-config
+  namespace: conduwuit-namespace
+data:
+  Caddyfile: |
+    cat.sophiah.gay {
+      handle /.well-known/matrix/client {
+    		respond /.well-known/matrix/client 200 {
+    			body "{\"m.server\":{\"base_url\": \"https://cat.sophiah.gay\"},\"m.homeserver\":{\"base_url\": \"https://cat.sophiah.gay\"},\"org.matrix.msc3575.proxy\":{\"url\": \"https://cat.sophiah.gay\"}}"
+    			close
+    		}
+    	}
 
+      handle /.well-known/matrix/server {
+        respond /.well-known/matrix/server 200 {
+          body "{\"m.server\":\"cat.sophiah.gay:443\"}"
+          close
+        }
+      }
+
+      reverse_proxy localhost:6167
+    }
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -63,16 +88,24 @@ spec:
               value: '["matrix.org"]'
             - name: CONDUWUIT_ADDRESS
               value: "[::]"
+        # TODO: Make caddy persist certs
+        # Or even better, use kube-cert-manager properly
         - name: caddy-sidecar
           image: docker.io/caddy:2.10.2
+          volumeMounts:
+            - name: caddy-config
+              mountPath: /etc/caddy/Caddyfile
+              subPath: Caddyfile
           ports:
             - containerPort: 80
             - containerPort: 443
-          command: ["caddy", "reverse-proxy", "--from", "cat.sophiah.gay", "--to", "localhost:6167"]
       volumes:
         - name: conduwuit-volume
           persistentVolumeClaim:
             claimName: conduwuit-pvc
+        - name: caddy-config
+          configMap:
+            name: caddy-config
 
 ---
 apiVersion: v1
@@ -81,7 +114,7 @@ metadata:
   name: conduwuit-service
   namespace: conduwuit-namespace
   annotations:
-    kube-vip.io/loadbalancerIPs: 2a02:810d:6f83:ad00:acab::ff
+    kube-vip.io/loadbalancerIPs: 2a02:810d:6f83:ad00:acab::fafa
 spec:
   type: LoadBalancer
   # externalTrafficPolicy: Local

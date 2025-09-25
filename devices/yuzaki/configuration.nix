@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../common/apps/chromium.nix
     ];
 
   # Bootloader.
@@ -236,20 +237,6 @@
         #preferences = {
         #  "widget.use-xdg-desktop-portal.file-picker" = 1;
         #};
-      };
-      chromium = {
-        enable = true;
-        dictionaries = [
-          # pkgs.hunspellDicts.tok
-          pkgs.hunspellDictsChromium.en_US
-        ];
-        extensions = [
-          { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin (lite)
-          { id = "gppongmhjkpfnbhagpmjfkannfbllamg"; } # wappalyzer
-          { id = "hlepfoohegkhhmjieoechaddaejaokhf"; } # refined github
-          { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
-          { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vimium
-        ];
       };
       neovim = {
         enable = true;

@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 {
+  imports = [
+    ../../common/apps/chromium.nix
+  ];
   networking.hostName = "yuuna";
 
   # Enable the GNOME Desktop Environment.

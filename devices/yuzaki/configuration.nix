@@ -352,17 +352,7 @@ background_opacity 0.5
   programs.calls.enable = true;
 
   # List services that you want to enable:
-
   services.tailscale.enable = true;
-  networking.nameservers = [ "100.100.100.100" "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
-  # Actually managed in https://login.tailscale.com/admin/dns
-  services.resolved = {
-    enable = false;
-    dnssec = "true";
-    domains = [ "~." "ex-machina.sophiah.gay" ];
-    fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
-    dnsovertls = "true";
-  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

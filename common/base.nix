@@ -3,7 +3,7 @@
 {
   # -=-=- Boot -=-=-
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = lib.mkDefault true;
   boot.loader.systemd-boot.configurationLimit = 35;
 
   # -=-=- Networking -=-=-

@@ -75,10 +75,10 @@ metadata:
   name: conduwuit-service
   namespace: conduwuit-namespace
   annotations:
-    metallb.io/loadBalancerIPs: 2a02:810d:6f83:ad00:acab::fafa
+    kube-vip.io/loadbalancerIPs: 2a02:810d:6f83:ad00:acad::fafb
 spec:
   type: LoadBalancer
-  externalTrafficPolicy: Local
+  # externalTrafficPolicy: Local
   selector:
     app: conduwuit
   ports:

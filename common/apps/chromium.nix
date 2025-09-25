@@ -3,7 +3,7 @@
   home-manager.users.sophia.programs.chromium = {
     enable = true;
     dictionaries = [
-      pkgs.hunspellDicts.tok
+      # pkgs.hunspellDicts.tok
       pkgs.hunspellDictsChromium.en_US
     ];
     extensions = [

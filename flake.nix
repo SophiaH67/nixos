@@ -56,7 +56,7 @@
           ./devices/moshimoshi/hardware-configuration.nix
           ./devices/moshimoshi/disko.nix
           ./common/base.nix
-          ./common/tailscale.nix
+          ./common/apps/tailscale.nix
           ./common/sophia.nix
           ./common/forgejo.nix
           home-manager.nixosModules.home-manager

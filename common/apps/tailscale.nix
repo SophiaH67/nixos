@@ -1,5 +1,5 @@
 {
-  environment.etc."tailscale/auth.key".source = ./secrets/auth.key;
+  environment.etc."tailscale/auth.key".source = ../secrets/auth.key;
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "both"; # optional: allow subnet exit routing

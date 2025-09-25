@@ -2,6 +2,7 @@
 {
   imports = [
     ../../common/apps/chromium.nix
+    ../../common/apps/tailscale.nix
   ];
   networking.hostName = "yuuna";
 

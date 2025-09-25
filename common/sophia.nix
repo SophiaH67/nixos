@@ -25,6 +25,7 @@
     home.stateVersion = "23.11";
     home.packages = with pkgs; [
       zsh-powerlevel10k
+      htop
     ];
 
     programs = {

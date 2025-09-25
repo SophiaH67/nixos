@@ -62,7 +62,7 @@ spec:
             - name: CONDUWUIT_TRUSTED_SERVERS
               value: '["matrix.org"]'
             - name: CONDUWUIT_ADDRESS
-              value: "0.0.0.0"
+              value: "[::]"
       volumes:
         - name: conduwuit-volume
           persistentVolumeClaim:

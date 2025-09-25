@@ -97,7 +97,7 @@
         system = "x86_64-linux";
         modules = [
           disko.nixosModules.disko
-          ./devices/kube/nodes/emir-eins.nix
+          ./devices/kube/nodes/emir-zwei.nix
           ./devices/kube/nodes/hardware-configuration.nix
           ./devices/kube/nodes/disko.nix
           ./common/base.nix

@@ -63,6 +63,12 @@ spec:
               value: '["matrix.org"]'
             - name: CONDUWUIT_ADDRESS
               value: "[::]"
+        - name: caddy-sidecar
+          image: docker.io/caddy:2.10.2
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+          command: ["caddy", "reverse-proxy", "--from", "cat.sophiah.gay", "--to", "localhost:6167"]
       volumes:
         - name: conduwuit-volume
           persistentVolumeClaim:
@@ -75,7 +81,7 @@ metadata:
   name: conduwuit-service
   namespace: conduwuit-namespace
   annotations:
-    kube-vip.io/loadbalancerIPs: 2a02:810d:6f83:ad00:acad::fafb
+    kube-vip.io/loadbalancerIPs: 2a02:810d:6f83:ad00:acab::ff
 spec:
   type: LoadBalancer
   # externalTrafficPolicy: Local
@@ -83,5 +89,10 @@ spec:
     app: conduwuit
   ports:
     - protocol: TCP
-      port: 6167
-      targetPort: 6167
+      port: 80
+      targetPort: 80
+      name: http
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      name: https

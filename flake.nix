@@ -92,6 +92,21 @@
           home-manager.nixosModules.home-manager
         ];
       };
+
+      emir-zwei = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          ./devices/kube/nodes/emir-eins.nix
+          ./devices/kube/nodes/hardware-configuration.nix
+          ./devices/kube/nodes/disko.nix
+          ./common/base.nix
+          ./common/sophia.nix
+          ./common/forgejo.nix
+          ./common/vm-able.nix
+          home-manager.nixosModules.home-manager
+        ];
+      };
     };
 
     deploy.nodes = {
@@ -123,6 +138,14 @@
         profiles.system = {
           user = "root";
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.emir-eins;
+        };
+      };
+
+      emir-zwei = {
+        hostname = "emir-zwei.ex-machina.sophiah.gay";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.emir-zwei;
         };
       };
     };

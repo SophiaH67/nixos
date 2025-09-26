@@ -5237,5 +5237,12 @@ spec:
         name: var-run
       priorityClassName: "longhorn-critical"
 ---
-# Source: longhorn/templates/validate-psp-install.yaml
-#
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cifs-secret
+  namespace: longhorn-system
+type: Opaque
+data:
+  CIFS_USERNAME: ZXgtbWFjaGluYQ==
+  CIFS_PASSWORD: ZVBNcFdTWWtDTU5MV2RPbg==

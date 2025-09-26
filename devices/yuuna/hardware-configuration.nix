@@ -6,6 +6,13 @@
 
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
+  networking.networkmanager.wifi.backend = "iwd";
+  networking.wireless.iwd.enable = true;
+  systemd.services.iwd.serviceConfig.Restart = "always";
+  hardware = {
+    enableRedistributableFirmware = true;
+    firmware = [ pkgs.wireless-regdb ];
+  };
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";

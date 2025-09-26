@@ -5,6 +5,7 @@
     ../../common/apps/tailscale.nix
   ];
   networking.hostName = "yuuna";
+  networking.domain = "dev.sophiah.gay";
 
   # Enable the GNOME Desktop Environment.
   services.desktopManager.gnome.enable = true;

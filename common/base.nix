@@ -9,7 +9,7 @@
   # -=-=- Networking -=-=-
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
-  networking.search = [ "ex-machina.sophiah.gay" ];
+  networking.search = [ "ex-machina.sophiah.gay" "dev.sophiah.gay" ];
   networking.nameservers = [ "2620:fe::9#dns9.quad9.net" "9.9.9.9#dns9.quad9.net" ];
   services.resolved = {
     enable = true;

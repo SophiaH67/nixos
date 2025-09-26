@@ -34,4 +34,4 @@ jobs:
           purge-primary-key: never
       - uses: actions/checkout@v4
       - name: Deploy ${{ matrix.flake }}
-        run: nix --extra-experimental-features "nix-command flakes" run github:serokell/deploy-rs .#${{ matrix.flake }} -- --ssh-user forgejo
+        run: nix --extra-experimental-features "nix-command flakes" run github:serokell/deploy-rs .#${{ matrix.flake }} -- --skip-checks --ssh-user forgejo

@@ -44,6 +44,7 @@
           ./devices/yuuna/hardware-configuration.nix
           ./common/base.nix
           ./common/sophia.nix
+          ./common/forgejo.nix
           home-manager.nixosModules.home-manager
         ];
       };

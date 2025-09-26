@@ -8,7 +8,7 @@ jobs:
       image: xn--55q89qy6p.com/soph/ci-base:latest
     strategy:
       matrix:
-        flake: [schwi, emir-eins, emir-zwei, moshimoshi, yuuna]
+        flake: [schwi, emir-eins, emir-zwei]
     steps:
       - name: Copy ssh keys from secrets
         run: |

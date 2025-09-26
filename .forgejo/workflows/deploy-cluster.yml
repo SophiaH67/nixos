@@ -18,11 +18,10 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           chmod 644 ~/.ssh/id_ed25519.pub
           echo "emir-eins.ex-machina.sophiah.gay ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHPSscREH9OS6V6uDUgtcnELGBcjTZsqJfsmdu28Q/+C" >> ~/.ssh/known_hosts
-          # echo "emir-eins.ex-machina.sophiah.gay ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDFtAr0onV0UGLi/B2eWhwOaKSndfIFwJNC5CFQrcytG/Qc5r6fEY+vcKc+qQJVK6UOJ8nwAP2RHuW+aKOrtJomgyv2jhP0EFlUVh595QsCi2fDv71JjX3J8wqoIe9HYlUm2/egxTJ25IZS/KeWPmILiF32E6eIGT+0o91/FfMfMLs3yOZF42HzOqKN2MEzt9PsJRRIxPnGnFra2/eWQuJ/9FghbHAuP08Wb8IxLuAEASOxZVRuDjshLRfh6bQhVHCMhIzrK7HEwlcbdDj7kopAZzt0ZcZXcFy9g5HT8GnEEO1IMatPAdqkBSY/owM9ZJeORquV4rH7W4Pc0iGCE+8BfDiqb0DlpnPIg9h72BYvUzIsk5iC/hyauMOIyVtDmJyycmHy0FBtyK1zzxUmtmjCudhf2cXzOmSlrildmUtepxQOOwxnL42J2H0gc7PGhFT0p0eHj1OasQedMy9v5bdO3RDB7FVhH2VSTGMP9QJhcCL1hXVQEuX9PA9itdmDC2LJeHStMRF2kklfz5xhMP4qxQ3VqNQuDL8Ljv/Mj5wKnhjyUnszP5Cp7IBscGBsHVcVt0wEGK7iebWLLI9BbG8ITFT3jK9dF6zewIbwgoYpxiqQvvvGAYA5vrCdgkkjSzFBTimXjfShFLWMwqno9/z5V99rVR1rwBd64TVqkGP80w==" >> ~/.ssh/known_hosts
+          echo "emir-zwei.ex-machina.sophiah.gay ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAdm/2geT7+PxYUSQeiOLGpchxaihM5Bxu88QKLZVoZT" >> ~/.ssh/known_hosts
           echo "schwi.ex-machina.sophiah.gay ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPHtJcY8q0xm/J8AkGbX+kx91zXpo8H893mUGqJblgh" >> ~/.ssh/known_hosts
-          # echo "schwi.ex-machina.sophiah.gay ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPHtJcY8q0xm/J8AkGbX+kx91zXpo8H893mUGqJblgh" >> ~/.ssh/known_hosts
           echo "moshimoshi ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB2fTZEUoWt7cFlh3fVaD6auB+Hgt8tR1SSG/x1dhDaT" >> ~/.ssh/known_hosts
-          # echo "moshimoshi ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCDEX+Q98oozgnesDNdeK2HiZiLAwYrap2fKKp7yhOWbMqP3iq3syksMNDCRHG52/m07Gp2KgFNrdzYi/NgU7KERQ6lnhupnTu2WiMMUAKwV9obd++WaFayPuDyUk3NZX2fUIZejpkSk/4PbyzlmpTx11dY0+kR3ToqAfE8RFwZwuIflLQ8leKalg/7ZrNpLGUvVP2kItbt6MzlBu1eWZyS5wxmAj7nwi0izHdxBiCJddYDG6Jcg6YF4B3ZYUmJmEzFsre3jdoWoy1MzZUxF5KQ7CX2N8dHqr+gxLPDNXbDJ6Wa6G7rc/F7JfWvDwayUJcwVEgKF12ap+KHnwyic9AfmajT2YziGIaUixbIcGtfC0VndiDcQnCrBFortxnxbjZXp2nK58Ds0S/SyAPdSg9Y6m+xaYtxkYb9IrQTnY20P1JiCtJGF9+DfkopIfcOoz29yq9bgSiamjQld7dTvWjFPZoihM8jP/EvXr033cROmuofFcxNYHIesyHeqjCpdkFfwcN6yTFMFBgxPX5OGZHWGusnMawn3KCjYqP2cGMVr4SeewIHZKSnXQlSdMUkjepexY3p+guDJJyXGBDppsGPkgdlyVKJNNv4wp8yJgnPJysd6Lsrybh83mDoMO8FCUG+tIHTL+Desfn1cEbZe+Zd4+2rh6HE7cDc2dOhMESBTw==" >> ~/.ssh/known_hosts
+          echo "yuuna ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEsn1taHd1G7MLs5uI4tYsWgpYRA+d6/MdDhGtcOiGEt" >> ~/.ssh/known_hosts
           
           chmod 644 ~/.ssh/known_hosts
       - uses: https://git.muc.ccc.de/sophinya67/cache-nix-action@v6

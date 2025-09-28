@@ -61,7 +61,7 @@ spec:
     spec:
       containers:
         - name: conduwuit
-          image: docker.io/jevolk/tuwunel:v1.4.2
+          image: xn--55q89qy6p.com/soph/tuwunel-logging:v1.4.2
           ports:
             - containerPort: 6167
           volumeMounts:
@@ -88,6 +88,8 @@ spec:
               value: '["matrix.org"]'
             - name: CONDUWUIT_ADDRESS
               value: "[::]"
+            - name: TUWUNEL_IP_LOOKUP_STRATEGY
+              value: "2"
         # TODO: Make caddy persist certs
         # Or even better, use kube-cert-manager properly
         - name: caddy-sidecar
@@ -96,6 +98,9 @@ spec:
             - name: caddy-config
               mountPath: /etc/caddy/Caddyfile
               subPath: Caddyfile
+            - name: conduwuit-volume
+              mountPath: /data
+              subPath: caddy
           ports:
             - containerPort: 80
             - containerPort: 443

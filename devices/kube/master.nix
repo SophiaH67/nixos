@@ -93,6 +93,10 @@ in {
           source = ./manifests/kube-virt/kubevirt-operator.yaml;
           enable = true;
         };
+        kubevirt-webui = {
+          source = ./manifests/kube-virt/kubevirt-webui.yaml;
+          enable = true;
+        };
         # Soph
         conduwuit = {
           source = ./manifests/soph/conduwuit.yaml;

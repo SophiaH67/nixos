@@ -112,6 +112,7 @@
       thunderbird-latest-unwrapped
       wget
       kubectl
+      kubevirt
     ];
   };
 

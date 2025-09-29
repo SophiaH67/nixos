@@ -13,13 +13,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     deploy-rs.url = "github:serokell/deploy-rs";
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, lanzaboote, deploy-rs, disko }: {
+  outputs = { self, nixpkgs, home-manager, lanzaboote, deploy-rs, disko, nixos-generators }: {
 
     packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
 
@@ -61,6 +66,19 @@
           ./common/sophia.nix
           ./common/forgejo.nix
           home-manager.nixosModules.home-manager
+        ];
+      };
+
+      ninomae = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./devices/ninomae/configuration.nix
+          ./common/base.nix
+          ./common/sophia.nix
+          ./common/forgejo.nix
+          # ./common/vm-able.nix
+          home-manager.nixosModules.home-manager
+          nixos-generators.nixosModules.all-formats
         ];
       };
 

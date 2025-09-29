@@ -84,6 +84,15 @@ in {
           source = ./manifests/longhorn.yaml;
           enable = true;
         };
+        # kube-virt
+        kubevirt-cr = {
+          source = ./manifests/kube-virt/kubevirt-cr.yaml;
+          enable = true;
+        };
+        kubevirt-operator = {
+          source = ./manifests/kube-virt/kubevirt-operator.yaml;
+          enable = true;
+        };
         # Soph
         conduwuit = {
           source = ./manifests/soph/conduwuit.yaml;

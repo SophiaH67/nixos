@@ -37,6 +37,7 @@
           ./devices/yuzaki/configuration.nix
           ./common/base.nix
           ./common/sophia.nix
+          ./common/sophia-gui.nix
           home-manager.nixosModules.home-manager
           lanzaboote.nixosModules.lanzaboote
         ];

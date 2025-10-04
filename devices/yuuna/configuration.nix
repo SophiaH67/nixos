@@ -8,8 +8,8 @@
   networking.domain = "dev.sophiah.gay";
 
   # Enable the GNOME Desktop Environment.
-  services.desktopManager.gnome.enable = true;
-  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = false;
+  services.displayManager.gdm.enable = false;
   services.displayManager.gdm.autoSuspend = false;
 
 

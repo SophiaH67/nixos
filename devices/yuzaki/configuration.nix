@@ -113,6 +113,7 @@
       wget
       kubectl
       kubevirt
+      nodejs
     ];
   };
 

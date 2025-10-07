@@ -57,7 +57,12 @@
   # Docker shenanigans
   virtualisation.docker.enable = true;
 
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+  };
   programs.adb.enable = true;
   programs.virt-manager.enable = true;
   users.groups.libvirtd.members = ["sophia"];

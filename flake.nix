@@ -147,5 +147,48 @@
         ];
       };
     };
+
+    deploy.nodes = {
+      yuuna = {
+        hostname = "yuuna";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.yuuna;
+        };
+      };
+      moshimoshi = {
+        hostname = "moshimoshi";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.moshimoshi;
+        };
+      };
+
+      schwi = {
+        hostname = "schwi.ex-machina.sophiah.gay";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.schwi;
+        };
+      };
+
+      emir-eins = {
+        hostname = "emir-eins.ex-machina.sophiah.gay";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.emir-eins;
+        };
+      };
+
+      emir-zwei = {
+        hostname = "emir-zwei.ex-machina.sophiah.gay";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.emir-zwei;
+        };
+      };
+    };
+
+    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
   };
 }

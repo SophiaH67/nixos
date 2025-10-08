@@ -6,8 +6,7 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    [
       ../../common/apps/chromium.nix
     ];
 
@@ -117,7 +116,6 @@
       wget
       kubectl
       kubevirt
-      nodejs
     ];
   };
 
@@ -160,5 +158,12 @@
   services.fprintd.tod.enable = true;
   services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  users.users.sophiah = {
+    isNormalUser = true;
+    description = "Sophia Hage";
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [
+    #  thunderbird
+    ];
+  };
 }

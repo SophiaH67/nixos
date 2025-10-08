@@ -9,6 +9,8 @@
     enableSSHSupport = false;
   };
   nixpkgs.config.allowUnfree = true;
+  home-manager.useGlobalPkgs = true;
+  home-manager.backupFileExtension = "bak";
   home-manager.users.sophia = { pkgs, ... }: {
     services.gnome-keyring.enable = true;
 
@@ -166,7 +168,6 @@ background_opacity 0.5
             ms-vscode-remote.remote-ssh
             yoavbls.pretty-ts-errors
             github.copilot
-            jnoortheen.nix-ide
             prisma.prisma
             pkief.material-icon-theme
             esbenp.prettier-vscode
@@ -174,6 +175,10 @@ background_opacity 0.5
             leonardssh.vscord
             stkb.rewrap
             jnoortheen.nix-ide
+            ms-vscode.cpptools
+            ms-vscode.cmake-tools
+            mkhl.direnv
+            ms-vscode.hexeditor
           ]  ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             {
               name = "prohe";

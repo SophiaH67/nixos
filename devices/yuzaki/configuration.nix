@@ -87,7 +87,6 @@
       filezilla
       gedit
       gparted
-      bambu-studio
       fluffychat
       xorg.xeyes
       tor-browser

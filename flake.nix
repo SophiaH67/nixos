@@ -22,9 +22,11 @@
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    agenix.url = "github:ryantm/agenix";
   };
 
-  outputs = { self, nixpkgs, home-manager, lanzaboote, deploy-rs, disko, nixos-generators }: {
+  outputs = { self, nixpkgs, home-manager, lanzaboote, deploy-rs, disko, nixos-generators, agenix, ... }: {
 
     packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
 
@@ -35,11 +37,28 @@
         system = "x86_64-linux";
         modules = [
           ./devices/yuzaki/configuration.nix
+          ./devices/yuzaki/hardware-configuration.nix
           ./common/base.nix
           ./common/sophia.nix
           ./common/sophia-gui.nix
+          ./common/sophia-dev.nix
           home-manager.nixosModules.home-manager
           lanzaboote.nixosModules.lanzaboote
+        ];
+      };
+
+      asuna = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./devices/asuna/configuration.nix
+          ./devices/asuna/hardware-configuration.nix
+          ./devices/yuzaki/configuration.nix
+          ./common/base.nix
+          ./common/sophia.nix
+          ./common/sophia-dev.nix
+          home-manager.nixosModules.home-manager
+          lanzaboote.nixosModules.lanzaboote
+          agenix.nixosModules.default
         ];
       };
 
@@ -128,48 +147,5 @@
         ];
       };
     };
-
-    deploy.nodes = {
-      yuuna = {
-        hostname = "yuuna";
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.yuuna;
-        };
-      };
-      moshimoshi = {
-        hostname = "moshimoshi";
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.moshimoshi;
-        };
-      };
-
-      schwi = {
-        hostname = "schwi.ex-machina.sophiah.gay";
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.schwi;
-        };
-      };
-
-      emir-eins = {
-        hostname = "emir-eins.ex-machina.sophiah.gay";
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.emir-eins;
-        };
-      };
-
-      emir-zwei = {
-        hostname = "emir-zwei.ex-machina.sophiah.gay";
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.emir-zwei;
-        };
-      };
-    };
-
-    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
   };
 }

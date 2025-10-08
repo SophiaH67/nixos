@@ -19,8 +19,7 @@
     ];
     shell = pkgs.zsh;
   };
-  # home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
+
   home-manager.users.sophia = { pkgs, ... }: {
     home.stateVersion = "23.11";
     home.packages = with pkgs; [
@@ -52,7 +51,7 @@
         ];
         oh-my-zsh = {
           enable = true;
-          plugins = [ "git" "systemd" "rsync" "kubectl" "docker" ];
+          plugins = [ "git" "systemd" "rsync" "kubectl" "docker" "direnv" ];
         };
       };
     };

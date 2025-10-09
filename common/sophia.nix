@@ -41,7 +41,7 @@
           [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
           eval "$(atuin init zsh)"
           alias fixlonghornpls="kubectl get pods -n longhorn-system | grep Error | cut -d' ' -f 1 | xargs kubectl delete pod -n longhorn-system"
-          alias agenix="nix run github:ryantm/agenix"
+          alias agenix="nix run github:ryantm/agenix --"
         '';
         plugins = [
           {

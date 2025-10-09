@@ -6,6 +6,9 @@
   boot.loader.systemd-boot.enable = lib.mkDefault true;
   boot.loader.systemd-boot.configurationLimit = 35;
 
+  # -=-=- Secrets -=-=-
+  age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+
   # -=-=- Networking -=-=-
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 ];

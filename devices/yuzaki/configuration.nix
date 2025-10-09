@@ -168,4 +168,5 @@
   };
 
   age.secrets.secret1.file = ../../secrets/secret1.age;
+  environment.etc."secret1".source = config.age.secrets.secret1.path;
 }

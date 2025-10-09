@@ -27,10 +27,34 @@
   };
 
   outputs = { self, nixpkgs, home-manager, lanzaboote, deploy-rs, disko, nixos-generators, agenix, ... }: {
+    baseModules = [
+      ./common/base.nix
+      ./common/sophia.nix
+      home-manager.nixosModules.home-manager
+    ];
 
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
+    agenixModules = [
+      {
+        environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
+      }
+      agenix.nixosModules.default
+    ] ++ self.baseModules;
 
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+    devModules = [
+      ./common/sophia-dev.nix
+      ./common/sophia-gui.nix
+    ] ++ self.agenixModules;
+
+    deployableModules = [
+      ./common/forgejo.nix
+      disko.nixosModules.disko
+      ./common/vm-able.nix
+    ] ++ self.agenixModules;
+
+    exMachinaModules = [
+      ./devices/kube/nodes/hardware-configuration.nix
+      ./devices/kube/nodes/disko.nix
+    ] ++ self.deployableModules;
 
     nixosConfigurations = {
       yuzaki = nixpkgs.lib.nixosSystem {
@@ -38,17 +62,8 @@
         modules = [
           ./devices/yuzaki/configuration.nix
           ./devices/yuzaki/hardware-configuration.nix
-          ./common/base.nix
-          ./common/sophia.nix
-          ./common/sophia-gui.nix
-          ./common/sophia-dev.nix
-          home-manager.nixosModules.home-manager
           lanzaboote.nixosModules.lanzaboote
-          agenix.nixosModules.default
-          {
-            environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
-          }
-        ];
+        ] ++ self.devModules;
       };
 
       asuna = nixpkgs.lib.nixosSystem {
@@ -57,16 +72,8 @@
           ./devices/asuna/configuration.nix
           ./devices/asuna/hardware-configuration.nix
           ./devices/yuzaki/configuration.nix
-          ./common/base.nix
-          ./common/sophia.nix
-          ./common/sophia-dev.nix
-          home-manager.nixosModules.home-manager
           lanzaboote.nixosModules.lanzaboote
-          agenix.nixosModules.default
-          {
-            environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
-          }
-        ];
+        ] ++ self.devModules;
       };
 
       yuuna = nixpkgs.lib.nixosSystem {
@@ -84,16 +91,11 @@
       moshimoshi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          disko.nixosModules.disko
           ./devices/moshimoshi/configuration.nix
           ./devices/moshimoshi/hardware-configuration.nix
           ./devices/moshimoshi/disko.nix
-          ./common/base.nix
           ./common/apps/tailscale.nix
-          ./common/sophia.nix
-          ./common/forgejo.nix
-          home-manager.nixosModules.home-manager
-        ];
+        ] ++ self.deployableModules;
       };
 
       ninomae = nixpkgs.lib.nixosSystem {
@@ -102,8 +104,7 @@
           ./devices/ninomae/configuration.nix
           ./common/base.nix
           ./common/sophia.nix
-          ./common/forgejo.nix
-          # ./common/vm-able.nix
+          
           home-manager.nixosModules.home-manager
           nixos-generators.nixosModules.all-formats
         ];
@@ -112,49 +113,22 @@
       schwi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          disko.nixosModules.disko
           ./devices/kube/nodes/schwi.nix
-          ./devices/kube/nodes/hardware-configuration.nix
-          ./devices/kube/nodes/disko.nix
-          ./common/base.nix
-          ./common/sophia.nix
-          ./common/forgejo.nix
-          ./common/vm-able.nix
-          home-manager.nixosModules.home-manager
-          agenix.nixosModules.default
-        ];
+        ] ++ self.exMachinaModules;
       };
 
       emir-eins = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          disko.nixosModules.disko
           ./devices/kube/nodes/emir-eins.nix
-          ./devices/kube/nodes/hardware-configuration.nix
-          ./devices/kube/nodes/disko.nix
-          ./common/base.nix
-          ./common/sophia.nix
-          ./common/forgejo.nix
-          ./common/vm-able.nix
-          home-manager.nixosModules.home-manager
-          agenix.nixosModules.default
-        ];
+        ]  ++ self.exMachinaModules;
       };
 
       emir-zwei = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          disko.nixosModules.disko
           ./devices/kube/nodes/emir-zwei.nix
-          ./devices/kube/nodes/hardware-configuration.nix
-          ./devices/kube/nodes/disko.nix
-          ./common/base.nix
-          ./common/sophia.nix
-          ./common/forgejo.nix
-          ./common/vm-able.nix
-          home-manager.nixosModules.home-manager
-          agenix.nixosModules.default
-        ];
+        ]  ++ self.exMachinaModules;
       };
     };
 

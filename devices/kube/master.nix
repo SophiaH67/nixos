@@ -54,6 +54,8 @@ in {
       "L /usr/bin/mount - - - - /run/current-system/sw/bin/mount"
     ];
 
+    age.secrets.kube-longhorn.file = ../../secrets/kube-longhorn.age;
+
     services.k3s = {
       role = "server";
       gracefulNodeShutdown.enable = true;
@@ -80,8 +82,13 @@ in {
           source = ./manifests/kube-flannel.yml;
           enable = true;
         };
+        # Longhorn
         longhorn = {
           source = ./manifests/longhorn.yaml;
+          enable = true;
+        };
+        longhorn-secret = {
+          source = config.age.secrets.longhorn-secret.path;
           enable = true;
         };
         # kube-virt

@@ -121,6 +121,7 @@
           ./common/forgejo.nix
           ./common/vm-able.nix
           home-manager.nixosModules.home-manager
+          agenix.nixosModules.default
         ];
       };
 
@@ -136,6 +137,7 @@
           ./common/forgejo.nix
           ./common/vm-able.nix
           home-manager.nixosModules.home-manager
+          agenix.nixosModules.default
         ];
       };
 
@@ -151,6 +153,7 @@
           ./common/forgejo.nix
           ./common/vm-able.nix
           home-manager.nixosModules.home-manager
+          agenix.nixosModules.default
         ];
       };
     };

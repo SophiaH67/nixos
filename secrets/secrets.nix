@@ -10,13 +10,15 @@ let
   schwi = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPHtJcY8q0xm/J8AkGbX+kx91zXpo8H893mUGqJblgh";
   emir-eins = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHPSscREH9OS6V6uDUgtcnELGBcjTZsqJfsmdu28Q/+C";
   emir-zwei = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAdm/2geT7+PxYUSQeiOLGpchxaihM5Bxu88QKLZVoZT";
-  ex-machina = [ schwi emir-eins emir-zwei ];
 
   # Groups
+  developers = [ yuzaki ];
+  ex-machina = [ schwi emir-eins emir-zwei ];
   users = [ soph-main soph-work forgejo ];
   devices = ex-machina ++ [ yuzaki ];
   everyone = users ++ devices;
 in
 {
   "secret1.age".publicKeys = everyone;
+  "kube-longhorn.age".publicKeys = developers ++ ex-machina;
 }

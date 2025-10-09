@@ -1,6 +1,5 @@
 { pkgs, lib, ...}:
 {
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -141,7 +140,14 @@ background_opacity 0.5
       };
       vscode = {
         enable = true;
-        package = pkgs.vscode;
+        # https://github.com/continuedev/continue/issues/821#issuecomment-3227673526
+        package = (pkgs.vscode.overrideAttrs (
+          final: prev: {
+            preFixup =
+              prev.preFixup
+              + "gappsWrapperArgs+=( --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ pkgs.gcc.cc.lib ]} )";
+          }
+        ));
         profiles.default = {
           userSettings = {
             git.confirmSync = false;
@@ -159,6 +165,7 @@ background_opacity 0.5
             workbench.colorTheme = "98878c8e-9f91-4e25-930d-dd7d280d9e35";
             editor.fontFamily = "'Cascadia Code',Consolas, 'Courier New', monospace";
             terminal.integrated.stickyScroll.enabled = false;
+            chat.disableAIFeatures = true;
           };
           extensions = with pkgs.vscode-extensions; [
             yzhang.markdown-all-in-one
@@ -177,6 +184,7 @@ background_opacity 0.5
             ms-vscode.cmake-tools
             mkhl.direnv
             ms-vscode.hexeditor
+            continue.continue
           ]  ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             {
               name = "prohe";
@@ -213,6 +221,12 @@ background_opacity 0.5
       "org/gnome/desktop/peripherals/touchpad" = {
         natural-scroll = true;
         tap-to-click = false;
+      };
+      "org/gnome/desktop/wm/keybindings" = {
+        switch-windows = ["<Alt>Tab"];
+        switch-windows-backward = ["<Shift><Alt>Tab" "<Alt>Above_Tab"];
+        switch-applications = [];
+        switch-applications-backward = [];
       };
       "org/virt-manager/virt-manager/connections" = {
         autoconnect = ["qemu:///system" "qemu+ssh://sophia@mococo/system"];

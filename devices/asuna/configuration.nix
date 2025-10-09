@@ -12,7 +12,6 @@
   boot.kernelModules = [ "ftdi_sio" ];
   # For building aarch64
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  programs.nix-ld.enable = true;
 
   age.secrets.secret1.file = ../../secrets/secret1.age;
   environment.etc."secret1".source = config.age.secrets.secret1.path;

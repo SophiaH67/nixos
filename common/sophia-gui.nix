@@ -150,7 +150,6 @@ background_opacity 0.5
             git.replaceTagsWhenPull = true;
             git.autoStash = true;
             editor.cursorSmoothCaretAnimation = "on";
-            "github.copilot.enable.*" = true;
             files.autoSave = "afterDelay";
             terminal.integrated.enableMultiLinePasteWarning = false;
             prohe.serverAddress = "ws://192.168.67.26:12345";
@@ -167,7 +166,6 @@ background_opacity 0.5
             github.vscode-github-actions
             ms-vscode-remote.remote-ssh
             yoavbls.pretty-ts-errors
-            github.copilot
             prisma.prisma
             pkief.material-icon-theme
             esbenp.prettier-vscode

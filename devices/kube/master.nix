@@ -88,7 +88,7 @@ in {
           enable = true;
         };
         longhorn-secret = {
-          source = config.age.secrets.longhorn-secret.path;
+          source = config.age.secrets.kube-longhorn.path;
           enable = true;
         };
         # kube-virt

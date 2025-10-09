@@ -44,6 +44,10 @@
           ./common/sophia-dev.nix
           home-manager.nixosModules.home-manager
           lanzaboote.nixosModules.lanzaboote
+          agenix.nixosModules.default
+          {
+            environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
+          }
         ];
       };
 
@@ -59,6 +63,9 @@
           home-manager.nixosModules.home-manager
           lanzaboote.nixosModules.lanzaboote
           agenix.nixosModules.default
+          {
+            environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
+          }
         ];
       };
 

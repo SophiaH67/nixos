@@ -7,10 +7,13 @@
   networking.hostName = "yuuna";
   networking.domain = "dev.sophiah.gay";
 
+  powerManagement.cpuFreqGovernor = "performance";
+
   # Enable the GNOME Desktop Environment.
   services.desktopManager.gnome.enable = false;
   services.displayManager.gdm.enable = false;
   services.displayManager.gdm.autoSuspend = false;
+  services.xserver.displayManager.lightdm.enable = true;
 
   services.xserver = {
     enable = true;

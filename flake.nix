@@ -31,15 +31,15 @@
       ./common/base.nix
       ./common/sophia.nix
       home-manager.nixosModules.home-manager
-      {
-        environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
-      }
       agenix.nixosModules.default
     ];
 
     devModules = [
       ./common/sophia-dev.nix
       ./common/sophia-gui.nix
+      {
+        environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
+      }
     ] ++ self.baseModules;
 
     deployableModules = [

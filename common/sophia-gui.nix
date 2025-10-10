@@ -3,14 +3,31 @@ let
   wallpaper-secret = if builtins.pathExists ../secrets/wallpaper-${config.networking.hostName}.png.age
     then "wallpaper-${config.networking.hostName}.png"
     else "wallpaper-fallback.png";
-in
-{
-  age.secrets.${wallpaper-secret} = {
+
+  wallpaper-secret-dark = if builtins.pathExists ../secrets/wallpaper-${config.networking.hostName}-dark.png.age
+    then "wallpaper-${config.networking.hostName}-dark.png"
+    else wallpaper-secret;
+
+  wallpaper-secret-settings = {
     file = ../secrets/${wallpaper-secret}.age;
     mode = "400";
     owner = "sophia";
   };
 
+  wallpaper-secret-dark-settings = {
+    file = ../secrets/${wallpaper-secret-dark}.age;
+    mode = "400";
+    owner = "sophia";
+  };
+in
+{
+  # lib.mkDefault as hack for doubly-defining
+  age.secrets = if wallpaper-secret == wallpaper-secret-dark then {
+    ${wallpaper-secret} = wallpaper-secret-settings;
+  } else {
+    ${wallpaper-secret} = wallpaper-secret-settings;
+    ${wallpaper-secret-dark} = wallpaper-secret-dark-settings;
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -244,6 +261,7 @@ background_opacity 0.5
       };
       "org/gnome/desktop/background" = {
         picture-uri = "file://${config.age.secrets.${wallpaper-secret}.path}";
+        picture-uri-dark = "file://${config.age.secrets.${wallpaper-secret-dark}.path}";
       };
       "org/virt-manager/virt-manager/connections" = {
         autoconnect = ["qemu:///system" "qemu+ssh://sophia@mococo/system"];

@@ -249,9 +249,11 @@ background_opacity 0.5
     };
 
     dconf.settings = {
+      # Gnome backend settings
       "org/gnome/mutter" = {
         experimental-features = ["scale-monitor-framebuffer"];
       };
+
       "org/gnome/shell" = {
         disable-user-extensions = false;
         enabled-extensions = with pkgs.gnomeExtensions; [
@@ -264,12 +266,16 @@ background_opacity 0.5
         natural-scroll = true;
         tap-to-click = false;
       };
+
+      # Keybinds
       "org/gnome/desktop/wm/keybindings" = {
         switch-windows = ["<Alt>Tab"];
         switch-windows-backward = ["<Shift><Alt>Tab" "<Alt>Above_Tab"];
         switch-applications = [];
         switch-applications-backward = [];
       };
+
+      # Gnome frontend
       "org/gnome/desktop/interface" = {
         accent-color = "pink";
       };
@@ -277,6 +283,8 @@ background_opacity 0.5
         picture-uri = "file://${config.age.secrets.${wallpaper-secret}.path}";
         picture-uri-dark = "file://${config.age.secrets.${wallpaper-secret-dark}.path}";
       };
+
+      # Virt-manager
       "org/virt-manager/virt-manager/connections" = {
         autoconnect = ["qemu:///system" "qemu+ssh://sophia@mococo/system"];
         uris = ["qemu+ssh://sophia@mococo/system" "qemu:///system"];

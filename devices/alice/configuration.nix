@@ -4,7 +4,7 @@
 
   home-manager.users.sophia.programs.git.signing.key = lib.mkForce "0AE2A6249EC695A8";
   home-manager.users.sophia.programs.git.userEmail = lib.mkForce "shage2@allegion.com";
-  networking.hostName = lib.mkForce "asuna";
+  networking.hostName = lib.mkForce "alice";
   home-manager.users.sophia.programs.git.extraConfig = {
     url = {
       "git@ssh.dev.azure.com:v3/ircost/SV_FW_Drivers/SV_FW_Drivers" = {

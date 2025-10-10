@@ -63,11 +63,11 @@
         ] ++ self.devModules;
       };
 
-      asuna = nixpkgs.lib.nixosSystem {
+      alice = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./devices/asuna/configuration.nix
-          ./devices/asuna/hardware-configuration.nix
+          ./devices/alice/configuration.nix
+          ./devices/alice/hardware-configuration.nix
           lanzaboote.nixosModules.lanzaboote
         ] ++ self.devModules;
       };

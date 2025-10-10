@@ -292,6 +292,11 @@ background_opacity 0.5
         nightthemeswitcher-ondemand-keybinding=[ "<Shift><Super>t" ];
       };
 
+      "org/gnome/shell/extensions/blur-my-shell/panel" = {
+        brightness=0.6;
+        override-background-dynamically = true;
+      };
+
       # Virt-manager
       "org/virt-manager/virt-manager/connections" = {
         autoconnect = ["qemu:///system" "qemu+ssh://sophia@mococo/system"];

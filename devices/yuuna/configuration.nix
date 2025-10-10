@@ -8,6 +8,11 @@
   networking.domain = "dev.sophiah.gay";
 
   powerManagement.cpuFreqGovernor = "performance";
+  hardware.deviceTree.enable = true;
+  hardware.deviceTree.filter = "bcm2711-rpi-4*.dtb";
+  hardware.raspberry-pi."4" = {
+    fkms-3d.enable = true;
+  };
 
   # Enable the GNOME Desktop Environment.
   services.desktopManager.gnome.enable = false;

@@ -24,9 +24,11 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
     agenix.url = "github:ryantm/agenix";
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, home-manager, lanzaboote, deploy-rs, disko, nixos-generators, agenix, ... }: {
+  outputs = { self, nixpkgs, home-manager, lanzaboote, deploy-rs, disko, nixos-generators, agenix, nixos-hardware, ... }: {
     baseModules = [
       ./common/base.nix
       ./common/sophia.nix
@@ -77,6 +79,7 @@
         modules = [
           ./devices/yuuna/configuration.nix
           ./devices/yuuna/hardware-configuration.nix
+          nixos-hardware.nixosModules.raspberry-pi-4
         ] ++ self.deployableModules;
       };
 

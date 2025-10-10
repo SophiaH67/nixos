@@ -24,7 +24,8 @@
       fsType = "vfat";
     };
 
-  boot.kernelPackages = pkgs.linuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_rpi4;
+  boot.kernelParams = [ "snd_bcm2835.enable_hdmi=1" ];
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }

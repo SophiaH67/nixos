@@ -1,6 +1,8 @@
 { pkgs, lib, config, ...}:
 let
-  wallpaper-secret = "wallpaper-fallback.png";
+  wallpaper-secret = if builtins.pathExists ../secrets/wallpaper-${config.networking.hostName}.png.age
+    then "wallpaper-${config.networking.hostName}.png"
+    else "wallpaper-fallback.png";
 in
 {
   age.secrets.${wallpaper-secret} = {

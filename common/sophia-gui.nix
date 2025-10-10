@@ -1,7 +1,10 @@
 { pkgs, lib, config, ...}:
+let
+  wallpaper-secret = "wallpaper-fallback.png";
+in
 {
-  age.secrets."wallpaper-fallback.png" = {
-    file = ../secrets/wallpaper-fallback.png.age;
+  age.secrets.${wallpaper-secret} = {
+    file = ../secrets/${wallpaper-secret}.age;
     mode = "400";
     owner = "sophia";
   };
@@ -238,7 +241,7 @@ background_opacity 0.5
         accent-color = "pink";
       };
       "org/gnome/desktop/background" = {
-        picture-uri = "file://${config.age.secrets."wallpaper-fallback.png".path}";
+        picture-uri = "file://${config.age.secrets.${wallpaper-secret}.path}";
       };
       "org/virt-manager/virt-manager/connections" = {
         autoconnect = ["qemu:///system" "qemu+ssh://sophia@mococo/system"];

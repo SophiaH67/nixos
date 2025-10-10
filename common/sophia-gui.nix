@@ -267,6 +267,13 @@ background_opacity 0.5
         autoconnect = ["qemu:///system" "qemu+ssh://sophia@mococo/system"];
         uris = ["qemu+ssh://sophia@mococo/system" "qemu:///system"];
       };
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
+        enabled-extensions = with pkgs.gnomeExtensions; [
+          blur-my-shell.extensionUuid
+          night-theme-switcher.extensionUuid
+        ];
+      };
     };
   };
 }

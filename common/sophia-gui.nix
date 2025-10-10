@@ -228,6 +228,9 @@ background_opacity 0.5
         switch-applications = [];
         switch-applications-backward = [];
       };
+      "/org/gnome/desktop/interface" = {
+        accent-color = "pink";
+      };
       "org/virt-manager/virt-manager/connections" = {
         autoconnect = ["qemu:///system" "qemu+ssh://sophia@mococo/system"];
         uris = ["qemu+ssh://sophia@mococo/system" "qemu:///system"];

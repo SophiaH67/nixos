@@ -1,5 +1,11 @@
-{ pkgs, lib, ...}:
+{ pkgs, lib, config, ...}:
 {
+  age.secrets."wallpaper-fallback.png" = {
+    file = ../secrets/wallpaper-fallback.png.age;
+    mode = "400";
+    owner = "sophia";
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -230,6 +236,9 @@ background_opacity 0.5
       };
       "org/gnome/desktop/interface" = {
         accent-color = "pink";
+      };
+      "org/gnome/desktop/background" = {
+        picture-uri = "file://${config.age.secrets."wallpaper-fallback.png".path}";
       };
       "org/virt-manager/virt-manager/connections" = {
         autoconnect = ["qemu:///system" "qemu+ssh://sophia@mococo/system"];

@@ -54,11 +54,11 @@
     ] ++ self.deployableModules;
 
     nixosConfigurations = {
-      yuzaki = nixpkgs.lib.nixosSystem {
+      rikka = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./devices/yuzaki/configuration.nix
-          ./devices/yuzaki/hardware-configuration.nix
+          ./devices/rikka/configuration.nix
+          ./devices/rikka/hardware-configuration.nix
           lanzaboote.nixosModules.lanzaboote
         ] ++ self.devModules;
       };

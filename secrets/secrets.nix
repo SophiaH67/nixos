@@ -5,7 +5,7 @@ let
   forgejo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINxRWP14VnqsOH7ukPduWmotPLkkGzoEq4kr/URWQCoY";
 
   # Device host keys
-  yuzaki = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFOHVN3nsJvlslN8PfU7A3ebu0+XA7Djuqrbgw6dP0t/";
+  rikka = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFOHVN3nsJvlslN8PfU7A3ebu0+XA7Djuqrbgw6dP0t/";
   asuna = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDbmPJPqKuHQoPzT6+K5gKDP/xU0fqg70tcY2cvzjC30";
   yuuna = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEsn1taHd1G7MLs5uI4tYsWgpYRA+d6/MdDhGtcOiGEt";
 
@@ -14,10 +14,10 @@ let
   emir-zwei = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAdm/2geT7+PxYUSQeiOLGpchxaihM5Bxu88QKLZVoZT";
 
   # Groups
-  developers = [ yuzaki ];
+  developers = [ rikka ];
   ex-machina = [ schwi emir-eins emir-zwei ];
   users = [ soph-main soph-work forgejo ];
-  personal-devices = [ yuzaki asuna ];
+  personal-devices = [ rikka asuna ];
   devices = ex-machina ++ personal-devices ++ [ yuuna ];
   everyone = users ++ devices;
 in

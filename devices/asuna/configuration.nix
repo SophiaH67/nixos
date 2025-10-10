@@ -1,6 +1,6 @@
 { lib, pkgs, config, ...}:
 {
-  imports = [ ../yuzaki/configuration.nix ];
+  imports = [ ../rikka/configuration.nix ];
 
   home-manager.users.sophia.programs.git.signing.key = lib.mkForce "0AE2A6249EC695A8";
   home-manager.users.sophia.programs.git.userEmail = lib.mkForce "shage2@allegion.com";

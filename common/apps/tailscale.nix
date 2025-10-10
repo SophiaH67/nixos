@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   age.secrets.tailscale-device.file = ../../secrets/tailscale-device.age;
   services.tailscale = {

@@ -14,7 +14,7 @@ let
   emir-zwei = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAdm/2geT7+PxYUSQeiOLGpchxaihM5Bxu88QKLZVoZT";
 
   # Groups
-  developers = [ rikka ];
+  developers = [ rikka soph-main ];
   ex-machina = [ schwi emir-eins emir-zwei ];
   users = [ soph-main soph-work forgejo ];
   personal-devices = [ rikka asuna ];
@@ -28,4 +28,5 @@ in
 
   # Wallpapers
   "wallpaper-fallback.png.age".publicKeys = devices;
+  "wallpaper-rikka.png.age".publicKeys = developers ++ [ rikka ];
 }

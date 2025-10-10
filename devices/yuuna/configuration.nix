@@ -12,6 +12,14 @@
   services.displayManager.gdm.enable = false;
   services.displayManager.gdm.autoSuspend = false;
 
+  services.xserver = {
+    enable = true;
+    desktopManager = {
+      xterm.enable = true;
+      xfce.enable = true;
+    };
+  };
+  services.displayManager.defaultSession = "xfce";
 
   networking.networkmanager.enable = true;
 

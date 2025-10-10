@@ -6,6 +6,7 @@ let
 
   # Device host keys
   yuzaki = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFOHVN3nsJvlslN8PfU7A3ebu0+XA7Djuqrbgw6dP0t/";
+  asuna = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDbmPJPqKuHQoPzT6+K5gKDP/xU0fqg70tcY2cvzjC30";
 
   schwi = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPHtJcY8q0xm/J8AkGbX+kx91zXpo8H893mUGqJblgh";
   emir-eins = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHPSscREH9OS6V6uDUgtcnELGBcjTZsqJfsmdu28Q/+C";
@@ -15,7 +16,7 @@ let
   developers = [ yuzaki ];
   ex-machina = [ schwi emir-eins emir-zwei ];
   users = [ soph-main soph-work forgejo ];
-  devices = ex-machina ++ [ yuzaki ];
+  devices = ex-machina ++ [ yuzaki asuna ];
   everyone = users ++ devices;
 in
 {

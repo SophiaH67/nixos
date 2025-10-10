@@ -91,10 +91,6 @@
       tor-browser
       krita
       kdePackages.kleopatra
-      (discord.override {
-        withOpenASAR = false;
-        # withVencord = true; # can do this here too
-      })
       signal-desktop
       obsidian
       dbeaver-bin

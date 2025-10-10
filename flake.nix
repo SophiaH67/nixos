@@ -77,11 +77,7 @@
         modules = [
           ./devices/yuuna/configuration.nix
           ./devices/yuuna/hardware-configuration.nix
-          ./common/base.nix
-          ./common/sophia.nix
-          ./common/forgejo.nix
-          home-manager.nixosModules.home-manager
-        ];
+        ] ++ self.deployableModules;
       };
 
       moshimoshi = nixpkgs.lib.nixosSystem {
@@ -98,12 +94,7 @@
         system = "x86_64-linux";
         modules = [
           ./devices/ninomae/configuration.nix
-          ./common/base.nix
-          ./common/sophia.nix
-          
-          home-manager.nixosModules.home-manager
-          nixos-generators.nixosModules.all-formats
-        ];
+        ] ++ self.baseModules;
       };
 
       schwi = nixpkgs.lib.nixosSystem {

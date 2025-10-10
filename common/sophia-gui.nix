@@ -28,6 +28,12 @@ in
     ${wallpaper-secret} = wallpaper-secret-settings;
     ${wallpaper-secret-dark} = wallpaper-secret-dark-settings;
   };
+
+  environment.systemPackages = with pkgs.gnomeExtensions; [
+    blur-my-shell
+    night-theme-switcher
+  ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -246,6 +252,14 @@ background_opacity 0.5
       "org/gnome/mutter" = {
         experimental-features = ["scale-monitor-framebuffer"];
       };
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
+        enabled-extensions = with pkgs.gnomeExtensions; [
+          blur-my-shell.extensionUuid
+          night-theme-switcher.extensionUuid
+        ];
+        disabled-extensions = [];
+      };
       "org/gnome/desktop/peripherals/touchpad" = {
         natural-scroll = true;
         tap-to-click = false;
@@ -266,13 +280,6 @@ background_opacity 0.5
       "org/virt-manager/virt-manager/connections" = {
         autoconnect = ["qemu:///system" "qemu+ssh://sophia@mococo/system"];
         uris = ["qemu+ssh://sophia@mococo/system" "qemu:///system"];
-      };
-      "org/gnome/shell" = {
-        disable-user-extensions = false;
-        enabled-extensions = with pkgs.gnomeExtensions; [
-          blur-my-shell.extensionUuid
-          night-theme-switcher.extensionUuid
-        ];
       };
     };
   };

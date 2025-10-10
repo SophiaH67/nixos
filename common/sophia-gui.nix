@@ -254,14 +254,6 @@ background_opacity 0.5
         experimental-features = ["scale-monitor-framebuffer"];
       };
 
-      "org/gnome/shell" = {
-        disable-user-extensions = false;
-        enabled-extensions = with pkgs.gnomeExtensions; [
-          blur-my-shell.extensionUuid
-          night-theme-switcher.extensionUuid
-        ];
-        disabled-extensions = [];
-      };
       "org/gnome/desktop/peripherals/touchpad" = {
         natural-scroll = true;
         tap-to-click = false;
@@ -279,9 +271,25 @@ background_opacity 0.5
       "org/gnome/desktop/interface" = {
         accent-color = "pink";
       };
+
       "org/gnome/desktop/background" = {
         picture-uri = "file://${config.age.secrets.${wallpaper-secret}.path}";
         picture-uri-dark = "file://${config.age.secrets.${wallpaper-secret-dark}.path}";
+      };
+
+      # Gnome Extensions
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
+        enabled-extensions = with pkgs.gnomeExtensions; [
+          blur-my-shell.extensionUuid
+          night-theme-switcher.extensionUuid
+        ];
+        disabled-extensions = [];
+      };
+      
+      "org/gnome/shell/extensions/nightthemeswitcher/time" = {
+        manual-schedule = true;
+        nightthemeswitcher-ondemand-keybinding=[ "<Shift><Super>t" ];
       };
 
       # Virt-manager

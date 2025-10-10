@@ -30,4 +30,6 @@ in
   "wallpaper-fallback.png.age".publicKeys = devices;
   "wallpaper-rikka.png.age".publicKeys = developers ++ [ rikka ];
   "wallpaper-rikka-dark.png.age".publicKeys = developers ++ [ rikka ];
+  "wallpaper-alice.png.age".publicKeys = developers ++ [ alice ];
+  "wallpaper-alice-dark.png.age".publicKeys = developers ++ [ alice ];
 }

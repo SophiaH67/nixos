@@ -1,8 +1,20 @@
 { lib, pkgs, config, ...}:
 {
+  imports = [ ../yuzaki/configuration.nix ];
+
   home-manager.users.sophia.programs.git.signing.key = lib.mkForce "0AE2A6249EC695A8";
   home-manager.users.sophia.programs.git.userEmail = lib.mkForce "shage2@allegion.com";
   networking.hostName = lib.mkForce "asuna";
+  home-manager.users.sophia.programs.git.extraConfig = {
+    url = {
+      "git@ssh.dev.azure.com:v3/ircost/SV_FW_Drivers/SV_FW_Drivers" = {
+        insteadOf = "https://ircost@dev.azure.com/ircost/SV_FW_Drivers/_git/SV_FW_Drivers";
+      };
+      "git@ssh.dev.azure.com:v3/ircost/SV_FW_Drivers/DriverWrapper" = {
+        insteadOf = "https://ircost@dev.azure.com/ircost/SV_FW_Drivers/_git/DriverWrapper";
+      };
+    };
+  };
   services.displayManager.autoLogin.enable = lib.mkForce false;
   environment.systemPackages = with pkgs; [ teams-for-linux cmake libgcc gnumake eddie btop cavalier ];
 

@@ -71,7 +71,6 @@
         modules = [
           ./devices/asuna/configuration.nix
           ./devices/asuna/hardware-configuration.nix
-          ./devices/yuzaki/configuration.nix
           lanzaboote.nixosModules.lanzaboote
         ] ++ self.devModules;
       };

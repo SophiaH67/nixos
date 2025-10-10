@@ -15,7 +15,6 @@
       };
     };
   };
-  services.displayManager.autoLogin.enable = lib.mkForce false;
   environment.systemPackages = with pkgs; [ teams-for-linux cmake libgcc gnumake eddie btop cavalier ];
 
   users.users.sophia.extraGroups = [ "dialout" ];

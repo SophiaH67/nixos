@@ -31,25 +31,22 @@
       ./common/base.nix
       ./common/sophia.nix
       home-manager.nixosModules.home-manager
-    ];
-
-    agenixModules = [
       {
         environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
       }
       agenix.nixosModules.default
-    ] ++ self.baseModules;
+    ];
 
     devModules = [
       ./common/sophia-dev.nix
       ./common/sophia-gui.nix
-    ] ++ self.agenixModules;
+    ] ++ self.baseModules;
 
     deployableModules = [
       ./common/forgejo.nix
       disko.nixosModules.disko
       ./common/vm-able.nix
-    ] ++ self.agenixModules;
+    ] ++ self.baseModules;
 
     exMachinaModules = [
       ./devices/kube/nodes/hardware-configuration.nix

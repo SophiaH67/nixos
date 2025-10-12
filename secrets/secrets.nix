@@ -25,6 +25,7 @@ in
   "secret1.age".publicKeys = everyone;
   "tailscale-device.age".publicKeys = devices;
   "kube-longhorn.age".publicKeys = developers ++ ex-machina;
+  "kube-join-key.age".publicKeys = developers ++ ex-machina;
 
   # Wallpapers
   "wallpaper-fallback.png.age".publicKeys = devices;

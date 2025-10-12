@@ -65,7 +65,7 @@
   # -=-=- Locale -=-=-
   console.keyMap = "us";
   time.timeZone = "Europe/Berlin";
-  i18n.defaultLocale = "tok";
+  i18n.defaultLocale = "de_DE.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "de_DE.UTF-8";
     LC_IDENTIFICATION = "de_DE.UTF-8";
@@ -76,7 +76,7 @@
     LC_PAPER = "de_DE.UTF-8";
     LC_TELEPHONE = "de_DE.UTF-8";
     LC_TIME = "de_DE.UTF-8";
-    LANGUAGE = "tok";
+    LANGUAGE = "de_DE.UTF-8";
   };
 
 

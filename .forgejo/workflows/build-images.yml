@@ -18,8 +18,8 @@ jobs:
           password: ${{ secrets.FUCK_FORGEJO_PERMS }}
       - name: Build Qcow Image
         run: nix build .#nixosConfigurations.inanis.config.formats.qcow
-      - name: Copy qcow (thanks docker...)
         # omfg fuck you https://github.com/moby/moby/issues/1676
+      - name: Copy qcow (thanks docker...)
         run: cp result/nixos.qcow2 nixos.qcow2
       - uses: docker/build-push-action@v6
         with:

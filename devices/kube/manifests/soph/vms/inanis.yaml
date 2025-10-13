@@ -11,31 +11,27 @@ metadata:
   name: inanis
   namespace: inanis
 spec:
-  runStrategy: Halted
+  runStrategy: Always
   template:
     metadata:
       labels:
         kubevirt.io/vm: inanis
     spec:
       domain:
+        cpu:
+          sockets: 1
+          cores: 1
+          threads: 2
         devices:
           disks:
           - disk:
               bus: virtio
             name: containerdisk
-          - disk:
-              bus: virtio
-            name: cloudinitdisk
-        machine:
-          type: ""
         resources:
           requests:
-            memory: 64M
+            memory: 2G
       terminationGracePeriodSeconds: 0
       volumes:
       - name: containerdisk
         containerDisk:
-          image: kubevirt/cirros-container-disk-demo:latest
-      - cloudInitNoCloud:
-          userDataBase64: IyEvYmluL3NoCgplY2hvICdwcmludGVkIGZyb20gY2xvdWQtaW5pdCB1c2VyZGF0YScK
-        name: cloudinitdisk
+          image: xn--55q89qy6p.com/soph/nixos/inanis:latest

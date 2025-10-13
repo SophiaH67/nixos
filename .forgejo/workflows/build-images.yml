@@ -1,0 +1,30 @@
+on: [push]
+jobs:
+  build:
+    runs-on: docker
+    concurrency:
+      cancel-in-progress: false
+    container:
+      image: xn--55q89qy6p.com/soph/ci-base:latest
+    strategy:
+      matrix:
+        package: [inanis]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.GITHUB_SERVER_URL }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.FUCK_FORGEJO_PERMS }}
+      - name: Build Qcow Image
+        run: nix build .#nixosConfigurations.inanis.config.formats.qcow
+      - name: Copy qcow (thanks docker...)
+        # omfg fuck you https://github.com/moby/moby/issues/1676
+        run: cp result/nixos.qcow2 nixos.qcow2
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: xn--55q89qy6p.com/soph/nixos/${{ matrix.package }}:latest
+          build-args:
+            - TARGET_FLAKE=${{ matrix.package }}

@@ -55,6 +55,10 @@
       ./devices/kube/nodes/disko.nix
     ] ++ self.deployableModules;
 
+    vmModules = [
+      ./common/base-vm.nix
+    ] ++ self.deployableModules;
+
     nixosConfigurations = {
       rikka = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -98,7 +102,7 @@
         modules = [
           ./devices/inanis/configuration.nix
           nixos-generators.nixosModules.all-formats
-        ] ++ self.baseModules;
+        ] ++ self.vmModules;
       };
 
       schwi = nixpkgs.lib.nixosSystem {

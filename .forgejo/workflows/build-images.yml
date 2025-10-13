@@ -26,5 +26,3 @@ jobs:
           context: .
           push: true
           tags: xn--55q89qy6p.com/soph/nixos/${{ matrix.package }}:latest
-          build-args:
-            - TARGET_FLAKE=${{ matrix.package }}

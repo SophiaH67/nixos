@@ -97,6 +97,7 @@
         system = "x86_64-linux";
         modules = [
           ./devices/inanis/configuration.nix
+          nixos-generators.nixosModules.all-formats
         ] ++ self.baseModules;
       };
 

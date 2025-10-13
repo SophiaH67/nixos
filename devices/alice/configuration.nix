@@ -27,4 +27,6 @@
   age.secrets.secret1.file = ../../secrets/secret1.age;
   environment.etc."secret1".source = config.age.secrets.secret1.path;
   environment.etc."secret1.src".text = config.age.secrets.secret1.path;
+
+  programs.nix-ld.enable = true; # Needed for vscode gdb to work
 }

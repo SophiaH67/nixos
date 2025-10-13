@@ -299,7 +299,14 @@ background_opacity 0.5
         override-background-dynamically = true;
       };
 
-      # Virt-manager
+      # Other apps
+
+      ## Console
+      "org/gnome/Console" = {
+        theme = "auto";
+      };
+
+      ## Virt-manager
       "org/virt-manager/virt-manager/connections" = {
         autoconnect = ["qemu:///system" "qemu+ssh://sophia@mococo/system"];
         uris = ["qemu+ssh://sophia@mococo/system" "qemu:///system"];

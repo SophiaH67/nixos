@@ -1,21 +1,21 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: ninomae
+  name: inanis
 ---
 apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
   labels:
-    kubevirt.io/vm: ninomae
-  name: ninomae
-  namespace: ninomae
+    kubevirt.io/vm: inanis
+  name: inanis
+  namespace: inanis
 spec:
   runStrategy: Halted
   template:
     metadata:
       labels:
-        kubevirt.io/vm: ninomae
+        kubevirt.io/vm: inanis
     spec:
       domain:
         devices:

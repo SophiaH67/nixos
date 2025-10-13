@@ -93,10 +93,10 @@
         ] ++ self.deployableModules;
       };
 
-      ninomae = nixpkgs.lib.nixosSystem {
+      inanis = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./devices/ninomae/configuration.nix
+          ./devices/inanis/configuration.nix
         ] ++ self.baseModules;
       };
 

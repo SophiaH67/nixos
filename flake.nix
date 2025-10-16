@@ -135,6 +135,7 @@
           path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.yuuna;
         };
       };
+
       moshimoshi = {
         hostname = "moshimoshi";
         profiles.system = {

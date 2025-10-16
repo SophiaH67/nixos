@@ -15,7 +15,7 @@
       };
     };
   };
-  environment.systemPackages = with pkgs; [ teams-for-linux cmake libgcc gnumake eddie btop cavalier ];
+  environment.systemPackages = with pkgs; [ teams-for-linux cmake libgcc gnumake eddie btop cavalier blender cura-appimage ];
 
   users.users.sophia.extraGroups = [ "dialout" ];
 

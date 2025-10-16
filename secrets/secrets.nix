@@ -27,7 +27,11 @@ in
   "kube-longhorn.age".publicKeys = developers ++ ex-machina;
   "kube-join-key.age".publicKeys = developers ++ ex-machina;
 
-  # Wallpapers
+  # Desktop things
+  ## Pfp
+  "face.png.age".publicKeys = devices;
+
+  ## Wallpapers
   "wallpaper-fallback.png.age".publicKeys = devices;
   "wallpaper-rikka.png.age".publicKeys = developers ++ [ rikka ];
   "wallpaper-rikka-dark.png.age".publicKeys = developers ++ [ rikka ];

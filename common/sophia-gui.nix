@@ -24,14 +24,30 @@ in
   # lib.mkDefault as hack for doubly-defining
   age.secrets = if wallpaper-secret == wallpaper-secret-dark then {
     ${wallpaper-secret} = wallpaper-secret-settings;
+    "face.png" = {
+      file = ../secrets/face.png.age;
+      mode = "400";
+      owner = "sophia";
+    };
   } else {
     ${wallpaper-secret} = wallpaper-secret-settings;
     ${wallpaper-secret-dark} = wallpaper-secret-dark-settings;
+    "face.png" = {
+      file = ../secrets/face.png.age;
+      mode = "400";
+      owner = "sophia";
+    };
   };
 
   environment.systemPackages = with pkgs.gnomeExtensions; [
     blur-my-shell
     night-theme-switcher
+  ];
+
+  # Gnome Face Icon - https://discourse.nixos.org/t/setting-the-user-profile-image-under-gnome/36233/10
+  systemd.tmpfiles.rules = [
+    "f+ /var/lib/AccountsService/users/sophia  0600 root root - [User]\\nIcon=/var/lib/AccountsService/icons/sophia\\n"
+    "L+ /var/lib/AccountsService/icons/sophia  - - - - ${config.age.secrets."face.png".path}"
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

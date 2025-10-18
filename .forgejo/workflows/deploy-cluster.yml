@@ -1,7 +1,7 @@
 on:
   push:
     paths:
-      - **/*.age
+      - '**/*.age'
       - devices/kube/**
       - flake.lock
       - flake.nix

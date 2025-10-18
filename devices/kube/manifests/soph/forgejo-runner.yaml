@@ -116,7 +116,7 @@ spec:
             - name: daemon-config
               mountPath: /etc/docker/daemon.json
               subPath: daemon.json
-            - name: runner-data
+            - name: docker-data
               mountPath: /var/lib/docker
           ports:
             - containerPort: 2375
@@ -164,6 +164,13 @@ spec:
   volumeClaimTemplates:
     - metadata:
         name: runner-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi
+    - metadata:
+        name: docker-data
       spec:
         accessModes: ["ReadWriteOnce"]
         resources:

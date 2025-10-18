@@ -55,6 +55,7 @@ in {
     ];
 
     age.secrets.kube-longhorn.file = ../../secrets/kube-longhorn.age;
+    age.secrets.kube-forgejo-registration-secret.file = ../../secrets/kube-forgejo-registration-secret.age;
 
     services.k3s = {
       role = "server";
@@ -110,8 +111,18 @@ in {
           enable = true;
         };
         # Soph
+        ## Conduwuit
         conduwuit = {
           source = ./manifests/soph/conduwuit.yaml;
+          enable = true;
+        };
+        ## Forgejo Runner
+        forgejo-runner-secret = {
+          source = config.age.secrets.kube-forgejo-registration-secret.path;
+          enable = true;
+        };
+        forgejo-runner = {
+          source = ./manifests/soph/forgejo-runner.yaml;
           enable = true;
         };
       };

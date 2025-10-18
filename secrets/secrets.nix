@@ -24,8 +24,10 @@ in
 {
   "secret1.age".publicKeys = everyone;
   "tailscale-device.age".publicKeys = devices;
+  # Kube Things
   "kube-longhorn.age".publicKeys = developers ++ ex-machina;
   "kube-join-key.age".publicKeys = developers ++ ex-machina;
+  "kube-forgejo-registration-secret.age".publicKeys = developers ++ ex-machina;
 
   # Desktop things
   ## Pfp

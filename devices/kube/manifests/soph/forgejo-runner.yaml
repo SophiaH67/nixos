@@ -79,16 +79,12 @@ spec:
         - name: setup-runner
           image: code.forgejo.org/forgejo/runner:11
           command:
-            - /bin/sh
+            - /bin/bash
             - -c
             - |
               if [ ! -f /data/.runner ]; then
                 echo "No config found — registering runner..."
-                forgejo-runner register \
-                  --no-interactive \
-                  --name "ex-machina-runner-$(hostname)" \
-                  --instance https://xn--55q89qy6p.com \
-                  --token ${FORGEJO_REGISTRATION_TOKEN} \
+                forgejo-runner register --no-interactive --name "ex-machina-runner-$(hostname)" --instance https://xn--55q89qy6p.com --token ${FORGEJO_REGISTRATION_TOKEN}
               else
                 echo "Config already exists, skipping registration."
               fi

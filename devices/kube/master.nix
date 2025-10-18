@@ -104,6 +104,11 @@ in {
           source = ./manifests/kube-virt/kubevirt-webui.yaml;
           enable = true;
         };
+        # Cloud-native PG
+        cnpg = {
+          source = ./manifests/cnpg.yaml;
+          enable = true;
+        };
         # Soph
         conduwuit = {
           source = ./manifests/soph/conduwuit.yaml;

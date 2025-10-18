@@ -40,7 +40,7 @@ in {
       BindPaths = "/run/current-system/sw/bin:/bin";
     };
     
-    environment.systemPackages = [ pkgs.nfs-utils cryptsetup ];
+    environment.systemPackages = [ pkgs.nfs-utils pkgs.cryptsetup ];
 
     systemd.tmpfiles.rules = [
       # Symlink CNI plugins into /opt/cni/bin, as containerd expects to find it there.

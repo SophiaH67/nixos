@@ -50,11 +50,8 @@ in {
       "L+ /opt/cni/bin/host-local - - - - ${pkgs.cni-plugins}/bin/host-local"
       "L+ /opt/cni/bin/portmap - - - - ${pkgs.cni-plugins}/bin/portmap"
 
-      # https://github.com/longhorn/longhorn/issues/2166#issuecomment-3094699127
-      "L /usr/bin/mount - - - - /run/current-system/sw/bin/mount"
-      # OMFg LONGHORN
-      "L /usr/bin/cryptsetup - - - - /run/current-system/sw/bin/cryptsetup"
-      "L /usr/bin/nsenter - - - - /run/current-system/sw/bin/nsenter"
+      # https://github.com/longhorn/longhorn/issues/2166#issuecomment-1740179416
+      "L+ /usr/local/bin - - - - /run/current-system/sw/bin/"
     ];
 
     age.secrets.kube-longhorn.file = ../../secrets/kube-longhorn.age;

@@ -54,6 +54,7 @@ in {
       "L /usr/bin/mount - - - - /run/current-system/sw/bin/mount"
       # OMFg LONGHORN
       "L /usr/bin/cryptsetup - - - - /run/current-system/sw/bin/cryptsetup"
+      "L /usr/bin/nsenter - - - - /run/current-system/sw/bin/nsenter"
     ];
 
     age.secrets.kube-longhorn.file = ../../secrets/kube-longhorn.age;

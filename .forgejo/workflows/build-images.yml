@@ -1,4 +1,9 @@
-on: [push]
+on:
+  push:
+    paths:
+      - flake.lock
+      - flake.nix
+      - devices/inanis
 jobs:
   build:
     runs-on: docker

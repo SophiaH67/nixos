@@ -1,4 +1,11 @@
-on: [push]
+on:
+  push:
+    paths:
+      - **/*.age
+      - devices/kube/**
+      - flake.lock
+      - flake.nix
+      - common/**
 jobs:
   build:
     runs-on: docker

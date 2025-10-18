@@ -29,6 +29,8 @@ in {
   config = lib.mkIf cfg.enable {
     networking.firewall.enable = lib.mkForce false;
 
+    networking.nameservers = [ "2a01:4f8:c2c:123f::1" ];
+
     virtualisation.containerd.enable = true;
     # Longhorn - https://github.com/longhorn/longhorn/issues/2166#issuecomment-2994323945
     services.openiscsi = {

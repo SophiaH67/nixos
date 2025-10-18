@@ -96,7 +96,7 @@ spec:
             - name: FORGEJO_REGISTRATION_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: forgejo-runner-regristration-secret
+                  name: forgejo-runner-secret
                   key: token
           volumeMounts:
             - name: runner-data

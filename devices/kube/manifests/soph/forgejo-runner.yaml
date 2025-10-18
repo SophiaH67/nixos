@@ -76,6 +76,12 @@ spec:
         app: forgejo-runner
     spec:
       initContainers:
+        - name: fix-perms
+          image: busybox
+          command: ["sh", "-c", "chown -R 1000:1000 /data"]
+          volumeMounts:
+            - name: runner-data
+              mountPath: /data
         - name: setup-runner
           image: code.forgejo.org/forgejo/runner:11
           command:

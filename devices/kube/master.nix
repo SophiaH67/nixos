@@ -52,6 +52,8 @@ in {
 
       # https://github.com/longhorn/longhorn/issues/2166#issuecomment-3094699127
       "L /usr/bin/mount - - - - /run/current-system/sw/bin/mount"
+      # OMFg LONGHORN
+      "L /usr/bin/cryptsetup - - - - /run/current-system/sw/bin/cryptsetup"
     ];
 
     age.secrets.kube-longhorn.file = ../../secrets/kube-longhorn.age;

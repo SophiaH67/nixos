@@ -1,29 +1,39 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   services.wivrn = {
     enable = true;
     openFirewall = true;
     autoStart = true;
     defaultRuntime = true;
+    package = (pkgs.wivrn.override {cudaSupport = true;}).overrideAttrs (oldAttrs: {
+      cudaSupport = true;
+      preFixup = oldAttrs.preFixup + ''
+        wrapProgram "$out/bin/wivrn-server" \
+          --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ pkgs.sdl2-compat pkgs.udev ]}
+      '';
+    });
+    monadoEnvironment = {
+      WIVRN_USE_STEAMVR_LH = "1";
+      LH_DISCOVER_WAIT_MS = "6000";
+    };
 
     config = {
       enable = true;
       json = {
-        # 1.0x foveation scaling
-        scale = 1.0;
         # 100 Mb/s
         bitrate = 100000000;
         encoders = [
           {
             encoder = "nvenc";
             codec = "h264";
-            # # 1.0 x 1.0 scaling
-            # width = 1.0;
-            # height = 1.0;
-            # offset_x = 0.0;
-            # offset_y = 0.0;
           }
         ];
+        # application = [
+        #   pkgs.motoc
+        #   "continue"
+        # ];
+        use-steamvr-lh = true;
+        openvr-compat-path = "${pkgs.opencomposite}/lib/opencomposite";
       };
     };
   };
@@ -51,5 +61,6 @@
 
   users.users.sophia.packages = with pkgs; [
     vrcx
+    motoc
   ];
 }

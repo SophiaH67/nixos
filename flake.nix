@@ -69,6 +69,15 @@
         ] ++ self.devModules;
       };
 
+      ayumu = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+	modules = [
+	  ./devices/ayumu/configuration.nix
+	  ./devices/ayumu/hardware-configuration.nix
+	  lanzaboote.nixosModules.lanzaboote
+	] ++ self.devModules;
+      };
+
       alice = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [

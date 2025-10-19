@@ -6,6 +6,7 @@ let
 
   # Device host keys
   rikka = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFOHVN3nsJvlslN8PfU7A3ebu0+XA7Djuqrbgw6dP0t/";
+  ayumu = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA6LJmt81a+56iVbbBYiteX5qUE8Ha43gSnx1oOQH8c+";
   alice = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDbmPJPqKuHQoPzT6+K5gKDP/xU0fqg70tcY2cvzjC30";
   yuuna = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEsn1taHd1G7MLs5uI4tYsWgpYRA+d6/MdDhGtcOiGEt";
 
@@ -14,10 +15,10 @@ let
   emir-zwei = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAdm/2geT7+PxYUSQeiOLGpchxaihM5Bxu88QKLZVoZT";
 
   # Groups
-  developers = [ rikka soph-main ];
+  developers = [ rikka soph-main ayumu ];
   ex-machina = [ schwi emir-eins emir-zwei ];
   users = [ soph-main soph-work forgejo ];
-  personal-devices = [ rikka alice ];
+  personal-devices = [ rikka alice ayumu ];
   devices = ex-machina ++ personal-devices ++ [ yuuna ];
   everyone = users ++ devices;
 in

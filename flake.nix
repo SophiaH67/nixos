@@ -72,12 +72,13 @@
 
       ayumu = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-	modules = [
-	  ./devices/ayumu/configuration.nix
-	  ./devices/ayumu/hardware-configuration.nix
-    ./common/apps/vr.nix
-	  lanzaboote.nixosModules.lanzaboote
-	] ++ self.devModules;
+        modules = [
+          ./devices/ayumu/configuration.nix
+          ./devices/ayumu/hardware-configuration.nix
+          ./common/apps/vr.nix
+          ./common/apps/tailscale.nix
+          lanzaboote.nixosModules.lanzaboote
+        ] ++ self.devModules;
       };
 
       alice = nixpkgs.lib.nixosSystem {

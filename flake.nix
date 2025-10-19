@@ -75,6 +75,7 @@
 	modules = [
 	  ./devices/ayumu/configuration.nix
 	  ./devices/ayumu/hardware-configuration.nix
+    ./common/apps/vr.nix
 	  lanzaboote.nixosModules.lanzaboote
 	] ++ self.devModules;
       };

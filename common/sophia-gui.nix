@@ -1,6 +1,16 @@
 { pkgs, lib, config, ...}:
 {
-  imports = [ ./apps/gnome.nix ./apps/chromium.nix ];
+  imports = [ ./apps/gnome.nix ./apps/chromium.nix ./apps/comms.nix ];
+
+  users.users.sophia.packages = with pkgs; [
+    filezilla
+    gedit
+    gparted
+    xorg.xeyes
+    tor-browser
+    qpwgraph
+    pwvucontrol
+  ];
 
   nixpkgs.config.allowUnfree = true;
   home-manager.useGlobalPkgs = true;

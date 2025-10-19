@@ -35,12 +35,6 @@
   # Docker shenanigans
   virtualisation.docker.enable = true;
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-  };
   programs.adb.enable = true;
   programs.virt-manager.enable = true;
   users.groups.libvirtd.members = ["sophia"];
@@ -58,39 +52,11 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sophia = {
     packages = with pkgs; [
-      prismlauncher
-      vesktop
       parsec-bin
       spotify
-      filezilla
-      gedit
-      gparted
-      fluffychat
-      xorg.xeyes
-      tor-browser
       krita
-      kdePackages.kleopatra
-      signal-desktop
       obsidian
-      dbeaver-bin
-      nixfmt
-      dig
-      file
-      hyfetch
-      nmap
-      lsof
-      iperf
-      dig
-      pv
-      wireshark
-      spotify
-      qpwgraph
-      pwvucontrol
       plex-desktop
-      thunderbird-latest-unwrapped
-      wget
-      kubectl
-      kubevirt
     ];
   };
 

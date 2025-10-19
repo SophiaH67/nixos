@@ -60,6 +60,7 @@
   environment.systemPackages = with pkgs; [
     busybox # For lots of utils (e.g. killall)
     sbctl
+    hyfetch
   ];
 
   # -=-=- Locale -=-=-

@@ -21,6 +21,18 @@ let
   };
 in
 {
+  # Gnome things
+  programs.dconf.enable = true;
+  # Enable the GNOME Desktop Environment.
+  services.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
   # lib.mkDefault as hack for doubly-defining
   age.secrets = if wallpaper-secret == wallpaper-secret-dark then {
     ${wallpaper-secret} = wallpaper-secret-settings;

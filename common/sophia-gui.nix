@@ -1,6 +1,6 @@
 { pkgs, lib, config, ...}:
 {
-  imports = [ ./apps/gnome.nix ];
+  imports = [ ./apps/gnome.nix ./apps/chromium.nix ];
 
   nixpkgs.config.allowUnfree = true;
   home-manager.useGlobalPkgs = true;

@@ -5,11 +5,6 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports =
-    [
-      ../../common/apps/chromium.nix
-    ];
-
   # Bootloader.
   # boot.kernelPackages = pkgs.linuxPackages_default;
   boot.loader.systemd-boot.enable = lib.mkForce false;

@@ -11,9 +11,11 @@ metadata:
 data:
   daemon.json: |
     {
-      "experimental": true
+      "ipv6": true,
+      "features": {
+        "containerd-snapshotter": true
+      }
     }
-
 ---
 apiVersion: v1
 kind: ConfigMap

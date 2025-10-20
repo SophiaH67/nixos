@@ -38,6 +38,7 @@
     };
   };
   home-manager.users.sophia = { pkgs, ... }: {
+    xdg.configFile."openvr/openvrpaths.vrpath".force = true;
     xdg.configFile."openvr/openvrpaths.vrpath".text = ''
     {
       "config" :

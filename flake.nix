@@ -26,9 +26,11 @@
     agenix.url = "github:ryantm/agenix";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
   };
 
-  outputs = { self, nixpkgs, home-manager, lanzaboote, deploy-rs, disko, nixos-generators, agenix, nixos-hardware, ... }: {
+  outputs = { self, nixpkgs, home-manager, lanzaboote, deploy-rs, disko, nixos-generators, agenix, nixos-hardware, nixpkgs-xr, ... }: {
     baseModules = [
       ./common/base.nix
       ./common/sophia.nix
@@ -77,6 +79,7 @@
           ./devices/ayumu/hardware-configuration.nix
           ./common/apps/vr.nix
           ./common/apps/tailscale.nix
+          nixpkgs-xr.nixosModules.nixpkgs-xr
           lanzaboote.nixosModules.lanzaboote
         ] ++ self.devModules;
       };

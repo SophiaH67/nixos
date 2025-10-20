@@ -63,5 +63,7 @@
   users.users.sophia.packages = with pkgs; [
     vrcx
     motoc
+    wlx-overlay-s
+    wayvr-dashboard
   ];
 }

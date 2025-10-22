@@ -12,6 +12,7 @@
       { id = "hlepfoohegkhhmjieoechaddaejaokhf"; } # refined github
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
       { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vimium
+      { id = "gcknhkkoolaabfmlnjonogaaifnjlfnp"; } # FoxyProxy
     ];
   };
 }

@@ -1,5 +1,37 @@
 { config, pkgs, lib, ... }:
+let
+  scriptRaw = ''#!${pkgs.bash}/bin/bash
+echo $(date) > /home/sophia/lastran
+
+tmux_run() {
+  local session="$1"
+  shift
+  local cmd="$*"
+
+  # Kill the session if it exists
+  if ${pkgs.tmux}/bin/tmux has-session -t "$session" 2>/dev/null; then
+      ${pkgs.tmux}/bin/tmux kill-session -t "$session"
+  fi
+
+  # Create a new detached session and run the command
+  ${pkgs.tmux}/bin/tmux new-session -d -s "$session" "$cmd"
+
+  echo "Tmux session '$session' started with command: $cmd"
+}
+
+tmux_run vr_calibration ${pkgs.motoc}/bin/motoc calibrate --dst LHR-E7A0B889 --src "WiVRn HMD" --continue
+tmux_run vr_vrcft /home/sophia/git/VRCFaceTracking.Avalonia/result/bin/vrchatfacetracking
+tmux_run vr_overlay ${pkgs.wlx-overlay-s}/bin/wlx-overlay-s
+'';
+  script = lib.concatStringsSep "\\n" (lib.splitString "\n" scriptRaw);
+in
 {
+  systemd.tmpfiles.rules = [
+    ''f+ /run/soph-vr.sh  555 root root - ${script}''
+  ];
+
+  environment.systemPackages = [ pkgs.tmux ];
+
   services.wivrn = {
     enable = true;
     openFirewall = true;
@@ -28,10 +60,11 @@
             codec = "h264";
           }
         ];
-        # application = [
-        #   pkgs.motoc
-        #   "continue"
-        # ];
+        application = [
+          pkgs.bash
+          "-c"
+          "/run/soph-vr.sh"
+        ];
         use-steamvr-lh = true;
         openvr-compat-path = "${pkgs.opencomposite}/lib/opencomposite";
       };

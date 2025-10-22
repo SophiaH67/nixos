@@ -12,7 +12,7 @@ data:
   daemon.json: |
     {
       "ipv6": true,
-      "fixed-cidr-v6": "2a02:810d:6f83:ad12:34:/112",
+      "fixed-cidr-v6": "2a02:810d:6f83:ad12:34::/112",
       "debug": true,
       "features": {
         "containerd-snapshotter": true

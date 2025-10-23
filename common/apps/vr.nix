@@ -62,7 +62,6 @@ in
         ];
         application = [
           pkgs.bash
-          "-c"
           "/run/soph-vr.sh"
         ];
         use-steamvr-lh = true;

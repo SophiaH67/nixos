@@ -30,7 +30,7 @@ in
     ''f+ /run/soph-vr.sh  555 root root - ${script}''
   ];
 
-  environment.systemPackages = [ pkgs.tmux ];
+  environment.systemPackages = [ pkgs.tmux pkgs.android-tools ];
 
   services.wivrn = {
     enable = true;

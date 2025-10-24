@@ -92,6 +92,11 @@ in
   '';
   };
 
+  programs.steam.extraCompatPackages = with pkgs; [
+    proton-ge-bin
+    proton-ge-rtsp-bin
+  ];
+
   users.users.sophia.packages = with pkgs; [
     (pkgs.vrcx.overrideAttrs (oldAttrs: {
       postFixup = (oldAttrs.postFixup or "") + ''

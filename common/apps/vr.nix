@@ -90,6 +90,9 @@ in
       "version" : 1
     }
   '';
+
+    xdg.configFile."wlxoverlay/openxr_actions.json5".force = true;
+    xdg.configFile."wlxoverlay/openxr_actions.json5".source = ./vr-overlaybinds.json5;
   };
 
   programs.steam.extraCompatPackages = with pkgs; [

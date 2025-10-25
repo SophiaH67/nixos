@@ -111,4 +111,13 @@ in
     wlx-overlay-s
     wayvr-dashboard
   ];
+
+  # Clicking "applications" crashes in wlx-overlay-s because too many files
+  # This is my attempt at fixing
+  security.pam.loginLimits = [{
+    domain = "*";
+    type = "soft";
+    item = "nofile";
+    value = "8192";
+  }];
 }

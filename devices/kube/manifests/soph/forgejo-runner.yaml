@@ -70,7 +70,6 @@ metadata:
   namespace: forgejo-runner
 spec:
   serviceName: forgejo-runner
-  replicas: 1
   selector:
     matchLabels:
       app: forgejo-runner

@@ -26,6 +26,8 @@ tmux_run vr_overlay ${pkgs.wlx-overlay-s}/bin/wlx-overlay-s
   script = lib.concatStringsSep "\\n" (lib.splitString "\n" scriptRaw);
 in
 {
+  imports = [ ./vr-dev.nix ];
+
   systemd.tmpfiles.rules = [
     ''f+ /run/soph-vr.sh  555 root root - ${script}''
   ];

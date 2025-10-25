@@ -40,4 +40,6 @@ in
   "wallpaper-rikka-dark.png.age".publicKeys = developers ++ [ rikka ];
   "wallpaper-alice.png.age".publicKeys = developers ++ [ alice ];
   "wallpaper-alice-dark.png.age".publicKeys = developers ++ [ alice ];
+  "wallpaper-ayumu.png.age".publicKeys = developers ++ [ ayumu ];
+  "wallpaper-ayumu-dark.png.age".publicKeys = developers ++ [ ayumu ];
 }

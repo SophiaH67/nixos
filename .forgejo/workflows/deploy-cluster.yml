@@ -33,4 +33,4 @@ jobs:
           chmod 644 ~/.ssh/known_hosts
       - uses: actions/checkout@v4
       - name: Deploy ${{ matrix.flake }}
-        run: nix --extra-experimental-features "nix-command flakes" run github:serokell/deploy-rs .#${{ matrix.flake }} -- --skip-checks --ssh-user forgejo
+        run: nix --extra-experimental-features "nix-command flakes" run github:serokell/deploy-rs .#${{ matrix.flake }} -- --skip-checks --ssh-user forgejo --remote-build

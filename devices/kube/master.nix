@@ -59,6 +59,7 @@ in {
       "L+ /opt/cni/bin/bridge - - - - ${pkgs.cni-plugins}/bin/bridge"
       "L+ /opt/cni/bin/host-local - - - - ${pkgs.cni-plugins}/bin/host-local"
       "L+ /opt/cni/bin/portmap - - - - ${pkgs.cni-plugins}/bin/portmap"
+      "L+ /opt/cni/bin/macvlan - - - - ${pkgs.cni-plugins}/bin/macvlan"
 
       # https://github.com/longhorn/longhorn/issues/2166#issuecomment-1740179416
       "L+ /usr/local/bin - - - - /run/current-system/sw/bin/"

@@ -35,6 +35,7 @@
     baseModules = [
       ./common/base.nix
       ./common/sophia.nix
+      ./nixosModules
       home-manager.nixosModules.home-manager
       agenix.nixosModules.default
     ];
@@ -69,7 +70,6 @@
         modules = [
           ./devices/rikka/configuration.nix
           ./devices/rikka/hardware-configuration.nix
-          ./nixosModules
           lanzaboote.nixosModules.lanzaboote
         ] ++ self.devModules;
       };

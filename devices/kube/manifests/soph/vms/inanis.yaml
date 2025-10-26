@@ -28,8 +28,6 @@ spec:
               bus: virtio
             name: containerdisk
           interfaces:
-          - name: ex-machina-bridge
-            masquerade: {}
           - name: hostnetwork
             binding:
               name: macvtap

@@ -29,11 +29,18 @@ spec:
             name: containerdisk
           interfaces:
           - name: ex-machina-bridge
-            bridge: {}
+            masquerade: {}
+          - name: hostnetwork
+            binding:
+              name: macvtap
         resources:
           requests:
             memory: 2G
       terminationGracePeriodSeconds: 0
+      networks:
+      - name: hostnetwork
+        multus:
+          networkName: macvtapnetwork
       volumes:
       - name: containerdisk
         containerDisk:

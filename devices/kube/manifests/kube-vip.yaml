@@ -135,22 +135,3 @@ spec:
       - effect: NoExecute
         operator: Exists
   updateStrategy: {}
----
-# From the docs, to add bridge https://kubevirt.io/user-guide/network/interfaces_and_networks/#bridge
-apiVersion: "k8s.cni.cncf.io/v1"
-kind: NetworkAttachmentDefinition
-metadata:
-  name: ex-machina-uplink
-spec:
-  config: '{
-      "cniVersion": "0.3.1",
-      "name": "ex-machina-bridge",
-      "plugins": [
-        {
-          "type": "bridge",
-          "bridge": "br0",
-          "disableContainerInterface": true,
-          "macspoofchk": true
-        }
-      ]
-    }'

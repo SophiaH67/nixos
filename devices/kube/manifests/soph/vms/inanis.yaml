@@ -33,10 +33,6 @@ spec:
         resources:
           requests:
             memory: 2G
-      networks:
-      - name: ex-machina-bridge
-        multus:
-          networkName: ex-machina-uplink
       terminationGracePeriodSeconds: 0
       volumes:
       - name: containerdisk

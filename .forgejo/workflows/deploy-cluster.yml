@@ -6,6 +6,8 @@ on:
       - flake.lock
       - flake.nix
       - common/**
+      - .forgejo/workflows/deploy-cluster.yml
+
 jobs:
   build:
     runs-on: docker

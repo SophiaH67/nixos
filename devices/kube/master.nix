@@ -85,8 +85,12 @@ in {
       enable = true;
       token = "exmachinampXeJcPsGKDFgapj";
       manifests = {
-        kube-vip-rbac = {
+        kube-vip = {
           source = ./manifests/kube-vip.yaml;
+          enable = true;
+        };
+        multus = {
+          source = ./manifests/multus.yml;
           enable = true;
         };
         flannel = {

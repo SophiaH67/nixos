@@ -54,7 +54,6 @@
     packages = with pkgs; [
       parsec-bin
       spotify
-      krita
       obsidian
       plex-desktop
     ];
@@ -102,4 +101,6 @@
 
   age.secrets.secret1.file = ../../secrets/secret1.age;
   environment.etc."secret1".source = config.age.secrets.secret1.path;
+
+  soph.drawing.enable = true;
 }

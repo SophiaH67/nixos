@@ -30,7 +30,8 @@
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
   };
 
-  outputs = { self, nixpkgs, home-manager, lanzaboote, deploy-rs, disko, nixos-generators, agenix, nixos-hardware, nixpkgs-xr, ... }: {
+  outputs = { self, nixpkgs, home-manager, lanzaboote, deploy-rs, disko, nixos-generators, agenix, nixos-hardware, nixpkgs-xr, ... }@inputs: {
+    specialArgs = { inherit inputs; };
     baseModules = [
       ./common/base.nix
       ./common/sophia.nix
@@ -68,6 +69,7 @@
         modules = [
           ./devices/rikka/configuration.nix
           ./devices/rikka/hardware-configuration.nix
+          ./nixosModules
           lanzaboote.nixosModules.lanzaboote
         ] ++ self.devModules;
       };

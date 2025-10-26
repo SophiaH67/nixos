@@ -5,5 +5,5 @@
 
   environment.systemPackages = [ pkgs.spotify ];
 
-  hardware.opentabletdriver.enable = true;
+  soph.drawing.enable = true;
 }

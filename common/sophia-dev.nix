@@ -6,7 +6,6 @@
 
   users.users.sophia = {
     packages = with pkgs; [
-      krita
       kdePackages.kleopatra
       dbeaver-bin
       nixfmt

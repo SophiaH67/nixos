@@ -2,7 +2,6 @@
 {
   users.users.sophia.packages = with pkgs; [
     prismlauncher
-    steam
   ];
 
   programs.steam = {

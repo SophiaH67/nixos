@@ -8,7 +8,7 @@
   networking = {
     defaultGateway6 = {
       address = "fe80::62b5:8dff:fe35:2b08";
-      interface = "enp3s0";
+      interface = "br0";
     };
   };
 }

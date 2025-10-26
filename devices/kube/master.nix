@@ -22,11 +22,17 @@ in {
     nodeIp = lib.mkOption {
       type = lib.types.str;
       description = "The IP address of this node.";
-      default = (builtins.elemAt config.networking.interfaces.enp3s0.ipv6.addresses 0).address;
+      default = (builtins.elemAt config.networking.interfaces.br0.ipv6.addresses 0).address;
     };
   };
 
   config = lib.mkIf cfg.enable {
+    networking.bridges = {
+      "br0" = {
+        interfaces = [ "enp3s0" ];
+      };
+    };
+
     networking.firewall.enable = lib.mkForce false;
 
     networking.nameservers = [ "2a01:4f8:c2c:123f::1" ];

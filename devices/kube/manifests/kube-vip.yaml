@@ -45,7 +45,7 @@ subjects:
   name: kube-vip
   namespace: kube-system
 ---
-# Generated with docker run --network host --rm ghcr.io/kube-vip/kube-vip:v1.0.0 manifest daemonset --interface enp3s0 --address 2a02:810d:6f83:ad00:acab::67 --inCluster --taint --controlplane --services --arp --leaderElection
+# Generated with docker run --network host --rm ghcr.io/kube-vip/kube-vip:v1.0.0 manifest daemonset --interface br0 --address 2a02:810d:6f83:ad00:acab::67 --inCluster --taint --controlplane --services --arp --leaderElection
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -89,7 +89,7 @@ spec:
             fieldRef:
               fieldPath: spec.nodeName
         - name: vip_interface
-          value: enp3s0
+          value: br0
         - name: vip_subnet
           value: "128"
         - name: dns_mode

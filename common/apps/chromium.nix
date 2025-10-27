@@ -14,7 +14,7 @@
       pkgs.hunspellDictsChromium.en_US
     ];
     extensions = [
-      { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin (lite)
+      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; }
       { id = "gppongmhjkpfnbhagpmjfkannfbllamg"; } # wappalyzer
       { id = "hlepfoohegkhhmjieoechaddaejaokhf"; } # refined github
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden

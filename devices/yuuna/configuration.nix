@@ -1,9 +1,10 @@
 { config, pkgs, ... }:
 {
   imports = [
-    ../../common/apps/chromium.nix
     ../../common/apps/tailscale.nix
   ];
+  options.sophrams.chromium.enable = true;
+
   networking.hostName = "yuuna";
   networking.domain = "dev.sophiah.gay";
 

@@ -1,6 +1,8 @@
 { pkgs, lib, config, ...}:
 {
-  imports = [ ./apps/gnome.nix ./apps/chromium.nix ./apps/comms.nix ];
+  imports = [ ./apps/gnome.nix ./apps/comms.nix ];
+
+  sophrams.chromium.enable = true;
 
   users.users.sophia.packages = with pkgs; [
     filezilla
@@ -11,6 +13,7 @@
     qpwgraph
     pwvucontrol
   ];
+
 
   nixpkgs.config.allowUnfree = true;
   home-manager.useGlobalPkgs = true;

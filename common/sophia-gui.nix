@@ -191,6 +191,7 @@ background_opacity 0.5
             mkhl.direnv
             ms-vscode.hexeditor
             continue.continue
+            wakatime.vscode-wakatime
           ]  ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             {
               name = "prohe";

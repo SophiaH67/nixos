@@ -33,6 +33,7 @@ in
   ];
 
   environment.systemPackages = [ pkgs.tmux pkgs.android-tools ];
+  sophrams.vrcx.enable = true;
 
   services.wivrn = {
     enable = true;
@@ -103,12 +104,6 @@ in
   ];
 
   users.users.sophia.packages = with pkgs; [
-    (pkgs.vrcx.overrideAttrs (oldAttrs: {
-      postFixup = (oldAttrs.postFixup or "") + ''
-        wrapProgram $out/bin/vrcx \
-          --add-flags "--ozone-platform=x11"
-      '';
-    }))
     motoc
     wlx-overlay-s
     wayvr-dashboard

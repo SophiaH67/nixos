@@ -3,5 +3,6 @@
     ./anime-game
     ./chromium
     ./krita
+    ./vrcx
   ];
 }

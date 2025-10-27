@@ -97,6 +97,7 @@ in
       # Gnome frontend
       "org/gnome/desktop/interface" = {
         accent-color = "pink";
+        show-battery-percentage = true;
       };
 
       "org/gnome/desktop/background" = {

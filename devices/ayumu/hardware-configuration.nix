@@ -18,6 +18,12 @@
       fsType = "xfs";
     };
 
+  fileSystems."/slow" =
+    {
+      device = "/dev/disk/by-uuid/c46eb65d-d8e7-4375-b750-6d80b4a4a08e";
+      fsType = "xfs";
+    };
+
   boot.initrd.luks.devices."luks-2a8d37ad-326f-4373-b153-fbe787e9a894".device = "/dev/disk/by-uuid/2a8d37ad-326f-4373-b153-fbe787e9a894";
 
   fileSystems."/boot" =

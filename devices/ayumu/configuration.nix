@@ -5,5 +5,6 @@
 
   environment.systemPackages = [ pkgs.spotify ];
 
+  sophices.tailscale.enable = true;
   soph.drawing.enable = true;
 }

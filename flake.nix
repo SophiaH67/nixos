@@ -84,7 +84,6 @@
           ./devices/ayumu/configuration.nix
           ./devices/ayumu/hardware-configuration.nix
           ./common/apps/vr.nix
-          ./common/apps/tailscale.nix
           nixpkgs-xr.nixosModules.nixpkgs-xr
           lanzaboote.nixosModules.lanzaboote
         ] ++ self.devModules;
@@ -117,7 +116,6 @@
           ./devices/moshimoshi/configuration.nix
           ./devices/moshimoshi/hardware-configuration.nix
           ./devices/moshimoshi/disko.nix
-          ./common/apps/tailscale.nix
         ] ++ self.deployableModules;
       };
 

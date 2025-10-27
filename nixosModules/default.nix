@@ -1,3 +1,7 @@
 {
-  imports = [ ./meta ./programs ];
+  imports = [
+    ./meta
+    ./programs
+    ./services
+    ];
 }

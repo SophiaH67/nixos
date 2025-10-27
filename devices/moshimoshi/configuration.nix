@@ -4,6 +4,8 @@
 
   networking.hostName = "moshimoshi";
 
+  sophices.tailscale.enable = true;
+
   # -=-=- Asterisk -=-=-
   services.asterisk = {
     enable = true;

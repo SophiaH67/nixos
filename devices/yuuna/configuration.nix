@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 {
-  imports = [
-    ../../common/apps/tailscale.nix
-  ];
+  sophices.tailscale.enable = true;
   options.sophrams.chromium.enable = true;
 
   networking.hostName = "yuuna";

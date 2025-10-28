@@ -7,4 +7,11 @@
 
   sophices.tailscale.enable = true;
   soph.drawing.enable = true;
+
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
 }

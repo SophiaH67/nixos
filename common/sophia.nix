@@ -9,6 +9,7 @@
     description = "Sop";
     extraGroups = [
       "wheel"
+      "dialout"
     ]
     ++ lib.optional config.networking.networkmanager.enable "networkmanager"
     ++ lib.optional config.virtualisation.docker.enable "docker"

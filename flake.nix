@@ -29,6 +29,9 @@
 
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     aagl.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixcord.url = "github:kaylorben/nixcord";
+    nixcord.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, home-manager, lanzaboote, deploy-rs, disko, nixos-generators, agenix, nixos-hardware, ... }@inputs: {

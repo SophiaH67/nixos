@@ -103,4 +103,5 @@
   environment.etc."secret1".source = config.age.secrets.secret1.path;
 
   soph.drawing.enable = true;
+  sophices.tor.enable = true;
 }

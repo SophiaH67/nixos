@@ -29,4 +29,5 @@
   environment.etc."secret1.src".text = config.age.secrets.secret1.path;
 
   programs.nix-ld.enable = true; # Needed for vscode gdb to work
+  sophices.tailscale.enable = lib.mkForce false;
 }

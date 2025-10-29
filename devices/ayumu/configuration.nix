@@ -6,6 +6,7 @@
   environment.systemPackages = [ pkgs.spotify ];
 
   sophices.tailscale.enable = true;
+  sophices.boot-unlock.enable = true;
   soph.drawing.enable = true;
 
   services.sunshine = {

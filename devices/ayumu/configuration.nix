@@ -9,6 +9,9 @@
   sophices.boot-unlock.enable = true;
   soph.drawing.enable = true;
 
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "sophia";
+
   services.sunshine = {
     enable = true;
     autoStart = true;

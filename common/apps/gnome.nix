@@ -113,7 +113,12 @@ in
           night-theme-switcher.extensionUuid
         ];
         disabled-extensions = [];
-        favorite-apps = [ "code.desktop" "vesktop.desktop" "chromium-browser.desktop" "org.gnome.Nautilus.desktop" ];
+        favorite-apps = [
+          "code.desktop"
+          "vesktop.desktop"
+          "chromium-browser.desktop"
+          "org.gnome.Nautilus.desktop"
+        ];
       };
       
       "org/gnome/shell/extensions/nightthemeswitcher/time" = {

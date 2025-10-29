@@ -118,7 +118,8 @@ in
           "vesktop.desktop"
           "chromium-browser.desktop"
           "org.gnome.Nautilus.desktop"
-        ];
+        ]
+          ++ lib.optionals config.programs.steam.enable [ "steam.desktop" ];
       };
       
       "org/gnome/shell/extensions/nightthemeswitcher/time" = {

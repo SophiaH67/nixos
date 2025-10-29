@@ -1,6 +1,10 @@
-{ config, lib, pkgs, ...}:
+{ config, lib, pkgs, inputs, ...}:
 {
   options.sophrams.steam.enable = lib.mkEnableOption "Soph Steam";
+
+  imports = [
+    inputs.nixpkgs-xr.nixosModules.nixpkgs-xr
+  ];
 
   config = lib.mkIf config.sophrams.steam.enable {
     programs.steam = {

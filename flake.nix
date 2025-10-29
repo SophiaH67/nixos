@@ -31,7 +31,7 @@
     aagl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, lanzaboote, deploy-rs, disko, nixos-generators, agenix, nixos-hardware, nixpkgs-xr, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, lanzaboote, deploy-rs, disko, nixos-generators, agenix, nixos-hardware, ... }@inputs: {
     baseModules = [
       ./common/base.nix
       ./common/sophia.nix
@@ -82,7 +82,6 @@
           ./devices/ayumu/configuration.nix
           ./devices/ayumu/hardware-configuration.nix
           ./common/apps/vr.nix
-          nixpkgs-xr.nixosModules.nixpkgs-xr
           lanzaboote.nixosModules.lanzaboote
         ] ++ self.devModules;
       };

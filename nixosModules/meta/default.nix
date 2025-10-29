@@ -1,5 +1,6 @@
 {
   imports = [
+    ./comms
     ./drawing
     ./gaming
   ];

@@ -98,11 +98,6 @@ in
     xdg.configFile."wlxoverlay/openxr_actions.json5".source = ./vr-overlaybinds.json5;
   };
 
-  programs.steam.extraCompatPackages = with pkgs; [
-    proton-ge-bin
-    proton-ge-rtsp-bin
-  ];
-
   users.users.sophia.packages = with pkgs; [
     motoc
     wlx-overlay-s

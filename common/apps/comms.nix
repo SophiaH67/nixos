@@ -4,7 +4,6 @@
     vesktop
     easyeffects
     fluffychat
-    signal-desktop
     thunderbird-latest-unwrapped
   ];
 }

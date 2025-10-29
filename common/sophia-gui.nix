@@ -2,6 +2,7 @@
 {
   imports = [ ./apps/gnome.nix ./apps/comms.nix ];
 
+  soph.comms.enable = true;
   sophrams.chromium.enable = true;
 
   users.users.sophia.packages = with pkgs; [

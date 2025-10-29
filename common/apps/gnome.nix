@@ -119,7 +119,8 @@ in
           "chromium-browser.desktop"
           "org.gnome.Nautilus.desktop"
         ]
-          ++ lib.optionals config.programs.steam.enable [ "steam.desktop" ];
+          ++ lib.optionals config.sophrams.steam.enable [ "steam.desktop" ]
+          ++ lib.optionals config.sophrams.signal.enable [ "signal.desktop" ];
       };
       
       "org/gnome/shell/extensions/nightthemeswitcher/time" = {

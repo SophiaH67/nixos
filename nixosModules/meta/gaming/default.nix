@@ -4,5 +4,6 @@
 
   config = lib.mkIf config.soph.gaming.enable {
     sophrams.anime-game.enable = lib.mkDefault true;
+    sophrams.steam.enable = lib.mkDefault true;
   };
 }

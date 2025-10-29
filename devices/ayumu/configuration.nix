@@ -7,6 +7,7 @@
 
   sophices.tailscale.enable = true;
   sophices.boot-unlock.enable = true;
+  sophices.boot-unlock.tor = true;
   soph.drawing.enable = true;
 
   services.displayManager.autoLogin.enable = true;

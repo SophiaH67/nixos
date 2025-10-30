@@ -70,6 +70,7 @@
 
     vmModules = [
       ./common/base-vm.nix
+      nixos-generators.nixosModules.all-formats
     ] ++ self.deployableModules;
 
     nixosConfigurations = {
@@ -120,8 +121,7 @@
         modules = [
           ./devices/moshimoshi/configuration.nix
           ./devices/moshimoshi/hardware-configuration.nix
-          ./devices/moshimoshi/disko.nix
-        ] ++ self.deployableModules;
+        ] ++ self.vmModules;
       };
 
       inanis = nixpkgs.lib.nixosSystem {
@@ -129,7 +129,6 @@
         system = "x86_64-linux";
         modules = [
           ./devices/inanis/configuration.nix
-          nixos-generators.nixosModules.all-formats
         ] ++ self.vmModules;
       };
 

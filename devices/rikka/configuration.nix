@@ -104,6 +104,4 @@
 
   soph.drawing.enable = true;
   sophices.tor.enable = true;
-
-  sophrams.anime-game.enable = false;
 }

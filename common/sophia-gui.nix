@@ -1,6 +1,9 @@
 { pkgs, lib, config, ...}:
 {
-  imports = [ ./apps/gnome.nix ./apps/comms.nix ];
+  imports = [ ./apps/comms.nix ];
+
+  sophrams.gnome.enable = true;
+  sophrams.gnome.autoLogin = "sophia";
 
   soph.comms.enable = true;
   sophrams.chromium.enable = true;

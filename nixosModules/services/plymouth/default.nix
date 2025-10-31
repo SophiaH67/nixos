@@ -5,7 +5,8 @@
   config = lib.mkIf config.sophices.plymouth.enable {
     boot = {
       plymouth.enable = true;
-      plymouth.theme = "spinner";
+      plymouth.logo = ./MESLogobios.png;
+      # plymouth.font = ./PerfectDOS.ttf;
       initrd.systemd.enable = true;
 
       consoleLogLevel = 3;

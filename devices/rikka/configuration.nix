@@ -104,4 +104,5 @@
 
   soph.drawing.enable = true;
   sophices.tor.enable = true;
+  sophices.plymouth.enable = true;
 }

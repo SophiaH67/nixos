@@ -3,5 +3,6 @@
     ./comms
     ./drawing
     ./gaming
+    ./secure
   ];
 }

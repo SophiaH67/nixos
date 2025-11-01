@@ -9,5 +9,6 @@
     disableTaildrop = true;
     interfaceName = "tailscale0";
   };
+  networking.firewall.trustedInterfaces = [ "tailscale0" ];
   systemd.services.tailscaled.enable = true;
 }

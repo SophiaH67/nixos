@@ -47,6 +47,7 @@
     networkmanager-vpnc
     vpnc
     openvpn
+    cloudflare-warp
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -106,4 +107,6 @@
   sophices.tor.enable = true;
   sophices.plymouth.enable = true;
   services.cloudflare-warp.enable = true;
+  systemd.packages = [ pkgs.cloudflare-warp ]; # for warp-cli
+  systemd.targets.multi-user.wants = [ "warp-svc.service" ]; # causes warp-svc to be started automatically
 }

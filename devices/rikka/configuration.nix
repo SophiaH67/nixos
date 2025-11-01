@@ -77,9 +77,6 @@
   soph.drawing.enable = true;
   sophices.tor.enable = true;
   sophices.plymouth.enable = true;
-  services.cloudflare-warp.enable = true;
-  systemd.packages = [ pkgs.cloudflare-warp ]; # for warp-cli
-  systemd.targets.multi-user.wants = [ "warp-svc.service" ]; # causes warp-svc to be started automatically
-
+  sophices.cloudflare-warp.enable = true;
   soph.secure.enable = true;
 }

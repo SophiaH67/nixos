@@ -29,6 +29,11 @@ in
     default = false;
     description = "Auto login user";
   };
+  options.sophrams.gnome.cloudflare-warp = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Enable warp extensions";
+  };
 
   config = lib.mkIf config.sophrams.gnome.enable {
     services.desktopManager.gnome.enable = true;
@@ -43,8 +48,8 @@ in
     environment.systemPackages = with pkgs.gnomeExtensions; [
       blur-my-shell
       night-theme-switcher
-      cloudflare-warp-toggle
-    ];
+    ]
+      ++ lib.optionals config.sophrams.gnome.cloudflare-warp [ pkgs.gnomeExtensions.cloudflare-warp-toggle ];
 
     # Gnome Face Icon - https://discourse.nixos.org/t/setting-the-user-profile-image-under-gnome/36233/10
     systemd.tmpfiles.rules = [
@@ -131,7 +136,8 @@ in
             blur-my-shell.extensionUuid
             night-theme-switcher.extensionUuid
             cloudflare-warp-toggle.extensionUuid
-          ];
+          ]
+            ++ lib.optionals config.sophrams.gnome.cloudflare-warp [ pkgs.gnomeExtensions.cloudflare-warp-toggle.extensionUuid ];
           disabled-extensions = [];
           favorite-apps = [
             "code.desktop"

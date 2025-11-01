@@ -6,6 +6,8 @@
     boot = {
       plymouth.enable = true;
       plymouth.logo = ./MESLogobios.png;
+      plymouth.theme = "breeze";
+      # plymouth.themePackages = [ (pkgs.callPackage ./theme.nix).plymouth-theme- ];
       # plymouth.font = ./PerfectDOS.ttf;
       initrd.systemd.enable = true;
 

@@ -34,7 +34,10 @@ in
     services.desktopManager.gnome.enable = true;
     services.displayManager.gdm.enable = true;
     services.displayManager.autoLogin.user = config.sophrams.gnome.autoLogin;
+
+    # Attempt to unlock gnome keyring after FDE unlock, should fail silently
     security.pam.services."sophia".enableGnomeKeyring = config.services.displayManager.autoLogin.enable;
+
     programs.dconf.enable = true;
 
     environment.systemPackages = with pkgs.gnomeExtensions; [
@@ -64,7 +67,12 @@ in
       alsa.support32Bit = true;
       pulse.enable = true;
     };
-    hardware.pulseaudio.enable = false;
+    services.pulseaudio.enable = false;
+
+    environment.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
+
 
     age.secrets = if wallpaper-secret == wallpaper-secret-dark then {
       ${wallpaper-secret} = wallpaper-secret-settings;

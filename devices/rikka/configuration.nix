@@ -5,32 +5,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  # Bootloader.
-  # boot.kernelPackages = pkgs.linuxPackages_default;
-  boot.loader.systemd-boot.enable = lib.mkForce false;
-  
-  # First, create keys with sudo sbctl create-keys
-  # Then, reboot and enter setup mode (wipe all keys)
-  # Finally, enroll with sudo sbctl enroll-keys --microsoft
-  boot.lanzaboote = {
-    enable = true;
-    pkiBundle = "/var/lib/sbctl";
-  };
-  boot.loader.efi.canTouchEfiVariables = true;
-
   networking.hostName = "rikka";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
 
   # Docker shenanigans
   virtualisation.docker.enable = true;
@@ -61,10 +36,6 @@
   };
 
   services.protonmail-bridge.enable = true;
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-  };
-
   security.pam.services.sophia.enableGnomeKeyring = true;
 
   programs.calls.enable = true;
@@ -110,6 +81,5 @@
   systemd.packages = [ pkgs.cloudflare-warp ]; # for warp-cli
   systemd.targets.multi-user.wants = [ "warp-svc.service" ]; # causes warp-svc to be started automatically
 
-  # For gnome security panel
-  services.fwupd.enable = true;
+  soph.secure.enable = true;
 }

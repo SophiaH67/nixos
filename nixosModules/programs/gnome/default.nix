@@ -40,6 +40,7 @@ in
     environment.systemPackages = with pkgs.gnomeExtensions; [
       blur-my-shell
       night-theme-switcher
+      cloudflare-warp-toggle
     ];
 
     # Gnome Face Icon - https://discourse.nixos.org/t/setting-the-user-profile-image-under-gnome/36233/10
@@ -121,6 +122,7 @@ in
           enabled-extensions = with pkgs.gnomeExtensions; [
             blur-my-shell.extensionUuid
             night-theme-switcher.extensionUuid
+            cloudflare-warp-toggle.extensionUuid
           ];
           disabled-extensions = [];
           favorite-apps = [

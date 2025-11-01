@@ -105,4 +105,5 @@
   soph.drawing.enable = true;
   sophices.tor.enable = true;
   sophices.plymouth.enable = true;
+  services.cloudflare-warp.enable = true;
 }

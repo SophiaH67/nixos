@@ -122,6 +122,7 @@ in
         "org/gnome/desktop/interface" = {
           accent-color = "pink";
           show-battery-percentage = true;
+          locate-pointer=true
         };
 
         "org/gnome/desktop/background" = {

@@ -32,7 +32,7 @@ in
     ''f+ /run/soph-vr.sh  555 root root - ${script}''
   ];
 
-  environment.systemPackages = [ pkgs.tmux pkgs.android-tools ];
+  environment.systemPackages = [ pkgs.tmux pkgs.android-tools inputs.vrcft ];
   sophrams.vrcx.enable = true;
 
   services.wivrn = {

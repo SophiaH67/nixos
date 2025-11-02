@@ -5,10 +5,8 @@
   config = lib.mkIf config.sophices.plymouth.enable {
     boot = {
       plymouth.enable = true;
-      plymouth.logo = ./MESLogobios.png;
-      plymouth.theme = "breeze";
-      # plymouth.themePackages = [ (pkgs.callPackage ./theme.nix).plymouth-theme- ];
-      # plymouth.font = ./PerfectDOS.ttf;
+      plymouth.theme = "soph-mes";
+      plymouth.themePackages = [ (pkgs.callPackage ./theme.nix pkgs) ];
       initrd.systemd.enable = true;
 
       consoleLogLevel = 3;

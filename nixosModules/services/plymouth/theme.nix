@@ -1,11 +1,9 @@
 { pkgs, ... }: let
-  logo = ./nix.svg;
-  c = colorScheme.palette;
-  colors = import ../../lib/colors.nix lib;
+  logo = ./MESLogobios.png;
 in
 with pkgs;
   stdenv.mkDerivation {
-    name = "plymouth-theme-${colorScheme.slug}";
+    name = "plymouth-theme-soph-mes";
 
     src = writeTextFile {
       name = "theme.script";
@@ -17,9 +15,8 @@ with pkgs;
 
         ### BACKGROUND ###
 
-        Window.SetBackgroundTopColor(%BASE00%);
-        Window.SetBackgroundBottomColor(%BASE00%);
-
+        Window.SetBackgroundTopColor(#818cf8);
+        Window.SetBackgroundBottomColor(#34d399);
 
         ### LOGO ###
 
@@ -69,12 +66,12 @@ with pkgs;
 
         prompt = null;
         bullets = null;
-        bullet.image = Image.Text("•", %BASE05%);
+        bullet.image = Image.Text("•", #ef4444);
 
         fun password_callback (prompt_text, bullet_count) {
           deactivate_spinner();
 
-          prompt.image = Image.Text("Enter password", %BASE05%);
+          prompt.image = Image.Text("Enter password", #fbbf24);
           prompt.sprite = Sprite(prompt.image);
           prompt.sprite.SetPosition(
             center_x - (prompt.image.GetWidth() / 2),
@@ -122,46 +119,23 @@ with pkgs;
       '';
     };
 
-    nativeBuildInputs = [
-      imagemagick
-    ];
-
     unpackPhase = "true";
-    buildPhase = let
-      base00-rgb = colors.rgb_dec c.base00;
-      base05-rgb = colors.rgb_dec c.base05;
-    in ''
-      themeDir="$out/share/plymouth/themes/nix-colors"
+    buildPhase = ''
+      themeDir="$out/share/plymouth/themes/soph-mes"
       mkdir -p $themeDir
-
-      cp ${logo} template.svg
-
-      sed -i "s/#333333/#${c.base0D}/g" template.svg
-      sed -i "s/#555555/#${c.base0C}/g" template.svg
-
-      convert \
-        -background transparent \
-        -bordercolor transparent \
-        -border 42% \
-        template.svg \
-        $themeDir/logo.png
-
-      cp $src $themeDir/nix-colors.script
-
-      substituteInPlace $themeDir/nix-colors.script \
-        --replace-fail "%BASE00%" "${base00-rgb.r}, ${base00-rgb.g}, ${base00-rgb.b}" \
-        --replace-fail "%BASE05%" "${base05-rgb.r}, ${base05-rgb.g}, ${base05-rgb.b}"
+      cp ${logo} $themeDir/logo.png
+      cp $src $themeDir/soph-mes.script
     '';
 
     installPhase = ''
-      cat << EOF > $themeDir/nix-colors.plymouth
+      cat << EOF > $themeDir/soph-mes.plymouth
       [Plymouth Theme]
-      Name=Nix-colors
+      Name=Soph-MES
       ModuleName=script
 
       [script]
       ImageDir=$themeDir
-      ScriptFile=$themeDir/nix-colors.script
+      ScriptFile=$themeDir/soph-mes.script
       EOF
     '';
   }

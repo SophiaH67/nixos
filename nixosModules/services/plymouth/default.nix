@@ -3,6 +3,8 @@
   options.sophices.plymouth.enable = lib.mkEnableOption "Soph Plymouth";
 
   config = lib.mkIf config.sophices.plymouth.enable {
+    systemd.services."plymouth-quit-wait".enable = false;
+
     boot = {
       plymouth.enable = true;
       plymouth.theme = "soph-mes";

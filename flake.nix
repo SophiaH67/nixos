@@ -36,7 +36,7 @@
     aagl.inputs.rust-overlay.follows = "rust-overlay";
 
     nixcord.url = "github:kaylorben/nixcord";
-    # nixcord.inputs.nixpkgs.follows = "nixpkgs";
+    nixcord.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, home-manager, lanzaboote, deploy-rs, disko, nixos-generators, agenix, nixos-hardware, ... }@inputs: {

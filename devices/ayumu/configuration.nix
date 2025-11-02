@@ -19,4 +19,6 @@
     capSysAdmin = true;
     openFirewall = true;
   };
+
+  sophices.plymouth.enable = true;
 }

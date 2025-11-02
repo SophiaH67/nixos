@@ -160,6 +160,10 @@ in
           override-background-dynamically = true;
         };
 
+        "org/gnome/tweaks" = {
+          show-extensions-notice=false;
+        };
+
         # Other apps
 
         ## Console

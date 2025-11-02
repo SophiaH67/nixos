@@ -122,7 +122,8 @@ in
         "org/gnome/desktop/interface" = {
           accent-color = "pink";
           show-battery-percentage = true;
-          locate-pointer=true
+          locate-pointer=true;
+          gtk-enable-primary-paste = false;
         };
 
         "org/gnome/desktop/background" = {

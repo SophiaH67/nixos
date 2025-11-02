@@ -34,9 +34,9 @@ state.time = 0.0;
 
 # cycle through all images
 for (i = 0; i < 7; i++)
-  splash[i] = Image("splash-" + i + ".png");
+  splash[i] = Image("splash-" + i + ".png").Scale(Window.GetWidth(0), Window.GetHeight(0));
 for (i = 0; i < 12; i++)
-  info[i] = Image("info-" + i + ".png");
+  info[i] = Image("info-" + i + ".png").Scale(Window.GetWidth(0), Window.GetHeight(0));
 current_sprite = Sprite();
 
 # set image position

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 let
   scriptRaw = ''#!${pkgs.bash}/bin/bash
 echo $(date) > /home/sophia/lastran
@@ -20,7 +20,7 @@ tmux_run() {
 }
 
 tmux_run vr_calibration ${pkgs.motoc}/bin/motoc calibrate --dst LHR-E7A0B889 --src "WiVRn HMD" --continue
-tmux_run vr_vrcft /home/sophia/git/VRCFaceTracking.Avalonia/result/bin/vrchatfacetracking
+tmux_run vr_vrcft ${inputs.vrcft}/bin/vrchatfacetracking
 tmux_run vr_overlay ${pkgs.wlx-overlay-s}/bin/wlx-overlay-s
 '';
   script = lib.concatStringsSep "\\n" (lib.splitString "\n" scriptRaw);

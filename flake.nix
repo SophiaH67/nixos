@@ -37,6 +37,9 @@
 
     nixcord.url = "github:kaylorben/nixcord";
     nixcord.inputs.nixpkgs.follows = "nixpkgs";
+
+    vrcft.url = "git+https://xn--55q89qy6p.com/Soph/VRCFaceTracking.Avalonia.git";
+    vrcft.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, home-manager, lanzaboote, deploy-rs, disko, nixos-generators, agenix, nixos-hardware, ... }@inputs: {

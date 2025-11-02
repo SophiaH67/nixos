@@ -8,129 +8,128 @@ with pkgs;
     src = writeTextFile {
       name = "theme.script";
       text = ''
-        center_x = Window.GetWidth() / 2;
-        center_y = Window.GetHeight() / 2;
-        baseline_y = Window.GetHeight() * 0.9;
+// Screen size
+screen.w = Window.GetWidth(0);
+screen.h = Window.GetHeight(0);
+screen.half.w = Window.GetWidth(0) / 2;
+screen.half.h = Window.GetHeight(0) / 2;
+
+// Question prompt
+question = null;
+answer = null;
+
+// Message
+message = null;
+
+// Password prompt
+bullets = null;
+prompt = null;
+bullet.image = Image.Text("*", 1, 1, 1);
+
+// Flow
+state.status = "play";
+state.time = 0.0;
+
+//--------------------------------- Refresh (Logo animation) --------------------------
+
+# cycle through all images
+for (i = 0; i < 15; i++)
+  flyingman_image[i] = Image("progress-" + i + ".png");
+flyingman_sprite = Sprite();
+
+# set image position
+flyingman_sprite.SetX(Window.GetX() + (Window.GetWidth(0) / 2 - flyingman_image[0].GetWidth() / 2)); # Place images in the center
+flyingman_sprite.SetY(Window.GetY() + (Window.GetHeight(0) / 2 - flyingman_image[0].GetHeight() / 2));
+
+progress = 0;
+
+fun refresh_callback ()
+  {
+    flyingman_sprite.SetImage(flyingman_image[Math.Int(progress / 3) % 15]);
+    progress++;
+  }
+  
+Plymouth.SetRefreshFunction (refresh_callback);
+
+//------------------------------------- Password prompt -------------------------------
+fun DisplayQuestionCallback(prompt, entry) {
+  question = null;
+  answer = null;
+
+  if (entry == "")
+      entry = "<answer>";
+
+  question.image = Image.Text(prompt, 1, 1, 1);
+  question.sprite = Sprite(question.image);
+  question.sprite.SetX(screen.half.w - question.image.GetWidth() / 2);
+  question.sprite.SetY(screen.h - 4 * question.image.GetHeight());
+
+  answer.image = Image.Text(entry, 1, 1, 1);
+  answer.sprite = Sprite(answer.image);
+  answer.sprite.SetX(screen.half.w - answer.image.GetWidth() / 2);
+  answer.sprite.SetY(screen.h - 2 * answer.image.GetHeight());
+}
+Plymouth.SetDisplayQuestionFunction(DisplayQuestionCallback);
+
+//------------------------------------- Password prompt -------------------------------
+fun DisplayPasswordCallback(nil, bulletCount) {
+    state.status = "pause";
+    totalWidth = bulletCount * bullet.image.GetWidth();
+    startPos = screen.half.w - totalWidth / 2;
+
+    prompt.image = Image.Text("Enter Password", 1, 1, 1);
+    prompt.sprite = Sprite(prompt.image);
+    prompt.sprite.SetX(screen.half.w - prompt.image.GetWidth() / 2);
+    prompt.sprite.SetY(screen.h - 4 * prompt.image.GetHeight());
+
+    // Clear all bullets (user might hit backspace)
+    bullets = null;
+    for (i = 0; i < bulletCount; i++) {
+        bullets[i].sprite = Sprite(bullet.image);
+        bullets[i].sprite.SetX(startPos + i * bullet.image.GetWidth());
+        bullets[i].sprite.SetY(screen.h - 2 * bullet.image.GetHeight());
+    }
+}
+Plymouth.SetDisplayPasswordFunction(DisplayPasswordCallback);
+
+//--------------------------- Normal display (unset all text) ----------------------
+fun DisplayNormalCallback() {
+    state.status = "play";
+    bullets = null;
+    prompt = null;
+    message = null;
+    question = null;
+    answer = null;
+}
+Plymouth.SetDisplayNormalFunction(DisplayNormalCallback);
+
+//----------------------------------------- Message --------------------------------
+fun MessageCallback(text) {
+    message.image = Image.Text(text, 1, 1, 1);
+    message.sprite = Sprite(message.image);
+    message.sprite.SetPosition(screen.half.w - message.image.GetWidth() / 2, message.image.GetHeight());
+}
+Plymouth.SetMessageFunction(MessageCallback);
 
 
-        ### BACKGROUND ###
-
-        Window.SetBackgroundTopColor(#818cf8);
-        Window.SetBackgroundBottomColor(#34d399);
-
-        ### LOGO ###
-
-        logo.image = Image("logo.png");
-        logo.sprite = Sprite(logo.image);
-        logo.sprite.SetPosition(
-          center_x - (logo.image.GetWidth() / 2),
-          center_y - (logo.image.GetHeight() / 2),
-          1
-        );
-
-        logo.spinner_active = 1;
-        logo.spinner_third = 0;
-        logo.spinner_index = 0;
-        logo.spinner_max_third = 32;
-        logo.spinner_max = logo.spinner_max_third * 3;
-
-        real_index = 0;
-        for (third = 0; third < 3; third++) {
-          for (index = 0; index < logo.spinner_max_third; index++) {
-            subthird = index / logo.spinner_max_third;
-            angle = (third + ((Math.Sin(Math.Pi * (subthird - 0.5)) / 2) + 0.5)) / 3;
-            logo.spinner_image[real_index] = logo.image.Rotate(2*Math.Pi * angle);
-            real_index++;
-          }
-        }
-
-        fun activate_spinner () {
-          logo.spinner_active = 1;
-        }
-
-        fun deactivate_spinner () {
-          logo.spinner_active = 0;
-          logo.sprite.SetImage(logo.image);
-        }
-
-        fun refresh_callback () {
-          if (logo.spinner_active) {
-            logo.spinner_index = (logo.spinner_index + 1) % (logo.spinner_max * 2);
-            logo.sprite.SetImage(logo.spinner_image[Math.Int(logo.spinner_index / 2)]);
-          }
-        }
-
-        Plymouth.SetRefreshFunction(refresh_callback);
-
-        ### PASSWORD ###
-
-        prompt = null;
-        bullets = null;
-        bullet.image = Image.Text("•", #ef4444);
-
-        fun password_callback (prompt_text, bullet_count) {
-          deactivate_spinner();
-
-          prompt.image = Image.Text("Enter password", #fbbf24);
-          prompt.sprite = Sprite(prompt.image);
-          prompt.sprite.SetPosition(
-            center_x - (prompt.image.GetWidth() / 2),
-            baseline_y - prompt.image.GetHeight(),
-            1
-          );
-
-          total_width = bullet_count * bullet.image.GetWidth();
-          start_x = center_x - (total_width / 2);
-
-          bullets = null;
-          for (i = 0; i < bullet_count; i++) {
-              bullets[i].sprite = Sprite(bullet.image);
-              bullets[i].sprite.SetPosition(
-                start_x + (i * bullet.image.GetWidth()),
-                baseline_y + bullet.image.GetHeight(),
-                1
-              );
-          }
-        }
-
-        Plymouth.SetDisplayPasswordFunction(password_callback);
-
-
-        ### NORMAL ###
-
-        fun normal_callback() {
-            prompt = null;
-            bullets = null;
-            activate_spinner();
-        }
-
-        Plymouth.SetDisplayNormalFunction(normal_callback);
-
-
-        ### QUIT ###
-
-        fun quit_callback() {
-          prompt = null;
-          bullets = null;
-          deactivate_spinner();
-        }
-
-        Plymouth.SetQuitFunction(quit_callback);
       '';
     };
+
+    imgDir = ./img;
 
     unpackPhase = "true";
     buildPhase = ''
       themeDir="$out/share/plymouth/themes/soph-mes"
       mkdir -p $themeDir
       cp ${logo} $themeDir/logo.png
+      cp $imgDir/progress-{0..14}.png $themeDir/
       cp $src $themeDir/soph-mes.script
     '';
 
     installPhase = ''
       cat << EOF > $themeDir/soph-mes.plymouth
       [Plymouth Theme]
-      Name=Soph-MES
+      Name=soph-mes
       ModuleName=script
 
       [script]

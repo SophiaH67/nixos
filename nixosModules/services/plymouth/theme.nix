@@ -33,19 +33,43 @@ state.time = 0.0;
 //--------------------------------- Refresh (Logo animation) --------------------------
 
 # cycle through all images
-for (i = 0; i < 15; i++)
-  flyingman_image[i] = Image("progress-" + i + ".png");
-flyingman_sprite = Sprite();
+for (i = 0; i < 7; i++)
+  splash[i] = Image("splash-" + i + ".png");
+for (i = 0; i < 12; i++)
+  info[i] = Image("info-" + i + ".png");
+current_sprite = Sprite();
 
 # set image position
-flyingman_sprite.SetX(Window.GetX() + (Window.GetWidth(0) / 2 - flyingman_image[0].GetWidth() / 2)); # Place images in the center
-flyingman_sprite.SetY(Window.GetY() + (Window.GetHeight(0) / 2 - flyingman_image[0].GetHeight() / 2));
+current_sprite.SetX(Window.GetX() + (Window.GetWidth(0) / 2 - splash[0].GetWidth() / 2)); # Place images in the center
+current_sprite.SetY(Window.GetY() + (Window.GetHeight(0) / 2 - splash[0].GetHeight() / 2));
 
 progress = 0;
+stage = 0;
 
 fun refresh_callback ()
   {
-    flyingman_sprite.SetImage(flyingman_image[Math.Int(progress / 3) % 15]);
+    if (stage == 0) {
+      // 772
+      if (progress < 82) current_sprite.SetImage(splash[0]);
+      // 813
+      else if (progress < 84) current_sprite.SetImage(splash[1]);
+      // 814
+      else if (progress < 86) current_sprite.SetImage(splash[2]);
+      // 817
+      else if (progress < 97) current_sprite.SetImage(splash[3]);
+      // 843
+      else if (progress < 149) current_sprite.SetImage(splash[4]);
+      // 845
+      else if (progress < 153) current_sprite.SetImage(splash[5]);
+      // 891
+      else if (progress < 245) current_sprite.SetImage(splash[6]);
+      else {
+        stage = 2;
+        progress = 0;
+      }
+    } else {
+      current_sprite.SetImage(info[6 + (Math.Int(progress / 30) % 4)]);
+    }
     progress++;
   }
   
@@ -110,8 +134,6 @@ fun MessageCallback(text) {
     message.sprite.SetPosition(screen.half.w - message.image.GetWidth() / 2, message.image.GetHeight());
 }
 Plymouth.SetMessageFunction(MessageCallback);
-
-
       '';
     };
 
@@ -122,7 +144,8 @@ Plymouth.SetMessageFunction(MessageCallback);
       themeDir="$out/share/plymouth/themes/soph-mes"
       mkdir -p $themeDir
       cp ${logo} $themeDir/logo.png
-      cp $imgDir/progress-{0..14}.png $themeDir/
+      cp $imgDir/info-{0..10}.png $themeDir/
+      cp $imgDir/splash-{0..6}.png $themeDir/
       cp $src $themeDir/soph-mes.script
     '';
 

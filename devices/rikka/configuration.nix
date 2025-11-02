@@ -77,6 +77,6 @@
   soph.drawing.enable = true;
   sophices.tor.enable = true;
   sophices.plymouth.enable = true;
-  sophices.cloudflare-warp.enable = true;
+  sophices.cloudflare-warp.enable = false;
   soph.secure.enable = true;
 }

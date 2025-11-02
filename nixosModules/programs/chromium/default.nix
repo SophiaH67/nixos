@@ -33,6 +33,8 @@
         "nngceckbapebfimnlniiiahkandclblb" # bitwarden
         "dbepggeogbaibhgnhhndojpepiihcmeb" # vimium
         "gcknhkkoolaabfmlnjonogaaifnjlfnp" # FoxyProxy
+        "eninkmbmgkpkcelmohdlgldafpkfpnaf" # Reddit Untranslate
+        "mpiodijhokgodhhofbcjdecpffjipkle" # SingleFile
       ];
     };
   };

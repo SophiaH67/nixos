@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   sophices.tailscale.enable = true;
-  options.sophrams.chromium.enable = true;
+  sophrams.chromium.enable = true;
 
   networking.hostName = "yuuna";
   networking.domain = "dev.sophiah.gay";

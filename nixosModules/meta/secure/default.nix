@@ -19,5 +19,8 @@
 
     # Forcefully disable X, since it's super insecure
     services.xserver.enable = lib.mkForce false;
+
+    # For legacy reasons it's defaulted to true in nixpkgs
+    boot.loader.systemd-boot.editor = lib.mkForce false;
   };
 }

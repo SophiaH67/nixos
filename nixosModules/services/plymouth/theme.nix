@@ -68,7 +68,7 @@ fun refresh_callback ()
         progress = 0;
       }
     } else {
-      current_sprite.SetImage(info[6 + (Math.Int(progress / 30) % 4)]);
+      current_sprite.SetImage(info[6 + (Math.Int(progress / 50) % 4)]);
     }
     progress++;
   }

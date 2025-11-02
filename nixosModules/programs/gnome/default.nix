@@ -110,6 +110,10 @@ in
           tap-to-click = false;
         };
 
+        "org/gnome/desktop/wm/preferences" = {
+          button-layout= "appmenu:minimize,maximize,close";
+        };
+
         # Keybinds
         "org/gnome/desktop/wm/keybindings" = {
           switch-windows = ["<Alt>Tab"];

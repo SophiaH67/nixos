@@ -52,6 +52,7 @@
 '';
     #TODO: Set up a jail for failure to authenticate
   };
+  users.groups.sshable = {};
 
   # boot.kernelParams = [
   #   "kernel.kexec_load_disabled=1"

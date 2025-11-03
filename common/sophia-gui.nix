@@ -76,7 +76,7 @@
       };
       firefox = {
         enable = true;
-        package = pkgs.firefox-beta;
+        package = pkgs.firefox;
         policies = {
           DisablePocket = true;
           DisableFirefoxStudies = true;

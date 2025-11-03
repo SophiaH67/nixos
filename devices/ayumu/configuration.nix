@@ -21,5 +21,4 @@
   };
 
   sophices.plymouth.enable = true;
-  sophices.builder-user.enable = true;
 }

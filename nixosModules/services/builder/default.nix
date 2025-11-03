@@ -19,6 +19,24 @@
 
     users.groups.soph-builder = {};
 
-    nix.settings.trusted-users = [ "soph-builder" ];
+    # https://nix.dev/tutorials/nixos/distributed-builds-setup.html#optimise-the-remote-builder-configuration
+    nix = {
+      nrBuildUsers = 64;
+      settings = {
+        trusted-users = [ "soph-builder" ];
+
+        min-free = 100 * 1024 * 1024; # 100gb
+        max-free = 200 * 1024 * 1024; # 200gb
+
+        max-jobs = "auto";
+        cores = 0;
+      };
+    };
+
+    systemd.services.nix-daemon.serviceConfig = {
+      MemoryAccounting = true;
+      MemoryMax = "90%";
+      OOMScoreAdjust = 500;
+    };
   };
 }

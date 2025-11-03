@@ -6,6 +6,10 @@
     users.users.soph-builder = {
       isSystemUser = true;
       group = "soph-builder";
+      extraGroups = [
+        "sshable"
+      ];
+
       useDefaultShell = true;
 
       openssh.authorizedKeys.keys = [

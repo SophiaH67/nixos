@@ -20,7 +20,7 @@ tmux_run() {
 }
 
 tmux_run vr_calibration ${pkgs.motoc}/bin/motoc calibrate --dst LHR-E7A0B889 --src "WiVRn HMD" --continue
-tmux_run vr_vrcft ${inputs.vrcft}/bin/vrchatfacetracking
+tmux_run vr_vrcft ${inputs.vrcft.packages.x86_64-linux.default}/bin/vrchatfacetracking
 tmux_run vr_overlay ${pkgs.wlx-overlay-s}/bin/wlx-overlay-s
 '';
   script = lib.concatStringsSep "\\n" (lib.splitString "\n" scriptRaw);
@@ -64,7 +64,7 @@ in
     })
   ];
 
-  environment.systemPackages = [ pkgs.tmux pkgs.android-tools inputs.vrcft pkgs.xrizer ];
+  environment.systemPackages = [ pkgs.tmux pkgs.android-tools inputs.vrcft.packages.x86_64-linux.default pkgs.xrizer ];
   sophrams.vrcx.enable = true;
 
   services.wivrn = {

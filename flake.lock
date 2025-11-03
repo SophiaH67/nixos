@@ -709,14 +709,16 @@
       },
       "locked": {
         "lastModified": 1762076670,
-        "narHash": "sha256-Yo+poG1P5Z57avaik9+OnnDjUqI2PQvTjnJ37wmC7lg=",
+        "narHash": "sha256-lq5TOyXLk2hyUWXjao1i1o9HC/DeuxTdAYmedAPqgxI=",
         "ref": "refs/heads/main",
         "rev": "f93f49d2c2a72293097521cf49c10a0c7b1129e1",
         "revCount": 200,
+        "submodules": true,
         "type": "git",
         "url": "https://xn--55q89qy6p.com/Soph/VRCFaceTracking.Avalonia.git"
       },
       "original": {
+        "submodules": true,
         "type": "git",
         "url": "https://xn--55q89qy6p.com/Soph/VRCFaceTracking.Avalonia.git"
       }

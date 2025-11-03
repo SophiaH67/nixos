@@ -40,29 +40,28 @@ in
     ''f+ /run/soph-vr.sh  555 root root - ${script}''
   ];
 
-  # https://lvra.gitlab.io/docs/fossvr/xrizer/#nixos
+  # Originally from https://lvra.gitlab.io/docs/fossvr/xrizer/#nixos
+  # Now from https://gitlab.rxserver.net/reality-exe/nix-config/-/blob/main/modules/nix/vr/default.nix
   nixpkgs.overlays = [
     (final: prev: {
-      xrizer = prev.xrizer.overrideAttrs {
-        src = final.fetchFromGitHub {
-          owner = "Mr-Zero88-FBT";
-          repo = "xrizer";
-          rev = "10ab78de413320523ac4a8660e39c598320ca75a";
-          hash = "sha256-129JIdahyWa4rVPthgZD46wsq8zFOdGntUePjLUZKK8=";
-        };
+      xrizer = prev.xrizer.overrideAttrs (oldAttrs: {
+        patches =
+          (oldAttrs.patches or [])
+          ++ [
+            ./xrizer-patches/skeletal_summary.patch
+            ./xrizer-patches/device_refactor2.patch
+            ./xrizer-patches/generic_trackers.patch
+          ];
         doCheck = false;
-        cargoDeps = pkgs.rustPlatform.importCargoLock {
-          lockFile = pkgs.fetchurl {
-            url = "https://raw.githubusercontent.com/Mr-Zero88-FBT/xrizer/refs/heads/experimental2/Cargo.lock";
-            hash = "sha256-m+r+ffqUF267/E4juwfZaGf1OxOfbZXYc0il4VZ384U=";
-          };
-          outputHashes = {
-            "openxr-0.19.0" = "sha256-mljVBbQTq/k7zd/WcE1Sd3gibaJiZ+t7td964clWHd8=";
-          };
-        };
-      };
+      });
     })
   ];
+  environment.variables = {
+    STEAMVR_LH_ENABLE = "1";
+    XRT_OPOSITOR_COMPUTE = "1";
+    WMR_HANDTRACKING = "0";
+  };
+
 
   environment.systemPackages = [ pkgs.tmux pkgs.android-tools inputs.vrcft.packages.x86_64-linux.default pkgs.xrizer ];
   sophrams.vrcx.enable = true;

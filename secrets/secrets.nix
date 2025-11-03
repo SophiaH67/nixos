@@ -25,6 +25,7 @@ in
 {
   "secret1.age".publicKeys = everyone;
   "tailscale-device.age".publicKeys = devices;
+  "soph-builder.id_ed25519.age".publicKeys = [ alice rikka ayumu ];
   # Kube Things
   "kube-longhorn.age".publicKeys = developers ++ ex-machina;
   "kube-join-key.age".publicKeys = developers ++ ex-machina;

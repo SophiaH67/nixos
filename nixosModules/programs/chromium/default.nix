@@ -35,6 +35,7 @@
         "gcknhkkoolaabfmlnjonogaaifnjlfnp" # FoxyProxy
         "eninkmbmgkpkcelmohdlgldafpkfpnaf" # Reddit Untranslate
         "mpiodijhokgodhhofbcjdecpffjipkle" # SingleFile
+        "jghecgabfgfdldnmbfkhmffcabddioke" # Volume Master
       ];
     };
   };

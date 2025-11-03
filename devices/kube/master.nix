@@ -27,6 +27,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    sophices.builder.enable = true;
+
     networking.bridges = {
       "br0" = {
         interfaces = [ "enp3s0" ];

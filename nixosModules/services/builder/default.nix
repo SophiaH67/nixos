@@ -8,7 +8,9 @@
       group = "soph-builder";
       useDefaultShell = true;
 
-      openssh.authorizedKeys.keyFiles = [ ./soph-builder.id_ed25519.pub ];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINLd+fLmg2masZl3fIUGlVAIahLoMFHA1BIZIYa4bTcq soph-builder"
+      ];
     };
 
     users.groups.soph-builder = {};

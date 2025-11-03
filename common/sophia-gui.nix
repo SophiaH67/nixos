@@ -157,6 +157,9 @@ background_opacity 0.5
             preFixup =
               prev.preFixup
               + "gappsWrapperArgs+=( --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ pkgs.gcc.cc.lib ]} )";
+            postFixup =
+              prev.postFixup
+              + (if config.hardware.nvidia.enabled then "\nwrapProgram $out/bin/code --add-flags --ozone-platform=x11" else "");
           }
         ));
         profiles.default = {

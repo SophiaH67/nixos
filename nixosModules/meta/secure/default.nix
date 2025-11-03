@@ -1,6 +1,10 @@
-{ config, lib, pkgs, ...}:
+{ config, lib, pkgs, inputs, ...}:
 {
   options.soph.secure.enable = lib.mkEnableOption "Soph Secure Mode";
+
+  imports = [
+    inputs.lanzaboote.nixosModules.lanzaboote
+  ];
 
   config = lib.mkIf config.soph.secure.enable {
     boot.loader.systemd-boot.enable = lib.mkForce false;

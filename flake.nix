@@ -42,7 +42,7 @@
     vrcft.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, lanzaboote, deploy-rs, disko, nixos-generators, agenix, nixos-hardware, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, deploy-rs, disko, nixos-generators, agenix, nixos-hardware, ... }@inputs: {
     baseModules = [
       ./common/base.nix
       ./common/sophia.nix
@@ -83,7 +83,6 @@
         modules = [
           ./devices/rikka/configuration.nix
           ./devices/rikka/hardware-configuration.nix
-          lanzaboote.nixosModules.lanzaboote
         ] ++ self.devModules;
       };
 
@@ -94,7 +93,6 @@
           ./devices/ayumu/configuration.nix
           ./devices/ayumu/hardware-configuration.nix
           ./common/apps/vr.nix
-          lanzaboote.nixosModules.lanzaboote
         ] ++ self.devModules;
       };
 
@@ -104,7 +102,6 @@
         modules = [
           ./devices/alice/configuration.nix
           ./devices/alice/hardware-configuration.nix
-          lanzaboote.nixosModules.lanzaboote
         ] ++ self.devModules;
       };
 

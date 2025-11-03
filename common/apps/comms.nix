@@ -3,7 +3,7 @@
   users.users.sophia.packages = with pkgs; [
     easyeffects
     fluffychat
-    thunderbird-latest-unwrapped
+    # thunderbird-latest-unwrapped
   ];
 
   home-manager.users.sophia = {

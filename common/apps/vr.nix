@@ -24,6 +24,14 @@ tmux_run vr_vrcft ${inputs.vrcft}/bin/vrchatfacetracking
 tmux_run vr_overlay ${pkgs.wlx-overlay-s}/bin/wlx-overlay-s
 '';
   script = lib.concatStringsSep "\\n" (lib.splitString "\n" scriptRaw);
+
+
+  pkgs-nvidia = import inputs.nvidianixpkgs {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+    config.cudaSupport = true;
+    overlays = [ inputs.nixpkgs-xr.overlays.default ];
+  };
 in
 {
   imports = [ ./vr-dev.nix ];
@@ -40,7 +48,7 @@ in
     openFirewall = true;
     autoStart = true;
     defaultRuntime = true;
-    package = (pkgs.wivrn.override {cudaSupport = true;}).overrideAttrs (oldAttrs: {
+    package = (pkgs-nvidia.wivrn.override {cudaSupport = true;}).overrideAttrs (oldAttrs: {
       cudaSupport = true;
       preFixup = oldAttrs.preFixup + ''
         wrapProgram "$out/bin/wivrn-server" \

@@ -21,4 +21,8 @@
   };
 
   sophices.plymouth.enable = true;
+
+  services.ollama.enable = true;
+  services.ollama.host = "[::]";
+  services.ollama.acceleration = "cuda";
 }

@@ -2,7 +2,7 @@
 { nixpkgs, home-manager, agenix, disko, nixos-generators, nixos-hardware, ... }@inputs:
 let
   baseModules = [
-    ../common/base.nix
+    { soph.base.enable = true; }
     ../common/sophia.nix
     ../nixosModules
     home-manager.nixosModules.home-manager
@@ -30,7 +30,7 @@ let
   ] ++ deployableModules;
 
   vmModules = [
-    ../common/base-vm.nix
+    { soph.base-vm.enable = true; }
     nixos-generators.nixosModules.all-formats
   ] ++ deployableModules;
 in {

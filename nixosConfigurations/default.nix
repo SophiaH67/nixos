@@ -25,8 +25,8 @@ let
   ] ++ baseModules;
 
   exMachinaModules = [
-    ../devices/kube/nodes/hardware-configuration.nix
-    ../devices/kube/nodes/disko.nix
+    ./kube/nodes/hardware-configuration.nix
+    ./kube/nodes/disko.nix
   ] ++ deployableModules;
 
   vmModules = [
@@ -38,8 +38,8 @@ in {
     specialArgs = { inherit inputs; };
     system = "x86_64-linux";
     modules = [
-      ../devices/rikka/configuration.nix
-      ../devices/rikka/hardware-configuration.nix
+      ./rikka/configuration.nix
+      ./rikka/hardware-configuration.nix
     ] ++ devModules;
   };
 
@@ -47,8 +47,8 @@ in {
     specialArgs = { inherit inputs; };
     system = "x86_64-linux";
     modules = [
-      ../devices/ayumu/configuration.nix
-      ../devices/ayumu/hardware-configuration.nix
+      ./ayumu/configuration.nix
+      ./ayumu/hardware-configuration.nix
       ../common/apps/vr.nix
     ] ++ devModules;
   };
@@ -57,8 +57,8 @@ in {
     specialArgs = { inherit inputs; };
     system = "x86_64-linux";
     modules = [
-      ../devices/alice/configuration.nix
-      ../devices/alice/hardware-configuration.nix
+      ./alice/configuration.nix
+      ./alice/hardware-configuration.nix
     ] ++ devModules;
   };
 
@@ -66,8 +66,8 @@ in {
     specialArgs = { inherit inputs; };
     system = "aarch64-linux";
     modules = [
-      ../devices/yuuna/configuration.nix
-      ../devices/yuuna/hardware-configuration.nix
+      ./yuuna/configuration.nix
+      ./yuuna/hardware-configuration.nix
       nixos-hardware.nixosModules.raspberry-pi-4
     ] ++ deployableModules;
   };
@@ -76,8 +76,8 @@ in {
     specialArgs = { inherit inputs; };
     system = "x86_64-linux";
     modules = [
-      ../devices/moshimoshi/configuration.nix
-      ../devices/moshimoshi/hardware-configuration.nix
+      ./moshimoshi/configuration.nix
+      ./moshimoshi/hardware-configuration.nix
     ] ++ vmModules;
   };
 
@@ -85,7 +85,7 @@ in {
     specialArgs = { inherit inputs; };
     system = "x86_64-linux";
     modules = [
-      ../devices/inanis/configuration.nix
+      ./inanis/configuration.nix
     ] ++ vmModules;
   };
 
@@ -93,7 +93,7 @@ in {
     specialArgs = { inherit inputs; };
     system = "x86_64-linux";
     modules = [
-      ../devices/kube/nodes/schwi.nix
+      ./kube/nodes/schwi.nix
     ] ++ exMachinaModules;
   };
 
@@ -101,7 +101,7 @@ in {
     specialArgs = { inherit inputs; };
     system = "x86_64-linux";
     modules = [
-      ../devices/kube/nodes/emir-eins.nix
+      ./kube/nodes/emir-eins.nix
     ]  ++ exMachinaModules;
   };
 
@@ -109,7 +109,7 @@ in {
     specialArgs = { inherit inputs; };
     system = "x86_64-linux";
     modules = [
-      ../devices/kube/nodes/emir-zwei.nix
+      ./kube/nodes/emir-zwei.nix
     ]  ++ exMachinaModules;
   };
 }

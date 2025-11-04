@@ -25,4 +25,5 @@
   services.ollama.enable = true;
   services.ollama.host = "[::]";
   services.ollama.acceleration = "cuda";
+  services.nextjs-ollama-llm-ui.enable = true;
 }

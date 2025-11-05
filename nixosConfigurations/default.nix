@@ -26,6 +26,7 @@ let
   exMachinaModules = [
     ./kube/nodes/hardware-configuration.nix
     ./kube/nodes/disko.nix
+    ../common/alice.nix
   ] ++ deployableModules;
 
   vmModules = [

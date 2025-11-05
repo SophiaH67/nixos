@@ -10,11 +10,9 @@ let
 in forAllSystems (system:
   let
     pkgs = import nixpkgs { inherit system; };
-    exMachina = import ./ex-machina { inherit inputs pkgs system; };
-    exMachinaKubeNix = import ./ex-machina/kubenix.nix { inherit inputs pkgs system; };
   in
   {
-    ex-machina = exMachina;
-    ex-machina-kube-nix = exMachinaKubeNix;
+    ex-machina = import ./ex-machina { inherit inputs pkgs system; };
+    ex-machina-kube-nix = import ./ex-machina/kubenix.nix { inherit inputs pkgs system; };
   }
 )

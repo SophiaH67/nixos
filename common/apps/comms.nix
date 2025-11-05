@@ -47,6 +47,15 @@
             volumeBooster.enable = true;
             youtubeAdblock.enable = true;
             webKeybinds.enable = true;
+            alwaysTrust.enable = true;
+            clearURLs.enable = true;
+            disableCallIdle.enable = true;
+            implicitRelationships.enable = true;
+            messageLatency.enable = true;
+            noUnblockToJump.enable = true;
+            oneko.enable = true;
+            webScreenShareFixes.enable = true;
+            XSOverlay.enable = config.soph.vr.enable;
           };
         };
     };

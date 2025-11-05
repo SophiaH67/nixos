@@ -6,5 +6,6 @@
     ./drawing
     ./gaming
     ./secure
+    ./vr
   ];
 }

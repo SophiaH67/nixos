@@ -7,5 +7,6 @@
     ./signal
     ./steam
     ./vrcx
+    ./zsh
   ];
 }

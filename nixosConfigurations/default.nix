@@ -3,7 +3,6 @@
 let
   baseModules = [
     { soph.base.enable = true; }
-    ../common/sophia.nix
     ../nixosModules
     home-manager.nixosModules.home-manager
     agenix.nixosModules.default

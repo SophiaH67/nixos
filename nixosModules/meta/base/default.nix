@@ -3,6 +3,9 @@
   options.soph.base.enable = lib.mkEnableOption "Soph Nixos Base";
 
   config = lib.mkIf config.soph.base.enable {
+    sophrams.zsh.enable = true;
+    nix.settings.trusted-users = [ "@wheel" ];
+
     # -=-=- Boot -=-=-
     boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
     boot.loader.systemd-boot.enable = lib.mkDefault true;

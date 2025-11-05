@@ -40,7 +40,30 @@ in
     ''f+ /run/soph-vr.sh  555 root root - ${script}''
   ];
 
-  environment.systemPackages = [ pkgs.tmux pkgs.android-tools inputs.vrcft.packages.x86_64-linux.default  ];
+  # Originally from https://lvra.gitlab.io/docs/fossvr/xrizer/#nixos
+  # Now from https://gitlab.rxserver.net/reality-exe/nix-config/-/blob/main/modules/nix/vr/default.nix
+  nixpkgs.overlays = [
+    (final: prev: {
+      xrizer = prev.xrizer.overrideAttrs (oldAttrs: {
+        patches =
+          (oldAttrs.patches or [])
+          ++ [
+            ./xrizer-patches/skeletal_summary.patch
+            ./xrizer-patches/device_refactor2.patch
+            ./xrizer-patches/generic_trackers.patch
+          ];
+        doCheck = false;
+      });
+    })
+  ];
+  environment.variables = {
+    STEAMVR_LH_ENABLE = "1";
+    XRT_OPOSITOR_COMPUTE = "1";
+    WMR_HANDTRACKING = "0";
+  };
+
+
+  environment.systemPackages = [ pkgs.tmux pkgs.android-tools inputs.vrcft.packages.x86_64-linux.default pkgs.xrizer ];
   sophrams.vrcx.enable = true;
 
   services.wivrn = {
@@ -76,7 +99,7 @@ in
           "/run/soph-vr.sh"
         ];
         use-steamvr-lh = true;
-        openvr-compat-path = "${pkgs.opencomposite}/lib/opencomposite";
+        openvr-compat-path = "${pkgs.xrizer}/lib/xrizer";
       };
     };
   };
@@ -96,7 +119,7 @@ in
       ],
       "runtime" :
       [
-        "${pkgs.opencomposite}/lib/opencomposite"
+        "${pkgs.xrizer}/lib/xrizer"
       ],
       "version" : 1
     }

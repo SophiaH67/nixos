@@ -1,0 +1,929 @@
+From e3ee437fdc593cb5866234ae390469f306a7a73e Mon Sep 17 00:00:00 2001
+From: Sarah <xxklintan123xx@gmail.com>
+Date: Sat, 26 Apr 2025 00:54:12 +0200
+Subject: [PATCH] implement generic trackers
+
+---
+ src/input.rs                                  |  20 +-
+ src/input/devices.rs                          | 130 +++++++-
+ src/input/skeletal.rs                         |   4 +-
+ src/lib.rs                                    |   1 +
+ src/openxr_data.rs                            |  14 +
+ src/runtime_extensions.rs                     |   1 +
+ src/runtime_extensions/mndx_xdev_space.rs     | 118 +++++++
+ src/runtime_extensions/mndx_xdev_space/sys.rs | 301 ++++++++++++++++++
+ src/system.rs                                 |   3 +
+ 9 files changed, 568 insertions(+), 24 deletions(-)
+ create mode 100644 src/runtime_extensions.rs
+ create mode 100644 src/runtime_extensions/mndx_xdev_space.rs
+ create mode 100644 src/runtime_extensions/mndx_xdev_space/sys.rs
+
+diff --git a/src/input.rs b/src/input.rs
+index 4ce6900..66c583c 100644
+--- a/src/input.rs
++++ b/src/input.rs
+@@ -64,7 +64,6 @@ pub struct Input<C: openxr_data::Compositor> {
+     subaction_paths: SubactionPaths,
+     events: Mutex<VecDeque<InputEvent>>,
+     loading_actions: AtomicBool,
+-    devices: RwLock<TrackedDeviceList>,
+ }
+ 
+ struct InputEvent {
+@@ -103,7 +102,6 @@ impl<T> Drop for WriteOnDrop<T> {
+ 
+ impl<C: openxr_data::Compositor> Input<C> {
+     pub fn new(openxr: Arc<OpenXrData<C>>) -> Self {
+-        let devices = TrackedDeviceList::new();
+         let mut map = SlotMap::with_key();
+         let left_hand_key = map.insert(c"/user/hand/left".into());
+         let right_hand_key = map.insert(c"/user/hand/right".into());
+@@ -140,7 +138,6 @@ impl<C: openxr_data::Compositor> Input<C> {
+             input_source_map: RwLock::new(map),
+             action_map: Default::default(),
+             set_map: Default::default(),
+-            devices: RwLock::new(devices),
+             loaded_actions_path: OnceLock::new(),
+             left_hand_key,
+             right_hand_key,
+@@ -258,6 +255,7 @@ pub struct InputSessionData {
+     actions: OnceLock<LoadedActions>,
+     estimated_skeleton_actions: OnceLock<SkeletalInputActionData>,
+     pose_data: OnceLock<PoseData>,
++    devices: RwLock<TrackedDeviceList>,
+ }
+ 
+ impl InputSessionData {
+@@ -767,7 +765,8 @@ impl<C: openxr_data::Compositor> vr::IVRInput010_Interface for Input<C> {
+             }};
+         }
+         let subaction_path = get_subaction_path!(self, restrict_to_device, action_data);
+-        let devices = self.devices.read().unwrap();
++        let session = self.openxr.session_data.get();
++        let devices = session.input_data.devices.read().unwrap();
+ 
+         let left_hand = devices.get_controller(Hand::Left);
+         let right_hand = devices.get_controller(Hand::Right);
+@@ -1084,7 +1083,8 @@ impl<C: openxr_data::Compositor> vr::IVRInput010_Interface for Input<C> {
+             data.session.sync_actions(&sync_sets).unwrap();
+         }
+ 
+-        let devices = self.devices.read().unwrap();
++        let session = self.openxr.session_data.get();
++        let devices = session.input_data.devices.read().unwrap();
+         let left_hand = devices.get_controller(Hand::Left.into());
+         let right_hand = devices.get_controller(Hand::Right.into());
+ 
+@@ -1266,7 +1266,7 @@ impl<C: openxr_data::Compositor> vr::IVRInput005On006 for Input<C> {
+ impl<C: openxr_data::Compositor> Input<C> {
+     pub fn interaction_profile_changed(&self) {
+         let session = self.openxr.session_data.get();
+-        let mut devices = self.devices.write().unwrap();
++        let mut devices = session.input_data.devices.write().unwrap();
+ 
+         let mut devices_to_create = vec![];
+ 
+@@ -1309,6 +1309,7 @@ impl<C: openxr_data::Compositor> Input<C> {
+                         device_type: TrackedDeviceType::Controller { hand },
+                         profile_path: Some(profile_path),
+                         interaction_profile: Some(p),
++                        xdev: None,
+                     });
+                 }
+                 hmd.set_interaction_profile(p);
+@@ -1331,13 +1332,15 @@ impl<C: openxr_data::Compositor> Input<C> {
+                 panic!("Failed to create new controller: {:?}", e);
+             });
+         }
++
++        devices.create_generic_trackers(&self.openxr).unwrap();
+     }
+ 
+     pub fn frame_start_update(&self) {
+         tracy_span!();
+         let data = self.openxr.session_data.get();
+         let input_data = &data.input_data;
+-        let devices = self.devices.read().unwrap();
++        let devices = data.input_data.devices.read().unwrap();
+ 
+         devices.iter().for_each(|device| {
+             device.clear_pose_cache();
+@@ -1426,7 +1429,8 @@ impl<C: openxr_data::Compositor> Input<C> {
+             return false;
+         }
+ 
+-        let devices = self.devices.read().unwrap();
++        let session = self.openxr.session_data.get();
++        let devices = session.input_data.devices.read().unwrap();
+ 
+         for (i, device) in devices.iter().enumerate() {
+             let current = device.connected();
+diff --git a/src/input/devices.rs b/src/input/devices.rs
+index 1f6a5f6..877ece6 100644
+--- a/src/input/devices.rs
++++ b/src/input/devices.rs
+@@ -9,17 +9,26 @@ use std::{
+ use openvr as vr;
+ use openxr as xr;
+ 
+-use crate::openxr_data::{self, AtomicPath, Hand, OpenXrData, SessionData};
+ use crate::tracy_span;
++use crate::{
++    openxr_data::{self, AtomicPath, Hand, OpenXrData, SessionData},
++    runtime_extensions::mndx_xdev_space::Xdev,
++};
+ use log::trace;
+ 
+ use super::{profiles::MainAxisType, Input, InteractionProfile};
+ 
+-#[derive(Debug, Copy, Clone, PartialEq)]
++#[derive(Debug, Copy, Clone, PartialEq, Default)]
+ pub enum TrackedDeviceType {
++    #[default]
+     Hmd,
+-    Controller { hand: Hand },
++    Controller {
++        hand: Hand,
++    },
++    GenericTracker,
+ }
++
++#[derive(Default)]
+ pub struct XrTrackedDevice {
+     device_type: TrackedDeviceType,
+     interaction_profile: Mutex<Option<&'static dyn InteractionProfile>>,
+@@ -27,12 +36,14 @@ pub struct XrTrackedDevice {
+     connected: AtomicBool,
+     previous_connected: AtomicBool,
+     pose_cache: Mutex<Option<vr::TrackedDevicePose_t>>,
++    xdev: Option<Xdev>,
+ }
+ 
+ pub struct TrackedDeviceCreateInfo {
+     pub device_type: TrackedDeviceType,
+     pub profile_path: Option<xr::Path>,
+     pub interaction_profile: Option<&'static dyn InteractionProfile>,
++    pub xdev: Option<Xdev>,
+ }
+ 
+ impl XrTrackedDevice {
+@@ -54,6 +65,7 @@ impl XrTrackedDevice {
+             },
+             previous_connected: false.into(),
+             pose_cache: Mutex::new(None),
++            xdev: info.xdev,
+         }
+     }
+ 
+@@ -73,6 +85,9 @@ impl XrTrackedDevice {
+             TrackedDeviceType::Controller { .. } => {
+                 self.get_controller_pose(xr_data, session_data, origin)
+             }
++            TrackedDeviceType::GenericTracker => {
++                self.get_generic_tracker_pose(xr_data, session_data, origin)
++            }
+         };
+ 
+         *pose_cache
+@@ -178,12 +193,39 @@ impl XrTrackedDevice {
+ 
+         Some(vr::space_relation_to_openvr_pose(location, velocity))
+     }
++
++    // Generic Trackers
++    fn get_generic_tracker_pose(
++        &self,
++        xr_data: &OpenXrData<impl crate::openxr_data::Compositor>,
++        session_data: &SessionData,
++        origin: vr::ETrackingUniverseOrigin,
++    ) -> Option<vr::TrackedDevicePose_t> {
++        let (location, velocity) = self
++            .xdev
++            .as_ref()?
++            .space
++            .as_ref()?
++            .relate(
++                session_data.get_space_for_origin(origin),
++                xr_data.display_time.get(),
++            )
++            .ok()?;
++
++        Some(vr::space_relation_to_openvr_pose(location, velocity))
++    }
+ }
+ 
+ pub struct TrackedDeviceList {
+     devices: Vec<XrTrackedDevice>,
+ }
+ 
++impl Default for TrackedDeviceList {
++    fn default() -> Self {
++        Self::new()
++    }
++}
++
+ pub struct SubactionPaths {
+     pub left: xr::Path,
+     pub right: xr::Path,
+@@ -209,6 +251,7 @@ impl TrackedDeviceList {
+                 device_type: TrackedDeviceType::Hmd,
+                 profile_path: None,
+                 interaction_profile: None,
++                xdev: None,
+             })],
+         }
+     }
+@@ -251,6 +294,54 @@ impl TrackedDeviceList {
+             .unwrap_or(vr::k_unTrackedDeviceIndexInvalid)
+     }
+ 
++    pub fn create_generic_trackers(
++        &mut self,
++        xr_data: &OpenXrData<impl crate::openxr_data::Compositor>,
++    ) -> xr::Result<()> {
++        let Some(xdev_extension) = xr_data.xdev_extension.as_ref() else {
++            return Ok(());
++        };
++
++        self.devices
++            .retain(|device| device.get_type() != TrackedDeviceType::GenericTracker);
++
++        let max_generic_trackers = vr::k_unMaxTrackedDeviceCount as usize - self.devices.len();
++        log::info!("Creating generic trackers");
++
++        let session = xr_data.session_data.get();
++
++        let xdevs: Vec<Xdev> = xdev_extension
++            .enumerate_xdevs(&session.session, max_generic_trackers)?
++            .into_iter()
++            .filter(|device| {
++                device.space.is_some()
++                    && device.properties.name().to_lowercase().contains("tracker")
++            })
++            .collect();
++
++        log::info!("Found {} generic trackers", xdevs.len());
++
++        xdevs.into_iter().for_each(|xdev| {
++            let tracker = XrTrackedDevice::new(TrackedDeviceCreateInfo {
++                device_type: TrackedDeviceType::GenericTracker,
++                profile_path: None,
++                interaction_profile: None,
++                xdev: Some(xdev),
++            });
++
++            tracker.set_connected(true);
++
++            let res = self.push_device(tracker);
++
++            if res.is_err() {
++                log::error!("Failed to add generic tracker: {:?}", res.unwrap_err());
++                return;
++            }
++        });
++
++        Ok(())
++    }
++
+     pub fn iter(&self) -> std::slice::Iter<'_, XrTrackedDevice> {
+         self.devices.iter()
+     }
+@@ -263,7 +354,8 @@ impl<C: openxr_data::Compositor> Input<C> {
+         origin: Option<vr::ETrackingUniverseOrigin>,
+     ) {
+         tracy_span!();
+-        let devices = self.devices.read().unwrap();
++        let session = self.openxr.session_data.get();
++        let devices = session.input_data.devices.read().unwrap();
+         let session_data = self.openxr.session_data.get();
+ 
+         poses.iter_mut().enumerate().for_each(|(i, pose)| {
+@@ -286,7 +378,9 @@ impl<C: openxr_data::Compositor> Input<C> {
+         hand: Hand,
+         origin: Option<vr::ETrackingUniverseOrigin>,
+     ) -> vr::TrackedDevicePose_t {
+-        let controller_index = self.devices.read().unwrap().get_controller_index(hand);
++        let session = self.openxr.session_data.get();
++        let devices = session.input_data.devices.read().unwrap();
++        let controller_index = devices.get_controller_index(hand);
+ 
+         self.get_device_pose(controller_index, origin)
+     }
+@@ -298,13 +392,14 @@ impl<C: openxr_data::Compositor> Input<C> {
+     ) -> vr::TrackedDevicePose_t {
+         tracy_span!();
+ 
+-        let session_data = self.openxr.session_data.get();
++        let session = self.openxr.session_data.get();
++        let devices = session.input_data.devices.read().unwrap();
+ 
+-        if let Some(device) = self.devices.read().unwrap().get_device(index) {
++        if let Some(device) = devices.get_device(index) {
+             device.get_pose(
+                 &self.openxr,
+-                &session_data,
+-                origin.unwrap_or(session_data.current_origin),
++                &session,
++                origin.unwrap_or(session.current_origin),
+             ).unwrap_or_default()
+         } else {
+             Default::default()
+@@ -312,7 +407,10 @@ impl<C: openxr_data::Compositor> Input<C> {
+     }
+ 
+     pub fn is_device_connected(&self, index: vr::TrackedDeviceIndex_t) -> bool {
+-        let Some(devices) = self.devices.read().ok() else {
++        let session = self.openxr.session_data.get();
++        let devices = session.input_data.devices.read();
++
++        let Some(devices) = devices.ok() else {
+             return false;
+         };
+ 
+@@ -327,21 +425,24 @@ impl<C: openxr_data::Compositor> Input<C> {
+         &self,
+         index: vr::TrackedDeviceIndex_t,
+     ) -> Option<TrackedDeviceType> {
+-        let devices = self.devices.read().ok()?;
++        let session = self.openxr.session_data.get();
++        let devices = session.input_data.devices.read().ok()?;
+         let device = devices.get_device(index)?;
+ 
+         Some(device.get_type())
+     }
+ 
+     pub fn device_index_to_hand(&self, index: vr::TrackedDeviceIndex_t) -> Option<Hand> {
+-        let devices = self.devices.read().ok()?;
++        let session = self.openxr.session_data.get();
++        let devices = session.input_data.devices.read().ok()?;
+         let device = devices.get_device(index)?;
+ 
+         device.get_controller_hand()
+     }
+ 
+     pub fn get_controller_device_index(&self, hand: Hand) -> Option<vr::TrackedDeviceIndex_t> {
+-        let devices = self.devices.read().ok()?;
++        let session = self.openxr.session_data.get();
++        let devices = session.input_data.devices.read().ok()?;
+         let controller_index = devices.get_controller_index(hand);
+ 
+         if controller_index == vr::k_unTrackedDeviceIndexInvalid {
+@@ -352,7 +453,8 @@ impl<C: openxr_data::Compositor> Input<C> {
+     }
+ 
+     fn get_profile_data(&self, hand: Hand) -> Option<&super::profiles::ProfileProperties> {
+-        let devices = self.devices.read().ok()?;
++        let session = self.openxr.session_data.get();
++        let devices = session.input_data.devices.read().ok()?;
+         let controller = devices.get_controller(hand)?;
+ 
+         self.profile_map
+diff --git a/src/input/skeletal.rs b/src/input/skeletal.rs
+index 015f66e..56f73bf 100644
+--- a/src/input/skeletal.rs
++++ b/src/input/skeletal.rs
+@@ -27,7 +27,7 @@ impl<C: openxr_data::Compositor> Input<C> {
+ 
+         let pose_data = session_data.input_data.pose_data.get().unwrap();
+         let display_time = self.openxr.display_time.get();
+-        let devices = self.devices.read().unwrap();
++        let devices = session_data.input_data.devices.read().unwrap();
+ 
+         let Some(controller) = devices.get_controller(hand) else {
+             self.get_estimated_bones(session_data, space, hand, transforms);
+@@ -179,7 +179,7 @@ impl<C: openxr_data::Compositor> Input<C> {
+     ) {
+         let pose_data = session_data.input_data.pose_data.get().unwrap();
+         let display_time = self.openxr.display_time.get();
+-        let devices = self.devices.read().unwrap();
++        let devices = session_data.input_data.devices.read().unwrap();
+ 
+         let Some(controller) = devices.get_controller(hand) else {
+             self.get_estimated_bone_summary(session_data, summary_type, summary_data, hand);
+diff --git a/src/lib.rs b/src/lib.rs
+index 388bba7..aa9bf63 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -11,6 +11,7 @@ mod openxr_data;
+ mod overlay;
+ mod overlayview;
+ mod rendermodels;
++mod runtime_extensions;
+ mod screenshots;
+ mod settings;
+ mod system;
+diff --git a/src/openxr_data.rs b/src/openxr_data.rs
+index 5c6baf8..70bed4b 100644
+--- a/src/openxr_data.rs
++++ b/src/openxr_data.rs
+@@ -1,6 +1,7 @@
+ use crate::{
+     clientcore::{Injected, Injector},
+     graphics_backends::{supported_apis_enum, GraphicsBackend, VulkanData},
++    runtime_extensions::mndx_xdev_space::{XdevSpaceExtension, XR_MNDX_XDEV_SPACE_EXTENSION_NAME},
+ };
+ use derive_more::Deref;
+ use glam::f32::{Quat, Vec3};
+@@ -38,6 +39,7 @@ pub struct OpenXrData<C: Compositor> {
+     pub session_data: SessionReadGuard,
+     pub display_time: AtomicXrTime,
+     pub enabled_extensions: xr::ExtensionSet,
++    pub xdev_extension: Option<XdevSpaceExtension>,
+ 
+     /// should only be externally accessed for testing
+     pub(crate) input: Injected<crate::input::Input<C>>,
+@@ -90,6 +92,14 @@ impl<C: Compositor> OpenXrData<C> {
+         exts.khr_composition_layer_color_scale_bias =
+             supported_exts.khr_composition_layer_color_scale_bias;
+ 
++        if supported_exts
++            .other
++            .contains(&XR_MNDX_XDEV_SPACE_EXTENSION_NAME.to_string())
++        {
++            exts.other
++                .push(XR_MNDX_XDEV_SPACE_EXTENSION_NAME.to_string());
++        }
++
+         let instance = entry
+             .create_instance(
+                 &xr::ApplicationInfo {
+@@ -116,6 +126,8 @@ impl<C: Compositor> OpenXrData<C> {
+             .0,
+         )));
+ 
++        let xdev_extension = XdevSpaceExtension::new(&instance).ok();
++
+         Ok(Self {
+             _entry: entry,
+             instance,
+@@ -123,6 +135,7 @@ impl<C: Compositor> OpenXrData<C> {
+             session_data,
+             display_time: AtomicXrTime(1.into()),
+             enabled_extensions: exts,
++            xdev_extension,
+             input: injector.inject(),
+             compositor: injector.inject(),
+         })
+@@ -574,6 +587,7 @@ impl SessionData {
+     }
+ }
+ 
++#[derive(Default)]
+ pub struct AtomicPath(AtomicU64);
+ impl AtomicPath {
+     pub(crate) fn new() -> Self {
+diff --git a/src/runtime_extensions.rs b/src/runtime_extensions.rs
+new file mode 100644
+index 0000000..124f019
+--- /dev/null
++++ b/src/runtime_extensions.rs
+@@ -0,0 +1 @@
++pub mod mndx_xdev_space;
+diff --git a/src/runtime_extensions/mndx_xdev_space.rs b/src/runtime_extensions/mndx_xdev_space.rs
+new file mode 100644
+index 0000000..c8594c8
+--- /dev/null
++++ b/src/runtime_extensions/mndx_xdev_space.rs
+@@ -0,0 +1,118 @@
++mod sys;
++
++use std::ptr::addr_of_mut;
++
++use sys::{
++    XrCreateXDevListInfoMNDX, XrCreateXDevSpaceInfoMNDX, XrGetXDevInfoMNDX, XrXDevIdMNDX,
++    XrXDevListMNDX, XrXDevPropertiesMNDX,
++};
++
++use openxr as xr;
++
++pub const XR_MNDX_XDEV_SPACE_EXTENSION_NAME: &str = "XR_MNDX_xdev_space";
++
++pub struct XdevSpaceExtension {
++    xr_mndx_xdev_space: sys::XdevSpaceExtension,
++}
++
++pub struct Xdev {
++    pub _id: XrXDevIdMNDX,
++    pub properties: XrXDevPropertiesMNDX,
++    pub space: Option<xr::Space>,
++}
++
++impl PartialEq for Xdev {
++    fn eq(&self, other: &Self) -> bool {
++        self._id == other._id
++    }
++}
++
++impl Xdev {
++    pub fn new(
++        _id: XrXDevIdMNDX,
++        properties: XrXDevPropertiesMNDX,
++        space: Option<xr::Space>,
++    ) -> Self {
++        Self {
++            _id,
++            properties,
++            space,
++        }
++    }
++}
++
++impl XdevSpaceExtension {
++    pub fn new(instance: &xr::Instance) -> xr::Result<Self> {
++        Ok(Self {
++            xr_mndx_xdev_space: sys::XdevSpaceExtension::new(instance.as_raw())?,
++        })
++    }
++
++    pub fn enumerate_xdevs(
++        &self,
++        session: &xr::Session<xr::AnyGraphics>,
++        max_generic_trackers: usize,
++    ) -> xr::Result<Vec<Xdev>> {
++        let mut xdev_list = XrXDevListMNDX::default();
++        let create_info = XrCreateXDevListInfoMNDX::default();
++
++        let mut xdev_ids = vec![0; max_generic_trackers];
++        let mut xdev_id_count = 0;
++
++        log::info!("Create XDev List");
++
++        self.xr_mndx_xdev_space
++            .create_xdev_list(session.as_raw(), &create_info, &mut xdev_list)?;
++
++        log::info!("Enumerate XDevs");
++
++        self.xr_mndx_xdev_space.enumerate_xdevs(
++            xdev_list,
++            max_generic_trackers as u32,
++            addr_of_mut!(xdev_id_count),
++            xdev_ids.as_mut_ptr(),
++        )?;
++
++        xdev_ids.truncate(xdev_id_count as usize);
++
++        let mut current_properties = XrXDevPropertiesMNDX::default();
++        let mut current_get_info = XrGetXDevInfoMNDX::default();
++        let mut space_create_info =
++            XrCreateXDevSpaceInfoMNDX::new(xdev_list, 0, xr::Posef::IDENTITY);
++
++        let xdevs = xdev_ids
++            .iter()
++            .map(|&id| {
++                current_get_info.id = id;
++                space_create_info.id = id;
++
++                self.xr_mndx_xdev_space.get_xdev_properties(
++                    xdev_list,
++                    &current_get_info,
++                    &mut current_properties,
++                )?;
++
++                if current_properties.can_create_space() {
++                    let mut raw_space = xr::sys::Space::default();
++
++                    self.xr_mndx_xdev_space.create_xdev_space(
++                        session.as_raw(),
++                        &space_create_info,
++                        &mut raw_space,
++                    )?;
++
++                    let space =
++                        unsafe { xr::Space::reference_from_raw(session.to_owned(), raw_space) };
++
++                    Ok(Xdev::new(id, current_properties, Some(space)))
++                } else {
++                    Ok(Xdev::new(id, current_properties, None))
++                }
++            })
++            .collect::<xr::Result<Vec<Xdev>>>();
++
++        self.xr_mndx_xdev_space.destroy_xdev_list(xdev_list)?;
++
++        xdevs
++    }
++}
+diff --git a/src/runtime_extensions/mndx_xdev_space/sys.rs b/src/runtime_extensions/mndx_xdev_space/sys.rs
+new file mode 100644
+index 0000000..59c7b04
+--- /dev/null
++++ b/src/runtime_extensions/mndx_xdev_space/sys.rs
+@@ -0,0 +1,301 @@
++use openxr as xr;
++
++#[repr(C)]
++#[derive(Debug, Default, Copy, Clone)]
++pub(super) struct XrXDevListMNDX(u64);
++pub type XrXDevIdMNDX = u64;
++
++#[repr(transparent)]
++#[derive(Copy, Clone, Eq, PartialEq)]
++pub(super) struct CustomStructureType(i32);
++impl CustomStructureType {
++    pub const XR_TYPE_SYSTEM_XDEV_SPACE_PROPERTIES_MNDX: CustomStructureType = Self(1000444001);
++    pub const XR_TYPE_CREATE_XDEV_LIST_INFO_MNDX: CustomStructureType = Self(1000444002);
++    pub const XR_TYPE_GET_XDEV_INFO_MNDX: CustomStructureType = Self(1000444003);
++    pub const XR_TYPE_XDEV_PROPERTIES_MNDX: CustomStructureType = Self(1000444004);
++    pub const XR_TYPE_CREATE_XDEV_SPACE_INFO_MNDX: CustomStructureType = Self(1000444005);
++}
++
++impl Into<xr::sys::StructureType> for CustomStructureType {
++    fn into(self) -> xr::sys::StructureType {
++        unsafe { std::mem::transmute(self) }
++    }
++}
++
++#[repr(C)]
++#[derive(Debug, Copy, Clone)]
++pub(super) struct XrSystemXDevSpacePropertiesMNDX {
++    ty: xr::sys::StructureType,
++    next: usize,
++    supports_xdev_space: xr::sys::Bool32,
++}
++
++impl Default for XrSystemXDevSpacePropertiesMNDX {
++    fn default() -> Self {
++        Self {
++            ty: CustomStructureType::XR_TYPE_SYSTEM_XDEV_SPACE_PROPERTIES_MNDX.into(),
++            next: 0,
++            supports_xdev_space: xr::sys::FALSE,
++        }
++    }
++}
++
++#[repr(C)]
++#[derive(Debug, Copy, Clone)]
++pub(super) struct XrCreateXDevListInfoMNDX {
++    ty: xr::sys::StructureType,
++    next: usize,
++}
++
++impl Default for XrCreateXDevListInfoMNDX {
++    fn default() -> Self {
++        Self {
++            ty: CustomStructureType::XR_TYPE_CREATE_XDEV_LIST_INFO_MNDX.into(),
++            next: 0,
++        }
++    }
++}
++
++#[repr(C)]
++#[derive(Debug, Copy, Clone)]
++pub(super) struct XrGetXDevInfoMNDX {
++    ty: xr::sys::StructureType,
++    next: usize,
++    pub id: XrXDevIdMNDX,
++}
++
++impl Default for XrGetXDevInfoMNDX {
++    fn default() -> Self {
++        Self {
++            ty: CustomStructureType::XR_TYPE_GET_XDEV_INFO_MNDX.into(),
++            next: 0,
++            id: 0,
++        }
++    }
++}
++
++#[repr(C)]
++#[derive(Debug, Clone, Copy, PartialEq)]
++pub struct XrXDevPropertiesMNDX {
++    ty: xr::sys::StructureType,
++    next: usize,
++    name: [i8; 256],
++    serial: [i8; 256],
++    can_create_space: xr::sys::Bool32,
++}
++
++impl XrXDevPropertiesMNDX {
++    pub fn name(&self) -> String {
++        let name = unsafe { std::ffi::CStr::from_ptr(self.name.as_ptr()) };
++
++        name.to_string_lossy().to_string()
++    }
++
++    pub fn can_create_space(&self) -> bool {
++        self.can_create_space != openxr::sys::FALSE
++    }
++}
++
++impl Default for XrXDevPropertiesMNDX {
++    fn default() -> Self {
++        Self {
++            ty: CustomStructureType::XR_TYPE_XDEV_PROPERTIES_MNDX.into(),
++            next: 0,
++            name: [0; 256],
++            serial: [0; 256],
++            can_create_space: xr::sys::FALSE,
++        }
++    }
++}
++
++#[repr(C)]
++#[derive(Debug, Copy, Clone)]
++pub(super) struct XrCreateXDevSpaceInfoMNDX {
++    ty: xr::sys::StructureType,
++    next: usize,
++    pub xdev_list: XrXDevListMNDX,
++    pub id: XrXDevIdMNDX,
++    offset: xr::sys::Posef,
++}
++
++impl XrCreateXDevSpaceInfoMNDX {
++    pub fn new(xdev_list: XrXDevListMNDX, id: XrXDevIdMNDX, offset: xr::Posef) -> Self {
++        Self {
++            ty: CustomStructureType::XR_TYPE_CREATE_XDEV_SPACE_INFO_MNDX.into(),
++            next: 0,
++            xdev_list,
++            id,
++            offset,
++        }
++    }
++}
++
++impl Default for XrCreateXDevSpaceInfoMNDX {
++    fn default() -> Self {
++        Self {
++            ty: CustomStructureType::XR_TYPE_CREATE_XDEV_SPACE_INFO_MNDX.into(),
++            next: 0,
++            xdev_list: XrXDevListMNDX(0),
++            id: 0,
++            offset: xr::sys::Posef::IDENTITY,
++        }
++    }
++}
++
++pub type XrCreateXdevListMndx = unsafe extern "system" fn(
++    session: xr::sys::Session,
++    create_info: *const XrCreateXDevListInfoMNDX,
++    xdev_list: *mut XrXDevListMNDX,
++) -> xr::sys::Result;
++
++pub type XrGetXdevListGenerationNumberMndx = unsafe extern "system" fn(
++    xdev_list: XrXDevListMNDX,
++    out_generation: *mut u64,
++) -> xr::sys::Result;
++
++pub type XrEnumerateXdevsMndx = unsafe extern "system" fn(
++    xdev_list: XrXDevListMNDX,
++    count_input: u32,
++    count_output: *mut u32,
++    xdevs: *mut XrXDevIdMNDX,
++) -> xr::sys::Result;
++
++pub type XrGetXdevPropertiesMndx = unsafe extern "system" fn(
++    xdev_list: XrXDevListMNDX,
++    info: *const XrGetXDevInfoMNDX,
++    properties: *mut XrXDevPropertiesMNDX,
++) -> xr::sys::Result;
++
++pub type XrDestroyXdevListMndx =
++    unsafe extern "system" fn(xdev_list: XrXDevListMNDX) -> xr::sys::Result;
++
++pub type XrCreateXdevSpaceMndx = unsafe extern "system" fn(
++    session: xr::sys::Session,
++    create_info: *const XrCreateXDevSpaceInfoMNDX,
++    space: *mut xr::sys::Space,
++) -> xr::sys::Result;
++
++#[derive(Debug, Copy, Clone)]
++pub(super) struct XdevSpaceExtension {
++    create_xdev_list_fn: Option<XrCreateXdevListMndx>,
++    get_xdev_list_generation_number_fn: Option<XrGetXdevListGenerationNumberMndx>,
++    enumerate_xdevs_fn: Option<XrEnumerateXdevsMndx>,
++    get_xdev_properties_fn: Option<XrGetXdevPropertiesMndx>,
++    destroy_xdev_list_fn: Option<XrDestroyXdevListMndx>,
++    create_xdev_space_fn: Option<XrCreateXdevSpaceMndx>,
++}
++
++macro_rules! xr_bind {
++    ($instance:expr, $name:expr, $function:expr) => {
++        let res = xr::sys::get_instance_proc_addr(
++            $instance,
++            std::ffi::CStr::from_bytes_until_nul($name)
++                .unwrap()
++                .as_ptr(),
++            std::mem::transmute(std::ptr::addr_of_mut!($function)),
++        );
++        if res != xr::sys::Result::SUCCESS {
++            return Err(res);
++        }
++    };
++}
++
++macro_rules! xr_call {
++    ($function:expr, $($args:expr),*) => {
++        if $function.is_none() {
++            return Err(xr::sys::Result::ERROR_EXTENSION_NOT_PRESENT);
++        }
++
++        let res = unsafe { $function.unwrap()($($args),*) };
++
++        if res != xr::sys::Result::SUCCESS {
++            return Err(res);
++        }
++
++        return Ok(());
++    };
++}
++
++impl XdevSpaceExtension {
++    pub fn new(instance: xr::sys::Instance) -> xr::Result<Self> {
++        unsafe {
++            let mut s = Self {
++                create_xdev_list_fn: None,
++                get_xdev_list_generation_number_fn: None,
++                enumerate_xdevs_fn: None,
++                get_xdev_properties_fn: None,
++                destroy_xdev_list_fn: None,
++                create_xdev_space_fn: None,
++            };
++
++            xr_bind!(instance, b"xrCreateXDevListMNDX\0", s.create_xdev_list_fn);
++
++            xr_bind!(
++                instance,
++                b"xrGetXDevListGenerationNumberMNDX\0",
++                s.get_xdev_list_generation_number_fn
++            );
++
++            xr_bind!(instance, b"xrEnumerateXDevsMNDX\0", s.enumerate_xdevs_fn);
++
++            xr_bind!(
++                instance,
++                b"xrGetXDevPropertiesMNDX\0",
++                s.get_xdev_properties_fn
++            );
++
++            xr_bind!(instance, b"xrDestroyXDevListMNDX\0", s.destroy_xdev_list_fn);
++
++            xr_bind!(instance, b"xrCreateXDevSpaceMNDX\0", s.create_xdev_space_fn);
++
++            Ok(s)
++        }
++    }
++
++    pub fn create_xdev_list(
++        &self,
++        session: xr::sys::Session,
++        create_info: *const XrCreateXDevListInfoMNDX,
++        xdev_list: &mut XrXDevListMNDX,
++    ) -> xr::Result<()> {
++        xr_call!(self.create_xdev_list_fn, session, create_info, xdev_list);
++    }
++
++    pub fn enumerate_xdevs(
++        &self,
++        xdev_list: XrXDevListMNDX,
++        count_input: u32,
++        count_output: *mut u32,
++        xdevs: *mut XrXDevIdMNDX,
++    ) -> xr::Result<()> {
++        xr_call!(
++            self.enumerate_xdevs_fn,
++            xdev_list,
++            count_input,
++            count_output,
++            xdevs
++        );
++    }
++
++    pub fn get_xdev_properties(
++        &self,
++        xdev_list: XrXDevListMNDX,
++        info: *const XrGetXDevInfoMNDX,
++        properties: *mut XrXDevPropertiesMNDX,
++    ) -> xr::Result<()> {
++        xr_call!(self.get_xdev_properties_fn, xdev_list, info, properties);
++    }
++
++    pub fn destroy_xdev_list(&self, xdev_list: XrXDevListMNDX) -> xr::Result<()> {
++        xr_call!(self.destroy_xdev_list_fn, xdev_list);
++    }
++
++    pub fn create_xdev_space(
++        &self,
++        session: xr::sys::Session,
++        create_info: *const XrCreateXDevSpaceInfoMNDX,
++        space: *mut xr::sys::Space,
++    ) -> xr::Result<()> {
++        xr_call!(self.create_xdev_space_fn, session, create_info, space);
++    }
++}
+diff --git a/src/system.rs b/src/system.rs
+index 23578c9..6a1c7b1 100644
+--- a/src/system.rs
++++ b/src/system.rs
+@@ -723,6 +723,9 @@ impl vr::IVRSystem022_Interface for System {
+                 Some(TrackedDeviceType::Controller { .. }) => {
+                     Some(vr::ETrackedDeviceClass::Controller)
+                 }
++                Some(TrackedDeviceType::GenericTracker) => {
++                    Some(vr::ETrackedDeviceClass::GenericTracker)
++                }
+                 _ => None,
+             })
+             .unwrap_or(vr::ETrackedDeviceClass::Invalid)
+-- 
+2.51.0
+

@@ -9,5 +9,6 @@
     };
 
     values.persistence.defaultClassReplicaCount = 2;
+    values.namespaceOverride = "longhorn-system";
   };
 }

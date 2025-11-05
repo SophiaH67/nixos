@@ -47,7 +47,7 @@
   };
 
   outputs = { self, nixpkgs, home-manager, deploy-rs, disko, nixos-generators, agenix, nixos-hardware, ... }@inputs: {
-    nixosConfigurations = import ./nixosConfigurations inputs;
+    nixosConfigurations = import ./nixosConfigurations {inherit inputs self; };
     packages = import ./packages inputs;
 
     deploy.nodes = {

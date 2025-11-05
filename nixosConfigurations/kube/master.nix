@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, self, ... }:
 let
   cfg = config.services.ex-machina;
 in {
@@ -86,17 +86,18 @@ in {
       enable = true;
       token = "exmachinampXeJcPsGKDFgapj";
       manifests = {
+        # Kubenix
+        kubenix = {
+          content = self.packages.x86_64-linux.ex-machina-kube-nix.config.kubernetes.resultYAML;
+          enable = true;
+        };
+        # CNI
         kube-vip-rbac = {
           source = ./manifests/kube-vip.yaml;
           enable = true;
         };
         flannel = {
           source = ./manifests/kube-flannel.yml;
-          enable = true;
-        };
-        # Longhorn
-        longhorn = {
-          source = ./manifests/longhorn.yaml;
           enable = true;
         };
         longhorn-secret = {

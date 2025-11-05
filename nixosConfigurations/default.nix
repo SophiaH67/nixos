@@ -1,6 +1,7 @@
 
-{ nixpkgs, home-manager, agenix, disko, nixos-generators, nixos-hardware, ... }@inputs:
+{ inputs, ... }@args:
 let
+  inherit (inputs) nixpkgs home-manager agenix disko nixos-generators nixos-hardware;
   baseModules = [
     { soph.base.enable = true; }
     ../nixosModules
@@ -35,7 +36,7 @@ let
   ] ++ deployableModules;
 in {
   rikka = nixpkgs.lib.nixosSystem {
-    specialArgs = { inherit inputs; };
+    specialArgs = args;
     system = "x86_64-linux";
     modules = [
       ./rikka/configuration.nix
@@ -44,7 +45,7 @@ in {
   };
 
   ayumu = nixpkgs.lib.nixosSystem {
-    specialArgs = { inherit inputs; };
+    specialArgs = args;
     system = "x86_64-linux";
     modules = [
       ./ayumu/configuration.nix
@@ -54,7 +55,7 @@ in {
   };
 
   alice = nixpkgs.lib.nixosSystem {
-    specialArgs = { inherit inputs; };
+    specialArgs = args;
     system = "x86_64-linux";
     modules = [
       ./alice/configuration.nix
@@ -63,7 +64,7 @@ in {
   };
 
   yuuna = nixpkgs.lib.nixosSystem {
-    specialArgs = { inherit inputs; };
+    specialArgs = args;
     system = "aarch64-linux";
     modules = [
       ./yuuna/configuration.nix
@@ -73,7 +74,7 @@ in {
   };
 
   moshimoshi = nixpkgs.lib.nixosSystem {
-    specialArgs = { inherit inputs; };
+    specialArgs = args;
     system = "x86_64-linux";
     modules = [
       ./moshimoshi/configuration.nix
@@ -82,7 +83,7 @@ in {
   };
 
   inanis = nixpkgs.lib.nixosSystem {
-    specialArgs = { inherit inputs; };
+    specialArgs = args;
     system = "x86_64-linux";
     modules = [
       ./inanis/configuration.nix
@@ -90,7 +91,7 @@ in {
   };
 
   schwi = nixpkgs.lib.nixosSystem {
-    specialArgs = { inherit inputs; };
+    specialArgs = args;
     system = "x86_64-linux";
     modules = [
       ./kube/nodes/schwi.nix
@@ -98,7 +99,7 @@ in {
   };
 
   emir-eins = nixpkgs.lib.nixosSystem {
-    specialArgs = { inherit inputs; };
+    specialArgs = args;
     system = "x86_64-linux";
     modules = [
       ./kube/nodes/emir-eins.nix
@@ -106,7 +107,7 @@ in {
   };
 
   emir-zwei = nixpkgs.lib.nixosSystem {
-    specialArgs = { inherit inputs; };
+    specialArgs = args;
     system = "x86_64-linux";
     modules = [
       ./kube/nodes/emir-zwei.nix

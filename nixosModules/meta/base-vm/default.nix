@@ -10,5 +10,5 @@
     boot.kernelParams = [
       "console=tty1"
     ];
-  }
+  };
 }

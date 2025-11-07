@@ -27,7 +27,6 @@
         ];
       };
       extensions = [
-        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # Ublock origin
         "gppongmhjkpfnbhagpmjfkannfbllamg" # wappalyzer
         "hlepfoohegkhhmjieoechaddaejaokhf" # refined github
         "nngceckbapebfimnlniiiahkandclblb" # bitwarden
@@ -37,6 +36,11 @@
         "mpiodijhokgodhhofbcjdecpffjipkle" # SingleFile
         "jghecgabfgfdldnmbfkhmffcabddioke" # Volume Master
       ];
+    };
+
+    environment.etc."install-me.crx".source = builtins.fetchurl {
+      url = "https://github.com/dhowe/AdNauseam/releases/download/v3.26.2/adnauseam-3.26.2.chromium.crx";
+      sha256 = "sha256:1b1h3djfsy1lssg1xaqxs359jm3jhlfiyr2hrgfkz59nk2q3dwix";
     };
   };
 }

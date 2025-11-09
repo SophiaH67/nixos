@@ -8,8 +8,8 @@
 
   home-manager.users.sophia = {
     imports = [
-        inputs.nixcord.homeModules.nixcord
-      ];
+      inputs.nixcord.homeModules.nixcord
+    ];
     
     programs.nixcord = {
         enable = true;

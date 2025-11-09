@@ -39,7 +39,7 @@
     nixcord.url = "github:kaylorben/nixcord";
     nixcord.inputs.nixpkgs.follows = "nixpkgs";
 
-    vrcft.url = "git+https://xn--55q89qy6p.com/Soph/VRCFaceTracking.Avalonia.git?submodules=1";
+    vrcft.url = "github:dfgHiatus/VRCFaceTracking.Avalonia?submodules=1";
     vrcft.inputs.nixpkgs.follows = "nixpkgs";
 
     kubenix.url = "github:hall/kubenix";

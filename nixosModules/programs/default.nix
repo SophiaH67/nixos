@@ -3,6 +3,7 @@
     ./anime-game
     ./chromium
     ./gnome
+    ./kodi
     ./krita
     ./signal
     ./steam

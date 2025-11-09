@@ -79,4 +79,5 @@
   sophices.plymouth.enable = true;
   sophices.cloudflare-warp.enable = false;
   soph.secure.enable = true;
+  sophrams.kodi.enable = true;
 }

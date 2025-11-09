@@ -56,7 +56,7 @@
 172.18.1.110  iceportal.de
 172.18.1.110  zugportal.de
 172.18.1.110  www.iceportal.de
-172.18.1.110 filme-serien.iceportal.de
+172.18.1.100 filme-serien.iceportal.de
   '';
 
   services.fprintd.enable = true;

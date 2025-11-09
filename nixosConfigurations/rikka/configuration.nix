@@ -58,6 +58,7 @@
 172.18.1.110  www.iceportal.de
 172.18.1.100 filme-serien.iceportal.de
 172.18.1.100 api.filme-serien.iceportal.de
+172.18.1.100 assets.filme-serien.iceportal.de
   '';
 
   services.fprintd.enable = true;

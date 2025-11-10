@@ -18,6 +18,13 @@
     pwvucontrol
   ];
 
+  fonts.packages = with pkgs; [
+    nerd-fonts._0xproto
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+  ];
 
   nixpkgs.config.allowUnfree = true;
   home-manager.useGlobalPkgs = true;

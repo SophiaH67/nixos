@@ -11,6 +11,7 @@ on:
       - common/**
       - .forgejo/workflows/deploy-cluster.yml
       - nixosModules/services/builder/**
+      - packages/ex-machina/**
 
 jobs:
   build:

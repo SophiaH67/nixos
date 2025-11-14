@@ -83,4 +83,6 @@
   sophices.cloudflare-warp.enable = false;
   soph.secure.enable = true;
   sophrams.kodi.enable = true;
+
+  boot.loader.systemd-boot.configurationLimit = lib.mkForce 10;
 }

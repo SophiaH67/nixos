@@ -14,5 +14,6 @@ in forAllSystems (system:
   {
     ex-machina = import ./ex-machina { inherit inputs pkgs system; };
     ex-machina-kube-nix = import ./ex-machina/kubenix.nix { inherit inputs pkgs system; };
+    soph-vr-mode = import ./soph-vr-mode { inherit inputs pkgs; };
   }
 )

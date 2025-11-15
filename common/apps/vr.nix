@@ -1,31 +1,5 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, self, ... }:
 let
-  scriptRaw = ''#!${pkgs.bash}/bin/bash
-echo $(date) > /home/sophia/lastran
-
-tmux_run() {
-  local session="$1"
-  shift
-  local cmd="$*"
-
-  # Kill the session if it exists
-  if ${pkgs.tmux}/bin/tmux has-session -t "$session" 2>/dev/null; then
-      ${pkgs.tmux}/bin/tmux kill-session -t "$session"
-  fi
-
-  # Create a new detached session and run the command
-  ${pkgs.tmux}/bin/tmux new-session -d -s "$session" "$cmd"
-
-  echo "Tmux session '$session' started with command: $cmd"
-}
-
-tmux_run vr_calibration ${pkgs.motoc}/bin/motoc calibrate --dst LHR-E7A0B889 --src "WiVRn HMD" --continue
-tmux_run vr_vrcft /home/sophia/git/VRCFaceTracking.Avalonia/result/bin/vrchatfacetracking
-tmux_run vr_overlay ${pkgs.wlx-overlay-s}/bin/wlx-overlay-s
-'';
-  script = lib.concatStringsSep "\\n" (lib.splitString "\n" scriptRaw);
-
-
   pkgs-nvidia = import inputs.nvidianixpkgs {
     system = "x86_64-linux";
     config.allowUnfree = true;
@@ -35,10 +9,6 @@ tmux_run vr_overlay ${pkgs.wlx-overlay-s}/bin/wlx-overlay-s
 in
 {
   imports = [ ./vr-dev.nix ];
-
-  systemd.tmpfiles.rules = [
-    ''f+ /run/soph-vr.sh  555 root root - ${script}''
-  ];
 
   # Originally from https://lvra.gitlab.io/docs/fossvr/xrizer/#nixos
   # Now from https://gitlab.rxserver.net/reality-exe/nix-config/-/blob/main/modules/nix/vr/default.nix
@@ -63,7 +33,7 @@ in
   };
 
 
-  environment.systemPackages = [ pkgs.tmux pkgs.android-tools pkgs.xrizer ];
+  environment.systemPackages = [ pkgs.tmux pkgs.android-tools pkgs.xrizer self.packages.${pkgs.stdenv.hostPlatform.system}.soph-vr-mode ];
   sophrams.vrcx.enable = true;
 
   services.wivrn = {
@@ -95,8 +65,7 @@ in
           }
         ];
         application = [
-          pkgs.bash
-          "/run/soph-vr.sh"
+          self.packages.${pkgs.stdenv.hostPlatform.system}.soph-vr-mode
         ];
         use-steamvr-lh = true;
         openvr-compat-path = "${pkgs.xrizer}/lib/xrizer";

@@ -151,10 +151,10 @@
           name = "CaskaydiaCove NF Regular";
           size = 11;
         };
-        # theme = "CLRS";
+        theme = "CLRS";
         extraConfig = ''
-background_opacity 0.5
-'';
+          allow_remote_control yes
+        '';
       };
       vscode = {
         enable = true;

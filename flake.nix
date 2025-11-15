@@ -39,9 +39,6 @@
     nixcord.url = "github:kaylorben/nixcord";
     nixcord.inputs.nixpkgs.follows = "nixpkgs";
 
-    vrcft.url = "github:dfgHiatus/VRCFaceTracking.Avalonia?submodules=1";
-    vrcft.inputs.nixpkgs.follows = "nixpkgs";
-
     kubenix.url = "github:hall/kubenix";
     kubenix.inputs.nixpkgs.follows = "nixpkgs";
   };

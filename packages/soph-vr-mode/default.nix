@@ -15,10 +15,19 @@ let
     echo "\n---\nExited with code: $?\n---\n"
     read -p "Press enter to exit"
   '';
+  s_lh = pkgs.writeShellScriptBin "lh" ''
+    ${pkgs.lighthouse-steamvr}/bin/lighthouse --state on --bsid hci0/dev_FE_02_B9_4A_08_B6
+    ${pkgs.lighthouse-steamvr}/bin/lighthouse --state on --bsid hci0/dev_DB_3A_5D_C8_91_B6
+    ${pkgs.lighthouse-steamvr}/bin/lighthouse --state on --bsid hci0/dev_C1_18_FC_FB_6A_46
+    echo "\n---\nExited with code: $?\n---\n"
+    read -p "Press enter to exit"
+  ''; 
 
   c_runInKitty = pkgs.writeShellScriptBin "runInKitty" ''
     echo Launching services...
     echo $(date) > /home/sophia/.vr-lastran
+    sleep 0.1
+    ${pkgs.kitty}/bin/kitty @ launch --type=tab --title VR-LH -- ${s_lh}/bin/lh
     sleep 0.1
     ${pkgs.kitty}/bin/kitty @ launch --type=tab --title VR-Calibration -- ${s_calibration}/bin/calibration
     sleep 0.1
@@ -38,7 +47,7 @@ in
     
     dontUnpack = true;
 
-    runtimeDependencies = with pkgs; [ bash kitty c_runInKitty s_calibration s_overlay ];
+    runtimeDependencies = with pkgs; [ bash kitty lighthouse-steamvr motoc wlx-overlay-s c_runInKitty s_calibration s_overlay s_lh ];
 
     installPhase = ''
       install -D $src/bin/soph-vr-mode $out/bin/soph-vr-mode

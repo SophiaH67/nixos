@@ -136,6 +136,10 @@ in
           picture-uri-dark = "file://${config.age.secrets.${wallpaper-secret-dark}.path}";
         };
 
+        "org/gnome/settings-daemon/plugins/power" = {
+          power-button-action = "interactive";
+        };
+
         # Gnome Extensions
         "org/gnome/shell" = {
           disable-user-extensions = false;

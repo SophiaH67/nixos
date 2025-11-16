@@ -48,7 +48,6 @@ metadata:
   name: conduwuit-deployment
   namespace: conduwuit-namespace
 spec:
-  replicas: 1
   strategy:
     type: Recreate
   selector:

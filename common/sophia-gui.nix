@@ -247,6 +247,25 @@
       };
       syncthing = {
         enable = true;
+        overrideDevices = false;
+        overrideFolders = false;
+        settings = {
+          devices = {
+            mococo = {
+              id = "6IPUJU4-PX3VFSP-EZ3PNAU-7CVOXAG-476QTZB-4DEORJB-NB4B2XQ-WF72BAN";
+            };
+            rikka = {
+              id = "H57XCEM-AE6HEL7-AOXSSIY-4JDLLCD-PZTAQFB-QQZBX2C-7UQVDM6-5QBAVAM";
+            };
+          };
+          folders = {
+            "/home/sophia/sync" = {
+              id = "nei9h-knicz";
+              devices = [ "mococo" ];
+              label = "Soph's Nix Syncing";
+            };
+          };
+        };
       };
     };
   };

@@ -68,7 +68,7 @@ in
           self.packages.${pkgs.stdenv.hostPlatform.system}.soph-vr-mode
         ];
         use-steamvr-lh = true;
-        openvr-compat-path = "${pkgs.xrizer}/lib/xrizer";
+        openvr-compat-path = "${pkgs.opencomposite}/lib/opencomposite";
       };
     };
   };
@@ -88,7 +88,7 @@ in
       ],
       "runtime" :
       [
-        "${pkgs.xrizer}/lib/xrizer"
+        "${pkgs.opencomposite}/lib/opencomposite"
       ],
       "version" : 1
     }

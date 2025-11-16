@@ -267,7 +267,7 @@
           folders = {
             "/home/sophia/sync" = {
               id = "nei9h-knicz";
-              devices = [ "mococo" ];
+              devices = [ "mococo" "ayumu" "rikka" ];
               label = "Soph's Nix Syncing";
             };
           };

@@ -222,6 +222,12 @@
               version = "88.1.18";
               sha256 = "7Ditwj7U26t3v4ofpqw/sHar6uE46E4DWVwGZjziZfM=";
             }
+            {
+              name = "emoji";
+              publisher = "perkovec";
+              version = "1.0.1";
+              sha256 = "vHKmXbeXKRyVqLuhvFagv9Q1WdHNL7a0q+rgOGOFi5o=";
+            }
           ];
         };
       };

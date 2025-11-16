@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "sophia-gui",
         "zsh",
-        "gnome"
+        "gnome",
+        "alice"
     ]
 }

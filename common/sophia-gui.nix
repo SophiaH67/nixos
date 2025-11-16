@@ -260,6 +260,9 @@
             ayumu = {
               id = "3WOL2NN-YEMHJEJ-KQ3NWIZ-2ZVEK6S-N3ADXL3-VNPJCKB-3ZLFBEY-FIFYQQX";
             };
+            tyrants_eye = {
+              id = "A3QLL5C-ARZUF27-VKUT5OY-6ZAVJS4-55VGXZ6-EGKH2AB-OVQZSUU-GCXGVQX";
+            };
           };
           folders = {
             "/home/sophia/sync" = {

@@ -123,6 +123,11 @@ in {
           enable = true;
         };
         # Soph
+        ## Conduwuit
+        conduwuit = {
+          source = ./manifests/soph/conduwuit.yaml;
+          enable = true;
+        };
         ## Forgejo Runner
         forgejo-runner-secret = {
           source = config.age.secrets.kube-forgejo-registration-secret.path;

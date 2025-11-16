@@ -5,10 +5,11 @@ on:
       - 'main'
     paths:
       - '**/*.age'
-      - devices/kube/**
+      - nixosConfigurations/kube/**
       - flake.lock
       - flake.nix
       - common/**
+      - nixosModules/**
       - .forgejo/workflows/deploy-cluster.yml
       - nixosModules/services/builder/**
       - packages/ex-machina/**

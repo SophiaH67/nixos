@@ -7,8 +7,8 @@ on:
       - flake.lock
       - flake.nix
       # Todo: make it not do it like this
-      - devices/inanis
-      - devices/moshimoshi
+      - nixosConfigurations/inanis
+      - nixosConfigurations/moshimoshi
 jobs:
   build:
     runs-on: docker

@@ -257,6 +257,9 @@
             rikka = {
               id = "H57XCEM-AE6HEL7-AOXSSIY-4JDLLCD-PZTAQFB-QQZBX2C-7UQVDM6-5QBAVAM";
             };
+            ayumu = {
+              id = "3WOL2NN-YEMHJEJ-KQ3NWIZ-2ZVEK6S-N3ADXL3-VNPJCKB-3ZLFBEY-FIFYQQX";
+            };
           };
           folders = {
             "/home/sophia/sync" = {

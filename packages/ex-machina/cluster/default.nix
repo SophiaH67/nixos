@@ -8,13 +8,16 @@
     ./longhorn.nix
   ];
 
-  submodules.imports = [ ./hello-world ];
+  submodules.imports = [
+    ./conduwuit
+    ./hello-world
+    ];
 
   submodules.instances.blahblah = {
     submodule = "hello-world";
   };
 
-
+  submodules.instances.conduwuit-namespace.submodule = "conduwuit";
 
   kubenix.project = "ex-machina";
   kubernetes.version = "1.26";

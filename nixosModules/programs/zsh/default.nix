@@ -65,6 +65,11 @@
               src = pkgs.zsh-powerlevel10k;
               file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
             }
+            {
+              name = "zsh-autosuggestions";
+              src = pkgs.zsh-autosuggestions;
+              file = "share/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh";
+            }
           ];
           oh-my-zsh = {
             enable = true;

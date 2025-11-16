@@ -22,6 +22,16 @@
       shell = pkgs.zsh;
     };
 
+    age.secrets."atuin-key" = {
+      file = ../../../secrets/atuin-key.age;
+      mode = "600";
+      owner = "sophia";
+    };
+
+    systemd.tmpfiles.rules = [
+      "L+ /home/sophia/.local/share/atuin/key - - - - ${config.age.secrets."atuin-key".path}"
+    ];
+
     home-manager.users.sophia = { pkgs, ... }: {
       home.stateVersion = "23.11";
       home.packages = with pkgs; [
@@ -34,6 +44,8 @@
           enable = true;
           settings = {
             sync_address = "https://sync.roboco.dev";
+            sync_frequency = "5m";
+            auto_sync = true;
           };
         };
 

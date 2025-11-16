@@ -43,6 +43,7 @@
             [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
             eval "$(atuin init zsh)"
             alias fixlonghornpls="kubectl get pods -n longhorn-system | grep -e Error -e CrashLoopBackOff -e Unknown -e ContainerCreating | cut -d' ' -f 1 | xargs kubectl delete pod -n longhorn-system"
+            alias fixkubepls="kubectl get pods -A | grep -e Error -e CrashLoopBackOff -e Unknown -e ContainerCreating | awk ' { printf \"kubectl delete pod -n %s %s\n\", \$1, \$2} ' | bash"
           '';
           plugins = [
             {

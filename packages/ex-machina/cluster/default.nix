@@ -8,7 +8,7 @@
     ./longhorn.nix
   ];
 
-  submodules.imports = [ ./hello-world.nix ];
+  submodules.imports = [ ./hello-world ];
 
   submodules.instances.blahblah = {
     submodule = "hello-world";

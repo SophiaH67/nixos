@@ -8,7 +8,7 @@
     prefixLength = 64;
   }];
   networking.interfaces.br0.ipv4.addresses = [{
-    address = "192.168.178.212";
+    address = "192.168.178.213";
     prefixLength = 24;
   }];
 

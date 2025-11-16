@@ -29,7 +29,7 @@
     };
 
     systemd.tmpfiles.rules = [
-      "L+ /home/sophia/.local/share/atuin/key - - - - ${config.age.secrets."atuin-key".path}"
+      "L /home/sophia/.local/share/atuin/key - - - - ${config.age.secrets."atuin-key".path}"
     ];
 
     home-manager.users.sophia = { pkgs, ... }: {

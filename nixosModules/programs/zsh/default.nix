@@ -54,6 +54,7 @@
         zsh = {
           enable = true;
           autosuggestion.enable = true;
+          autosuggestion.strategy = [ "history" "completion" ];
           syntaxHighlighting.enable = true;
           initContent = ''
             [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}

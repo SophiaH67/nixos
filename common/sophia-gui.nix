@@ -228,6 +228,12 @@
               version = "1.0.1";
               sha256 = "vHKmXbeXKRyVqLuhvFagv9Q1WdHNL7a0q+rgOGOFi5o=";
             }
+            {
+              name = "vscode-conventional-commits";
+              publisher = "vivaxy";
+              version = "1.26.0";
+              sha256 = "Lj2+rlrKm9h21zEoXwa2TeGFNKBmlQKr7MRX0zgngdg=";
+            }
           ];
         };
       };

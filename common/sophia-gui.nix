@@ -249,6 +249,7 @@
         enable = true;
         overrideDevices = false;
         overrideFolders = false;
+        guiAddress = "[::1]:8384";
         settings = {
           devices = {
             mococo = {

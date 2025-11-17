@@ -263,11 +263,14 @@
             tyrants_eye = {
               id = "A3QLL5C-ARZUF27-VKUT5OY-6ZAVJS4-55VGXZ6-EGKH2AB-OVQZSUU-GCXGVQX";
             };
+            alice = {
+              id = "RXLKWVK-WRPWLP7-7ECMV7D-OJTTV6A-OTTDSX7-FFPLH7N-FDQLNBQ-FNUPGAV";
+            };
           };
           folders = {
             "/home/sophia/sync" = {
               id = "nei9h-knicz";
-              devices = [ "mococo" "ayumu" "rikka" ];
+              devices = [ "alice" "mococo" "ayumu" "rikka" ];
               label = "Soph's Nix Syncing";
             };
           };

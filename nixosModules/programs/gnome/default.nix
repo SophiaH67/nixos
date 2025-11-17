@@ -140,6 +140,10 @@ in
           power-button-action = "interactive";
         };
 
+        "org/gnome/settings-daemon/plugins/housekeeping" = {
+          donation-reminder-enabled = false;
+        };
+
         # Gnome Extensions
         "org/gnome/shell" = {
           disable-user-extensions = false;

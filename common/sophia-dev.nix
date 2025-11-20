@@ -20,6 +20,8 @@
       wget
       kubectl
       kubevirt
+      cargo
+      rustc
     ];
   };
 }

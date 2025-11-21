@@ -158,6 +158,8 @@
       };
       vscode = {
         enable = true;
+        # https://www.reddit.com/r/NixOS/comments/15mohek/installing_vscode_extensions_with_homemanager_not/
+        mutableExtensionsDir = false;
         # https://github.com/continuedev/continue/issues/821#issuecomment-3227673526
         package = (pkgs.vscode.overrideAttrs (
           final: prev: {

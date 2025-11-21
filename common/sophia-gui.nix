@@ -203,7 +203,7 @@
             leonardssh.vscord
             stkb.rewrap
             jnoortheen.nix-ide
-            ms-vscode.cpptools
+            llvm-vs-code-extensions.vscode-clangd
             ms-vscode.cmake-tools
             mkhl.direnv
             ms-vscode.hexeditor

@@ -18,9 +18,9 @@ in
         patches =
           (oldAttrs.patches or [])
           ++ [
-            ./xrizer-patches/skeletal_summary.patch
-            ./xrizer-patches/device_refactor2.patch
-            ./xrizer-patches/generic_trackers.patch
+            # ./xrizer-patches/skeletal_summary.patch
+            # ./xrizer-patches/device_refactor2.patch
+            # ./xrizer-patches/generic_trackers.patch
           ];
         doCheck = false;
       });

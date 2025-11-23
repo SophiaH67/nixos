@@ -5,16 +5,11 @@
     kubenix.modules.helm
     kubenix.modules.submodules
 
+    ./hello-world
     ./longhorn.nix
   ];
 
-  submodules.imports = [ ./hello-world ];
-
-  submodules.instances.blahblah = {
-    submodule = "hello-world";
-  };
-
-
+  submodules.imports = [  ./lib/namespaced.nix ];
 
   kubenix.project = "ex-machina";
   kubernetes.version = "1.26";

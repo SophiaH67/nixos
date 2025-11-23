@@ -7,22 +7,10 @@
   ...
 }:
 {
-  imports = with kubenix.modules; [
-    submodule
-    k8s
-  ];
+  submodules.instances.hello-world = {
+    submodule = "namespaced";
 
-  config = {
-    submodule = {
-      name = "hello-world";
-
-      passthru.kubernetes.objects = config.kubernetes.objects;
-    };
-
-    kubernetes = {
-      namespace = name;
-      resources.namespaces.${name} = { };
-
+    args.kubernetes = {
       resources.services.nginx.spec = {
         ports = [
           {

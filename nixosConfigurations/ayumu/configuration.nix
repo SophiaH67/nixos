@@ -41,4 +41,7 @@ in
   services.ollama.host = "[::]";
   services.ollama.acceleration = "cuda";
   services.nextjs-ollama-llm-ui.enable = true;
+
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
 }

@@ -83,8 +83,7 @@ data:
   net-conf.json: |
     {
       "IPv6Network": "fd00:3ac1::/56",
-      "Network": "10.0.67.0/24",
-      "EnableIPv4": true,
+      "EnableIPv4": false,
       "EnableIPv6": true,
       "EnableNFTables": false,
       "Backend": {

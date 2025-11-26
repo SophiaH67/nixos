@@ -206,6 +206,7 @@
             stkb.rewrap
             jnoortheen.nix-ide
             llvm-vs-code-extensions.vscode-clangd
+            llvm-vs-code-extensions.lldb-dap
             ms-vscode.cmake-tools
             mkhl.direnv
             ms-vscode.hexeditor

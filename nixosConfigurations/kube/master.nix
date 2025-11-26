@@ -35,7 +35,6 @@ in {
 
     networking.firewall.enable = lib.mkForce false;
 
-    networking.nameservers = [ "2a01:4f8:c2c:123f::1" ];
     services.resolved.dnssec = lib.mkForce "false";
     services.resolved.dnsovertls = lib.mkForce "false";
 

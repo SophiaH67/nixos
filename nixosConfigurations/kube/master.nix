@@ -86,11 +86,6 @@ in {
       enable = true;
       token = "exmachinampXeJcPsGKDFgapj";
       manifests = {
-        # Kubenix
-        kubenix = {
-          source = self.packages.x86_64-linux.ex-machina-kube-nix.config.kubernetes.resultYAML;
-          enable = true;
-        };
         # CNI
         kube-vip-rbac = {
           source = ./manifests/kube-vip.yaml;

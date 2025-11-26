@@ -207,6 +207,8 @@
             jnoortheen.nix-ide
             llvm-vs-code-extensions.vscode-clangd
             llvm-vs-code-extensions.lldb-dap
+            ms-dotnettools.csdevkit
+            ms-dotnettools.csharp
             ms-vscode.cmake-tools
             mkhl.direnv
             ms-vscode.hexeditor

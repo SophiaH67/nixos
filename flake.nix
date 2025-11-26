@@ -2,7 +2,7 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable-small";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nvidianixpkgs.url = "github:NixOS/nixpkgs/pull/457803/head";
 
     home-manager.url = "github:nix-community/home-manager/master";

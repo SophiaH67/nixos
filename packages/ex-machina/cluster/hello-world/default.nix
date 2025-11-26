@@ -7,7 +7,7 @@
   ...
 }:
 {
-  submodules.instances.hello-world = {
+  submodules.instances.hello-world-2 = {
     submodule = "namespaced";
 
     args.kubernetes = {

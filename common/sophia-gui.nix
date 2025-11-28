@@ -210,6 +210,7 @@
             ms-dotnettools.csdevkit
             ms-dotnettools.csharp
             ms-vscode.cmake-tools
+	          ms-dotnettools.vscode-dotnet-runtime
             mkhl.direnv
             ms-vscode.hexeditor
             continue.continue

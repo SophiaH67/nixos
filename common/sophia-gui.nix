@@ -192,6 +192,7 @@
             editor.fontFamily = "'Cascadia Code',Consolas, 'Courier New', monospace";
             terminal.integrated.stickyScroll.enabled = false;
             chat.disableAIFeatures = true;
+            nix.enableLanguageServer = true;
           };
           extensions = with pkgs.vscode-extensions; [
             yzhang.markdown-all-in-one

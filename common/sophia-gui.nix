@@ -16,6 +16,7 @@
     tor-browser
     qpwgraph
     pwvucontrol
+    cavalier
   ];
 
   fonts.packages = with pkgs; [

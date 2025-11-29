@@ -20,7 +20,7 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [ teams-for-linux cmake libgcc gnumake eddie btop cavalier blender cura-appimage (azure-cli.withExtensions [azure-cli-extensions.azure-devops] )];
+  environment.systemPackages = with pkgs; [ teams-for-linux cmake libgcc gnumake eddie btop blender cura-appimage (azure-cli.withExtensions [azure-cli-extensions.azure-devops] )];
 
   # For simonsvoss smartstick AX
   boot.kernelModules = [ "ftdi_sio" ];

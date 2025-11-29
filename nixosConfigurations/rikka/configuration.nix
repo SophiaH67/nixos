@@ -85,4 +85,6 @@
   sophrams.kodi.enable = true;
 
   boot.loader.systemd-boot.configurationLimit = lib.mkForce 10;
+
+  services.hardware.bolt.enable = true;
 }

@@ -1,25 +1,4 @@
 { pkgs, lib, config, ...}:
-let
-  wallpaper-secret = if builtins.pathExists ../../../secrets/wallpaper-${config.networking.hostName}.png.age
-    then "wallpaper-${config.networking.hostName}.png"
-    else "wallpaper-fallback.png";
-
-  wallpaper-secret-dark = if builtins.pathExists ../../../secrets/wallpaper-${config.networking.hostName}-dark.png.age
-    then "wallpaper-${config.networking.hostName}-dark.png"
-    else wallpaper-secret;
-
-  wallpaper-secret-settings = {
-    file = ../../../secrets/${wallpaper-secret}.age;
-    mode = "400";
-    owner = "sophia";
-  };
-
-  wallpaper-secret-dark-settings = {
-    file = ../../../secrets/${wallpaper-secret-dark}.age;
-    mode = "400";
-    owner = "sophia";
-  };
-in
 {
 
 
@@ -36,6 +15,7 @@ in
   };
 
   config = lib.mkIf config.sophrams.gnome.enable {
+    sophrams.wallpaper.enable = true;
     services.desktopManager.gnome.enable = true;
     services.displayManager.gdm.enable = true;
     services.displayManager.autoLogin.user = config.sophrams.gnome.autoLogin;
@@ -79,24 +59,6 @@ in
       NIXOS_OZONE_WL = "1";
     };
 
-
-    age.secrets = if wallpaper-secret == wallpaper-secret-dark then {
-      ${wallpaper-secret} = wallpaper-secret-settings;
-      "face.png" = {
-        file = ../../../secrets/face.png.age;
-        mode = "400";
-        owner = "sophia";
-      };
-    } else {
-      ${wallpaper-secret} = wallpaper-secret-settings;
-      ${wallpaper-secret-dark} = wallpaper-secret-dark-settings;
-      "face.png" = {
-        file = ../../../secrets/face.png.age;
-        mode = "400";
-        owner = "sophia";
-      };
-    };
-
     home-manager.users.sophia = { pkgs, ... }: {
       services.gnome-keyring.enable = true;
 
@@ -132,8 +94,8 @@ in
         };
 
         "org/gnome/desktop/background" = {
-          picture-uri = "file://${config.age.secrets.${wallpaper-secret}.path}";
-          picture-uri-dark = "file://${config.age.secrets.${wallpaper-secret-dark}.path}";
+          picture-uri = "file://${config.sophrams.wallpaper.file}";
+          picture-uri-dark = "file://${config.sophrams.wallpaper.file-dark}";
         };
 
         "org/gnome/settings-daemon/plugins/power" = {

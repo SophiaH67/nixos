@@ -8,6 +8,7 @@
     ./signal
     ./steam
     ./vrcx
+    ./wallpaper
     ./zsh
   ];
 }

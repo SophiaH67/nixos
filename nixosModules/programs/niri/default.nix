@@ -17,6 +17,40 @@
           "NIXOS_OZONE_WL" = "1";
         } // config.environment.sessionVariables;
 
+        input = {
+          keyboard = {
+            xkb = {
+              layout = "us";
+            };
+            numlock = true;
+          };
+
+          touchpad = {
+            scroll-method = "two-finger";
+            natural-scroll = true;
+          };
+        };
+
+        layout = {
+          gaps = 16;
+          center-focused-column = "never";
+
+          preset-column-widths = [
+            { proportion = 0.33333; }
+            { proportion = 0.5; }
+            { proportion = 0.66667; }
+          ];
+
+          default-column-width = {};
+
+          focus-ring = {
+            enable = true;
+            width = 4;
+            active.color = "#7fc8ff";
+            inactive.color = "#505050";
+          };
+        };
+
         binds = {
           "Mod+1".action.focus-workspace = 1;
           "Mod+2".action.focus-workspace = 2;
@@ -36,6 +70,8 @@
           "Mod+Shift+J".action.focus-monitor = "down";
           "Mod+Shift+K".action.focus-monitor = "up";
           "Mod+Shift+L".action.focus-monitor = "right";
+
+          "Mod+F".action.maximize-window-to-edges = {};
         };
       };
     };

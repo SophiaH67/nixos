@@ -3,7 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, lib, ... }:
-
 {
   networking.hostName = "rikka";
 
@@ -87,4 +86,5 @@
   boot.loader.systemd-boot.configurationLimit = lib.mkForce 10;
 
   services.hardware.bolt.enable = true;
+  sophrams.niri.enable =  true;
 }

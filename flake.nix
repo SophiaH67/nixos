@@ -41,6 +41,14 @@
 
     kubenix.url = "github:hall/kubenix";
     kubenix.inputs.nixpkgs.follows = "nixpkgs";
+
+    niri.url = "github:sodiboo/niri-flake";
+    niri.inputs.nixpkgs.follows = "nixpkgs";
+  };
+
+  nixConfig = {
+    extra-substituters = "https://niri.cachix.org";
+    extra-trusted-public-keys = "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964=";
   };
 
   outputs = { self, nixpkgs, home-manager, deploy-rs, disko, nixos-generators, agenix, nixos-hardware, ... }@inputs: {

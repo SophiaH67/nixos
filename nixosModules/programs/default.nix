@@ -5,6 +5,7 @@
     ./gnome
     ./kodi
     ./krita
+    ./niri
     ./signal
     ./steam
     ./vrcx

@@ -71,6 +71,7 @@
         "org/gnome/desktop/peripherals/touchpad" = {
           natural-scroll = true;
           tap-to-click = false;
+          disable-while-typing = false;
         };
 
         "org/gnome/desktop/wm/preferences" = {

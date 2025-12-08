@@ -38,8 +38,8 @@ in
   sophices.plymouth.enable = true;
 
   services.ollama.enable = false;
+  services.ollama.package = pkgs.ollama-cuda;
   services.ollama.host = "[::]";
-  services.ollama.acceleration = "cuda";
   services.nextjs-ollama-llm-ui.enable = true;
 
   virtualisation.libvirtd.enable = true;

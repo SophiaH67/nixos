@@ -100,6 +100,7 @@
           };
           extraConfig = {
             safe.directory = [ "/etc/nixos" ];
+            blame.ignoreRevsFile = ".git-blame-ignore-revs";
           };
         };
         firefox = {

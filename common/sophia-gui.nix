@@ -29,6 +29,8 @@
     noto-fonts-cjk-serif
   ];
 
+  programs.niri.enable = true;
+
   nixpkgs.config.allowUnfree = true;
   home-manager.useGlobalPkgs = true;
   home-manager.backupFileExtension = "bak";

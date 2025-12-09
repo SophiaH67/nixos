@@ -52,6 +52,10 @@
     etwas-config.inputs.agenix.follows = "agenix";
     etwas-catppuccin.url = "github:catppuccin/nix/f518f96a60aceda4cd487437b25eaa48d0f1b97d";
     etwas-catppuccin.inputs.nixpkgs.follows = "nixpkgs";
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+    systems.url = "github:nix-systems/default";
   };
 
   nixConfig = {
@@ -59,7 +63,14 @@
     extra-trusted-public-keys = [ "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964=" "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=" ];
   };
 
-  outputs = { self, nixpkgs, home-manager, deploy-rs, disko, nixos-generators, agenix, nixos-hardware, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, deploy-rs, disko, nixos-generators, agenix, nixos-hardware, treefmt-nix, systems, ... }@inputs: let
+    # Small tool to iterate over each systems
+    eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
+
+    # Eval the treefmt modules from ./treefmt.nix
+    treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
+    in
+    {
     nixosConfigurations = import ./nixosConfigurations {inherit inputs self; };
     packages = import ./packages inputs;
 
@@ -106,5 +117,6 @@
     };
 
     checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+    formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
   };
 }

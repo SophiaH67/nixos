@@ -40,6 +40,7 @@
       (inputs.etwas-config + "/home/wm")
       inputs.etwas-catppuccin.homeModules.catppuccin
     ];
+    catppuccin.gtk.enable = lib.mkForce false;
 
     sophices.syncthing.enable = true;
 

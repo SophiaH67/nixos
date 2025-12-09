@@ -15,17 +15,37 @@ let
   emir-zwei = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAdm/2geT7+PxYUSQeiOLGpchxaihM5Bxu88QKLZVoZT";
 
   # Groups
-  developers = [ rikka soph-main ayumu ];
-  ex-machina = [ schwi emir-eins emir-zwei ];
-  users = [ soph-main soph-work forgejo ];
-  personal-devices = [ rikka alice ayumu ];
+  developers = [
+    rikka
+    soph-main
+    ayumu
+  ];
+  ex-machina = [
+    schwi
+    emir-eins
+    emir-zwei
+  ];
+  users = [
+    soph-main
+    soph-work
+    forgejo
+  ];
+  personal-devices = [
+    rikka
+    alice
+    ayumu
+  ];
   devices = ex-machina ++ personal-devices ++ [ yuuna ];
   everyone = users ++ devices;
 in
 {
   "secret1.age".publicKeys = everyone;
   "tailscale-device.age".publicKeys = devices;
-  "soph-builder.id_ed25519.age".publicKeys = [ alice rikka ayumu ];
+  "soph-builder.id_ed25519.age".publicKeys = [
+    alice
+    rikka
+    ayumu
+  ];
   "atuin-key.age".publicKeys = devices;
   # Kube Things
   "kube-longhorn.age".publicKeys = developers ++ ex-machina;

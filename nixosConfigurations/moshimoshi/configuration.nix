@@ -1,4 +1,4 @@
-{ pkgs, config, ...}:
+{ pkgs, config, ... }:
 {
   imports = [ ./sounds.nix ];
 
@@ -16,8 +16,16 @@
     };
   };
 
-  networking.firewall.allowedUDPPorts = [ 5060 5061 ];
-  networking.firewall.allowedUDPPortRanges = [ { from = 1024; to = 65535; } ]; # I cannot figure out how to constrain asterisk, so whatever...
+  networking.firewall.allowedUDPPorts = [
+    5060
+    5061
+  ];
+  networking.firewall.allowedUDPPortRanges = [
+    {
+      from = 1024;
+      to = 65535;
+    }
+  ]; # I cannot figure out how to constrain asterisk, so whatever...
 
   # Hardstyle radio
   environment.systemPackages = with pkgs; [

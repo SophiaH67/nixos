@@ -1,4 +1,10 @@
-{ config, lib, pkgs, inputs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   options.sophrams.steam.enable = lib.mkEnableOption "Soph Steam";
 

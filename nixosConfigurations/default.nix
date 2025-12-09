@@ -1,7 +1,13 @@
-
 { inputs, ... }@args:
 let
-  inherit (inputs) nixpkgs home-manager agenix disko nixos-generators nixos-hardware;
+  inherit (inputs)
+    nixpkgs
+    home-manager
+    agenix
+    disko
+    nixos-generators
+    nixos-hardware
+    ;
   baseModules = [
     { soph.base.enable = true; }
     ../nixosModules
@@ -16,32 +22,38 @@ let
     {
       environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
     }
-  ] ++ baseModules;
+  ]
+  ++ baseModules;
 
   deployableModules = [
     ../common/forgejo.nix
     disko.nixosModules.disko
     ../common/vm-able.nix
-  ] ++ baseModules;
+  ]
+  ++ baseModules;
 
   exMachinaModules = [
     ./kube/nodes/hardware-configuration.nix
     ./kube/nodes/disko.nix
     ../common/alice.nix
-  ] ++ deployableModules;
+  ]
+  ++ deployableModules;
 
   vmModules = [
     { soph.base-vm.enable = true; }
     nixos-generators.nixosModules.all-formats
-  ] ++ deployableModules;
-in {
+  ]
+  ++ deployableModules;
+in
+{
   rikka = nixpkgs.lib.nixosSystem {
     specialArgs = args;
     system = "x86_64-linux";
     modules = [
       ./rikka/configuration.nix
       ./rikka/hardware-configuration.nix
-    ] ++ devModules;
+    ]
+    ++ devModules;
   };
 
   ayumu = nixpkgs.lib.nixosSystem {
@@ -51,7 +63,8 @@ in {
       ./ayumu/configuration.nix
       ./ayumu/hardware-configuration.nix
       ../common/apps/vr.nix
-    ] ++ devModules;
+    ]
+    ++ devModules;
   };
 
   alice = nixpkgs.lib.nixosSystem {
@@ -60,7 +73,8 @@ in {
     modules = [
       ./alice/configuration.nix
       ./alice/hardware-configuration.nix
-    ] ++ devModules;
+    ]
+    ++ devModules;
   };
 
   yuuna = nixpkgs.lib.nixosSystem {
@@ -70,7 +84,8 @@ in {
       ./yuuna/configuration.nix
       ./yuuna/hardware-configuration.nix
       nixos-hardware.nixosModules.raspberry-pi-4
-    ] ++ deployableModules;
+    ]
+    ++ deployableModules;
   };
 
   moshimoshi = nixpkgs.lib.nixosSystem {
@@ -79,7 +94,8 @@ in {
     modules = [
       ./moshimoshi/configuration.nix
       ./moshimoshi/hardware-configuration.nix
-    ] ++ vmModules;
+    ]
+    ++ vmModules;
   };
 
   inanis = nixpkgs.lib.nixosSystem {
@@ -87,7 +103,8 @@ in {
     system = "x86_64-linux";
     modules = [
       ./inanis/configuration.nix
-    ] ++ vmModules;
+    ]
+    ++ vmModules;
   };
 
   schwi = nixpkgs.lib.nixosSystem {
@@ -95,7 +112,8 @@ in {
     system = "x86_64-linux";
     modules = [
       ./kube/nodes/schwi.nix
-    ] ++ exMachinaModules;
+    ]
+    ++ exMachinaModules;
   };
 
   emir-eins = nixpkgs.lib.nixosSystem {
@@ -103,7 +121,8 @@ in {
     system = "x86_64-linux";
     modules = [
       ./kube/nodes/emir-eins.nix
-    ]  ++ exMachinaModules;
+    ]
+    ++ exMachinaModules;
   };
 
   emir-zwei = nixpkgs.lib.nixosSystem {
@@ -111,6 +130,7 @@ in {
     system = "x86_64-linux";
     modules = [
       ./kube/nodes/emir-zwei.nix
-    ]  ++ exMachinaModules;
+    ]
+    ++ exMachinaModules;
   };
 }

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options.sophices.plymouth.enable = lib.mkEnableOption "Soph Plymouth";
 

@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  users.groups.forgejo = {};
+  users.groups.forgejo = { };
   users.users.forgejo = {
     description = "Forgejo CI (for automatic deploys)";
     extraGroups = [

@@ -9,7 +9,7 @@
     ./longhorn.nix
   ];
 
-  submodules.imports = [  ./lib/namespaced.nix ];
+  submodules.imports = [ ./lib/namespaced.nix ];
 
   kubenix.project = "ex-machina";
   kubernetes.version = "1.26";

@@ -1,13 +1,21 @@
-
 { nixpkgs, ... }@inputs:
 let
-  systems = [ "x86_64-linux" "aarch64-linux" ];
+  systems = [
+    "x86_64-linux"
+    "aarch64-linux"
+  ];
 
-  forAllSystems = f: builtins.listToAttrs (map (system: {
-    name = system;
-    value = f system;
-  }) systems);
-in forAllSystems (system:
+  forAllSystems =
+    f:
+    builtins.listToAttrs (
+      map (system: {
+        name = system;
+        value = f system;
+      }) systems
+    );
+in
+forAllSystems (
+  system:
   let
     pkgs = import nixpkgs { inherit system; };
   in

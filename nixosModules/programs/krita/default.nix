@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options.sophrams.krita.enable = lib.mkEnableOption "Soph Krita";
 

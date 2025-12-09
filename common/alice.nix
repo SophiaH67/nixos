@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 {
-  users.groups.alice = {};
+  users.groups.alice = { };
   users.users.alice = {
     description = "Alice User (mainly for proxying)";
     group = "alice";

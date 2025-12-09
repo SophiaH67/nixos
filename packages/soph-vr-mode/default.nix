@@ -21,7 +21,7 @@ let
     ${pkgs.lighthouse-steamvr}/bin/lighthouse --state on --bsid hci0/dev_C1_18_FC_FB_6A_46
     echo "\n---\nExited with code: $?\n---\n"
     read -p "Press enter to exit"
-  ''; 
+  '';
 
   c_runInKitty = pkgs.writeShellScriptBin "runInKitty" ''
     echo Launching services...
@@ -39,35 +39,45 @@ let
     read -p "Press enter to exit"
   '';
 in
-  pkgs.stdenv.mkDerivation {
-    pname = "soph-vr-mode";
-    version = "0.1.0";
+pkgs.stdenv.mkDerivation {
+  pname = "soph-vr-mode";
+  version = "0.1.0";
 
-    src = pkgs.writeShellScriptBin "soph-vr-mode" "${pkgs.kitty}/bin/kitty ${c_runInKitty}/bin/runInKitty";
-    
-    dontUnpack = true;
+  src = pkgs.writeShellScriptBin "soph-vr-mode" "${pkgs.kitty}/bin/kitty ${c_runInKitty}/bin/runInKitty";
 
-    runtimeDependencies = with pkgs; [ bash kitty lighthouse-steamvr motoc wlx-overlay-s c_runInKitty s_calibration s_overlay s_lh ];
+  dontUnpack = true;
 
-    installPhase = ''
-      install -D $src/bin/soph-vr-mode $out/bin/soph-vr-mode
-    '';
+  runtimeDependencies = with pkgs; [
+    bash
+    kitty
+    lighthouse-steamvr
+    motoc
+    wlx-overlay-s
+    c_runInKitty
+    s_calibration
+    s_overlay
+    s_lh
+  ];
 
-    nativeBuildInputs = with pkgs; [
-      makeWrapper
-      copyDesktopItems
-    ];
+  installPhase = ''
+    install -D $src/bin/soph-vr-mode $out/bin/soph-vr-mode
+  '';
 
-    desktopItems = [
-      (pkgs.makeDesktopItem {
-        name = "soph-vr-mode";
-        desktopName = "Soph Vr Mode";
-        comment = "Spawn all VR tools in one easy script";
-        exec = "soph-vr-mode";
-        terminal = false;
-        categories = [
-          "Utility"
-        ];
-      })
-    ];
-  }
+  nativeBuildInputs = with pkgs; [
+    makeWrapper
+    copyDesktopItems
+  ];
+
+  desktopItems = [
+    (pkgs.makeDesktopItem {
+      name = "soph-vr-mode";
+      desktopName = "Soph Vr Mode";
+      comment = "Spawn all VR tools in one easy script";
+      exec = "soph-vr-mode";
+      terminal = false;
+      categories = [
+        "Utility"
+      ];
+    })
+  ];
+}

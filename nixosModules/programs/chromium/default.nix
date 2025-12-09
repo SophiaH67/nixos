@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options.sophrams.chromium.enable = lib.mkEnableOption "Soph Chromium";
 

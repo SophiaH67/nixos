@@ -3,5 +3,5 @@
     ./meta
     ./programs
     ./services
-    ];
+  ];
 }

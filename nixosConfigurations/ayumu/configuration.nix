@@ -1,6 +1,11 @@
-{ lib, pkgs, config, ...}:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
- orca-slicer = pkgs.symlinkJoin {
+  orca-slicer = pkgs.symlinkJoin {
     name = "orca-slicer";
     paths = [ pkgs.orca-slicer ];
     buildInputs = [ pkgs.makeWrapper ];
@@ -18,7 +23,10 @@ in
   networking.hostName = "ayumu";
   networking.domain = "dev.sophiah.gay";
 
-  environment.systemPackages = [ pkgs.spotify orca-slicer ];
+  environment.systemPackages = [
+    pkgs.spotify
+    orca-slicer
+  ];
 
   sophices.tailscale.enable = true;
   sophices.boot-unlock.enable = false;

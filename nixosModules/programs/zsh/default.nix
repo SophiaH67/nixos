@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options.sophrams.zsh.enable = lib.mkEnableOption "Soph Zsh";
 
@@ -32,49 +37,61 @@
       "L /home/sophia/.local/share/atuin/key - - - - ${config.age.secrets."atuin-key".path}"
     ];
 
-    home-manager.users.sophia = { pkgs, ... }: {
-      home.stateVersion = "23.11";
-      home.packages = with pkgs; [
-        zsh-powerlevel10k
-        htop
-      ];
+    home-manager.users.sophia =
+      { pkgs, ... }:
+      {
+        home.stateVersion = "23.11";
+        home.packages = with pkgs; [
+          zsh-powerlevel10k
+          htop
+        ];
 
-      programs = {
-        atuin = {
-          enable = true;
-          settings = {
-            sync_address = "https://sync.roboco.dev";
-            sync_frequency = "5m";
-            sync_records = true;
-            auto_sync = true;
-            sync.records = true;
-          };
-        };
-
-        zsh = {
-          enable = true;
-          autosuggestion.enable = true;
-          autosuggestion.strategy = [ "history" "completion" ];
-          syntaxHighlighting.enable = true;
-          initContent = ''
-            [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
-            eval "$(atuin init zsh)"
-            alias fixlonghornpls="kubectl get pods -n longhorn-system | grep -e Error -e CrashLoopBackOff -e Unknown -e ContainerCreating | cut -d' ' -f 1 | xargs kubectl delete pod -n longhorn-system"
-            alias fixkubepls="kubectl get pods -A | grep -e Error -e CrashLoopBackOff -e Unknown -e ContainerCreating | awk ' { printf \"kubectl delete pod -n %s %s\n\", \$1, \$2} ' | bash"
-          '';
-          plugins = [
-            {
-              name = "powerlevel10k";
-              src = pkgs.zsh-powerlevel10k;
-              file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-            }
-          ];
-          oh-my-zsh = {
+        programs = {
+          atuin = {
             enable = true;
-            plugins = [ "git" "systemd" "rsync" "kubectl" "docker" "direnv" ];
+            settings = {
+              sync_address = "https://sync.roboco.dev";
+              sync_frequency = "5m";
+              sync_records = true;
+              auto_sync = true;
+              sync.records = true;
+            };
+          };
+
+          zsh = {
+            enable = true;
+            autosuggestion.enable = true;
+            autosuggestion.strategy = [
+              "history"
+              "completion"
+            ];
+            syntaxHighlighting.enable = true;
+            initContent = ''
+              [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
+              eval "$(atuin init zsh)"
+              alias fixlonghornpls="kubectl get pods -n longhorn-system | grep -e Error -e CrashLoopBackOff -e Unknown -e ContainerCreating | cut -d' ' -f 1 | xargs kubectl delete pod -n longhorn-system"
+              alias fixkubepls="kubectl get pods -A | grep -e Error -e CrashLoopBackOff -e Unknown -e ContainerCreating | awk ' { printf \"kubectl delete pod -n %s %s\n\", \$1, \$2} ' | bash"
+            '';
+            plugins = [
+              {
+                name = "powerlevel10k";
+                src = pkgs.zsh-powerlevel10k;
+                file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+              }
+            ];
+            oh-my-zsh = {
+              enable = true;
+              plugins = [
+                "git"
+                "systemd"
+                "rsync"
+                "kubectl"
+                "docker"
+                "direnv"
+              ];
+            };
           };
         };
       };
-    };
   };
 }

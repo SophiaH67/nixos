@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options.sophices.builder-user.enable = lib.mkEnableOption "Use Soph Builder System for builds";
 
@@ -16,7 +21,10 @@
         sshKey = config.age.secrets."soph-builder.id_ed25519".path;
         publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUtQSHRKY1k4cTB4bS9KOEFrR2JYK2t4OTF6WHBvOEg4OTNtVUdxSmJsZ2ggcm9vdEBzY2h3aQo=";
         system = "x86_64-linux";
-        supportedFeatures = [ "nixos-test" "kvm" ];
+        supportedFeatures = [
+          "nixos-test"
+          "kvm"
+        ];
       }
       {
         hostName = "emir-eins.ex-machina.sophiah.gay";
@@ -24,7 +32,10 @@
         sshKey = config.age.secrets."soph-builder.id_ed25519".path;
         publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUhQU3NjUkVIOU9TNlY2dURVZ3RjbkVMR0JjalRac3FKZnNtZHUyOFEvK0Mgcm9vdEBlbWlyLWVpbnMK";
         system = "x86_64-linux";
-        supportedFeatures = [ "nixos-test" "kvm" ];
+        supportedFeatures = [
+          "nixos-test"
+          "kvm"
+        ];
       }
       {
         hostName = "emir-zwei.ex-machina.sophiah.gay";
@@ -32,9 +43,12 @@
         sshKey = config.age.secrets."soph-builder.id_ed25519".path;
         publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUFkbS8yZ2VUNytQeFlVU1FlaU9MR3BjaHhhaWhNNUJ4dTg4UUtMWlZvWlQgcm9vdEBlbWlyLWVpbnMK";
         system = "x86_64-linux";
-        supportedFeatures = [ "nixos-test" "kvm" ];
+        supportedFeatures = [
+          "nixos-test"
+          "kvm"
+        ];
       }
-      
+
     ];
   };
 }

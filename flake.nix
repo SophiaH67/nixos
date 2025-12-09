@@ -59,64 +59,84 @@
   };
 
   nixConfig = {
-    extra-substituters = [ "https://niri.cachix.org" "https://cache.nixos-cuda.org" ];
-    extra-trusted-public-keys = [ "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964=" "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=" ];
+    extra-substituters = [
+      "https://niri.cachix.org"
+      "https://cache.nixos-cuda.org"
+    ];
+    extra-trusted-public-keys = [
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+      "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+    ];
   };
 
-  outputs = { self, nixpkgs, home-manager, deploy-rs, disko, nixos-generators, agenix, nixos-hardware, treefmt-nix, systems, ... }@inputs: let
-    # Small tool to iterate over each systems
-    eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      deploy-rs,
+      disko,
+      nixos-generators,
+      agenix,
+      nixos-hardware,
+      treefmt-nix,
+      systems,
+      ...
+    }@inputs:
+    let
+      # Small tool to iterate over each systems
+      eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
 
-    # Eval the treefmt modules from ./treefmt.nix
-    treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
+      # Eval the treefmt modules from ./treefmt.nix
+      treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
     in
     {
-    nixosConfigurations = import ./nixosConfigurations {inherit inputs self; };
-    packages = import ./packages inputs;
+      nixosConfigurations = import ./nixosConfigurations { inherit inputs self; };
+      packages = import ./packages inputs;
 
-    deploy.nodes = {
-      yuuna = {
-        hostname = "yuuna";
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.yuuna;
+      deploy.nodes = {
+        yuuna = {
+          hostname = "yuuna";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.yuuna;
+          };
+        };
+
+        moshimoshi = {
+          hostname = "moshimoshi";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.moshimoshi;
+          };
+        };
+
+        schwi = {
+          hostname = "schwi.ex-machina.sophiah.gay";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.schwi;
+          };
+        };
+
+        emir-eins = {
+          hostname = "emir-eins.ex-machina.sophiah.gay";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.emir-eins;
+          };
+        };
+
+        emir-zwei = {
+          hostname = "emir-zwei.ex-machina.sophiah.gay";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.emir-zwei;
+          };
         };
       };
 
-      moshimoshi = {
-        hostname = "moshimoshi";
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.moshimoshi;
-        };
-      };
-
-      schwi = {
-        hostname = "schwi.ex-machina.sophiah.gay";
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.schwi;
-        };
-      };
-
-      emir-eins = {
-        hostname = "emir-eins.ex-machina.sophiah.gay";
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.emir-eins;
-        };
-      };
-
-      emir-zwei = {
-        hostname = "emir-zwei.ex-machina.sophiah.gay";
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.emir-zwei;
-        };
-      };
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+      formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
     };
-
-    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
-    formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
-  };
 }

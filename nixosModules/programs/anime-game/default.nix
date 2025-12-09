@@ -1,4 +1,10 @@
-{ config, lib, pkgs, inputs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   options.sophrams.anime-game.enable = lib.mkEnableOption "Soph Anime Game";
 

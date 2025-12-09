@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options.sophices.cloudflare-warp.enable = lib.mkEnableOption "Soph Cloudflare Warp";
 

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options.soph.base-vm.enable = lib.mkEnableOption "Soph Nixos VM Base";
 

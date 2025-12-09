@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options.soph.base.enable = lib.mkEnableOption "Soph Nixos Base";
 
@@ -17,8 +22,14 @@
     # -=-=- Networking -=-=-
     networking.firewall.enable = true;
     networking.firewall.allowedTCPPorts = [ 22 ];
-    networking.search = [ "ex-machina.sophiah.gay" "dev.sophiah.gay" ];
-    networking.nameservers = [ "2620:fe::9#dns9.quad9.net" "9.9.9.9#dns9.quad9.net" ];
+    networking.search = [
+      "ex-machina.sophiah.gay"
+      "dev.sophiah.gay"
+    ];
+    networking.nameservers = [
+      "2620:fe::9#dns9.quad9.net"
+      "9.9.9.9#dns9.quad9.net"
+    ];
     services.resolved = {
       enable = true;
       dnssec = "true";
@@ -45,19 +56,22 @@
         PrintMotd = true;
         PermitRootLogin = "no";
         PasswordAuthentication = false;
-        AllowGroups = [ "wheel" "sshable" ];
+        AllowGroups = [
+          "wheel"
+          "sshable"
+        ];
       };
       allowSFTP = true;
-      banner =''
-  -=-=- Establishing encrypted connection... -=-=-
-  [C]: Requesting Frontier Malitia administration for node ${config.networking.hostName}
-  [S]: Receiving encrypted connection...
-  [S]: Provide identity:
-  [C]:
-  '';
+      banner = ''
+        -=-=- Establishing encrypted connection... -=-=-
+        [C]: Requesting Frontier Malitia administration for node ${config.networking.hostName}
+        [S]: Receiving encrypted connection...
+        [S]: Provide identity:
+        [C]:
+      '';
       #TODO: Set up a jail for failure to authenticate
     };
-    users.groups.sshable = {};
+    users.groups.sshable = { };
 
     # boot.kernelParams = [
     #   "kernel.kexec_load_disabled=1"
@@ -86,10 +100,12 @@
       LANGUAGE = "en_GB.UTF-8";
     };
 
-
     # -=-=- Nix -=-=-
     nixpkgs.config.allowUnfree = true;
-    nix.settings.experimental-features = [ "nix-command" "flakes"];
+    nix.settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     system.stateVersion = "25.05"; # Did you read the comment?
   };
 }

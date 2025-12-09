@@ -1,4 +1,4 @@
-{ pkgs, config, ...}: 
+{ pkgs, config, ... }:
 {
   environment.systemPackages = with pkgs; [
     # https://github.com/vrc-get/vrc-get/issues/1405

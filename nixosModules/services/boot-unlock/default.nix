@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options.sophices.boot-unlock.enable = lib.mkEnableOption "Soph boot-unlock";
   options.sophices.boot-unlock.tor = lib.mkOption {
@@ -22,27 +27,32 @@
           shell = "/bin/cryptsetup-askpass";
         };
 
-        postCommands = lib.mkIf config.sophices.boot-unlock.tor (let
-          torRc = (pkgs.writeText "tor.rc" ''
-            DataDirectory /etc/tor
-            SOCKSPort 127.0.0.1:9050 IsolateDestAddr
-            SOCKSPort 127.0.0.1:9063
-            HiddenServiceDir /boot/onion
-            HiddenServicePort 22 127.0.0.1:22
-          '');
-        in ''
-          echo "tor: preparing onion folder"
-          # have to do this otherwise tor does not want to start
-          chmod -R 700 /etc/tor
+        postCommands = lib.mkIf config.sophices.boot-unlock.tor (
+          let
+            torRc = (
+              pkgs.writeText "tor.rc" ''
+                DataDirectory /etc/tor
+                SOCKSPort 127.0.0.1:9050 IsolateDestAddr
+                SOCKSPort 127.0.0.1:9063
+                HiddenServiceDir /boot/onion
+                HiddenServicePort 22 127.0.0.1:22
+              ''
+            );
+          in
+          ''
+            echo "tor: preparing onion folder"
+            # have to do this otherwise tor does not want to start
+            chmod -R 700 /etc/tor
 
-          echo "make sure localhost is up"
-          ip a a 127.0.0.1/8 dev lo
-          ip link set lo up
+            echo "make sure localhost is up"
+            ip a a 127.0.0.1/8 dev lo
+            ip link set lo up
 
-          echo "tor: starting tor"
-          tor -f ${torRc} --verify-config
-          tor -f ${torRc} &
-        '');
+            echo "tor: starting tor"
+            tor -f ${torRc} --verify-config
+            tor -f ${torRc} &
+          ''
+        );
       };
 
       extraUtilsCommands = lib.mkIf config.sophices.boot-unlock.tor ''

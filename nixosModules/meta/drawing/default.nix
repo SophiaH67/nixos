@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options.soph.drawing.enable = lib.mkEnableOption "Soph Drawing Stuff";
 

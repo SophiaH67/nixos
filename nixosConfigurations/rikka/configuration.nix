@@ -2,7 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   networking.hostName = "rikka";
 
@@ -11,7 +16,7 @@
 
   programs.adb.enable = true;
   programs.virt-manager.enable = true;
-  users.groups.libvirtd.members = ["sophia"];
+  users.groups.libvirtd.members = [ "sophia" ];
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
 
@@ -48,16 +53,16 @@
   # Or disable the firewall altogether.
 
   networking.extraHosts = ''
-10.101.8.121  wifi.bahn.de
-127.0.0.1     fritz.box
-# Generated from asking 172.18.0.1 on an ice
-10.101.64.121 login.wifionice.de
-172.18.1.110  iceportal.de
-172.18.1.110  zugportal.de
-172.18.1.110  www.iceportal.de
-172.18.1.100 filme-serien.iceportal.de
-172.18.1.100 api.filme-serien.iceportal.de
-172.18.1.100 assets.filme-serien.iceportal.de
+    10.101.8.121  wifi.bahn.de
+    127.0.0.1     fritz.box
+    # Generated from asking 172.18.0.1 on an ice
+    10.101.64.121 login.wifionice.de
+    172.18.1.110  iceportal.de
+    172.18.1.110  zugportal.de
+    172.18.1.110  www.iceportal.de
+    172.18.1.100 filme-serien.iceportal.de
+    172.18.1.100 api.filme-serien.iceportal.de
+    172.18.1.100 assets.filme-serien.iceportal.de
   '';
 
   services.fprintd.enable = true;
@@ -67,9 +72,12 @@
   users.users.sophiah = {
     isNormalUser = true;
     description = "Sophia Hage";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -86,5 +94,5 @@
   boot.loader.systemd-boot.configurationLimit = lib.mkForce 10;
 
   services.hardware.bolt.enable = true;
-  sophrams.niri.enable =  true;
+  sophrams.niri.enable = true;
 }

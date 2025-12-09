@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options.sophices.builder.enable = lib.mkEnableOption "Soph Builder System";
 
@@ -17,7 +22,7 @@
       ];
     };
 
-    users.groups.soph-builder = {};
+    users.groups.soph-builder = { };
 
     # https://nix.dev/tutorials/nixos/distributed-builds-setup.html#optimise-the-remote-builder-configuration
     nix = {

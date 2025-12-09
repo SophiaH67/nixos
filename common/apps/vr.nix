@@ -1,4 +1,11 @@
-{ config, pkgs, lib, inputs, self, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  self,
+  ...
+}:
 let
   pkgs-nvidia = import inputs.nvidianixpkgs {
     system = "x86_64-linux";
@@ -15,13 +22,11 @@ in
   nixpkgs.overlays = [
     (final: prev: {
       xrizer = prev.xrizer.overrideAttrs (oldAttrs: {
-        patches =
-          (oldAttrs.patches or [])
-          ++ [
-            # ./xrizer-patches/skeletal_summary.patch
-            # ./xrizer-patches/device_refactor2.patch
-            # ./xrizer-patches/generic_trackers.patch
-          ];
+        patches = (oldAttrs.patches or [ ]) ++ [
+          # ./xrizer-patches/skeletal_summary.patch
+          # ./xrizer-patches/device_refactor2.patch
+          # ./xrizer-patches/generic_trackers.patch
+        ];
         doCheck = false;
       });
     })
@@ -32,8 +37,12 @@ in
     WMR_HANDTRACKING = "0";
   };
 
-
-  environment.systemPackages = [ pkgs.tmux pkgs.android-tools pkgs.xrizer self.packages.${pkgs.stdenv.hostPlatform.system}.soph-vr-mode ];
+  environment.systemPackages = [
+    pkgs.tmux
+    pkgs.android-tools
+    pkgs.xrizer
+    self.packages.${pkgs.stdenv.hostPlatform.system}.soph-vr-mode
+  ];
   sophrams.vrcx.enable = true;
 
   services.wivrn = {
@@ -41,11 +50,16 @@ in
     openFirewall = true;
     autoStart = true;
     defaultRuntime = true;
-    package = (pkgs-nvidia.wivrn.override {cudaSupport = true;}).overrideAttrs (oldAttrs: {
+    package = (pkgs-nvidia.wivrn.override { cudaSupport = true; }).overrideAttrs (oldAttrs: {
       cudaSupport = true;
       preFixup = oldAttrs.preFixup + ''
         wrapProgram "$out/bin/wivrn-server" \
-          --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ pkgs.sdl2-compat pkgs.udev ]}
+          --prefix LD_LIBRARY_PATH : ${
+            lib.makeLibraryPath [
+              pkgs.sdl2-compat
+              pkgs.udev
+            ]
+          }
       '';
     });
     monadoEnvironment = {
@@ -72,31 +86,33 @@ in
       };
     };
   };
-  home-manager.users.sophia = { pkgs, ... }: {
-    xdg.configFile."openvr/openvrpaths.vrpath".force = true;
-    xdg.configFile."openvr/openvrpaths.vrpath".text = ''
+  home-manager.users.sophia =
+    { pkgs, ... }:
     {
-      "config" :
-      [
-        "~/.local/share/Steam/config"
-      ],
-      "external_drivers" : null,
-      "jsonid" : "vrpathreg",
-      "log" :
-      [
-        "~/.local/share/Steam/logs"
-      ],
-      "runtime" :
-      [
-        "${pkgs.opencomposite}/lib/opencomposite"
-      ],
-      "version" : 1
-    }
-  '';
+      xdg.configFile."openvr/openvrpaths.vrpath".force = true;
+      xdg.configFile."openvr/openvrpaths.vrpath".text = ''
+        {
+          "config" :
+          [
+            "~/.local/share/Steam/config"
+          ],
+          "external_drivers" : null,
+          "jsonid" : "vrpathreg",
+          "log" :
+          [
+            "~/.local/share/Steam/logs"
+          ],
+          "runtime" :
+          [
+            "${pkgs.opencomposite}/lib/opencomposite"
+          ],
+          "version" : 1
+        }
+      '';
 
-    xdg.configFile."wlxoverlay/openxr_actions.json5".force = true;
-    xdg.configFile."wlxoverlay/openxr_actions.json5".source = ./vr-overlaybinds.json5;
-  };
+      xdg.configFile."wlxoverlay/openxr_actions.json5".force = true;
+      xdg.configFile."wlxoverlay/openxr_actions.json5".source = ./vr-overlaybinds.json5;
+    };
 
   users.users.sophia.packages = with pkgs; [
     motoc
@@ -106,10 +122,12 @@ in
 
   # Clicking "applications" crashes in wlx-overlay-s because too many files
   # This is my attempt at fixing
-  security.pam.loginLimits = [{
-    domain = "*";
-    type = "soft";
-    item = "nofile";
-    value = "8192";
-  }];
+  security.pam.loginLimits = [
+    {
+      domain = "*";
+      type = "soft";
+      item = "nofile";
+      value = "8192";
+    }
+  ];
 }

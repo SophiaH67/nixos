@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options.soph.comms.enable = lib.mkEnableOption "Soph Communication Things";
 

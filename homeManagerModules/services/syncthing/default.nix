@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options.sophices.syncthing.enable = lib.mkEnableOption "Soph Syncthing";
 
@@ -29,7 +34,12 @@
         folders = {
           "/home/sophia/sync" = {
             id = "nei9h-knicz";
-            devices = [ "alice" "mococo" "ayumu" "rikka" ];
+            devices = [
+              "alice"
+              "mococo"
+              "ayumu"
+              "rikka"
+            ];
             label = "Soph's Nix Syncing";
           };
         };

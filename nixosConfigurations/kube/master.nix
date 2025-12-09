@@ -1,7 +1,14 @@
-{ pkgs, lib, config, self, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  self,
+  ...
+}:
 let
   cfg = config.services.ex-machina;
-in {
+in
+{
   # imports = [ ./common.nix ];
 
   options.services.ex-machina = {
@@ -48,8 +55,11 @@ in {
       PrivateMounts = "yes";
       BindPaths = "/run/current-system/sw/bin:/bin";
     };
-    
-    environment.systemPackages = [ pkgs.nfs-utils pkgs.cryptsetup ];
+
+    environment.systemPackages = [
+      pkgs.nfs-utils
+      pkgs.cryptsetup
+    ];
 
     systemd.tmpfiles.rules = [
       # Symlink CNI plugins into /opt/cni/bin, as containerd expects to find it there.
@@ -132,11 +142,17 @@ in {
           enable = true;
         };
       };
-    } // (if cfg.init then {
-      clusterInit = true;
-    } else {
-      serverAddr = "https://${cfg.virtualIp}:6443";
-      # serverAddr = "https://[2a02:810d:6f83:ad00:acab::1]:6443";
-    });
+    }
+    // (
+      if cfg.init then
+        {
+          clusterInit = true;
+        }
+      else
+        {
+          serverAddr = "https://${cfg.virtualIp}:6443";
+          # serverAddr = "https://[2a02:810d:6f83:ad00:acab::1]:6443";
+        }
+    );
   };
 }

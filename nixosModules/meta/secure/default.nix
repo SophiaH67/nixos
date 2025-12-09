@@ -1,4 +1,10 @@
-{ config, lib, pkgs, inputs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   options.soph.secure.enable = lib.mkEnableOption "Soph Secure Mode";
 

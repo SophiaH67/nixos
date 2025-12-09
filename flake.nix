@@ -44,6 +44,14 @@
 
     niri.url = "github:sodiboo/niri-flake";
     niri.inputs.nixpkgs.follows = "nixpkgs";
+
+    etwas-config.url = "git+https://git.catgirl.dog/etwas/nix-config.git";
+    etwas-config.inputs.nixpkgs.follows = "nixpkgs";
+    etwas-config.inputs.home-manager.follows = "home-manager";
+    etwas-config.inputs.nixos-hardware.follows = "nixos-hardware";
+    etwas-config.inputs.agenix.follows = "agenix";
+    etwas-catppuccin.url = "github:catppuccin/nix/f518f96a60aceda4cd487437b25eaa48d0f1b97d";
+    etwas-catppuccin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   nixConfig = {

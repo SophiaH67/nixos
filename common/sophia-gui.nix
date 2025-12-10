@@ -32,8 +32,6 @@
     noto-fonts-cjk-serif
   ];
 
-  programs.niri.enable = true;
-
   nixpkgs.config.allowUnfree = true;
   home-manager.useGlobalPkgs = true;
   home-manager.backupFileExtension = "bak";
@@ -43,7 +41,6 @@
       imports = [
         ../homeManagerModules
       ];
-      catppuccin.gtk.enable = lib.mkForce false;
 
       sophices.syncthing.enable = true;
 

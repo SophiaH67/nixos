@@ -2,13 +2,10 @@
   pkgs,
   lib,
   config,
-  inputs,
   ...
 }:
 {
-  imports = [
-    ./apps/comms.nix
-  ];
+  imports = [ ./apps/comms.nix ];
 
   sophrams.gnome.enable = true;
   sophrams.gnome.autoLogin = "sophia";
@@ -45,8 +42,6 @@
     {
       imports = [
         ../homeManagerModules
-        (inputs.etwas-config + "/home/wm")
-        inputs.etwas-catppuccin.homeModules.catppuccin
       ];
       catppuccin.gtk.enable = lib.mkForce false;
 

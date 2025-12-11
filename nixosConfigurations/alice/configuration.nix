@@ -22,6 +22,9 @@
       "git@ssh.dev.azure.com:v3/ircost/SV_FW_Drivers/SecurityBlock" = {
         insteadOf = "https://ircost@dev.azure.com/ircost/SV_FW_Drivers/_git/SecurityBlock";
       };
+      "git@ssh.dev.azure.com:v3/ircost/SV_FW_Drivers/driverwrapper-cs" = {
+        insteadOf = "https://ircost@dev.azure.com/ircost/SV_FW_Drivers/_git/driverwrapper-cs";
+      };
     };
   };
 

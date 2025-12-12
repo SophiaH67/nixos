@@ -27,5 +27,7 @@
       rustc
       github-cli
     ];
+
+    sophrams.vscode.enable = true;
   };
 }

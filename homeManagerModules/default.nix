@@ -1,6 +1,7 @@
 {
   imports = [
     ./meta
+    ./programs
     ./services
   ];
 }

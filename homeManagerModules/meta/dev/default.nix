@@ -29,5 +29,6 @@
     ];
 
     sophrams.vscode.enable = true;
+    sophrams.firefox.enable = true;
   };
 }

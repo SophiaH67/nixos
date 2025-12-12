@@ -25,10 +25,12 @@
   nixpkgs.config.allowUnfree = true;
   home-manager.useGlobalPkgs = true;
   home-manager.backupFileExtension = "bak";
+  home-manager.extraSpecialArgs = { inherit inputs; };
   home-manager.users.sophia = {
     imports = [
       ../homeManagerModules
     ];
+
 
     soph.gui.enable = true;
   };

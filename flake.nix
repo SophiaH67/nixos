@@ -36,6 +36,9 @@
     aagl.inputs.nixpkgs.follows = "nixpkgs";
     aagl.inputs.rust-overlay.follows = "rust-overlay";
 
+    librepods.url = "github:kavishdevar/librepods?ref=linux/rust";
+    librepods.inputs.nixpkgs.follows = "nixpkgs";
+
     nixcord.url = "github:kaylorben/nixcord";
     nixcord.inputs.nixpkgs.follows = "nixpkgs";
 

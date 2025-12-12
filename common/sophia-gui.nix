@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
 {
@@ -25,6 +26,7 @@
     qpwgraph
     pwvucontrol
     cavalier
+    inputs.librepods.packages.${stdenv.system}.default
   ];
 
   fonts.packages = with pkgs; [

@@ -393,6 +393,27 @@
         "type": "github"
       }
     },
+    "librepods": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1765480078,
+        "narHash": "sha256-qr2vMENiORG8ABziP5UwScDJvLHmWiyhGd7JqZ7Vp+s=",
+        "owner": "kavishdevar",
+        "repo": "librepods",
+        "rev": "e2d17b8bae0c823107f7d2a2032cf55750d72699",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kavishdevar",
+        "ref": "linux/rust",
+        "repo": "librepods",
+        "type": "github"
+      }
+    },
     "niri": {
       "inputs": {
         "niri-stable": "niri-stable",
@@ -664,6 +685,7 @@
         "home-manager": "home-manager_2",
         "kubenix": "kubenix",
         "lanzaboote": "lanzaboote",
+        "librepods": "librepods",
         "niri": "niri",
         "nixcord": "nixcord",
         "nixos-generators": "nixos-generators",

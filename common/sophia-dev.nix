@@ -23,6 +23,7 @@
       cargo
       rustc
       github-cli
+      unar
     ];
   };
 }

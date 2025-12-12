@@ -22,6 +22,7 @@
       kubevirt
       cargo
       rustc
+      github-cli
     ];
   };
 }

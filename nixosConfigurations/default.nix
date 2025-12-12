@@ -16,7 +16,6 @@ let
   ];
 
   devModules = [
-    ../common/sophia-dev.nix
     ../common/sophia-gui.nix
     ../common/apps/gaming.nix
     {

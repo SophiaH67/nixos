@@ -31,7 +31,6 @@
       ../homeManagerModules
     ];
 
-
     soph.gui.enable = true;
   };
 }

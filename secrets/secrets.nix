@@ -47,6 +47,9 @@ in
     ayumu
   ];
   "atuin-key.age".publicKeys = devices;
+
+  "renovate-haizakura.id_ed25519".publicKeys = [ rikka ];
+  "renovate-token".publicKeys = [ rikka ];
   # Kube Things
   "kube-longhorn.age".publicKeys = developers ++ ex-machina;
   "kube-join-key.age".publicKeys = developers ++ ex-machina;

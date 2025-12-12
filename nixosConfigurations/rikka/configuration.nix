@@ -95,4 +95,6 @@
 
   services.hardware.bolt.enable = true;
   sophrams.niri.enable = true;
+
+  sophices.renovate.enable = true;
 }

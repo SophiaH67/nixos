@@ -11,23 +11,8 @@
   sophrams.gnome.enable = true;
   sophrams.gnome.autoLogin = "sophia";
 
-  services.earlyoom.enable = true;
-  services.earlyoom.enableNotifications = true;
-
   soph.comms.enable = true;
   sophrams.chromium.enable = true;
-
-  users.users.sophia.packages = with pkgs; [
-    filezilla
-    gedit
-    gparted
-    xorg.xeyes
-    tor-browser
-    qpwgraph
-    pwvucontrol
-    cavalier
-    inputs.librepods.packages.${stdenv.system}.default
-  ];
 
   fonts.packages = with pkgs; [
     nerd-fonts._0xproto

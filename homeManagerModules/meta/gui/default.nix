@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -17,6 +18,15 @@
       nerd-fonts._0xproto
       nerd-fonts.droid-sans-mono
       cascadia-code
+      filezilla
+      gedit
+      gparted
+      xorg.xeyes
+      tor-browser
+      qpwgraph
+      pwvucontrol
+      cavalier
+      inputs.librepods.packages.${stdenv.system}.default
     ];
     fonts.fontconfig.enable = true;
 

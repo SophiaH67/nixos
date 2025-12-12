@@ -19,13 +19,7 @@
     programs.nixcord = {
       enable = true;
       discord.enable = false;
-      vesktop.enable = true;
-      vesktop.package = (
-        pkgs.vesktop.override {
-          electron = pkgs.electron_39;
-        }
-      );
-      vesktop.useSystemVencord = false;
+      equibop.enable = true;
       config = {
         enableReactDevtools = true;
         autoUpdate = true;

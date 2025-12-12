@@ -10,6 +10,9 @@
   sophrams.gnome.enable = true;
   sophrams.gnome.autoLogin = "sophia";
 
+  services.earlyoom.enable = true;
+  services.earlyoom.enableNotifications = true;
+
   soph.comms.enable = true;
   sophrams.chromium.enable = true;
 

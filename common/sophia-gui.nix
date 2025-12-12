@@ -48,6 +48,7 @@
       ];
 
       sophices.syncthing.enable = true;
+      soph.dev.enable = true;
 
       home.packages = with pkgs; [
         atool

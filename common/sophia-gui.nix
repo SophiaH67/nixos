@@ -216,6 +216,7 @@
               terminal.integrated.stickyScroll.enabled = false;
               chat.disableAIFeatures = true;
               nix.enableLanguageServer = true;
+              nix.serverPath = "${pkgs.nixd}/bin/nixd";
             };
             extensions =
               with pkgs.vscode-extensions;

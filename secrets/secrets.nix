@@ -50,8 +50,14 @@ in
   ];
   "atuin-key.age".publicKeys = devices;
 
-  "renovate-haizakura.id_ed25519.age".publicKeys = [ rikka soph-main ];
-  "renovate-token.age".publicKeys = [ rikka soph-main ];
+  "renovate-haizakura.id_ed25519.age".publicKeys = [
+    rikka
+    soph-main
+  ];
+  "renovate-token.age".publicKeys = [
+    rikka
+    soph-main
+  ];
   # Kube Things
   "kube-longhorn.age".publicKeys = developers ++ ex-machina;
   "kube-join-key.age".publicKeys = developers ++ ex-machina;

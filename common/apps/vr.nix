@@ -15,8 +15,6 @@ let
   };
 in
 {
-  imports = [ ./vr-dev.nix ];
-
   # Originally from https://lvra.gitlab.io/docs/fossvr/xrizer/#nixos
   # Now from https://gitlab.rxserver.net/reality-exe/nix-config/-/blob/main/modules/nix/vr/default.nix
   nixpkgs.overlays = [
@@ -89,6 +87,8 @@ in
   home-manager.users.sophia =
     { pkgs, ... }:
     {
+      soph.dev-vr.enable = true;
+
       xdg.configFile."openvr/openvrpaths.vrpath".force = true;
       xdg.configFile."openvr/openvrpaths.vrpath".text = ''
         {

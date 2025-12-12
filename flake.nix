@@ -32,6 +32,7 @@
 
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
     nixpkgs-xr.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs-xr.inputs.treefmt-nix.follows = "treefmt-nix";
 
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     aagl.inputs.nixpkgs.follows = "nixpkgs";

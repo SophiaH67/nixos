@@ -36,6 +36,7 @@
           prohe.typingWindow = 10000;
           prohe.vibrationMax = 1;
           workbench.iconTheme = "material-icon-theme";
+          workbench.editor.wrapTabs = true;
           window.autoDetectColorScheme = true;
           workbench.colorTheme = "98878c8e-9f91-4e25-930d-dd7d280d9e35";
           workbench.preferredDarkColorTheme = "5412c41d-f76b-4488-85a7-1ae1a63bbfcc";

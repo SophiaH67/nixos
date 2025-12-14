@@ -11,7 +11,7 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
-    lanzaboote.url =  "github:nix-community/lanzaboote/v0.4.2";
+    lanzaboote.url = "github:nix-community/lanzaboote/v0.4.2";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
     lanzaboote.inputs.rust-overlay.follows = "rust-overlay";
 

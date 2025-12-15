@@ -71,6 +71,7 @@
             ms-vscode.hexeditor
             continue.continue
             wakatime.vscode-wakatime
+            ms-python.black-formatter
           ]
           ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             {

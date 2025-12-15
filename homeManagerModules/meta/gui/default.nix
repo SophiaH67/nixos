@@ -11,6 +11,7 @@
   config = lib.mkIf config.soph.gui.enable {
     sophices.syncthing.enable = true;
     soph.dev.enable = true;
+    sophrams.ghostty.enable = true;
 
     home.packages = with pkgs; [
       atool

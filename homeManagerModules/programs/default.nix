@@ -1,6 +1,7 @@
 {
   imports = [
     ./firefox
+    ./ghostty
     ./vscode
   ];
 }

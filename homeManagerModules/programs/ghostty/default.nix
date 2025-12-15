@@ -14,5 +14,9 @@
         theme = "light:Bluloco Light,dark:Bluloco Dark";
       };
     };
+
+    home.sessionVariables = {
+      TERMINAL = "ghostty";
+    };
   };
 }

@@ -18,6 +18,10 @@
       })
     ];
 
+    environment.variables = {
+      BROWSER = "chromium";
+    };
+
     programs.chromium = {
       enable = true;
       extraOpts = {

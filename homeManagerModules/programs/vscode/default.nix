@@ -72,6 +72,7 @@
             continue.continue
             wakatime.vscode-wakatime
             ms-python.black-formatter
+            bradlc.vscode-tailwindcss
           ]
           ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             {

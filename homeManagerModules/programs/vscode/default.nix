@@ -105,6 +105,12 @@
               version = "2.1.3";
               sha256 = "Jssmb5owrgNWlmLFSKCgqMJKp3sPpOrlEUBwzZSSpbM=";
             }
+            {
+              name = "sqlite-viewer";
+              publisher = "qwtel";
+              version = "25.12.2";
+              sha256 = "KxVHIi1obeXaPR8cZhExvRHNV1DyDyphuGyd8R1ee28=";
+            }
           ];
       };
     };

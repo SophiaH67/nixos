@@ -58,6 +58,10 @@ in
     rikka
     soph-main
   ];
+  "renovate-gh-token.age".publicKeys = [
+    rikka
+    soph-main
+  ];
   # Kube Things
   "kube-longhorn.age".publicKeys = developers ++ ex-machina;
   "kube-join-key.age".publicKeys = developers ++ ex-machina;

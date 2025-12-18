@@ -39,6 +39,6 @@ jobs:
           echo "yuuna ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEsn1taHd1G7MLs5uI4tYsWgpYRA+d6/MdDhGtcOiGEt" >> ~/.ssh/known_hosts
           
           chmod 644 ~/.ssh/known_hosts
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Deploy
         run: nix --extra-experimental-features "nix-command flakes" run github:serokell/deploy-rs .#${{ matrix.flake }} -- --skip-checks --ssh-user forgejo --remote-build

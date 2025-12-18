@@ -34,7 +34,14 @@
           "de-DE"
           "nl-NL"
         ];
+
+        # https://github.com/wimpysworld/nix-config/blob/92fcaeef7a87b608f7e041522d4627f31a8e6086/nixos/_mixins/desktop/apps/web-browsers/martin.nix#L35
+        "HomePageLocation" = "https://kagi.com";
+        "NewTabPageLocation" = "https://kagi.com";
       };
+      defaultSearchProviderEnabled = true;
+      defaultSearchProviderSuggestURL = "https://kagi.com/api/autosuggest?q={searchTerms}";
+      defaultSearchProviderSearchURL = "https://kagi.com/search?q={searchTerms}";
       extensions = [
         "gppongmhjkpfnbhagpmjfkannfbllamg" # wappalyzer
         "hlepfoohegkhhmjieoechaddaejaokhf" # refined github
@@ -44,6 +51,7 @@
         "eninkmbmgkpkcelmohdlgldafpkfpnaf" # Reddit Untranslate
         "mpiodijhokgodhhofbcjdecpffjipkle" # SingleFile
         "jghecgabfgfdldnmbfkhmffcabddioke" # Volume Master
+        "cdglnehniifkbagbbombnjghhcihifij" # Kagi Extensino
       ];
     };
 

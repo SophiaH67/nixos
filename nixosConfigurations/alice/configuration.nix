@@ -39,7 +39,7 @@
     blender
     cura-appimage
     (azure-cli.withExtensions [ azure-cli-extensions.azure-devops ])
-    inputs.vcxproj2cmake
+    inputs.vcxproj2cmake.packages.${system}.default
   ];
 
   # For simonsvoss smartstick AX

@@ -747,7 +747,8 @@
         "nvidianixpkgs": "nvidianixpkgs",
         "rust-overlay": "rust-overlay",
         "systems": "systems_6",
-        "treefmt-nix": "treefmt-nix_2"
+        "treefmt-nix": "treefmt-nix_2",
+        "vcxproj2cmake": "vcxproj2cmake"
       }
     },
     "rust-overlay": {
@@ -933,6 +934,26 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "vcxproj2cmake": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1766131199,
+        "narHash": "sha256-p+CvAFPXwRDTGVTRub9OgXtr/j7KFfbrvEU2OowYEGY=",
+        "owner": "SophiaH67",
+        "repo": "vcxproj2cmake",
+        "rev": "71e2c3371473bb1ff441859fcf685b258b277d3a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SophiaH67",
+        "repo": "vcxproj2cmake",
         "type": "github"
       }
     },

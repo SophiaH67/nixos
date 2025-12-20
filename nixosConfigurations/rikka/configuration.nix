@@ -69,18 +69,6 @@
   services.fprintd.tod.enable = true;
   services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
 
-  users.users.sophiah = {
-    isNormalUser = true;
-    description = "Sophia Hage";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-    packages = with pkgs; [
-      #  thunderbird
-    ];
-  };
-
   age.secrets.secret1.file = ../../secrets/secret1.age;
   environment.etc."secret1".source = config.age.secrets.secret1.path;
 

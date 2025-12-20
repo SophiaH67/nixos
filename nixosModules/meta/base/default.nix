@@ -6,10 +6,18 @@
 }:
 {
   options.soph.base.enable = lib.mkEnableOption "Soph Nixos Base";
-
+  # -=-=- User -=-=-
   config = lib.mkIf config.soph.base.enable {
     sophrams.zsh.enable = true;
     nix.settings.trusted-users = [ "@wheel" ];
+
+    home-manager.users.sophia = {
+      imports = [
+        ../../../homeManagerModules
+      ];
+
+      soph.base.enable = true;
+    };
 
     # -=-=- Boot -=-=-
     boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;

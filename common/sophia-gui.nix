@@ -27,10 +27,6 @@
   home-manager.backupFileExtension = "bak";
   home-manager.extraSpecialArgs = { inherit inputs; };
   home-manager.users.sophia = {
-    imports = [
-      ../homeManagerModules
-    ];
-
     soph.gui.enable = true;
   };
 }

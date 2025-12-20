@@ -11,6 +11,10 @@
     sophrams.zsh.enable = true;
     nix.settings.trusted-users = [ "@wheel" ];
 
+    home-manager.extraSpecialArgs = {
+      nixos-config = config;
+    };
+
     home-manager.users.sophia = {
       imports = [
         ../../../homeManagerModules

@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  nixos-config,
   ...
 }:
 {
@@ -18,7 +19,13 @@
           final: prev: {
             preFixup =
               prev.preFixup
-              + "gappsWrapperArgs+=( --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ pkgs.gcc.cc.lib ]} )";
+              + "gappsWrapperArgs+=( --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ pkgs.gcc.cc.lib ]} )"
+              + (
+                if (nixos-config.hardware.nvidia.enabled) then
+                  "\nwrapProgram $out/bin/code --add-flags --ozone-platform=x11"
+                else
+                  ""
+              );
           }
         )
       );

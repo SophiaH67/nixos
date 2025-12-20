@@ -6,14 +6,6 @@
   self,
   ...
 }:
-let
-  pkgs-nvidia = import inputs.nvidianixpkgs {
-    system = "x86_64-linux";
-    config.allowUnfree = true;
-    config.cudaSupport = true;
-    overlays = [ inputs.nixpkgs-xr.overlays.default ];
-  };
-in
 {
   # Originally from https://lvra.gitlab.io/docs/fossvr/xrizer/#nixos
   # Now from https://gitlab.rxserver.net/reality-exe/nix-config/-/blob/main/modules/nix/vr/default.nix
@@ -48,7 +40,7 @@ in
     openFirewall = true;
     autoStart = true;
     defaultRuntime = true;
-    package = (pkgs-nvidia.wivrn.override { cudaSupport = true; }).overrideAttrs (oldAttrs: {
+    package = (pkgs.wivrn.override { cudaSupport = true; }).overrideAttrs (oldAttrs: {
       cudaSupport = true;
       preFixup = oldAttrs.preFixup + ''
         wrapProgram "$out/bin/wivrn-server" \

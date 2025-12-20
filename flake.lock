@@ -685,22 +685,6 @@
         "type": "github"
       }
     },
-    "nvidianixpkgs": {
-      "locked": {
-        "lastModified": 1762298042,
-        "narHash": "sha256-vM2/Ia61CNeEzOyYI3VndIoqdmo0s3WMDcFTCXTdEo0=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "1eb39d0ea75b8e0646bc62bbe345aa6af146f3da",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "pull/457803/head",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "pre-commit-hooks-nix": {
       "inputs": {
         "flake-compat": [
@@ -744,7 +728,6 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-xr": "nixpkgs-xr",
-        "nvidianixpkgs": "nvidianixpkgs",
         "rust-overlay": "rust-overlay",
         "systems": "systems_6",
         "treefmt-nix": "treefmt-nix_2",

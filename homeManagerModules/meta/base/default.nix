@@ -11,5 +11,7 @@
     
     sophrams.atuin.enable = true;
     sophrams.zsh.enable = true;
+
+    age.identityPaths = [ "${config.home.homeDirectory}/.ssh/id_rsa" ];
   };
 }

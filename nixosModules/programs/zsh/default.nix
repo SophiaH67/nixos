@@ -26,21 +26,5 @@
       ];
       shell = pkgs.zsh;
     };
-
-    age.secrets."atuin-key" = {
-      file = ../../../secrets/atuin-key.age;
-      mode = "600";
-      owner = "sophia";
-    };
-
-    systemd.tmpfiles.rules = [
-      "L /home/sophia/.local/share/atuin/key - - - - ${config.age.secrets."atuin-key".path}"
-    ];
-
-    home-manager.users.sophia =
-      { pkgs, ... }:
-      {
-        
-      };
   };
 }

@@ -43,12 +43,11 @@ in
 {
   "secret1.age".publicKeys = everyone;
   "tailscale-device.age".publicKeys = devices;
-  "soph-builder.id_ed25519.age".publicKeys = [
-    alice
-    rikka
-    ayumu
+  "soph-builder.id_ed25519.age".publicKeys = personal-devices;
+  "atuin-key.age".publicKeys = devices ++ [
+    soph-main
+    soph-work
   ];
-  "atuin-key.age".publicKeys = devices;
 
   "renovate-haizakura.id_ed25519.age".publicKeys = [
     rikka

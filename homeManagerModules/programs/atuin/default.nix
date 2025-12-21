@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  inputs,
   ...
 }:
 {
@@ -17,5 +18,15 @@
         sync.records = true;
       };
     };
+
+
+    age.secrets."atuin-key" = {
+      file = ../../../secrets/atuin-key.age;
+      mode = "600";
+    };
+
+    systemd.user.tmpfiles.rules = [
+      "L %h/.local/share/atuin/key - - - - %t/agenix/atuin-key" # agenix's thing is broken; should switch to sops-nix tbh lol
+    ];
   };
 }

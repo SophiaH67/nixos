@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -14,6 +15,8 @@
     home-manager.extraSpecialArgs = {
       nixos-config = config;
     };
+
+    home-manager.sharedModules = [inputs.agenix.homeManagerModules.age];
 
     home-manager.users.sophia = {
       imports = [

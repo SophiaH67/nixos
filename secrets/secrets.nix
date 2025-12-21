@@ -11,6 +11,7 @@ let
   alice = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDbmPJPqKuHQoPzT6+K5gKDP/xU0fqg70tcY2cvzjC30";
   yuuna = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEsn1taHd1G7MLs5uI4tYsWgpYRA+d6/MdDhGtcOiGEt";
   moshimoshi = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB2fTZEUoWt7cFlh3fVaD6auB+Hgt8tR1SSG/x1dhDaT";
+  kiara = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILlNATR/R/C+caVM73rI7g+cuunXgL/mZ+ly7R2IpRa6";
 
   schwi = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPHtJcY8q0xm/J8AkGbX+kx91zXpo8H893mUGqJblgh";
   emir-eins = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHPSscREH9OS6V6uDUgtcnELGBcjTZsqJfsmdu28Q/+C";
@@ -37,14 +38,20 @@ let
     alice
     ayumu
   ];
-  devices = ex-machina ++ personal-devices ++ [ yuuna ];
+  devices =
+    ex-machina
+    ++ personal-devices
+    ++ [
+      yuuna
+      kiara
+    ];
   everyone = users ++ devices;
 in
 {
   "secret1.age".publicKeys = everyone;
   "tailscale-device.age".publicKeys = devices;
   "soph-builder.id_ed25519.age".publicKeys = personal-devices;
-  "atuin-key.age".publicKeys = devices ++ [
+  "atuin-key.age".publicKeys = personal-devices ++ [
     soph-main
     soph-work
   ];
@@ -61,6 +68,9 @@ in
     rikka
     soph-main
   ];
+
+  "skeb-scraper.env.age".publicKeys = developers ++ [ kiara ];
+
   # Kube Things
   "kube-longhorn.age".publicKeys = developers ++ ex-machina;
   "kube-join-key.age".publicKeys = developers ++ ex-machina;

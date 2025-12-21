@@ -6,4 +6,6 @@
   home-manager.users.sophia = {
     sophrams.atuin.enable = lib.mkForce false;
   };
+
+  sophices.skeb-scraper.enable = true;
 }

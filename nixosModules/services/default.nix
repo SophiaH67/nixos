@@ -6,6 +6,7 @@
     ./cloudflare-warp
     ./plymouth
     ./renovate
+    ./skeb-scraper
     ./tailscale
     ./tor
   ];

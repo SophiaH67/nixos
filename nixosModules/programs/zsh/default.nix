@@ -13,6 +13,7 @@
     users.users.sophia = {
       isNormalUser = true;
       description = "Sop";
+      packages = [ pkgs.ghostty ]; # So servers accept my TERM= variable
       extraGroups = [
         "wheel"
         "dialout"

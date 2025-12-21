@@ -16,7 +16,7 @@
       nixos-config = config;
     };
 
-    home-manager.sharedModules = [inputs.agenix.homeManagerModules.age];
+    home-manager.sharedModules = [ inputs.agenix.homeManagerModules.age ];
 
     home-manager.users.sophia = {
       imports = [

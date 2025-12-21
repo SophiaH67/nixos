@@ -19,7 +19,6 @@
       };
     };
 
-
     age.secrets."atuin-key" = {
       file = ../../../secrets/atuin-key.age;
       mode = "600";

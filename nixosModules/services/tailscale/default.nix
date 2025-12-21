@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 {
@@ -15,7 +14,13 @@
       useRoutingFeatures = "both"; # optional: allow subnet exit routing
       authKeyFile = config.age.secrets.tailscale-device.path;
       interfaceName = "tailscale0";
+      extraSetFlags = [
+        "--accept-dns=false"
+      ];
     };
+    networking.search = [ "neko-hammerhead.ts.net" ];
+    networking.nameservers = [ "100.100.100.100" ];
+    networking.hosts."100.76.186.121" = [ "r4birth" ];
     systemd.services.tailscaled.enable = true;
   };
 }

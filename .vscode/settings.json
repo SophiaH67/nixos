@@ -19,6 +19,7 @@
         "chromium",
         "mococo",
         "kiara",
-        "atuin"
+        "atuin",
+        "tailscale"
     ]
 }

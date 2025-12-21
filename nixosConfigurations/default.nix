@@ -132,4 +132,15 @@ in
     ]
     ++ exMachinaModules;
   };
+
+  kiara = nixpkgs.lib.nixosSystem {
+    specialArgs = args;
+    system = "aarch64-linux";
+    modules = [
+      ./kiara/configuration.nix
+      ./kiara/disko.nix
+      ./kiara/hardware-configuration.nix
+    ]
+    ++ deployableModules;
+  };
 }

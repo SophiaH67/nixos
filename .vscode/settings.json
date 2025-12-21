@@ -17,6 +17,7 @@
         "renovate",
         "ghostty",
         "chromium",
-        "mococo"
+        "mococo",
+        "kiara"
     ]
 }

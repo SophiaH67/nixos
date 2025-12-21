@@ -24,7 +24,9 @@
     };
 
     # -=-=- Boot -=-=-
-    boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
+    boot.kernelPackages = lib.mkDefault (
+      if pkgs.stdenv.hostPlatform.isAarch64 then pkgs.linuxPackages_latest else pkgs.linuxPackages_zen
+    );
     boot.loader.systemd-boot.enable = lib.mkDefault true;
     boot.loader.systemd-boot.configurationLimit = 35;
 

@@ -6,6 +6,7 @@ on:
     paths:
       - '**/*.age'
       - nixosConfigurations/kube/**
+      - nixosConfigurations/kiara/**
       - flake.lock
       - flake.nix
       - common/**
@@ -23,7 +24,7 @@ jobs:
       image: xn--55q89qy6p.com/soph/ci-base:latest
     strategy:
       matrix:
-        flake: [schwi, emir-eins, emir-zwei]
+        flake: [schwi, emir-eins, emir-zwei, kiara]
     steps:
       - name: Copy ssh keys from secrets
         run: |
@@ -37,7 +38,7 @@ jobs:
           echo "schwi.ex-machina.sophiah.gay ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPHtJcY8q0xm/J8AkGbX+kx91zXpo8H893mUGqJblgh" >> ~/.ssh/known_hosts
           echo "moshimoshi ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB2fTZEUoWt7cFlh3fVaD6auB+Hgt8tR1SSG/x1dhDaT" >> ~/.ssh/known_hosts
           echo "yuuna ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEsn1taHd1G7MLs5uI4tYsWgpYRA+d6/MdDhGtcOiGEt" >> ~/.ssh/known_hosts
-          
+          echo "kiara.dev.sophiah.gay ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILlNATR/R/C+caVM73rI7g+cuunXgL/mZ+ly7R2IpRa6" >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
       - uses: actions/checkout@v4
       - name: Deploy

@@ -8,4 +8,9 @@
   };
 
   sophices.skeb-scraper.enable = true;
+
+  services.plex = {
+    enable = true;
+    openFirewall = true;
+  };
 }

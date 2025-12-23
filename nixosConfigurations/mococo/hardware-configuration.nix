@@ -23,6 +23,7 @@
   networking.hostId = "9c28ba10"; # Needed for zfs
 
   hardware.graphics.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true;
     nvidiaSettings = true;

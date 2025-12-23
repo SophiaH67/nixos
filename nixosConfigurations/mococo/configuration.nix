@@ -44,4 +44,11 @@
     ];
     shell = pkgs.zsh;
   };
+
+  virtualisation.docker = {
+    enable =  true;
+    enableOnBoot = false;
+    daemon.settings.features.cdi = true;
+  };
+  hardware.nvidia-container-toolkit.enable = true;
 }

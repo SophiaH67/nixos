@@ -32,7 +32,7 @@
     }
   ];
 
-  users.users.fredi-68 = {
+  users.users.fredi_68 = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDFOloBbTFtILqvi7g4bJevKjaov8WniluFl1GItqeAj31k9VX0I0PD0WW0E6LrtPpu6USSd2nCENSa6tzs/lZlDgUI7z9E4gaQguEFjog1GWC03spdz1wFfZ752CxQflwQp0ecPte6rQCbfq9UHmwRAPerdrFgZ0h8irU9p758VgTFthU2a5KJWdtFrpwTBcVNKjvA7TYqKx/AHV2DBZiVz8m9Pmx5eE/c/cCDzzcAHakA6mZtEOQSA8461bYpGuCRTTExHkt0xxPY+vubtZZK080XATpuPEGhGO8+5jRRlmToBAIWZO6VQZS7pKDK9KZ2QY0PVBii5v7WmvZuDWP2TsiKAOW2OnTs+DOA7j+jGMHbImNhQ/6yqriN+OG6vJkQ3/zPPER88Ou4NrZOK9i3BLu6/TPoQ8wAMgj27dO+qH5XyLiikM+Ue//7Z7uZLkgc0B2nBMvcI4QGV9fNgo163JFCiF4Py7+tXNtL5pmlJDHZkwTC/Zk9g+rkGVotvEwfYfpLQhLOIGkjcK2vYQxUUeuTXfjJmaF6bCDQLtUJEsKCOSwQT8LruY2I9kTC2xWFiKticxQUk0+NG5dYc4ufWCRJ07WmbHZhbwwLODfAWVy3peuCNeRRYyxqBUevMYAUbYguSn4W6yRo+N121t5hSIwmjrwtHc/IG0Dy0sHeGw=="

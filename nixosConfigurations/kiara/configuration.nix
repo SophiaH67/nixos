@@ -14,10 +14,4 @@
     openFirewall = true;
     user = "root";
   };
-
-  services.jellyfin = {
-    enable = true;
-    openFirewall =  true;
-    user = "root";
-  };
 }

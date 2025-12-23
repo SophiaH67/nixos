@@ -1,6 +1,6 @@
 {
   soph.base.enable = true;
 
-  networking.hostName = "kiara";
+  networking.hostName = "mococo";
   networking.domain = "dev.sophiah.gay";
 }

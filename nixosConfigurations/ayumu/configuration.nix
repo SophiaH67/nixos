@@ -54,6 +54,4 @@ in
   programs.virt-manager.enable = true;
 
   soph.dev.enable = true;
-
-  virtualisation.docker.enable = true;
 }

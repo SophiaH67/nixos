@@ -31,7 +31,7 @@
   };
 
   fileSystems."/" = {
-    device = "Fuwawa/local/nixos-root";
+    device = "Fuwawa/local/root";
     fsType = "zfs";
   };
 

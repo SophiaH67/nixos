@@ -47,7 +47,7 @@
   virtualisation.docker = {
     enable =  true;
     enableOnBoot = false;
-    daemon.settings.features.cdi = true;
+    enableNvidia = true;
   };
-  hardware.nvidia-container-toolkit.enable = true;
+  hardware.graphics.enable32Bit = true;
 }

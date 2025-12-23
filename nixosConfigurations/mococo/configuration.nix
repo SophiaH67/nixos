@@ -45,9 +45,22 @@
   };
 
   virtualisation.docker = {
-    enable =  true;
+    enable = true;
     enableOnBoot = false;
     enableNvidia = true;
+    autoPrune.enable = true;
+    storageDriver = "overlay2";
+    daemon = {
+      settings = {
+        data-root = "/persist/docker";
+        experimental = true;
+        ip6tables = true;
+        dns = [
+          "127.0.0.1"
+          "1.1.1.1"
+        ];
+      };
+    };
   };
   hardware.graphics.enable32Bit = true;
 }

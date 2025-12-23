@@ -142,6 +142,14 @@
             path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.kiara;
           };
         };
+
+        mococo = {
+          hostname = "mococo.dev.sophiah.gay";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.mococo;
+          };
+        };
       };
 
       checks = import ./checks inputs;

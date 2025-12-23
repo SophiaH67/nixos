@@ -21,38 +21,18 @@
         enable = true;
         ssh = {
           enable = true;
-          port = 22;
+          port = 2222;
           authorizedKeys = config.users.users.sophia.openssh.authorizedKeys.keys;
           hostKeys = [ "/boot/ssh_host_rsa_key" ];
-          shell = "/bin/cryptsetup-askpass";
         };
 
-        postCommands = lib.mkIf config.sophices.boot-unlock.tor (
-          let
-            torRc = (
-              pkgs.writeText "tor.rc" ''
-                DataDirectory /etc/tor
-                SOCKSPort 127.0.0.1:9050 IsolateDestAddr
-                SOCKSPort 127.0.0.1:9063
-                HiddenServiceDir /boot/onion
-                HiddenServicePort 22 127.0.0.1:22
-              ''
-            );
-          in
-          ''
-            echo "tor: preparing onion folder"
-            # have to do this otherwise tor does not want to start
-            chmod -R 700 /etc/tor
+        postCommands = ''
+          # Import all pools
+          zpool import -a
 
-            echo "make sure localhost is up"
-            ip a a 127.0.0.1/8 dev lo
-            ip link set lo up
-
-            echo "tor: starting tor"
-            tor -f ${torRc} --verify-config
-            tor -f ${torRc} &
-          ''
-        );
+          # Add the load-key command to the .profile
+          echo "zfs load-key -a; killall zfs" >> /root/.profile
+        '';
       };
 
       extraUtilsCommands = lib.mkIf config.sophices.boot-unlock.tor ''

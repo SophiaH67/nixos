@@ -10,9 +10,15 @@
   networking.hostName = "mococo";
   networking.domain = "dev.sophiah.gay";
 
+  home-manager.users.sophia = {
+    sophrams.atuin.enable = lib.mkForce false;
+  };
+
   services.zfs.autoScrub.enable = true;
   services.zfs.autoSnapshot.enable = true;
   services.zfs.trim.enable = true;
+
+  sophices.boot-unlock.enable = true;
 
   services.openssh.hostKeys = [
     {

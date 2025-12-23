@@ -39,8 +39,20 @@
         platformAutomerge = true;
         autodiscover = true;
 
+        packageRules = [
+          {
+            matchUpdateTypes = [
+              "minor"
+              "patch"
+            ];
+            matchCurrentVersion = "!/^0/";
+            automerge = true;
+          }
+        ];
+
         nix.enabled = true;
         lockFileMaintenance.enabled = true;
+        lockFileMaintenance.automerge = true;
       };
       runtimePackages = with pkgs; [
         gnupg

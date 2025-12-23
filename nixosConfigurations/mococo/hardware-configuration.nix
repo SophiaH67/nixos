@@ -64,13 +64,11 @@
   fileSystems."/mnt/user" = {
     device = "overlay";
     fsType = "overlay";
-    depends = [
-      "/Fuwawa/old"
-    ];
     options = [
       "lowerdir=/Fuwawa/old/acache:/Fuwawa/old/disk1:/Fuwawa/old/disk2:/Fuwawa/old/disk3:/Fuwawa/old/disk4:/Fuwawa/old/disk5:/Fuwawa/old/disk6"
     ];
   };
+  systemd.services."mnt-user.mount".requires = [ "zfs-mount.service" ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

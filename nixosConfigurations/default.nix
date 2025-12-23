@@ -26,8 +26,6 @@ let
 
   deployableModules = [
     ../common/forgejo.nix
-    disko.nixosModules.disko
-    ../common/vm-able.nix
   ]
   ++ baseModules;
 
@@ -92,6 +90,7 @@ in
     system = "x86_64-linux";
     modules = [
       ./moshimoshi/configuration.nix
+      ./moshimoshi/disko.nix
       ./moshimoshi/hardware-configuration.nix
     ]
     ++ vmModules;
@@ -102,6 +101,7 @@ in
     system = "x86_64-linux";
     modules = [
       ./inanis/configuration.nix
+      ./inanis/disko.nix
     ]
     ++ vmModules;
   };

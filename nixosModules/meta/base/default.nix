@@ -6,7 +6,12 @@
   ...
 }:
 {
+  imports = [
+    inputs.disko.nixosModules.disko
+  ];
+
   options.soph.base.enable = lib.mkEnableOption "Soph Nixos Base";
+
   # -=-=- User -=-=-
   config = lib.mkIf config.soph.base.enable {
     sophrams.zsh.enable = true;
@@ -118,6 +123,11 @@
     };
 
     # -=-=- Nix -=-=-
+    virtualisation.vmVariant = {
+      virtualisation.tpm.enable = true;
+    };
+    virtualisation.vmVariantWithDisko = config.virtualisation.vmVariant;
+
     nixpkgs.config.allowUnfree = true;
     nix.settings.experimental-features = [
       "nix-command"

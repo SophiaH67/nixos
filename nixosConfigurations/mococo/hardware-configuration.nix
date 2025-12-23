@@ -22,7 +22,13 @@
   boot.kernelPackages = pkgs.linuxPackages_6_17;
   networking.hostId = "9c28ba10"; # Needed for zfs
 
-  systemd.services.zfs-mount.enable = false;
+  hardware.graphics.enable = true;
+  hardware.nvidia = {
+    modesetting.enable = true;
+    nvidiaSettings = true;
+    open = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
 
   fileSystems."/" = {
     device = "Fuwawa/nixos-root";
@@ -47,76 +53,6 @@
       "fmask=0077"
       "dmask=0077"
     ];
-  };
-
-  fileSystems."/Fuwawa/unenc" = {
-    device = "Fuwawa/unenc";
-    fsType = "zfs";
-  };
-
-  fileSystems."/Fuwawa" = {
-    device = "Fuwawa";
-    fsType = "zfs";
-  };
-
-  fileSystems."/Fuwawa/appdata" = {
-    device = "Fuwawa/appdata";
-    fsType = "zfs";
-  };
-
-  fileSystems."/Fuwawa/archive" = {
-    device = "Fuwawa/archive";
-    fsType = "zfs";
-  };
-
-  fileSystems."/Fuwawa/archive/ex-machina-backup" = {
-    device = "Fuwawa/archive/ex-machina-backup";
-    fsType = "zfs";
-  };
-
-  fileSystems."/Fuwawa/config" = {
-    device = "Fuwawa/config";
-    fsType = "zfs";
-  };
-
-  fileSystems."/Fuwawa/home" = {
-    device = "Fuwawa/home";
-    fsType = "zfs";
-  };
-
-  fileSystems."/Fuwawa/home/sophia" = {
-    device = "Fuwawa/home/sophia";
-    fsType = "zfs";
-  };
-
-  fileSystems."/Fuwawa/isos" = {
-    device = "Fuwawa/isos";
-    fsType = "zfs";
-  };
-
-  fileSystems."/Fuwawa/media" = {
-    device = "Fuwawa/media";
-    fsType = "zfs";
-  };
-
-  fileSystems."/Fuwawa/old" = {
-    device = "Fuwawa/old";
-    fsType = "zfs";
-  };
-
-  fileSystems."/Fuwawa/photos" = {
-    device = "Fuwawa/photos";
-    fsType = "zfs";
-  };
-
-  fileSystems."/Fuwawa/vm-disks" = {
-    device = "Fuwawa/vm-disks";
-    fsType = "zfs";
-  };
-
-  fileSystems."/Fuwawa/vm-disks/games" = {
-    device = "Fuwawa/vm-disks/games";
-    fsType = "zfs";
   };
 
   fileSystems."/mnt/user" = {

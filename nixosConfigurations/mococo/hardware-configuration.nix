@@ -31,12 +31,17 @@
   };
 
   fileSystems."/" = {
-    device = "Fuwawa/nixos-root";
+    device = "Fuwawa/local/nixos-root";
     fsType = "zfs";
   };
 
   fileSystems."/nix" = {
-    device = "Fuwawa/nix";
+    device = "Fuwawa/local/nix";
+    fsType = "zfs";
+  };
+
+  fileSystems."/persist" = {
+    device = "Fuwawa/local/persist";
     fsType = "zfs";
   };
 

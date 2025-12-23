@@ -42,6 +42,11 @@
       "wheel"
     ];
     shell = pkgs.zsh;
+    # This is fredi
+    # Fredi is special
+    # Fredi doesn't use nix
+    home = "/persist/home/fredi_68";
+    uid = 1003;
   };
 
   virtualisation.docker = {

@@ -52,7 +52,7 @@
           youtubeAdblock.enable = true;
           webKeybinds.enable = true;
           alwaysTrust.enable = true;
-          clearURLs.enable = true;
+          ClearURLs.enable = true;
           disableCallIdle.enable = true;
           implicitRelationships.enable = true;
           messageLatency.enable = true;

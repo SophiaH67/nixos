@@ -38,7 +38,6 @@ let
 
   vmModules = [
     { soph.base-vm.enable = true; }
-    nixos-generators.nixosModules.all-formats
   ]
   ++ deployableModules;
 in
@@ -140,6 +139,16 @@ in
       ./kiara/configuration.nix
       ./kiara/disko.nix
       ./kiara/hardware-configuration.nix
+    ]
+    ++ deployableModules;
+  };
+
+  mococo = nixpkgs.lib.nixosSystem {
+    specialArgs = args;
+    system = "aarch64-linux";
+    modules = [
+      ./mococo/configuration.nix
+      ./mococo/hardware-configuration.nix
     ]
     ++ deployableModules;
   };

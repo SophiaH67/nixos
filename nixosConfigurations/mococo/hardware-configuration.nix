@@ -19,10 +19,19 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.kernelPackages = pkgs.linuxPackages_6_17;
+  networking.hostId = "9c28ba10"; # Needed for zfs
+
+  systemd.services.zfs-mount.enable = false;
 
   fileSystems."/" = {
-    device = "/dev/mapper/ubuntu--vg-shioriin";
-    fsType = "ext4";
+    device = "Fuwawa/nixos-root";
+    fsType = "zfs";
+  };
+
+  fileSystems."/nix" = {
+    device = "Fuwawa/nix";
+    fsType = "zfs";
   };
 
   fileSystems."/Fuwawa/media/music/shared/Tracks" = {
@@ -92,11 +101,6 @@
 
   fileSystems."/Fuwawa/media" = {
     device = "Fuwawa/media";
-    fsType = "zfs";
-  };
-
-  fileSystems."/Fuwawa/nix" = {
-    device = "Fuwawa/nix";
     fsType = "zfs";
   };
 

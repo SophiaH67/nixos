@@ -8,6 +8,7 @@
 {
   imports = [
     inputs.disko.nixosModules.disko
+    inputs.nixos-generators.nixosModules.all-formats
   ];
 
   options.soph.base.enable = lib.mkEnableOption "Soph Nixos Base";

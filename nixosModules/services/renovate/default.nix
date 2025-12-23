@@ -40,12 +40,14 @@
         autodiscover = true;
 
         nix.enabled = true;
+        lockFileMaintenance.enabled = true;
       };
       runtimePackages = with pkgs; [
         gnupg
         openssh
         nodejs
         yarn
+        config.nix.package
       ];
     };
   };

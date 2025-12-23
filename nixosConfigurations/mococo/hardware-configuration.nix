@@ -19,6 +19,10 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.blacklistedKernelModules = [
+    "nova_core"
+    "nouveau"
+  ];
   boot.kernelPackages = pkgs.linuxPackages_6_17;
   networking.hostId = "9c28ba10"; # Needed for zfs
 
@@ -64,12 +68,14 @@
   fileSystems."/mnt/user" = {
     device = "overlay";
     fsType = "overlay";
+    depends = [ "/persist" ];
     options = [
       "lowerdir=/Fuwawa/old/acache:/Fuwawa/old/disk1:/Fuwawa/old/disk2:/Fuwawa/old/disk3:/Fuwawa/old/disk4:/Fuwawa/old/disk5:/Fuwawa/old/disk6"
     ];
   };
-  systemd.services."mnt-user.mount".requires = [ "zfs-mount.service" ];
 
+  systemd.enableEmergencyMode = false;
+  
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

@@ -68,4 +68,15 @@
     };
   };
   hardware.graphics.enable32Bit = true;
+
+  networking.firewall = {
+    allowedTCPPorts = [
+      80
+      443
+      8123
+      8448
+      25564
+      25565
+    ];
+  };
 }

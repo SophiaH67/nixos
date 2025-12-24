@@ -152,7 +152,7 @@
         };
       };
 
-      checks = import ./checks inputs;
+      checks = import ./checks { inherit inputs self; };
 
       formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
     };

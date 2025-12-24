@@ -11,7 +11,7 @@ on:
       - flake.nix
       - common/**
       - nixosModules/**
-      - .forgejo/workflows/deploy-cluster.yml
+      - .forgejo/workflows/deploy.yml
       - nixosModules/services/builder/**
       - packages/ex-machina/**
 
@@ -41,5 +41,8 @@ jobs:
           echo "kiara.dev.sophiah.gay ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILlNATR/R/C+caVM73rI7g+cuunXgL/mZ+ly7R2IpRa6" >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
       - uses: actions/checkout@v6
+      # Run checks one-by-one to conserve ram.. Thanks ai bubble 😭
+      - name: Checks / Tests
+        run: nix --extra-experimental-features "nix-command flakes" run .#checks.x86_64-linux.formatting
       - name: Deploy
         run: nix --extra-experimental-features "nix-command flakes" run github:serokell/deploy-rs .#${{ matrix.flake }} -- --skip-checks --ssh-user forgejo --remote-build

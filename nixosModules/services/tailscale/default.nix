@@ -17,6 +17,7 @@
       extraSetFlags = [
         "--accept-dns=false"
       ];
+      extraDaemonFlags = [ "--no-logs-no-support" ];
     };
     networking.search = [ "neko-hammerhead.ts.net" ];
     networking.nameservers = [ "100.100.100.100" ];

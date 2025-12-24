@@ -40,7 +40,7 @@
     boot.loader.systemd-boot.configurationLimit = 35;
 
     # -=-=- Secrets -=-=-
-    age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" "/persist/ssh/ssh_host_ed25519_key" ];
 
     # -=-=- Networking -=-=-
     networking.firewall.enable = true;

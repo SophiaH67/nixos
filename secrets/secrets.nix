@@ -12,6 +12,7 @@ let
   yuuna = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEsn1taHd1G7MLs5uI4tYsWgpYRA+d6/MdDhGtcOiGEt";
   moshimoshi = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB2fTZEUoWt7cFlh3fVaD6auB+Hgt8tR1SSG/x1dhDaT";
   kiara = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILlNATR/R/C+caVM73rI7g+cuunXgL/mZ+ly7R2IpRa6";
+  mococo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHS5eQ4DJ+wagB0gzQB+2U1JlONOiSQuNF/3aRdXMnN6";
 
   schwi = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPHtJcY8q0xm/J8AkGbX+kx91zXpo8H893mUGqJblgh";
   emir-eins = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHPSscREH9OS6V6uDUgtcnELGBcjTZsqJfsmdu28Q/+C";
@@ -28,6 +29,7 @@ let
     emir-eins
     emir-zwei
   ];
+  servers = [ mococo ] ++ ex-machina;
   users = [
     soph-main
     soph-work
@@ -39,7 +41,7 @@ let
     ayumu
   ];
   devices =
-    ex-machina
+    servers
     ++ personal-devices
     ++ [
       yuuna

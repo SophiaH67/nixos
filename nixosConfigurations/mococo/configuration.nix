@@ -79,4 +79,7 @@
       25565
     ];
   };
+
+  sophices.tailscale.enable = true;
+  services.tailscale.extraDaemonFlags = [ "--statedir=/persist/tailscale" ];
 }

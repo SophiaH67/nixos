@@ -61,17 +61,14 @@ in
   "renovate-haizakura.id_ed25519.age".publicKeys = [
     rikka
     soph-main
-    mococo
   ];
   "renovate-token.age".publicKeys = [
     rikka
     soph-main
-    mococo
   ];
   "renovate-gh-token.age".publicKeys = [
     rikka
     soph-main
-    mococo
   ];
 
   "skeb-scraper.env.age".publicKeys = developers ++ [ kiara ];

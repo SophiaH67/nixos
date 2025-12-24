@@ -82,6 +82,7 @@
 
   sophices.tailscale.enable = true;
   services.tailscale.extraDaemonFlags = [ "--statedir=/persist/tailscale" ];
+  sophices.renovate.enable = true;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 }

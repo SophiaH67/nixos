@@ -43,6 +43,13 @@ jobs:
       - uses: actions/checkout@v6
       # Run checks one-by-one to conserve ram.. Thanks ai bubble 😭
       - name: Checks / Tests
-        run: nix --extra-experimental-features "nix-command flakes" run .#checks.x86_64-linux.formatting
+        run: |
+          nix --extra-experimental-features "nix-command flakes" build .#checks.x86_64-linux.formatting
+                    
+          if [[ -s result ]]; then
+            echo "Error detected:"
+            cat result
+            exit 1
+          fi
       - name: Deploy
         run: nix --extra-experimental-features "nix-command flakes" run github:serokell/deploy-rs .#${{ matrix.flake }} -- --skip-checks --ssh-user forgejo --remote-build

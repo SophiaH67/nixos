@@ -16,8 +16,27 @@ on:
       - packages/ex-machina/**
 
 jobs:
+  tests:
+    runs-on: docker
+    concurrency:
+      cancel-in-progress: false
+    container:
+      image: xn--55q89qy6p.com/soph/ci-base:latest
+    steps:
+      - uses: actions/checkout@v6
+      # Run checks one-by-one to conserve ram.. Thanks ai bubble 😭
+      - name: Checks / Tests
+        run: |
+          nix --extra-experimental-features "nix-command flakes" build .#checks.x86_64-linux.formatting
+                    
+          if [[ -s result ]]; then
+            echo "Error detected:"
+            cat result
+            exit 1
+          fi
   build:
     runs-on: docker
+    needs: tests
     concurrency:
       cancel-in-progress: false
     container:
@@ -41,15 +60,5 @@ jobs:
           echo "kiara.dev.sophiah.gay ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILlNATR/R/C+caVM73rI7g+cuunXgL/mZ+ly7R2IpRa6" >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
       - uses: actions/checkout@v6
-      # Run checks one-by-one to conserve ram.. Thanks ai bubble 😭
-      - name: Checks / Tests
-        run: |
-          nix --extra-experimental-features "nix-command flakes" build .#checks.x86_64-linux.formatting
-                    
-          if [[ -s result ]]; then
-            echo "Error detected:"
-            cat result
-            exit 1
-          fi
       - name: Deploy
         run: nix --extra-experimental-features "nix-command flakes" run github:serokell/deploy-rs .#${{ matrix.flake }} -- --skip-checks --ssh-user forgejo --remote-build

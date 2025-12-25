@@ -1,4 +1,4 @@
-{ inputs, ... }@args:
+{ inputs, self, ... }@args:
 let
   inherit (inputs)
     nixpkgs
@@ -10,7 +10,7 @@ let
     ;
   baseModules = [
     { soph.base.enable = true; }
-    ../nixosModules
+    self.nixosModules.default
     home-manager.nixosModules.home-manager
     agenix.nixosModules.default
   ];

@@ -91,6 +91,7 @@
       treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
     in
     {
+      nixosModules.default = import ./nixosModules;
       nixosConfigurations = import ./nixosConfigurations { inherit inputs self; };
       packages = import ./packages inputs;
 

@@ -4,5 +4,6 @@
     ./dev
     ./dev-vr
     ./gui
+    ./vr
   ];
 }

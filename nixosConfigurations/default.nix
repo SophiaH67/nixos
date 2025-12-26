@@ -58,7 +58,6 @@ in
     modules = [
       ./ayumu/configuration.nix
       ./ayumu/hardware-configuration.nix
-      ../common/apps/vr.nix
     ]
     ++ devModules;
   };

@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  nixos-config,
   ...
 }:
 {
@@ -11,6 +12,8 @@
 
     sophrams.atuin.enable = true;
     sophrams.zsh.enable = true;
+
+    soph.vr.enable = lib.mkIf nixos-config.soph.vr.enable (lib.mkDefault true);
 
     age.identityPaths = [ "${config.home.homeDirectory}/.ssh/id_rsa" ];
   };

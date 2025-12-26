@@ -52,6 +52,7 @@
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+
     systems.url = "github:nix-systems/default";
 
     vcxproj2cmake.url = "github:SophiaH67/vcxproj2cmake";
@@ -73,12 +74,7 @@
     {
       self,
       nixpkgs,
-      home-manager,
       deploy-rs,
-      disko,
-      nixos-generators,
-      agenix,
-      nixos-hardware,
       treefmt-nix,
       systems,
       ...

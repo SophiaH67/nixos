@@ -1,5 +1,9 @@
 { lib, pkgs, ... }:
 {
+  imports = [
+    ./containers
+  ];
+
   soph.base.enable = true;
 
   # https://grahamc.com/blog/erase-your-darlings/

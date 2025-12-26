@@ -47,7 +47,7 @@ jobs:
           echo "kiara.dev.sophiah.gay ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILlNATR/R/C+caVM73rI7g+cuunXgL/mZ+ly7R2IpRa6" >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
       - uses: actions/checkout@v6
-      - uses: dorny/paths-filter@v3
+      - uses: https://github.com/dorny/paths-filter@v3
         id: changes
         with:
           filters: |

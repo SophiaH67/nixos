@@ -27,6 +27,7 @@
     services.displayManager.gdm.enable = true;
     services.displayManager.autoLogin.user = config.sophrams.gnome.autoLogin;
     services.gnome.sushi.enable = true;
+    services.gnome.gnome-online-accounts.enable = true;
 
     # Attempt to unlock gnome keyring after FDE unlock, should fail silently
     security.pam.services."sophia".enableGnomeKeyring = config.services.displayManager.autoLogin.enable;

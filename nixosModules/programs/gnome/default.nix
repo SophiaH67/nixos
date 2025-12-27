@@ -111,6 +111,17 @@
             gtk-enable-primary-paste = false;
           };
 
+          "org/gnome/desktop/input-sources" = {
+            sources = [
+              "xkb"
+              "us"
+            ];
+            xkb-options = [
+              "terminate:ctrl_alt_bksp"
+              "compose:ralt"
+            ];
+          };
+
           "org/gnome/desktop/background" = {
             picture-uri = "file://${config.sophrams.wallpaper.file}";
             picture-uri-dark = "file://${config.sophrams.wallpaper.file-dark}";

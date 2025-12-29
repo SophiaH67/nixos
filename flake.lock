@@ -380,11 +380,11 @@
         "treefmt": "treefmt"
       },
       "locked": {
-        "lastModified": 1766996127,
-        "narHash": "sha256-EYsN3z4L4rVVvhtMly3dnzFbEU1e4XXcQ+B7Mx8cbrE=",
+        "lastModified": 1767026126,
+        "narHash": "sha256-oJXcsoV4as4co3a1NexEd8jY4Rnr5jOxwJSLoQnl2Hc=",
         "owner": "hall",
         "repo": "kubenix",
-        "rev": "6a9f646d55acfd2aaa4c4dc623fae6c159c863d4",
+        "rev": "658bd065850216ea0304f2e1b4a5b348a1b85599",
         "type": "github"
       },
       "original": {

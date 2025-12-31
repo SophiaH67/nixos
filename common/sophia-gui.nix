@@ -1,7 +1,6 @@
 {
   pkgs,
-  lib,
-  config,
+  self,
   inputs,
   ...
 }:
@@ -20,6 +19,7 @@
     nerd-fonts.droid-sans-mono
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
+    self.packages.${system}.thirtyninec3-font
   ];
 
   nixpkgs.config.allowUnfree = true;

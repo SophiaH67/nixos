@@ -1,4 +1,4 @@
-{ pkgs, ... }@args:
+{ pkgs, ... }:
 let
   s_calibration = pkgs.writeShellScriptBin "calibration" ''
     ${pkgs.motoc}/bin/motoc continue

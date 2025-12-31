@@ -28,6 +28,7 @@
       pwvucontrol
       cavalier
       inputs.librepods.packages.${stdenv.system}.default
+      librepcb
     ];
     fonts.fontconfig.enable = true;
 

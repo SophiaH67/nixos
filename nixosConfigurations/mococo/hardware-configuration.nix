@@ -23,7 +23,7 @@
     "nova_core"
     "nouveau"
   ];
-  boot.kernelPackages = pkgs.linuxPackages_6_18;
+  boot.kernelPackages = pkgs.linuxPackages_6_17;
   networking.hostId = "9c28ba10"; # Needed for zfs
 
   hardware.graphics.enable = true;

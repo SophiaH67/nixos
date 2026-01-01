@@ -29,6 +29,7 @@
       cavalier
       inputs.librepods.packages.${stdenv.system}.default
       librepcb
+      kicad
     ];
     fonts.fontconfig.enable = true;
 

@@ -53,6 +53,8 @@
     uid = 1003;
   };
 
+  users.users.sophia.uid = 1000;
+
   virtualisation.docker = {
     enable = true;
     enableOnBoot = false;

@@ -30,6 +30,8 @@
       inputs.librepods.packages.${stdenv.system}.default
       librepcb
       kicad
+      sequoia-chameleon-gnupg
+      gnupg # required until https://github.com/NixOS/nixpkgs/issues/473387 is fixed
     ];
     fonts.fontconfig.enable = true;
 
@@ -69,6 +71,8 @@
         signing = {
           key = "1FB01D6AA1106525";
           signByDefault = true;
+          format = "openpgp";
+          signer = lib.getExe pkgs.sequoia-chameleon-gnupg;
         };
         extraConfig = {
           safe.directory = [ "/etc/nixos" ];

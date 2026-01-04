@@ -12,6 +12,7 @@
     sophices.syncthing.enable = true;
     soph.dev.enable = true;
     sophrams.ghostty.enable = true;
+    sophrams.htop.enable = true;
 
     home.packages = with pkgs; [
       atool
@@ -59,13 +60,6 @@
             integrations_rest_url = "https://scalar.vector.im/api";
           }
         '';
-      };
-      htop = {
-        enable = true;
-        settings = {
-          show_cpu_temperature = 1;
-          show_cpu_frequency = 1;
-        };
       };
       git = {
         enable = true;

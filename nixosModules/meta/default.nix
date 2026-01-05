@@ -1,5 +1,6 @@
 {
   imports = [
+    ./auto-deployable
     ./base
     ./base-vm
     ./comms

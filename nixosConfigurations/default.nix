@@ -25,7 +25,7 @@ let
   ++ baseModules;
 
   deployableModules = [
-    ../common/forgejo.nix
+    { soph.auto-deployable.enable = true; }
   ]
   ++ baseModules;
 

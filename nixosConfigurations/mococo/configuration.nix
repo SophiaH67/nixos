@@ -85,6 +85,9 @@
       25565
       32400
     ];
+    allowedUDPPorts = [
+      34197 # Factorio
+    ];
   };
 
   sophices.tailscale.enable = true;

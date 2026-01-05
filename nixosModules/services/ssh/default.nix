@@ -30,8 +30,12 @@
       #TODO: Set up a jail for failure to authenticate
     };
 
-    services.sshguard = {
+    services.fail2ban = {
       enable = true;
+
+      bantime-increment = {
+        enable = true;
+      };
     };
 
     users.groups.sshable = { };

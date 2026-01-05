@@ -7,6 +7,7 @@
     ./plymouth
     ./renovate
     ./skeb-scraper
+    ./ssh
     ./tailscale
     ./tor
   ];

@@ -16,5 +16,8 @@
     soph.vr.enable = lib.mkIf nixos-config.soph.vr.enable (lib.mkDefault true);
 
     age.identityPaths = [ "${config.home.homeDirectory}/.ssh/id_rsa" ];
+
+    home.file.".ssh/id_ed25519_sk.pub".source = ../../../secrets/id_ed25519_sk.pub;
+    home.file.".ssh/id_ed25519_sk".source = ../../../secrets/id_ed25519_sk;
   };
 }

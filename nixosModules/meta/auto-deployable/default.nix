@@ -24,7 +24,7 @@
       packages = with pkgs; [ zsh ];
       shell = pkgs.zsh;
     };
-  
+
     sophices.ssh.enable = true;
   };
 }

@@ -23,6 +23,7 @@
         "tailscale",
         "thirtyninec3-font",
         "htop",
-        "ssh"
+        "ssh",
+        "forgejo"
     ]
 }

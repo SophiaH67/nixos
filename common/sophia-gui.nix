@@ -24,6 +24,10 @@
   home-manager.useGlobalPkgs = true;
   home-manager.backupFileExtension = "bak";
   home-manager.extraSpecialArgs = { inherit inputs; };
+  home-manager.sharedModules = [
+    ../homeManagerModules
+    inputs.nixcord.homeModules.nixcord
+  ];
   home-manager.users.sophia = {
     soph.gui.enable = true;
   };

@@ -24,10 +24,6 @@
     home-manager.sharedModules = [ inputs.agenix.homeManagerModules.age ];
 
     home-manager.users.sophia = {
-      imports = [
-        ../../../homeManagerModules
-      ];
-
       soph.base.enable = true;
     };
 

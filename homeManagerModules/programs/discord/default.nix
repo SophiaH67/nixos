@@ -1,14 +1,9 @@
 {
   config,
   lib,
-  inputs,
   ...
 }:
 {
-  imports = [
-    inputs.nixcord.homeModules.nixcord
-  ];
-
   options.sophrams.discord.enable = lib.mkEnableOption "Soph Discord";
 
   config = lib.mkIf config.sophrams.discord.enable {

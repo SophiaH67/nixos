@@ -64,6 +64,9 @@
     shell = pkgs.zsh;
     uid = 1002;
   };
+  home-manager.users.lux = {
+    soph.base.enable = true;
+  };
 
   users.users.sophia.uid = 1000;
 

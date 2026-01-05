@@ -21,8 +21,14 @@
       nixos-config = config;
     };
 
-    home-manager.sharedModules = [ inputs.agenix.homeManagerModules.age ];
-
+    home-manager.useGlobalPkgs = true;
+    home-manager.backupFileExtension = "bak";
+    home-manager.extraSpecialArgs = { inherit inputs; };
+    home-manager.sharedModules = [
+      ../../../homeManagerModules
+      inputs.nixcord.homeModules.nixcord
+      inputs.agenix.homeManagerModules.age
+    ];
     home-manager.users.sophia = {
       soph.base.enable = true;
     };

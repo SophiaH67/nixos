@@ -22,6 +22,10 @@
         safe.directory = [ "/etc/nixos" ];
         blame.ignoreRevsFile = ".git-blame-ignore-revs";
       };
+      settings = {
+        init.defaultBranch = "main";
+        pull.rebase = true;
+      };
     };
   };
 }

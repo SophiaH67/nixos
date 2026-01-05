@@ -5,8 +5,6 @@
   ...
 }:
 {
-  imports = [ ./apps/comms.nix ];
-
   sophrams.gnome.enable = true;
   sophrams.gnome.autoLogin = "sophia";
 

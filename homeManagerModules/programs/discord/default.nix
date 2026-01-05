@@ -1,20 +1,17 @@
 {
-  pkgs,
   config,
+  lib,
   inputs,
   ...
 }:
 {
-  users.users.sophia.packages = with pkgs; [
-    easyeffects
-    fluffychat
-    # thunderbird-latest-unwrapped
+  imports = [
+    inputs.nixcord.homeModules.nixcord
   ];
 
-  home-manager.users.sophia = {
-    imports = [
-      inputs.nixcord.homeModules.nixcord
-    ];
+  options.sophrams.discord.enable = lib.mkEnableOption "Soph Discord";
+
+  config = lib.mkIf config.sophrams.discord.enable {
 
     programs.nixcord = {
       enable = true;

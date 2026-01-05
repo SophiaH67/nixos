@@ -1,6 +1,7 @@
 {
   imports = [
     ./atuin
+    ./discord
     ./firefox
     ./ghostty
     ./git

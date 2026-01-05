@@ -14,6 +14,7 @@
     sophrams.ghostty.enable = true;
     sophrams.htop.enable = true;
     sophrams.git.enable = true;
+    sophrams.discord.enable = true;
 
     home.packages = with pkgs; [
       atool
@@ -35,6 +36,8 @@
       sequoia-chameleon-gnupg
       gnupg # required until https://github.com/NixOS/nixpkgs/issues/473387 is fixed
       waypipe
+      easyeffects
+      fluffychat
     ];
     fonts.fontconfig.enable = true;
 

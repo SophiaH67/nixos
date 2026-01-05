@@ -13,6 +13,7 @@
     soph.dev.enable = true;
     sophrams.ghostty.enable = true;
     sophrams.htop.enable = true;
+    sophrams.git.enable = true;
 
     home.packages = with pkgs; [
       atool
@@ -60,21 +61,6 @@
             integrations_rest_url = "https://scalar.vector.im/api";
           }
         '';
-      };
-      git = {
-        enable = true;
-        userName = "Sophia Hage";
-        userEmail = "sophia@sophiah.gay";
-        signing = {
-          key = "1FB01D6AA1106525";
-          signByDefault = true;
-          format = "openpgp";
-          signer = lib.getExe pkgs.sequoia-chameleon-gnupg;
-        };
-        extraConfig = {
-          safe.directory = [ "/etc/nixos" ];
-          blame.ignoreRevsFile = ".git-blame-ignore-revs";
-        };
       };
       neovim = {
         enable = true;

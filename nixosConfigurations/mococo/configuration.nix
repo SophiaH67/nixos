@@ -53,6 +53,18 @@
     uid = 1003;
   };
 
+  users.users.lux = {
+    isNormalUser = true;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOHTI1LaYIWhJxDPLSyZOi62kXMf3HasHb6NAbh3bIqZ"
+    ];
+    extraGroups = [
+      "wheel"
+    ];
+    shell = pkgs.zsh;
+    uid = 1002;
+  };
+
   users.users.sophia.uid = 1000;
 
   virtualisation.docker = {

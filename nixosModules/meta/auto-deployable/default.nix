@@ -23,7 +23,7 @@
       isNormalUser = true;
       packages = with pkgs; [ zsh ];
       shell = pkgs.zsh;
-      uid = 967;
+      uid = 1067;
     };
 
     sophices.ssh.enable = true;

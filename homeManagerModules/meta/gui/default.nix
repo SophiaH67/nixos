@@ -12,8 +12,6 @@
     sophices.syncthing.enable = true;
     soph.dev.enable = true;
     sophrams.ghostty.enable = true;
-    sophrams.htop.enable = true;
-    sophrams.git.enable = true;
     sophrams.discord.enable = true;
 
     home.packages = with pkgs; [

@@ -24,6 +24,7 @@
         "thirtyninec3-font",
         "htop",
         "ssh",
-        "forgejo"
+        "forgejo",
+        "nvim"
     ]
 }

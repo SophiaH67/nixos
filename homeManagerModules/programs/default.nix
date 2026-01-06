@@ -6,6 +6,7 @@
     ./ghostty
     ./git
     ./htop
+    ./nvim
     ./vscode
     ./zsh
   ];

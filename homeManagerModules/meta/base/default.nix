@@ -14,6 +14,7 @@
     sophrams.zsh.enable = true;
     sophrams.htop.enable = true;
     sophrams.git.enable = true;
+    sophrams.nvim.enable = true;
 
     soph.vr.enable = lib.mkIf nixos-config.soph.vr.enable (lib.mkDefault true);
 

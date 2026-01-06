@@ -62,14 +62,6 @@
           integrations_rest_url = "https://scalar.vector.im/api";
         };
       };
-      neovim = {
-        enable = true;
-        viAlias = true;
-        vimAlias = true;
-        plugins = [
-          pkgs.vimPlugins.LazyVim
-        ];
-      };
       gpg = {
         enable = true;
       };

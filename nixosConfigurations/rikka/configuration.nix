@@ -44,9 +44,6 @@
 
   programs.calls.enable = true;
 
-  # List services that you want to enable:
-  sophices.tailscale.enable = true;
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

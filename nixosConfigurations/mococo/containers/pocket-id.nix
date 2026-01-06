@@ -45,7 +45,7 @@
           settings = {
             APP_URL = "https://auth.soph.zip"; # Maybe migrate to chinese domain later and make soph.zip git? idk
             TRUST_PROXY = true;
- 
+
             ENCRYPTION_KEY_FILE = config.age.secrets."pocketid-encryptionkey".path;
             MAXMIND_LICENSE_KEY_FILE = config.age.secrets."pocketid-maxmind".path;
           };

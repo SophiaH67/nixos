@@ -19,6 +19,16 @@
 
     age.identityPaths = [ "${config.home.homeDirectory}/.ssh/id_rsa" ];
 
+    programs.ssh = {
+      enable = true;
+      extraConfig = ''
+        Host muccc-broken-internet
+          Hostname 192.168.2.2
+          Port 22
+          User openfront
+      '';
+    };
+
     home.file.".ssh/id_ed25519_sk.pub".source = ../../../secrets/id_ed25519_sk.pub;
     home.file.".ssh/id_ed25519_sk".source = ../../../secrets/id_ed25519_sk;
   };

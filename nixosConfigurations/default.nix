@@ -148,6 +148,7 @@ in
     modules = [
       ./mococo/configuration.nix
       ./mococo/hardware-configuration.nix
+      ./mococo/users.nix
     ]
     ++ deployableModules;
   };

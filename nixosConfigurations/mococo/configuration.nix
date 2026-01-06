@@ -74,4 +74,11 @@
   services.tailscale.extraDaemonFlags = [ "--statedir=/persist/tailscale" ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+  networking.nat = {
+    enable = true;
+    internalInterfaces = [ "ve-*" "ve-+" ];
+    externalInterface = "eno1";
+    enableIPv6 = true;
+  };
 }

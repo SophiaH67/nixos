@@ -8,7 +8,7 @@ jobs:
     concurrency:
       cancel-in-progress: false
     container:
-      image: xn--55q89qy6p.com/soph/ci-base@sha256:0b206eac1e88b61a41f29b8c844bad9a392bc95f909c893c19520e1f4febd730 
+      image: xn--55q89qy6p.com/soph/ci-base:latest
     steps:
       - uses: actions/checkout@v6
       # Run checks one-by-one to conserve ram.. Thanks ai bubble 😭

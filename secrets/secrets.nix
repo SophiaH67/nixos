@@ -78,6 +78,7 @@ in
   # Pocket id
   "pocketid-encryptionkey.age".publicKeys = [ mococo-pocket-id ];
   "pocketid-maxmind.age".publicKeys = [ mococo-pocket-id ];
+  "pocketid-smtppassword.age".publicKeys = [ mococo-pocket-id ];
 
   # Kube Things
   "kube-longhorn.age".publicKeys = developers ++ ex-machina;

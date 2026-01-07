@@ -38,7 +38,7 @@
 
   virtualisation.docker = {
     enable = true;
-    enableOnBoot = false;
+    enableOnBoot = true;
     enableNvidia = true;
     autoPrune.enable = true;
     storageDriver = "overlay2";

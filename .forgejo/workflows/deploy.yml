@@ -67,4 +67,4 @@ jobs:
         run: nix-shell -p nixos-rebuild-ng --run "nixos-rebuild build --flake .#${{ matrix.flake }} --max-jobs 1"
       - if: steps.changes.outputs.src == 'true' && github.ref == 'refs/heads/main'
         name: Deploy
-        run: nix --extra-experimental-features "nix-command flakes" run github:serokell/deploy-rs .#${{ matrix.flake }} -- --skip-checks --ssh-user forgejo -- --max-jobs 1
+        run: nix --extra-experimental-features "nix-command flakes" run github:serokell/deploy-rs .#${{ matrix.flake }} -- --skip-checks --ssh-user forgejo --remote-build -- --max-jobs 1

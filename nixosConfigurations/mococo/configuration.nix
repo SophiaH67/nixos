@@ -36,6 +36,8 @@
     }
   ];
 
+  networking.nftables.enable = true;
+
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
@@ -47,9 +49,42 @@
         data-root = "/persist/docker";
         experimental = true;
         ip6tables = true;
-        dns = [
-          "127.0.0.1"
-          "1.1.1.1"
+        ipv6 = true;
+        fixed-cidr-v6 = "fd00:d0ca:2::/56";
+        default-address-pools = [
+          {
+            base = "172.17.0.0/16";
+            size = 16;
+          }
+          {
+            base = "172.18.0.0/16";
+            size = 16;
+          }
+          {
+            base = "172.19.0.0/16";
+            size = 16;
+          }
+          {
+            base = "172.20.0.0/14";
+            size = 16;
+          }
+          {
+            base = "172.24.0.0/14";
+            size = 16;
+          }
+          {
+            base = "172.28.0.0/14";
+            size = 16;
+          }
+          {
+            base = "192.168.0.0/16";
+            size = 20;
+          }
+
+          {
+            base = "fd00:d0ca::/48";
+            size = 64;
+          }
         ];
       };
     };

@@ -61,6 +61,6 @@ jobs:
               - nixosModules/**
               - nixosModules/services/builder/**
               - packages/ex-machina/**
-      - if: steps.changes.outputs.src == 'true'
+      - if: steps.changes.outputs.src == 'true' && github.ref == 'refs/heads/main'
         name: Deploy
         run: nix --extra-experimental-features "nix-command flakes" run github:serokell/deploy-rs .#${{ matrix.flake }} -- --skip-checks --ssh-user forgejo --remote-build

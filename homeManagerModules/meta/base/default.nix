@@ -2,6 +2,7 @@
   config,
   lib,
   nixos-config,
+  pkgs,
   ...
 }:
 {
@@ -19,6 +20,11 @@
     soph.vr.enable = lib.mkIf nixos-config.soph.vr.enable (lib.mkDefault true);
 
     age.identityPaths = [ "${config.home.homeDirectory}/.ssh/id_rsa" ];
+
+    home.packages = [ pkgs.x11_ssh_askpass ];
+    home.sessionVariables = {
+      SSH_ASKPASS = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
+    };
 
     programs.ssh = {
       enable = true;

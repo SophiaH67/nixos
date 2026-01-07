@@ -43,7 +43,7 @@
 
           dataDir = "/data";
           settings = {
-            APP_URL = "https://auth.soph.zip"; # Maybe migrate to chinese domain later and make soph.zip git? idk
+            APP_URL = "https://xn--15qt0w.xn--55q89qy6p.com";
             TRUST_PROXY = true;
 
             ENCRYPTION_KEY_FILE = config.age.secrets."pocketid-encryptionkey".path;

@@ -61,6 +61,10 @@ jobs:
               - nixosModules/**
               - nixosModules/services/builder/**
               - packages/ex-machina/**
+              - .forgejo/workflows/deploy.yml
+      - if: steps.changes.outputs.src == 'true'
+        name: Build
+        run: nixos-rebuild build --flake .#${{ matrix.flake }} --max-jobs 1
       - if: steps.changes.outputs.src == 'true' && github.ref == 'refs/heads/main'
         name: Deploy
-        run: nix --extra-experimental-features "nix-command flakes" run github:serokell/deploy-rs .#${{ matrix.flake }} -- --skip-checks --ssh-user forgejo --remote-build
+        run: nix --extra-experimental-features "nix-command flakes" run github:serokell/deploy-rs .#${{ matrix.flake }} -- --skip-checks --ssh-user forgejo -- --max-jobs 1

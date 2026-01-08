@@ -62,7 +62,7 @@ jobs:
               - nixosModules/services/builder/**
               - packages/ex-machina/**
               - .forgejo/workflows/deploy.yml
-      - if: matrix.flake == "kiara"
+      - if: matrix.flake == 'kiara'
         uses: docker/setup-qemu-action@v3
       - if: steps.changes.outputs.src == 'true'
         name: Build

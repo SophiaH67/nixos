@@ -62,9 +62,9 @@ jobs:
               - nixosModules/services/builder/**
               - packages/ex-machina/**
               - .forgejo/workflows/deploy.yml
-      - if: steps.changes.outputs.src == 'true'
+      - if: steps.changes.outputs.src == 'true' && matrix.flake != 'kiara'
         name: Build
         run: nix-shell -p nixos-rebuild-ng --run "nixos-rebuild build --flake .#${{ matrix.flake }} --max-jobs 1"
       - if: steps.changes.outputs.src == 'true' && github.ref == 'refs/heads/main'
         name: Deploy
-        run: nix --extra-experimental-features "nix-command flakes" run github:szlend/deploy-rs\?ref=fix-show-derivation-parsing .#${{ matrix.flake }} -- --skip-checks --ssh-user forgejo -- --max-jobs 1
+        run: nix --extra-experimental-features "nix-command flakes" run github:szlend/deploy-rs\?ref=fix-show-derivation-parsing .#${{ matrix.flake }} -- --skip-checks --ssh-user forgejo ${{ matrix.flake == 'kiara' && '--remote-build' || '' }} -- --max-jobs 1

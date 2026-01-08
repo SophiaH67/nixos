@@ -14,6 +14,7 @@
   networking.hostName = "mococo";
   networking.domain = "dev.sophiah.gay";
 
+  users.mutableUsers = false; # Everything gets thrown out on reboot anyway
   home-manager.users.sophia = {
     sophrams.atuin.enable = lib.mkForce false;
   };

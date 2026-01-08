@@ -15,6 +15,7 @@ let
   mococo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHS5eQ4DJ+wagB0gzQB+2U1JlONOiSQuNF/3aRdXMnN6";
 
   mococo-pocket-id = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOfAtVhjXx8EeX/s4pHPGf5K87rSJ404g+fBhYrzVHAh pocket-id.mococo.dev.sophiah.gay";
+  mococo-dn42 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN2lfZhC1IsCjw2nlSUM7Q1z9L6MP1rEDg4gMgI3UXQb dn42.mococo.dev.sophiah.gay";
 
   schwi = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPHtJcY8q0xm/J8AkGbX+kx91zXpo8H893mUGqJblgh";
   emir-eins = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHPSscREH9OS6V6uDUgtcnELGBcjTZsqJfsmdu28Q/+C";
@@ -79,6 +80,8 @@ in
   "pocketid-encryptionkey.age".publicKeys = [ mococo-pocket-id ];
   "pocketid-maxmind.age".publicKeys = [ mococo-pocket-id ];
   "pocketid-smtppassword.age".publicKeys = [ mococo-pocket-id ];
+  # Dn42
+  "dn42-wgpriv.age".publicKeys = [ mococo-dn42 ];
 
   # Kube Things
   "kube-longhorn.age".publicKeys = developers ++ ex-machina;

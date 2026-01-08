@@ -25,6 +25,7 @@
         "htop",
         "ssh",
         "forgejo",
-        "nvim"
+        "nvim",
+        "dn42"
     ]
 }

@@ -19,6 +19,7 @@
       {
         config,
         lib,
+        pkgs,
         ...
       }:
       {
@@ -70,6 +71,28 @@
           # Use systemd-resolved inside the container
           # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
           useHostResolvConf = lib.mkForce false;
+        };
+
+        # gobgp is package with cli tools for debugging
+        environment.systemPackages = with pkgs; [ gobgp ];
+        services.gobgpd = {
+          enable = true;
+          settings = {
+            global = {
+              config = {
+                as = 4242423167;
+                router-id = "24.24.231.67"; # 32-bit identifier, just derive it from AS number?
+              };
+            };
+            neighbors = [
+              {
+                config = {
+                  neighbor-address = "fe80::acab%wg0";
+                  peer-as = 4242422264;
+                };
+              }
+            ];
+          };
         };
 
         services.resolved.enable = true;

@@ -41,6 +41,7 @@ in
     };
 
     networking.firewall.enable = lib.mkForce false;
+    users.mutableUsers = false;
 
     services.resolved.dnssec = lib.mkForce "false";
     services.resolved.dnsovertls = lib.mkForce "false";

@@ -14,7 +14,6 @@
   # Docker shenanigans
   virtualisation.docker.enable = true;
 
-  programs.adb.enable = true;
   programs.virt-manager.enable = true;
   users.groups.libvirtd.members = [ "sophia" ];
   virtualisation.libvirtd.enable = true;
@@ -27,6 +26,7 @@
     vpnc
     openvpn
     cloudflare-warp
+    android-tools
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

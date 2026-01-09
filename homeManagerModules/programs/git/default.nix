@@ -21,11 +21,23 @@
       extraConfig = {
         safe.directory = [ "/etc/nixos" ];
         blame.ignoreRevsFile = ".git-blame-ignore-revs";
+        gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
       };
       settings = {
         init.defaultBranch = "main";
         pull.rebase = true;
       };
     };
+
+    home.file."./.ssh/allowed_signers".text = lib.strings.join "\n" [
+      # Soph keys from https://xn--55q89qy6p.com/Soph.keys
+      "sophia@sophiah.gay ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCnikJ8VSNPM1pJQ2ylPLcyWGscM+9bFUnExJCTOjensY/yb2ONmacKlyAA6WX2LwiR24zYys8jS8SiACVo6YAC4LRaN6RwluHHS9gIF90d8lpydV9tn8NPm8N6+8K9HlYn9vguU1Yxpghcnh6KX+qfhBY3A09kRX2W0xIAu9+a7/rMCUWck7E0dfIOu1rn0r8/Jfp3M+VScpQBEv+E0Q9vT9EqqU+LgTWYt87EBNtim7FcX/9iQ3K1x6mNh5oOl7hWsRPnuEDsqLnx/MdWtng6JejzsXp/StGxdWqDVZhTYxLS8kBm92IeXEGynhQUjp8BdoRxRtoSFuoJaJxQVTAYdbnsjc+oge+5u8AlEuq2c3pObIEUZXp73+oMMhpujyfE91REAFpT1ltQJUxQh1YFuMFZhDNz02jy/c+32X/sJCKkRFKti0i/4REbfYiFPZ23QcPMgRRHAjZ4nhlrnyOCSK6vOFwrBUuIdyfVM33VUjk46riFvhxdVrOkv/dup4U="
+      "sophia@sophiah.gay ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC3kL6zYFM19TI987keNBlY8TLyPeRezGlT0ONrcl4ZmsRxQ/UCYyzJryo0mBTcTjTHoLT1W4h2zJ4fhBesJhaHvLp0+KmspTNLr72Bzn3csYNvtW8hjyXnv7DxreZxSrgsthwmzR56oykvlT13MKXCgzitcOxY0+bMykWaAH1ob8/z29MX/U1u3zMAG7IAH8qagJAwAX8n2AhHVFe5zmTAbIlv0s/P/OWHBBPTwASWX1MHJpXu2X9M3F6eJbIvYbzrkfW7c1EnwSDyixyrD4Ih4u+AJ4sHh3OLCW5CyD6vIiqHsEwe1AWZtpFAG/1JoRaNeJ8vNGJrr5evY3JrIeZse7TRDNvqwrKbgLyZWiQfMvoNsqhU0qQOMw0affPzbSFZUk4Grh5p9shbnXbGxY55ZdusEeyeuEGBA5TpOcabnqX5tYJeFoA2zRIEfJzQpjhknl9Wdnehkn/4BsXstGdOu5D2eYPU6OCLPNbT0gFL45brnLbtTmI7GgwmOXPKb0wQ32tuK5G6DCyJgnJK3UVJPsIGBRQ4XsvHMSbag/6jaYrB1K1WCEs38j2cGj9LfEiKBPAAhM60f9+uObwDYELkiejFuFYJaYEvxa9z9jD6sxkvOYt7ZS7x8xMbXvcFDXwWbpe0ZGCNJW3tbCGLjTzLoVsUfnygkfoo9cnPtjdnew=="
+      "shage2@allegion.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICIi54eGW5JePFpM0nFL46TQf+kJyxGBzBVJmePHo8Y9"
+      # Haizakura keys from https://xn--55q89qy6p.com/Haizakura.keys
+      "haizakura@roboco.dev ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9w0D3XABhwPAIfMYTjdMM1v3ZmoyUjspObDOQo2Ymw"
+      # 好公民 system public key from ssh-keyscan xn--55q89qy6p.com
+      "git@xn--55q89qy6p.com,haizakura@noreply.localhost ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAcTw3jEW52zoztEbOYJkvpRec/8XzcnmhFACg/mHaCU"
+    ];
   };
 }

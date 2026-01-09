@@ -27,6 +27,7 @@
         "forgejo",
         "nvim",
         "dn42",
-        "pocket-id"
+        "pocket-id",
+        "gpg"
     ]
 }

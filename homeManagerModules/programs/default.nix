@@ -5,6 +5,7 @@
     ./firefox
     ./ghostty
     ./git
+    ./gpg
     ./htop
     ./nvim
     ./vscode

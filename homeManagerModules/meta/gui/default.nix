@@ -78,13 +78,5 @@
         '';
       };
     };
-    services = {
-      gpg-agent = {
-        enable = true;
-        enableSshSupport = false;
-        sshKeys = [ "1FB01D6AA1106525" ];
-        maxCacheTtl = 300;
-      };
-    };
   };
 }

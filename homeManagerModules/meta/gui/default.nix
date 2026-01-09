@@ -36,6 +36,7 @@
       waypipe
       easyeffects
       fluffychat
+      wl-clipboard
     ];
     fonts.fontconfig.enable = true;
 

@@ -26,6 +26,7 @@
         "ssh",
         "forgejo",
         "nvim",
-        "dn42"
+        "dn42",
+        "pocket-id"
     ]
 }

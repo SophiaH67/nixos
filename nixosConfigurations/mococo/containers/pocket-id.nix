@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  containers.pocketid3 = {
+  containers.pocket-id = {
     autoStart = true;
     privateNetwork = true;
     # privateUsers = "pick";

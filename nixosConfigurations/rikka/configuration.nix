@@ -61,6 +61,29 @@
     172.18.1.100 assets.filme-serien.iceportal.de
   '';
 
+  networking.networkmanager.dispatcherScripts = [
+    {
+      source = pkgs.writeText "wifi-bahn-autologin" ''
+        if [ "$2" != "up" ]; then
+          exit
+        fi
+
+        WIFI_NAME=$(${pkgs.networkmanager}/bin/nmcli -f 802-11-wireless.ssid con show $CONNECTION_UUID | cut -c22- | ${lib.getExe pkgs.gawk} '{$1=$1};1')
+        logger "Device $DEVICE_IFACE coming up. Connected to $WIFI_NAME"
+
+        if [ "$WIFI_NAME" != "WIFI@DB" ]; then
+          logger "Connected to $WIFI_NAME, not WIFI@DB. Ignoring..."
+          exit
+        fi
+
+        echo "WIFI@DB detected. Running CNA logon!"
+
+        ${lib.getExe pkgs.curl} 'https://wifi.bahn.de/cna/logon' -H 'sec-ch-ua-platform: "Linux"' -H 'X-Csrf-Token: csrf' -H 'X-Real-IP: 192.168.64.0' -H 'Referer: https://wifi.bahn.de/cna/' -H 'sec-ch-ua: "Chromium";v="143", "Not A(Brand";v="24"' -H 'sec-ch-ua-mobile: ?0' -H 'X-Reserve-Id: 1' -H 'X-Requested-With: XMLHttpRequest' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36' -H 'Content-type: application/json' --data-raw '{}'
+      '';
+      type = "basic";
+    }
+  ];
+
   services.fprintd.enable = true;
   services.fprintd.tod.enable = true;
   services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;

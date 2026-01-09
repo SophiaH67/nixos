@@ -120,4 +120,10 @@
     externalInterface = "eno1";
     enableIPv6 = true;
   };
+
+  # Remove "127.0.0.2 mococo.dev.sophiah.gay mococo", which caused a lot of issues in docker
+  networking.hosts = lib.mkForce {
+    "127.0.0.1" = ["localhost"];
+    "::1" = ["localhost"];
+  };
 }

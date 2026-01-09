@@ -87,6 +87,7 @@
             bradlc.vscode-tailwindcss
             ms-python.python
             davidanson.vscode-markdownlint
+            rust-lang.rust-analyzer
           ]
           ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             {

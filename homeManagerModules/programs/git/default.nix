@@ -36,8 +36,8 @@
       "shage2@allegion.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICIi54eGW5JePFpM0nFL46TQf+kJyxGBzBVJmePHo8Y9"
       # Haizakura keys from https://xn--55q89qy6p.com/Haizakura.keys
       "haizakura@roboco.dev ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9w0D3XABhwPAIfMYTjdMM1v3ZmoyUjspObDOQo2Ymw"
-      # 好公民 system public key from ssh-keyscan xn--55q89qy6p.com
-      "git@xn--55q89qy6p.com,haizakura@noreply.localhost ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAcTw3jEW52zoztEbOYJkvpRec/8XzcnmhFACg/mHaCU"
+      # 好公民 system signing key
+      "git@xn--55q89qy6p.com,haizakura@noreply.localhost ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIbrS2ceNh8m9r5dj1vxCkg+B6it4sAr+GTPdlcoyOHK"
     ];
   };
 }

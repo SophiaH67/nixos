@@ -8,7 +8,8 @@
 {
   imports = [ ../rikka/configuration.nix ];
 
-  home-manager.users.sophia.programs.git.signing.key = lib.mkForce "0AE2A6249EC695A8";
+  home-manager.users.sophia.programs.git.signing.key = lib.mkForce "/home/sophia/.ssh/id_ed25519.pub";
+  home-manager.users.sophia.programs.git.signing.format = lib.mkForce "ssh";
   home-manager.users.sophia.programs.git.userEmail = lib.mkForce "shage2@allegion.com";
   networking.hostName = lib.mkForce "alice";
 

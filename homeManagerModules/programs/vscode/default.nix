@@ -9,6 +9,8 @@
   options.sophrams.vscode.enable = lib.mkEnableOption "Soph VSCode";
 
   config = lib.mkIf config.sophrams.vscode.enable {
+    home.packages = with pkgs; [ markdownlint-cli2 ];
+
     programs.vscode = {
       enable = true;
       # https://www.reddit.com/r/NixOS/comments/15mohek/installing_vscode_extensions_with_homemanager_not/
@@ -52,6 +54,9 @@
           chat.disableAIFeatures = true;
           nix.enableLanguageServer = true;
           nix.serverPath = "${pkgs.nixd}/bin/nixd";
+          editor.rulers = [
+            80
+          ];
         };
         extensions =
           with pkgs.vscode-extensions;
@@ -81,6 +86,7 @@
             ms-python.black-formatter
             bradlc.vscode-tailwindcss
             ms-python.python
+            davidanson.vscode-markdownlint
           ]
           ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             {

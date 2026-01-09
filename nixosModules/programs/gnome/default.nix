@@ -147,7 +147,6 @@
               [
                 blur-my-shell.extensionUuid
                 night-theme-switcher.extensionUuid
-                cloudflare-warp-toggle.extensionUuid
               ]
               ++ lib.optionals config.sophrams.gnome.cloudflare-warp [
                 pkgs.gnomeExtensions.cloudflare-warp-toggle.extensionUuid

@@ -25,7 +25,6 @@
     networkmanager-vpnc
     vpnc
     openvpn
-    cloudflare-warp
     android-tools
   ];
 

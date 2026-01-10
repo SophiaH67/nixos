@@ -15,7 +15,7 @@
         {
           source = builtins.fetchurl {
             url = "https://github.com/sophiaH67.gpg";
-            sha256 = "sha256:8ZzN+apZGTj3Oh7ygrQ0sdiopFC/3/GbgArlwnrJBsE=";
+            sha256 = "sha256:t1KJpYit5Q3px9J24vGfOTSidGfAEmCclhTcC9QXBeI=";
           };
           trust = "ultimate";
         }

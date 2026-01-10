@@ -57,6 +57,7 @@
           editor.rulers = [
             80
           ];
+          diffEditor.ignoreTrimWhitespace = false;
         };
         extensions =
           with pkgs.vscode-extensions;

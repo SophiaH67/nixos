@@ -28,6 +28,7 @@
         "nvim",
         "dn42",
         "pocket-id",
-        "gpg"
+        "gpg",
+        "prometheus"
     ]
 }

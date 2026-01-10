@@ -50,6 +50,8 @@
           messageLatency.enable = true;
           noUnblockToJump.enable = true;
           oneko.enable = true;
+          oneko.speed = 10;
+          oneko.fps = 8;
           webScreenShareFixes.enable = true;
           XSOverlay.enable = config.soph.vr.enable;
         };

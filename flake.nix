@@ -40,7 +40,7 @@
     librepods.url = "github:kavishdevar/librepods?ref=linux/rust";
     librepods.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixcord.url = "github:kaylorben/nixcord";
+    nixcord.url = "github:sophiah67/nixcord";
     nixcord.inputs.nixpkgs.follows = "nixpkgs";
 
     kubenix.url = "github:hall/kubenix";

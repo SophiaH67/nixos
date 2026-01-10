@@ -9,6 +9,8 @@
   config = lib.mkIf config.sophrams.gpg.enable {
     programs.gpg = {
       enable = true;
+      mutableKeys = false;
+      mutableTrust = false;
       publicKeys = [
         {
           source = builtins.fetchurl {

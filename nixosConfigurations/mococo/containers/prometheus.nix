@@ -1,5 +1,9 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 {
+  networking.firewall.extraInputRules = ''
+    ip6 saddr ${config.containers.prometheus.localAddress6} tcp dport { 18081, 18082 } accept
+  '';
+
   containers.prometheus = {
     autoStart = true;
     privateNetwork = true;
@@ -35,6 +39,27 @@
 
         services.prometheus = {
           enable = true;
+
+          scrapeConfigs = [
+            {
+              job_name = "immich_api";
+              static_configs = [
+                {
+                  targets = [ "[fc00::1]:18081" ];
+                  scrape_interval = "15s";
+                }
+              ];
+            }
+            {
+              job_name = "immich_microservices";
+              static_configs = [
+                {
+                  targets = [ "[fc00::1]:18081" ];
+                  scrape_interval = "15s";
+                }
+              ];
+            }
+          ];
         };
 
         services.oauth2-proxy = {

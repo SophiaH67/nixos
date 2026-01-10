@@ -75,6 +75,7 @@
           upstream = [
             "http://[::1]:9090"
           ];
+          cookie.expire = "1h";
         };
 
         # It really loves to just start before working network... This is scuffed but it'll work

@@ -5,6 +5,7 @@
     ./builder-user
     ./cloudflare-warp
     ./plymouth
+    ./isla
     ./renovate
     ./skeb-scraper
     ./ssh

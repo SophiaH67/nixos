@@ -103,4 +103,8 @@ in
   "wallpaper-alice-dark.png.age".publicKeys = developers ++ [ alice ];
   "wallpaper-ayumu.png.age".publicKeys = developers ++ [ ayumu ];
   "wallpaper-ayumu-dark.png.age".publicKeys = developers ++ [ ayumu ];
+
+  # Isla
+  "isla-rikka-wgpriv.age".publicKeys = [ rikka ];
+  "isla-kiara-wgpriv.age".publicKeys = [ kiara ];
 }

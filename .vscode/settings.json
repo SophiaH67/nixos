@@ -30,6 +30,7 @@
         "pocket-id",
         "gpg",
         "prometheus",
-        "firewall"
+        "firewall",
+        "isla"
     ]
 }

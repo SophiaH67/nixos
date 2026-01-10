@@ -20,7 +20,7 @@ in
       file = ../../../secrets/isla-${config.networking.hostName}-wgpriv.age;
       mode = "444";
     };
-    
+
     networking.firewall.allowedUDPPorts = [ config.networking.wireguard.interfaces.isla0.listenPort ];
 
     networking.wireguard = {

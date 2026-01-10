@@ -126,6 +126,7 @@
     # -=-=- Nix -=-=-
     virtualisation.vmVariant = {
       virtualisation.tpm.enable = true;
+      virtualisation.memorySize = 3072;
     };
     virtualisation.vmVariantWithDisko = config.virtualisation.vmVariant;
 

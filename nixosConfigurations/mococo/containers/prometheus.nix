@@ -43,19 +43,19 @@
           scrapeConfigs = [
             {
               job_name = "immich_api";
+              scrape_interval = "15s";
               static_configs = [
                 {
                   targets = [ "[fc00::1]:18081" ];
-                  scrape_interval = "15s";
                 }
               ];
             }
             {
               job_name = "immich_microservices";
+              scrape_interval = "15s";
               static_configs = [
                 {
                   targets = [ "[fc00::1]:18081" ];
-                  scrape_interval = "15s";
                 }
               ];
             }

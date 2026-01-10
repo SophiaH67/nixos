@@ -31,7 +31,6 @@
       inputs.librepods.packages.${stdenv.system}.default
       librepcb
       kicad
-      sequoia-chameleon-gnupg
       gnupg # required until https://github.com/NixOS/nixpkgs/issues/473387 is fixed
       waypipe
       easyeffects

@@ -16,7 +16,6 @@
         key = "1FB01D6AA1106525";
         signByDefault = true;
         format = "openpgp";
-        # signer = lib.getExe pkgs.sequoia-chameleon-gnupg;
       };
       extraConfig = {
         safe.directory = [ "/etc/nixos" ];

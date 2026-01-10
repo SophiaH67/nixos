@@ -19,6 +19,13 @@
         }
         {
           source = builtins.fetchurl {
+            url = "https://github.com/pacistardust.gpg";
+            sha256 = "sha256:qs3LYWlSEbHMYSOIbBUHQjlFtofpjUuiXK0rsU2DSRE=";
+          };
+          trust = "marginal";
+        }
+        {
+          source = builtins.fetchurl {
             url = "https://github.com/fredi-68.gpg";
             sha256 = "sha256:UZavgi5kvgGO6Y5W0JZ35P9emArGDqgK/6cgNBtIsOY=";
           };

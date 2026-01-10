@@ -21,7 +21,7 @@ in
       mode = "444";
     };
     
-    networking.firewall.allowedUDPPorts = [ config.networking.wireguard.interfaces.isla0.listenPort ];
+    networking.firewall.trustedInterfaces = [ "isla0" ];
 
     networking.wireguard = {
       enable = true;

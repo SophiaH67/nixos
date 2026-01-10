@@ -29,6 +29,7 @@
         "dn42",
         "pocket-id",
         "gpg",
-        "prometheus"
+        "prometheus",
+        "firewall"
     ]
 }

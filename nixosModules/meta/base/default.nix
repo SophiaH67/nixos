@@ -65,7 +65,10 @@
     ];
 
     # -=-=- Networking -=-=-
+    networking.nftables.enable = true;
     networking.firewall.enable = true;
+    networking.firewall.rejectPackets = true;
+    networking.firewall.pingLimit = "1/minute burst 5 packets";
     networking.firewall.allowedTCPPorts = [ 22 ];
     networking.search = [
       "ex-machina.sophiah.gay"

@@ -20,6 +20,7 @@
       {
         lib,
         config,
+        pkgs,
         ...
       }:
       {
@@ -50,6 +51,9 @@
             "http://[::1]:9090"
           ];
         };
+
+        # It really loves to just start before working network... This is scuffed but it'll work
+        systemd.services."oauth2-proxy".serviceConfig.ExecStartPre = [ "${pkgs.toybox}/bin/sleep 5" ];
 
         networking = {
           firewall.allowedTCPPorts = [

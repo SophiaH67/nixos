@@ -11,7 +11,7 @@ let
     read -p "Press enter to exit"
   '';
   s_vrcft = pkgs.writeShellScriptBin "vrcft" ''
-    /home/sophia/git/VRCFaceTracking.Avalonia/result/bin/vrchatfacetracking
+    /home/sophia/git/VRCFaceTracking.Avalonia.working/result/bin/vrchatfacetracking
     echo "\n---\nExited with code: $?\n---\n"
     read -p "Press enter to exit"
   '';

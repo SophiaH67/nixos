@@ -55,6 +55,7 @@
                   name = "etwas";
                   allowedIPs = [
                     "fe80::acab" # Maybe??
+                    "fd00::/8"
                   ];
                   endpoint = "ncvps.dn42.etwas.me:22273";
                   publicKey = "gHC8pmVSKgfFVXHWHSkd4zajq2Of/JRtmynMJeTvqkE=";

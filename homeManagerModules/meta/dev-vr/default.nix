@@ -13,7 +13,7 @@
       (alcom.overrideAttrs (oldAttrs: {
         postFixup = (oldAttrs.postFixup or "") + ''
           wrapProgram $out/bin/ALCOM \
-            --set WEBKIT_DISABLE_DMABUF_RENDERER 1
+            --set __NV_DISABLE_EXPLICIT_SYNC 1
         '';
       }))
       unityhub # Unfortunately no direct unity from nixpkgs :/
@@ -60,6 +60,7 @@
           	# Create unity wrapper script
                   cat > "$out/bin/unity" <<-EOF
           	#!/bin/sh
+                  SDL_VIDEODRIVER=wayland
                   exec -a "$out/Editor/${version}/Editor/Unity" "${unityhub.fhsEnv}/bin/unityhub-fhs-env" "$out/Editor/${version}/Editor/Unity" "\$@"
           	EOF
           	chmod a+x "$out/bin/unity"

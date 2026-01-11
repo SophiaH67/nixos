@@ -26,6 +26,7 @@ in
   environment.systemPackages = [
     pkgs.spotify
     orca-slicer
+    pkgs.nvtopPackages.nvidia
   ];
 
   sophices.boot-unlock.enable = false;

@@ -28,7 +28,6 @@ in
     orca-slicer
   ];
 
-  sophices.tailscale.enable = true;
   sophices.boot-unlock.enable = false;
   sophices.boot-unlock.tor = true;
   soph.drawing.enable = true;

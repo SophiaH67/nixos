@@ -13,7 +13,11 @@ let
   filteredPeers = builtins.filter (h: h != config.networking.hostName) peers;
 in
 {
-  options.sophices.isla.enable = lib.mkEnableOption "Isla";
+  options.sophices.isla.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = builtins.pathExists ../../../secrets/isla-${config.networking.hostName}-wgpriv.age;
+    description = "Enable Isla. Defaults to yes if a private key was found for this host";
+  };
 
   config = lib.mkIf config.sophices.isla.enable {
     age.secrets."isla-${config.networking.hostName}-wgpriv" = {

@@ -41,7 +41,7 @@
 
           wireguard = {
             enable = true;
-            interfaces.wg0 = {
+            interfaces.dn42 = {
               # Public key: sophiaUETgsjq0+NeeQ88RfUnDHbEQ48w9H1+jZBSz4=
               privateKeyFile = config.age.secrets."dn42-wgpriv".path;
               listenPort = 51842;
@@ -88,7 +88,7 @@
             neighbors = [
               {
                 config = {
-                  neighbor-address = "fe80::acab%wg0";
+                  neighbor-address = "fe80::acab%dn42";
                   peer-as = 4242422264;
                 };
               }

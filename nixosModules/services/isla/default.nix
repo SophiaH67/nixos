@@ -6,6 +6,7 @@
 let
   mkIpPart = str: builtins.substring 0 4 (builtins.hashString "sha1" str);
   mkIp = str: "fd31:a15a::${mkIpPart str}";
+  mkBracketedIp = str: "[${mkIp str}]";
   peers = [
     "rikka"
     "kiara"
@@ -28,6 +29,13 @@ in
     };
 
     networking.firewall.allowedUDPPorts = [ config.networking.wireguard.interfaces.isla0.listenPort ];
+    networking.firewall.interfaces.isla0 = {
+      allowedTCPPorts =
+        [ ]
+        ++ config.services.openssh.ports
+        ++ lib.optional config.services.prometheus.exporters.node.enable config.services.prometheus.exporters.node.port;
+    };
+    services.fail2ban.ignoreIP = map mkIp peers;
 
     networking.wireguard = {
       enable = true;
@@ -49,5 +57,14 @@ in
     };
 
     networking.extraHosts = lib.strings.join "\n" (map (peer: "${mkIp peer} ${peer}.isla") peers);
+
+    services.prometheus.exporters = {
+      node = {
+        enable = true;
+        enabledCollectors = [ "systemd" ];
+        port = 51120;
+        listenAddress = mkBracketedIp config.networking.hostName;
+      };
+    };
   };
 }

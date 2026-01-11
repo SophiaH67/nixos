@@ -88,6 +88,7 @@
     in
     {
       nixosModules.default = import ./nixosModules;
+      homeModules.default = import ./homeManagerModules;
       nixosConfigurations = import ./nixosConfigurations { inherit inputs self; };
       packages = import ./packages inputs;
 

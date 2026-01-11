@@ -9,6 +9,8 @@ let
   peers = [
     "rikka"
     "kiara"
+    "ayumu"
+    "mococo"
   ];
   filteredPeers = builtins.filter (h: h != config.networking.hostName) peers;
 in

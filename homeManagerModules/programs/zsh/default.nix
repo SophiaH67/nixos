@@ -40,6 +40,15 @@
           "direnv"
         ];
       };
+      shellAliases = {
+        # Git push one-for-one
+        gpofo = ''
+          BRANCH=$(git rev-parse --abbrev-ref HEAD)
+          for rev in $(git rev-list --reverse origin/$BRANCH..$BRANCH)
+          do
+            git push origin $rev:$BRANCH
+          done'';
+      };
     };
   };
 }

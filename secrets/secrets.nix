@@ -107,4 +107,6 @@ in
   # Isla
   "isla-rikka-wgpriv.age".publicKeys = [ rikka ];
   "isla-kiara-wgpriv.age".publicKeys = [ kiara ];
+  "isla-mococo-wgpriv.age".publicKeys = [ mococo ];
+  "isla-ayumu-wgpriv.age".publicKeys = [ ayumu ];
 }

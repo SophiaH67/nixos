@@ -47,5 +47,7 @@ in
         }) filteredPeers;
       };
     };
+
+    networking.extraHosts = lib.strings.join "\n" (map (peer: "${mkIp peer} ${peer}.isla") peers);
   };
 }

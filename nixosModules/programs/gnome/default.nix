@@ -21,6 +21,7 @@
   config = lib.mkIf config.sophrams.gnome.enable {
     services.earlyoom.enable = true;
     services.earlyoom.enableNotifications = true;
+    services.earlyoom.freeMemThreshold = 2;
 
     sophrams.wallpaper.enable = true;
     services.desktopManager.gnome.enable = true;

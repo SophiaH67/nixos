@@ -26,6 +26,8 @@
     vpnc
     openvpn
     android-tools
+    monero-gui
+    electrum
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

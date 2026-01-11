@@ -9,18 +9,26 @@
   options.soph.vr.enable = lib.mkEnableOption "Soph VR Things";
 
   config = lib.mkIf config.soph.vr.enable {
-    # Originally from https://lvra.gitlab.io/docs/fossvr/xrizer/#nixos
-    # Now from https://gitlab.rxserver.net/reality-exe/nix-config/-/blob/main/modules/nix/vr/default.nix
+    # https://lvra.gitlab.io/docs/fossvr/xrizer/
     nixpkgs.overlays = [
       (final: prev: {
-        xrizer = prev.xrizer.overrideAttrs (oldAttrs: {
-          patches = (oldAttrs.patches or [ ]) ++ [
-            # ./xrizer-patches/skeletal_summary.patch
-            # ./xrizer-patches/device_refactor2.patch
-            # ./xrizer-patches/generic_trackers.patch
-          ];
-          doCheck = false;
-        });
+        xrizer = prev.xrizer.overrideAttrs rec {
+          src = final.fetchFromGitHub {
+            owner = "ImSapphire";
+            repo = "xrizer";
+            # Fill in the latest commit hash from https://github.com/ImSapphire/xrizer/commits/next (click the Copy full SHA button on the right side)
+            rev = "0046aae8bab66a6a7ad69d5dac481ea294e0a803";
+            # Fill with the correct hash from the build error
+            hash = "sha256-NnNYzoekeZeNQVoy8phcnWkyORFvxizDVkWGArg316g=";
+          };
+
+          cargoDeps = prev.rustPlatform.importCargoLock {
+            lockFile = src + "/Cargo.lock";
+            outputHashes = {
+              "openxr-0.19.0" = "sha256-mljVBbQTq/k7zd/WcE1Sd3gibaJiZ+t7td964clWHd8=";
+            };
+          };
+        };
       })
     ];
     environment.variables = {
@@ -33,6 +41,7 @@
       pkgs.tmux
       pkgs.android-tools
       pkgs.xrizer
+      pkgs.oscavmgr
       self.packages.${pkgs.stdenv.hostPlatform.system}.soph-vr-mode
     ];
     sophrams.vrcx.enable = true;
@@ -74,7 +83,7 @@
             self.packages.${pkgs.stdenv.hostPlatform.system}.soph-vr-mode
           ];
           use-steamvr-lh = true;
-          openvr-compat-path = "${pkgs.opencomposite}/lib/opencomposite";
+          openvr-compat-path = "${pkgs.xrizer}/lib/xrizer";
         };
       };
     };

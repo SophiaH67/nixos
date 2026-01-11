@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   s_calibration = pkgs.writeShellScriptBin "calibration" ''
     ${pkgs.motoc}/bin/motoc continue
@@ -11,7 +11,7 @@ let
     read -p "Press enter to exit"
   '';
   s_vrcft = pkgs.writeShellScriptBin "vrcft" ''
-    /home/sophia/git/VRCFaceTracking.Avalonia.working/result/bin/vrchatfacetracking
+    ${lib.getExe pkgs.oscavmgr} openxr
     echo "\n---\nExited with code: $?\n---\n"
     read -p "Press enter to exit"
   '';
@@ -57,6 +57,7 @@ pkgs.stdenv.mkDerivation {
     s_calibration
     s_overlay
     s_lh
+    oscavmgr
   ];
 
   installPhase = ''

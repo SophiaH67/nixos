@@ -44,6 +44,4 @@ in
     80
     443
   ];
-
-  sophices.isla.enable = true;
 }

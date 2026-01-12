@@ -107,6 +107,4 @@
 
   sophices.renovate.enable = true;
   soph.dev.enable = true;
-
-  sophices.isla.enable = true;
 }

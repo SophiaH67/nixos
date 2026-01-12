@@ -23,6 +23,9 @@ forAllSystems (
     thirtyninec3-font = import ./thirtyninec3-font { inherit pkgs; };
     ex-machina = import ./ex-machina { inherit inputs pkgs system; };
     ex-machina-kube-nix = import ./ex-machina/kubenix.nix { inherit inputs pkgs system; };
-    soph-vr-mode = import ./soph-vr-mode { inherit inputs pkgs; lib = pkgs.lib; };
+    soph-vr-mode = import ./soph-vr-mode {
+      inherit inputs pkgs;
+      lib = pkgs.lib;
+    };
   }
 )

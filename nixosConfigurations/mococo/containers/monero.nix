@@ -1,5 +1,8 @@
 {
-  networking.firewall.allowedTCPPorts = [ 18080 18081 ];
+  networking.firewall.allowedTCPPorts = [
+    18080
+    18081
+  ];
 
   containers.monero = {
     autoStart = true;

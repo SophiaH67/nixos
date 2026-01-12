@@ -11,6 +11,13 @@
   soph.comms.enable = true;
   sophrams.chromium.enable = true;
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.settings = {
+    General = {
+      DeviceID = "bluetooth:004C:0000:0000";
+    };
+  };
+
   fonts.packages = with pkgs; [
     nerd-fonts._0xproto
     nerd-fonts.fira-code

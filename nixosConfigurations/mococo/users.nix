@@ -33,5 +33,18 @@
     soph.base.enable = true;
   };
 
+  users.users.paci = {
+    isNormalUser = true;
+    openssh.authorizedKeys.keys = [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCuc+Pm56oupBvjsaE94Dt1TVC50/pG++cim6qbuP9jPc5ZnZf4exX/dfEf4WU4pEAIHJVNyyE6TzlhtueTg7uT1UV63ZxFAWJIG1YFmNBIau7jTtJ1PLOW3ODCKM7jMLkIxfaqFDSHpzomRzwfXuHenunmyCV3il5kFgsMqeLNCxPzGpBLUJpUrSKCkPMwB67T92DBKdfQMJkYaxKBefRLOmJGpPci+ror9EbJBYkiGKDAIDdD2dfgM5MgS+gtulTvL+uz1nnmbrqqj8/KNGqfYFzfGIzmgkqUuRCxHvGpcAzzEnmU+EpEllzt2XHa/4rjVOuyDj/kRsFnw2fGOKFlauJFS8R4xdx7eqau9efYC0WVCqUtTtN8tnVldOWULf3sth1SRGPOscu3TnWdEyVRXmVZToEX9vuS1nHKnhdb1xPzVtbgVNBM85AY/qs6rd0Pf/8WNWY2ZtQVGUxBkF/ETxy/EOH+F8h9DlSGLemDCK6b214FXRgxBJyRPAg0GiGPixe93eeArtlT5ySi2RogRgeuk/idc5zL09Ni1n1X8yEkie8JfiRKY4ZdvNgFU/n6M6BHNNCMX9jUT8IEfWVMt8YYcvm6GH/xuqppq1TyIyrQPOPUi2qqjlXZnRrwUJsQd24OI9lSjGsUuivDd1WUrqDv/dQOcoiZaJDdiUYyHw=="
+    ];
+    extraGroups = [ "sshable" ];
+    uid = 1004;
+  };
+  home-manager.users.paci = {
+    soph.base.enable = true;
+    home.packages = with pkgs; [ rsync ];
+  };
+
   users.users.sophia.uid = 1000;
 }

@@ -30,5 +30,6 @@
   nixpkgs.config.allowUnfree = true;
   home-manager.users.sophia = {
     soph.gui.enable = true;
+    sophrams.gnome.enable = true;
   };
 }

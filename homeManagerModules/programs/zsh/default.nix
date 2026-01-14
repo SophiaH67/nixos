@@ -16,12 +16,24 @@
         "completion"
       ];
       syntaxHighlighting.enable = true;
-      initContent = ''
-        [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
-        ${if config.programs.atuin.enable then "eval \"$(atuin init zsh)\"" else ""}
-        alias fixlonghornpls="kubectl get pods -n longhorn-system | grep -e Error -e CrashLoopBackOff -e Unknown -e ContainerCreating | cut -d' ' -f 1 | xargs kubectl delete pod -n longhorn-system"
-        alias fixkubepls="kubectl get pods -A | grep -e Error -e CrashLoopBackOff -e Unknown -e ContainerCreating | awk ' { printf \"kubectl delete pod -n %s %s\n\", \$1, \$2} ' | bash"
-      '';
+      initContent = lib.mkMerge [
+        (lib.mkOrder 90 ''
+          if [ -n "${"$"}{ZSH_DEBUGRC+1}" ]; then
+            zmodload zsh/zprof
+          fi
+        '')
+        (lib.mkOrder 1000 ''
+          [[ ! -f ${./p10k.zsh} ]] || source ${./p10k.zsh}
+          ${if config.programs.atuin.enable then "eval \"$(atuin init zsh)\"" else ""}
+          alias fixlonghornpls="kubectl get pods -n longhorn-system | grep -e Error -e CrashLoopBackOff -e Unknown -e ContainerCreating | cut -d' ' -f 1 | xargs kubectl delete pod -n longhorn-system"
+          alias fixkubepls="kubectl get pods -A | grep -e Error -e CrashLoopBackOff -e Unknown -e ContainerCreating | awk ' { printf \"kubectl delete pod -n %s %s\n\", \$1, \$2} ' | bash"
+        '')
+        (lib.mkOrder 9000 ''
+          if [ -n "''${ZSH_DEBUGRC+1}" ]; then
+            zprof
+          fi
+        '')
+      ];
       plugins = [
         {
           name = "powerlevel10k";

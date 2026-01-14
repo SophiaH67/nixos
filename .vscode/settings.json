@@ -33,6 +33,7 @@
         "firewall",
         "isla",
         "monero",
-        "soph-vr-mode"
+        "soph-vr-mode",
+        "base"
     ]
 }

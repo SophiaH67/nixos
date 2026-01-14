@@ -103,9 +103,21 @@
     # ];
 
     environment.systemPackages = with pkgs; [
-      busybox # For lots of utils (e.g. killall)
+      # START: https://archlinux.org/packages/core/any/base/
+      coreutils-full
+      file
+      findutils
+      gawk
+      gnugrep
+      gnused
+      iproute2
+      iputils
+      pciutils
+      psmisc
+      # END: https://archlinux.org/packages/core/any/base/
       sbctl
       hyfetch
+      usbutils
     ];
 
     # -=-=- Locale -=-=-

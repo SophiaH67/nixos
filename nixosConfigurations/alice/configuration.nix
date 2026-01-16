@@ -41,6 +41,8 @@
     cura-appimage
     (azure-cli.withExtensions [ azure-cli-extensions.azure-devops ])
     inputs.vcxproj2cmake.packages.${system}.default
+    ghidra
+    gcc-arm-embedded
   ];
 
   # For simonsvoss smartstick AX

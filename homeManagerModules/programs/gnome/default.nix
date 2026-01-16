@@ -49,6 +49,8 @@
         show-battery-percentage = true;
         locate-pointer = true;
         gtk-enable-primary-paste = false;
+        font-antialiasing = "rgba";
+        font-hinting = "full";
       };
 
       "org/gnome/desktop/input-sources" = {

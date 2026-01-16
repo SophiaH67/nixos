@@ -21,6 +21,7 @@
         natural-scroll = true;
         tap-to-click = false;
         disable-while-typing = false;
+        two-finger-scrolling-enabled = true;
       };
 
       "org/gnome/desktop/peripherals/mouse" = {

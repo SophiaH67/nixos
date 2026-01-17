@@ -36,6 +36,7 @@
       easyeffects
       fluffychat
       wl-clipboard
+      ffmpeg
     ];
     fonts.fontconfig.enable = true;
 

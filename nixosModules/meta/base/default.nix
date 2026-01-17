@@ -74,15 +74,35 @@
       "dev.sophiah.gay"
     ];
     networking.nameservers = [
-      "2620:fe::9#dns9.quad9.net"
-      "9.9.9.9#dns9.quad9.net"
+      "::1"
     ];
-    services.resolved = {
+    networking.networkmanager.dns = "none";
+    services.stubby = {
       enable = true;
-      dnssec = "true";
-      domains = config.networking.search;
-      fallbackDns = config.networking.nameservers;
-      dnsovertls = "true";
+      settings = pkgs.stubby.passthru.settingsExample // {
+        upstream_recursive_servers = [
+          {
+            address_data = "2620:fe::10";
+            tls_auth_name = "dns.quad9.net";
+            tls_pubkey_pinset = [
+              {
+                digest = "sha256";
+                value = "i2kObfz0qIKCGNWt7MjBUeSrh0Dyjb0/zWINImZES+I=";
+              }
+            ];
+          }
+          {
+            address_data = "9.9.9.10";
+            tls_auth_name = "dns.quad9.net";
+            tls_pubkey_pinset = [
+              {
+                digest = "sha256";
+                value = "i2kObfz0qIKCGNWt7MjBUeSrh0Dyjb0/zWINImZES+I=";
+              }
+            ];
+          }
+        ];
+      };
     };
 
     # -=-=- Security -=-=-

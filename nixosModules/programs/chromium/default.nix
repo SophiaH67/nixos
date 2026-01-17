@@ -51,7 +51,8 @@
         "eninkmbmgkpkcelmohdlgldafpkfpnaf" # Reddit Untranslate
         "mpiodijhokgodhhofbcjdecpffjipkle" # SingleFile
         "jghecgabfgfdldnmbfkhmffcabddioke" # Volume Master
-        "cdglnehniifkbagbbombnjghhcihifij" # Kagi Extensino
+        "cdglnehniifkbagbbombnjghhcihifij" # Kagi Extension
+        "alblebhaoakdgapamjdifdfnaicpnklm" # Kagi Translate
       ];
     };
 

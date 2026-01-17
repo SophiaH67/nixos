@@ -61,7 +61,7 @@
     description = "Enroll LUKS key to TPM2";
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = ''${pkgs.systemd}/bin/systemd-cryptenroll --tpm2-pcrs=0 --tpm2-device=auto --unlock-key-file=/disk-encryption.key'';
+      ExecStart = "${pkgs.systemd}/bin/systemd-cryptenroll --tpm2-pcrs=0 --tpm2-device=auto --unlock-key-file=/disk-encryption.key";
       RemainAfterExit = "yes";
     };
     wantedBy = [ "multi-user.target" ];

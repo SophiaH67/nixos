@@ -26,6 +26,7 @@
       cargo
       rustc
       github-cli
+      openssl
     ];
 
     sophrams.vscode.enable = true;

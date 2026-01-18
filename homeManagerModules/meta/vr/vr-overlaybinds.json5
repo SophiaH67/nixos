@@ -143,7 +143,7 @@
     },
     show_hide: {
       double_click: true,
-      left: "/user/hand/left/input/y/click",
+      left: "/user/hand/left/input/x/click",
     },
     space_drag: {
       left: "/user/hand/left/input/thumbstick/click",

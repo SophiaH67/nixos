@@ -6,7 +6,7 @@ let
     read -p "Press enter to exit"
   '';
   s_overlay = pkgs.writeShellScriptBin "overlay" ''
-    ${pkgs.wlx-overlay-s}/bin/wlx-overlay-s --replace
+    ${lib.getExe pkgs.wayvr} --replace
     echo "\n---\nExited with code: $?\n---\n"
     read -p "Press enter to exit"
   '';
@@ -52,7 +52,7 @@ pkgs.stdenv.mkDerivation {
     kitty
     lighthouse-steamvr
     motoc
-    wlx-overlay-s
+    wayvr
     c_runInKitty
     s_calibration
     s_overlay

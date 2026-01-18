@@ -96,8 +96,7 @@
 
     users.users.sophia.packages = with pkgs; [
       motoc
-      wlx-overlay-s
-      wayvr-dashboard
+      wayvr
     ];
 
     # Clicking "applications" crashes in wlx-overlay-s because too many files

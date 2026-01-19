@@ -24,7 +24,7 @@
             (pkgs.fetchpatch {
               # To update; nix store prefetch-file https://github.com/Supreeeme/xrizer/pull/261.patch
               url = "https://github.com/Supreeeme/xrizer/pull/261.patch";
-              sha256 = "sha256-DBQu42BysZ2PK+GySqpFoS+M+RlNQYJfVW6hy4ur0Qs=";
+              sha256 = "sha256-titAVJh+B1w45ZsxoEYDEgOy1sQNlp11qkc/2dHcYQY=";
             })
           ];
 

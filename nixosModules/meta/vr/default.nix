@@ -16,8 +16,8 @@
           src = final.fetchFromGitHub {
             owner = "Supreeeme";
             repo = "xrizer";
-            rev = "872c8be2b1084f709595af307a110bd5fb9c1eaf";
-            hash = "sha256-Ffg/7zAiA6whni00PtiySBL663yEBiWQ288kiYReSoc=";
+            rev = "2ef3d3c9142ff7f1a70f1df1d91b19cd53067b13";
+            hash = "sha256-pDZqTwOphkzrznWqsJIOZEZf6lzYfnUQuvE9pD0XzIM=";
           };
 
           patches = [

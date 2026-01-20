@@ -86,11 +86,6 @@ in
   # Prometheus
   "prometheus-oath2keyfile.age".publicKeys = [ mococo-prometheus ];
 
-  # Kube Things
-  "kube-longhorn.age".publicKeys = developers ++ ex-machina;
-  "kube-join-key.age".publicKeys = developers ++ ex-machina;
-  "kube-forgejo-registration-secret.age".publicKeys = developers ++ ex-machina;
-
   # Desktop things
   ## Pfp
   "face.png.age".publicKeys = devices;

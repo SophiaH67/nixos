@@ -43,9 +43,6 @@
     nixcord.url = "github:sophiah67/nixcord";
     nixcord.inputs.nixpkgs.follows = "nixpkgs";
 
-    kubenix.url = "github:hall/kubenix";
-    kubenix.inputs.nixpkgs.follows = "nixpkgs";
-
     niri.url = "github:sodiboo/niri-flake";
     niri.inputs.nixpkgs.follows = "nixpkgs";
     niri.inputs.nixpkgs-stable.follows = "nixpkgs";

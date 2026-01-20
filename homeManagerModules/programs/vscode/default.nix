@@ -90,6 +90,7 @@
             davidanson.vscode-markdownlint
             rust-lang.rust-analyzer
             golang.go
+            ms-python.debugpy
           ]
           ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             {

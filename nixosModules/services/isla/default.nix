@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  self,
   ...
 }:
 let
@@ -51,7 +52,13 @@ in
             (mkIp peer)
           ];
           publicKey = builtins.readFile ../../../secrets/isla-${peer}-wgpub;
-          endpoint = "${peer}.dev.sophiah.gay:${toString config.networking.wireguard.interfaces.isla0.listenPort}";
+
+          endpoint =
+            let
+              domainConfig = self.nixosConfigurations.${peer}.config.networking.domain or null;
+              domain = if domainConfig == null then "dev.sophiah.gay" else domainConfig;
+            in
+            "${peer}.${domain}:${toString config.networking.wireguard.interfaces.isla0.listenPort}";
         }) filteredPeers;
       };
     };

@@ -3,8 +3,22 @@
   lib,
   pkgs,
   inputs,
+  self,
   ...
 }:
+let
+  deviceKeys = import ../../../secrets/deviceKeys.nix;
+
+  sshHostnames =
+    let
+      sshEnabled = builtins.filter (
+        name:
+        self.nixosConfigurations.${name}.config.services.openssh.enable
+        && (builtins.hasAttr name deviceKeys)
+      ) (builtins.attrNames self.nixosConfigurations);
+    in
+    map (name: self.nixosConfigurations.${name}.config.networking.hostName) sshEnabled;
+in
 {
   imports = [
     inputs.disko.nixosModules.disko
@@ -117,6 +131,22 @@
     };
 
     sophices.ssh.enable = true;
+
+    programs.ssh.knownHosts = builtins.listToAttrs (
+      map (hostName: {
+        name = hostName;
+        value = {
+          hostNames =
+            let
+              targetConfig = self.nixosConfigurations.${hostName}.config;
+            in
+            [ targetConfig.networking.hostName ]
+            ++ lib.optional targetConfig.sophices.isla.enable "${hostName}.isla"
+            ++ lib.optional (targetConfig.networking.domain != null) targetConfig.networking.fqdn;
+          publicKey = deviceKeys.${hostName};
+        };
+      }) sshHostnames
+    );
 
     # boot.kernelParams = [
     #   "kernel.kexec_load_disabled=1"

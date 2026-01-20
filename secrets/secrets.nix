@@ -5,14 +5,7 @@ let
   forgejo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINxRWP14VnqsOH7ukPduWmotPLkkGzoEq4kr/URWQCoY";
   haizakura = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9w0D3XABhwPAIfMYTjdMM1v3ZmoyUjspObDOQo2Ymw Haizakura";
 
-  # Device host keys
-  rikka = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFOHVN3nsJvlslN8PfU7A3ebu0+XA7Djuqrbgw6dP0t/";
-  ayumu = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA6LJmt81a+56iVbbBYiteX5qUE8Ha43gSnx1oOQH8c+";
-  alice = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDbmPJPqKuHQoPzT6+K5gKDP/xU0fqg70tcY2cvzjC30";
-  yuuna = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEsn1taHd1G7MLs5uI4tYsWgpYRA+d6/MdDhGtcOiGEt";
-  moshimoshi = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB2fTZEUoWt7cFlh3fVaD6auB+Hgt8tR1SSG/x1dhDaT";
-  kiara = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILlNATR/R/C+caVM73rI7g+cuunXgL/mZ+ly7R2IpRa6";
-  mococo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHS5eQ4DJ+wagB0gzQB+2U1JlONOiSQuNF/3aRdXMnN6";
+  deviceKeys = import ./deviceKeys.nix;
 
   mococo-pocket-id = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOfAtVhjXx8EeX/s4pHPGf5K87rSJ404g+fBhYrzVHAh pocket-id.mococo.dev.sophiah.gay";
   mococo-dn42 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN2lfZhC1IsCjw2nlSUM7Q1z9L6MP1rEDg4gMgI3UXQb dn42.mococo.dev.sophiah.gay";
@@ -24,22 +17,22 @@ let
 
   # Groups
   developers = [
-    rikka
+    deviceKeys.rikka
     soph-main
-    ayumu
+    deviceKeys.ayumu
   ];
   ex-machina = [
     schwi
     emir-eins
     emir-zwei
   ];
-  servers = [ mococo ] ++ ex-machina;
+  servers = [ deviceKeys.mococo ] ++ ex-machina;
   users = [
     soph-main
     soph-work
     forgejo
   ];
-  personal-devices = [
+  personal-devices = with deviceKeys; [
     rikka
     alice
     ayumu
@@ -48,11 +41,12 @@ let
     servers
     ++ personal-devices
     ++ [
-      yuuna
-      kiara
+      deviceKeys.yuuna
+      deviceKeys.kiara
     ];
   everyone = users ++ devices;
 in
+with deviceKeys;
 {
   "secret1.age".publicKeys = everyone;
   "tailscale-device.age".publicKeys = devices;

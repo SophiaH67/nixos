@@ -24,8 +24,8 @@ in
     nix.distributedBuilds = true;
     nix.settings.builders-use-substitutes = true;
 
-    nix.buildMachines = [
-      (map (hostName: {
+    nix.buildMachines = (
+      map (hostName: {
         hostName = "${hostName}.isla";
         sshUser = "isla-builder";
         system = "x86_64-linux";
@@ -33,7 +33,7 @@ in
           "nixos-test"
           "kvm"
         ];
-      }) builderHostnames)
-    ];
+      }) builderHostnames
+    );
   };
 }

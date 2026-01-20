@@ -58,7 +58,7 @@ in
 
     networking.extraHosts = lib.strings.join "\n" (map (peer: "${mkIp peer} ${peer}.isla") peers);
 
-    users.groups.isla-sshable = {};
+    users.groups.isla-sshable = { };
 
     services.openssh.extraConfig = ''
       Match Address fd31:a15a::/112

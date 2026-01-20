@@ -98,4 +98,7 @@ with deviceKeys;
   "isla-kiara-wgpriv.age".publicKeys = [ kiara ];
   "isla-mococo-wgpriv.age".publicKeys = [ mococo ];
   "isla-ayumu-wgpriv.age".publicKeys = [ ayumu ];
+  "isla-schwi-wgpriv.age".publicKeys = [ schwi ];
+  "isla-emir-eins-wgpriv.age".publicKeys = [ emir-eins ];
+  "isla-emir-zwei-wgpriv.age".publicKeys = [ emir-zwei ];
 }

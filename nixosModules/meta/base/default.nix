@@ -135,6 +135,7 @@
       pciutils
       psmisc
       # END: https://archlinux.org/packages/core/any/base/
+      tree
       sbctl
       hyfetch
       usbutils

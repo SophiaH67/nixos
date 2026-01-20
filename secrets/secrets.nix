@@ -11,17 +11,13 @@ let
   mococo-dn42 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN2lfZhC1IsCjw2nlSUM7Q1z9L6MP1rEDg4gMgI3UXQb dn42.mococo.dev.sophiah.gay";
   mococo-prometheus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDVzNJFEV3vPHvYJqb2lOh4TWKvxsqT6K5skZFxQ5hBy prometheus.mococo.dev.sophiah.gay";
 
-  schwi = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPHtJcY8q0xm/J8AkGbX+kx91zXpo8H893mUGqJblgh";
-  emir-eins = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHPSscREH9OS6V6uDUgtcnELGBcjTZsqJfsmdu28Q/+C";
-  emir-zwei = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAdm/2geT7+PxYUSQeiOLGpchxaihM5Bxu88QKLZVoZT";
-
   # Groups
   developers = [
     deviceKeys.rikka
     soph-main
     deviceKeys.ayumu
   ];
-  ex-machina = [
+  ex-machina = with deviceKeys; [
     schwi
     emir-eins
     emir-zwei

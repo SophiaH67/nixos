@@ -1,18 +1,18 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 {
   options.sophices.builder.enable = lib.mkEnableOption "Soph Builder System";
 
   config = lib.mkIf config.sophices.builder.enable {
-    users.users.soph-builder = {
+    sophices.isla.enable = true; # We only allow builds over isla
+
+    users.users.isla-builder = {
       isSystemUser = true;
-      group = "soph-builder";
       extraGroups = [
-        "sshable"
+        "isla-sshable"
       ];
 
       useDefaultShell = true;
@@ -28,7 +28,7 @@
     nix = {
       nrBuildUsers = 64;
       settings = {
-        trusted-users = [ "soph-builder" ];
+        trusted-users = [ "isla-builder" ];
 
         min-free = 100 * 1024 * 1024; # 100gb
         max-free = 200 * 1024 * 1024; # 200gb

@@ -34,6 +34,7 @@
         "isla",
         "monero",
         "soph-vr-mode",
-        "base"
+        "base",
+        "builder"
     ]
 }

@@ -6,9 +6,12 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 {
+  imports = [ inputs.nixos-hardware.nixosModules.framework-13th-gen-intel ];
+
   networking.hostName = "rikka";
 
   # Docker shenanigans
@@ -107,4 +110,7 @@
 
   sophices.renovate.enable = true;
   soph.dev.enable = true;
+
+  services.thermald.enable = true;
+  hardware.fancontrol.enable = true;
 }

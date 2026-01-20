@@ -1,5 +1,3 @@
-{ config, pkgs, ... }:
-
 {
-
+  sophices.builder.enable = true;
 }

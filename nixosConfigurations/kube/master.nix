@@ -8,7 +8,7 @@ let
   cfg = config.services.ex-machina;
 in
 {
-  # imports = [ ./common.nix ];
+  imports = [ ./common.nix ];
 
   options.services.ex-machina = {
     enable = lib.mkEnableOption "ex-machina";

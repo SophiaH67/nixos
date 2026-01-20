@@ -112,5 +112,4 @@
   soph.dev.enable = true;
 
   services.thermald.enable = true;
-  hardware.fancontrol.enable = true;
 }

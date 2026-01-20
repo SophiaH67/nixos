@@ -8,12 +8,13 @@ let
   mkIpPart = str: builtins.substring 0 4 (builtins.hashString "sha1" str);
   mkIp = str: "fd31:a15a::${mkIpPart str}";
   mkBracketedIp = str: "[${mkIp str}]";
-  peers = [
-    "rikka"
-    "kiara"
-    "ayumu"
-    "mococo"
-  ];
+  peers =
+    let
+      islaEnabled = builtins.filter (name: self.nixosConfigurations.${name}.config.sophices.isla.enable) (
+        builtins.attrNames self.nixosConfigurations
+      );
+    in
+    map (name: self.nixosConfigurations.${name}.config.networking.hostName) islaEnabled;
   filteredPeers = builtins.filter (h: h != config.networking.hostName) peers;
 in
 {

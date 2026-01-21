@@ -30,7 +30,7 @@ jobs:
       image: xn--55q89qy6p.com/soph/ci-base:latest
     strategy:
       matrix:
-        flake: [schwi, emir-eins, emir-zwei, kiara]
+        flake: [schwi, emir-eins, emir-zwei, kiara,mococo]
     steps:
       - name: Copy ssh keys from secrets
         run: |
@@ -52,4 +52,4 @@ jobs:
         run: nix-shell -p nixos-rebuild-ng --run "nixos-rebuild build --flake .#${{ matrix.flake }} --max-jobs 1"
       - if: github.ref == 'refs/heads/main'
         name: Deploy
-        run: nix --extra-experimental-features "nix-command flakes" run github:szlend/deploy-rs\?ref=fix-show-derivation-parsing .#${{ matrix.flake }} -- --skip-checks --ssh-opts "-6" --ssh-user forgejo ${{ matrix.flake == 'kiara' && '--remote-build' || '' }} -- --max-jobs 1
+        run: nix --extra-experimental-features "nix-command flakes" run github:szlend/deploy-rs\?ref=fix-show-derivation-parsing .#${{ matrix.flake }} -- --skip-checks --ssh-opts "-6${{ matrix.flake == 'mococo' && ' -J forgejo@schwi' || '' }}" --ssh-user forgejo ${{ matrix.flake == 'kiara' && '--remote-build' || '' }} -- --max-jobs 1

@@ -90,6 +90,7 @@ with deviceKeys;
   "wallpaper-ayumu-dark.png.age".publicKeys = developers ++ [ ayumu ];
 
   # Isla
+  "isla-alice-wgpriv.age".publicKeys = [ alice ];
   "isla-rikka-wgpriv.age".publicKeys = [ rikka ];
   "isla-kiara-wgpriv.age".publicKeys = [ kiara ];
   "isla-mococo-wgpriv.age".publicKeys = [ mococo ];

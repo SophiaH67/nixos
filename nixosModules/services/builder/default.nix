@@ -43,12 +43,6 @@ in
       nrBuildUsers = 64;
       settings = {
         trusted-users = [ "isla-builder" ];
-
-        min-free = 100 * 1024 * 1024; # 100gb
-        max-free = 200 * 1024 * 1024; # 200gb
-
-        max-jobs = "auto";
-        cores = 0;
       };
     };
 

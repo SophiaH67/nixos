@@ -196,10 +196,18 @@ in
     virtualisation.vmVariantWithDisko = config.virtualisation.vmVariant;
 
     nixpkgs.config.allowUnfree = true;
-    nix.settings.experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
+    nix.settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+
+      min-free = 100 * 1024 * 1024; # 100gb
+      max-free = 200 * 1024 * 1024; # 200gb
+
+      max-jobs = 2; # Only 2 jobs at the same time
+      cores = 0; # But use all available cores
+    };
     nix.optimise.automatic = true;
     nix.gc.automatic = true;
     nix.package = pkgs.lixPackageSets.stable.lix;

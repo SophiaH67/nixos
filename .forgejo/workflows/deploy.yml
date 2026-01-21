@@ -30,7 +30,7 @@ jobs:
       image: xn--55q89qy6p.com/soph/ci-base:latest
     strategy:
       matrix:
-        flake: [schwi, emir-eins, emir-zwei, kiara,mococo]
+        flake: [schwi, emir-eins, emir-zwei, kiara]
     steps:
       - name: Copy ssh keys from secrets
         run: |
@@ -45,7 +45,6 @@ jobs:
           echo "moshimoshi ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB2fTZEUoWt7cFlh3fVaD6auB+Hgt8tR1SSG/x1dhDaT" >> ~/.ssh/known_hosts
           echo "yuuna ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEsn1taHd1G7MLs5uI4tYsWgpYRA+d6/MdDhGtcOiGEt" >> ~/.ssh/known_hosts
           echo "kiara.dev.sophiah.gay ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILlNATR/R/C+caVM73rI7g+cuunXgL/mZ+ly7R2IpRa6" >> ~/.ssh/known_hosts
-          echo "mococo.dev.sophiah.gay ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHS5eQ4DJ+wagB0gzQB+2U1JlONOiSQuNF/3aRdXMnN6" >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
       - uses: actions/checkout@v6
       - if: matrix.flake != 'kiara'
@@ -53,4 +52,4 @@ jobs:
         run: nix-shell -p nixos-rebuild-ng --run "nixos-rebuild build --flake .#${{ matrix.flake }} --max-jobs 1"
       - if: github.ref == 'refs/heads/main'
         name: Deploy
-        run: nix --extra-experimental-features "nix-command flakes" run github:szlend/deploy-rs\?ref=fix-show-derivation-parsing .#${{ matrix.flake }} -- --skip-checks --ssh-opts "-6${{ matrix.flake == 'mococo' && ' -J forgejo@schwi.ex-machina.sophiah.gay' || '' }}" --ssh-user forgejo ${{ matrix.flake == 'kiara' && '--remote-build' || '' }} -- --max-jobs 1
+        run: nix --extra-experimental-features "nix-command flakes" run github:szlend/deploy-rs\?ref=fix-show-derivation-parsing .#${{ matrix.flake }} -- --skip-checks --ssh-opts "-6" --ssh-user forgejo ${{ matrix.flake == 'kiara' && '--remote-build' || '' }} -- --max-jobs 1

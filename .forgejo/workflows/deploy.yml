@@ -45,6 +45,7 @@ jobs:
           echo "moshimoshi ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB2fTZEUoWt7cFlh3fVaD6auB+Hgt8tR1SSG/x1dhDaT" >> ~/.ssh/known_hosts
           echo "yuuna ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEsn1taHd1G7MLs5uI4tYsWgpYRA+d6/MdDhGtcOiGEt" >> ~/.ssh/known_hosts
           echo "kiara.dev.sophiah.gay ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILlNATR/R/C+caVM73rI7g+cuunXgL/mZ+ly7R2IpRa6" >> ~/.ssh/known_hosts
+          echo "mococo.dev.sophiah.gay ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHS5eQ4DJ+wagB0gzQB+2U1JlONOiSQuNF/3aRdXMnN6" >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
       - uses: actions/checkout@v6
       - if: matrix.flake != 'kiara'

@@ -12,6 +12,14 @@ let
       ) (builtins.attrNames self.nixosConfigurations);
     in
     map (name: self.nixosConfigurations.${name}.config.networking.hostName) builderEnabled;
+
+  speedFactors = {
+    mococo = 20;
+    ayumu = 30;
+    emir-eins = 5;
+    emir-zwei = 5;
+    schwi = 5;
+  };
 in
 {
   options.sophices.builder-user.enable = lib.mkOption {
@@ -34,6 +42,7 @@ in
           "nixos-test"
           "kvm"
         ];
+        speedFactor = if builtins.hasAttr hostName speedFactors then speedFactors.${hostName} else 10;
       }) builderHostnames
     );
 

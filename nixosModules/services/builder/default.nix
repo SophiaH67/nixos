@@ -1,8 +1,22 @@
 {
   config,
   lib,
+  self,
   ...
 }:
+let
+  deviceKeys = import ../../../secrets/deviceKeys.nix;
+
+  builderUserHostnames =
+    let
+      builderEnabled = builtins.filter (
+        name:
+        self.nixosConfigurations.${name}.config.sophices.builder-user.enable
+        && (builtins.hasAttr name deviceKeys)
+      ) (builtins.attrNames self.nixosConfigurations);
+    in
+    map (name: self.nixosConfigurations.${name}.config.networking.hostName) builderEnabled;
+in
 {
   options.sophices.builder.enable = lib.mkEnableOption "Soph Builder System";
 
@@ -19,9 +33,7 @@
 
       useDefaultShell = true;
 
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINLd+fLmg2masZl3fIUGlVAIahLoMFHA1BIZIYa4bTcq soph-builder"
-      ];
+      openssh.authorizedKeys.keys = map (name: deviceKeys.${name}) builderUserHostnames;
     };
 
     users.groups.soph-builder = { };

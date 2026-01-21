@@ -55,6 +55,7 @@ in
             User isla-builder
             IdentityFile /etc/ssh/ssh_host_ed25519_key
             IdentitiesOnly yes
+            ConnectTimeout 5
         '') builderHostnames
       );
     };

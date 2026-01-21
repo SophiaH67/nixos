@@ -9,8 +9,10 @@
   config = lib.mkIf config.sophices.builder.enable {
     sophices.isla.enable = true; # We only allow builds over isla
 
+    users.groups.isla-builder = { };
     users.users.isla-builder = {
       isSystemUser = true;
+      group = "isla-builder";
       extraGroups = [
         "isla-sshable"
       ];

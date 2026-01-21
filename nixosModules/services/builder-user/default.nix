@@ -37,7 +37,9 @@ in
         hostName = "${hostName}.isla";
         sshUser = "isla-builder";
         system = "x86_64-linux";
-        protocol = "ssh-ng";
+        # No ssh-ng because no support yet for builders-use-substitutes
+        # https://github.com/NixOS/nix/issues/4665
+        protocol = "ssh";
         supportedFeatures = [
           "nixos-test"
           "kvm"

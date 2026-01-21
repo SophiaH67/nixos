@@ -70,7 +70,9 @@ in
 
     services.openssh.extraConfig = ''
       Match Address fd31:a15a::/112
-          AllowGroups isla-sshable  
+          AllowGroups ${
+            lib.strings.join " " (config.services.openssh.settings.AllowGroups ++ [ "isla-sshable" ])
+          }
     '';
 
     services.prometheus.exporters = {

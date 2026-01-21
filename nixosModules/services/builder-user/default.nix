@@ -29,11 +29,23 @@ in
         hostName = "${hostName}.isla";
         sshUser = "isla-builder";
         system = "x86_64-linux";
+        protocol = "ssh-ng";
         supportedFeatures = [
           "nixos-test"
           "kvm"
         ];
       }) builderHostnames
     );
+
+    programs.ssh = {
+      extraConfig = lib.strings.join "\n" (
+        map (hostName: ''
+          Host ${hostName}.isla
+            User isla-builder
+            IdentityFile /etc/ssh/ssh_host_ed25519_key
+            IdentitiesOnly yes
+        '') builderHostnames
+      );
+    };
   };
 }

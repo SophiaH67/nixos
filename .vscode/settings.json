@@ -35,6 +35,7 @@
         "monero",
         "soph-vr-mode",
         "base",
-        "builder"
+        "builder",
+        "secrets"
     ]
 }

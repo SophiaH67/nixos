@@ -71,13 +71,6 @@ in
 
     users.groups.isla-sshable = { };
 
-    services.openssh.extraConfig = ''
-      Match Address fd31:a15a::/112
-          AllowGroups ${
-            lib.strings.join " " (config.services.openssh.settings.AllowGroups ++ [ "isla-sshable" ])
-          }
-    '';
-
     services.prometheus.exporters = {
       node = {
         enable = true;

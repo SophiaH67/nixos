@@ -19,7 +19,10 @@
 
     soph.vr.enable = lib.mkIf nixos-config.soph.vr.enable (lib.mkDefault true);
 
-    age.identityPaths = [ "${config.home.homeDirectory}/.ssh/id_rsa" ];
+    age.identityPaths = [
+      "${config.home.homeDirectory}/.ssh/id_rsa"
+      "${config.home.homeDirectory}/.ssh/id_ed25519"
+    ];
 
     home.packages = with pkgs; [
       x11_ssh_askpass

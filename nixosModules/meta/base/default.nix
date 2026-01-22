@@ -83,39 +83,21 @@ in
     networking.firewall.enable = true;
     networking.firewall.rejectPackets = true;
     networking.firewall.allowedTCPPorts = [ 22 ];
-    networking.search = [
-      "ex-machina.sophiah.gay"
-      "dev.sophiah.gay"
-    ];
-    networking.nameservers = [
-      "::1"
-    ];
+    environment.etc."resolv.conf".text = ''
+      search ex-machina.sophiah.gay dev.sophiah.gay${if config.sophices.isla.enable then " isla" else ""}
+      nameserver ::1
+      options edns0 trust-ad
+    '';
     networking.networkmanager.dns = "none";
-    services.stubby = {
+    services.unbound = {
       enable = true;
-      settings = pkgs.stubby.passthru.settingsExample // {
-        upstream_recursive_servers = [
-          {
-            address_data = "2620:fe::10";
-            tls_auth_name = "dns.quad9.net";
-            tls_pubkey_pinset = [
-              {
-                digest = "sha256";
-                value = "i2kObfz0qIKCGNWt7MjBUeSrh0Dyjb0/zWINImZES+I=";
-              }
-            ];
-          }
-          {
-            address_data = "9.9.9.10";
-            tls_auth_name = "dns.quad9.net";
-            tls_pubkey_pinset = [
-              {
-                digest = "sha256";
-                value = "i2kObfz0qIKCGNWt7MjBUeSrh0Dyjb0/zWINImZES+I=";
-              }
-            ];
-          }
-        ];
+      settings = {
+        server = {
+          interface = [
+            "::1"
+          ]
+          ++ lib.optionals config.sophices.isla.enable config.networking.wireguard.interfaces.isla0.ips;
+        };
       };
     };
 

@@ -64,7 +64,10 @@ in
       };
     };
 
-    networking.extraHosts = lib.strings.join "\n" (map (peer: "${mkIp peer} ${peer}.isla") peers);
+    services.unbound.settings = {
+      local-zone = ''"isla." static'';
+    };
+    services.unbound.settings.local-data = map (peer: ''"${peer}.isla. AAAA ${mkIp peer}"'') peers;
 
     users.groups.isla-sshable = { };
 

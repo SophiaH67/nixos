@@ -71,6 +71,8 @@ in
 
     users.groups.isla-sshable = { };
 
+    services.openssh.settings.AllowGroups = [ "isla-sshable" ];
+
     services.prometheus.exporters = {
       node = {
         enable = true;

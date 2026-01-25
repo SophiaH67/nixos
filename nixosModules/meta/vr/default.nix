@@ -16,15 +16,15 @@
           src = final.fetchFromGitHub {
             owner = "Supreeeme";
             repo = "xrizer";
-            rev = "2ef3d3c9142ff7f1a70f1df1d91b19cd53067b13";
-            hash = "sha256-pDZqTwOphkzrznWqsJIOZEZf6lzYfnUQuvE9pD0XzIM=";
+            rev = "ba56af9ade6bb2240678635c37a3109066cc3f4d";
+            hash = "sha256-6WgSphp9JypuWLAF7OobmRORzAcA1LPzZsWWae9Zulc=";
           };
 
           patches = [
             (pkgs.fetchpatch {
               # To update; nix store prefetch-file https://github.com/Supreeeme/xrizer/pull/261.patch
               url = "https://github.com/Supreeeme/xrizer/pull/261.patch";
-              sha256 = "sha256-titAVJh+B1w45ZsxoEYDEgOy1sQNlp11qkc/2dHcYQY=";
+              sha256 = "sha256-E7262/zA1zsYYNxLfVUJ5DinEJJVmbEHlMfQrY6Mudc=";
             })
           ];
 

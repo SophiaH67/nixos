@@ -95,8 +95,7 @@ in
         server = {
           interface = [
             "::1"
-          ]
-          ++ lib.optionals config.sophices.isla.enable config.networking.wireguard.interfaces.isla0.ips;
+          ];
         };
       };
     };

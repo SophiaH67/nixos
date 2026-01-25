@@ -68,6 +68,7 @@ in
       local-zone = ''"isla." static'';
     };
     services.unbound.settings.local-data = map (peer: ''"${peer}.isla. AAAA ${mkIp peer}"'') peers;
+    services.unbound.settings.server.interface = config.networking.wireguard.interfaces.isla0.ips;
 
     users.groups.isla-sshable = { };
 

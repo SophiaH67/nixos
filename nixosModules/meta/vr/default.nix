@@ -51,15 +51,17 @@
       defaultRuntime = true;
       package = (pkgs.wivrn.override { cudaSupport = true; }).overrideAttrs (oldAttrs: {
         cudaSupport = true;
-        preFixup = oldAttrs.preFixup + ''
-          wrapProgram "$out/bin/wivrn-server" \
-            --prefix LD_LIBRARY_PATH : ${
-              lib.makeLibraryPath [
-                pkgs.sdl2-compat
-                pkgs.udev
-              ]
-            }
-        '';
+        preFixup = (oldAttrs.preFixup or [ ]) ++ [
+          ''
+            wrapProgram "$out/bin/wivrn-server" \
+              --prefix LD_LIBRARY_PATH : ${
+                lib.makeLibraryPath [
+                  pkgs.sdl2-compat
+                  pkgs.udev
+                ]
+              }
+          ''
+        ];
       });
       monadoEnvironment = {
         WIVRN_USE_STEAMVR_LH = "1";

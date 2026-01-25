@@ -4,5 +4,7 @@
 
   users.users.sophia.packages = with pkgs; [
     prismlauncher
+    ed-odyssey-materials-helper
+    edmarketconnector
   ];
 }

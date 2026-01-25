@@ -36,6 +36,7 @@
         "soph-vr-mode",
         "base",
         "builder",
-        "secrets"
+        "secrets",
+        "gaming"
     ]
 }

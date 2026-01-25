@@ -14,19 +14,11 @@
       (final: prev: {
         xrizer = prev.xrizer.overrideAttrs rec {
           src = final.fetchFromGitHub {
-            owner = "Supreeeme";
+            owner = "ImSapphire";
             repo = "xrizer";
-            rev = "ba56af9ade6bb2240678635c37a3109066cc3f4d";
-            hash = "sha256-6WgSphp9JypuWLAF7OobmRORzAcA1LPzZsWWae9Zulc=";
+            rev = "7339c297b665e6292ac46115cdac0d44aab196a9";
+            hash = "sha256-9PS2xDGND+bC8jCLX+rsuDY4Epfwo+nkPRea/xDSYmM=";
           };
-
-          patches = [
-            (pkgs.fetchpatch {
-              # To update; nix store prefetch-file https://github.com/Supreeeme/xrizer/pull/261.patch
-              url = "https://github.com/Supreeeme/xrizer/pull/261.patch";
-              sha256 = "sha256-E7262/zA1zsYYNxLfVUJ5DinEJJVmbEHlMfQrY6Mudc=";
-            })
-          ];
 
           cargoDeps = prev.rustPlatform.importCargoLock {
             lockFile = src + "/Cargo.lock";

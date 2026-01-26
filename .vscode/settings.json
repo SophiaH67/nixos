@@ -1,6 +1,6 @@
 {
     "conventionalCommits.scopes": [
-        "sophia-gui",
+        "base-gui",
         "zsh",
         "gnome",
         "alice",
@@ -37,6 +37,7 @@
         "base",
         "builder",
         "secrets",
-        "gaming"
+        "gaming",
+        "schwi"
     ]
 }

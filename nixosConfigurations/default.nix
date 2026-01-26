@@ -146,7 +146,7 @@ in
 
   mococo = nixpkgs.lib.nixosSystem {
     specialArgs = args;
-    system = "aarch64-linux";
+    system = "x86_64-linux";
     modules = [
       ./mococo/configuration.nix
       ./mococo/hardware-configuration.nix

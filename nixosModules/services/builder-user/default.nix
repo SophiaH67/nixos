@@ -34,7 +34,7 @@ in
 
     nix.buildMachines = (
       map (hostName: {
-        hostName = "${hostName}.isla";
+        hostName = "builder.${hostName}.isla";
         sshUser = "isla-builder";
         system = "x86_64-linux";
         # No ssh-ng because no support yet for builders-use-substitutes
@@ -51,7 +51,8 @@ in
     programs.ssh = {
       extraConfig = lib.strings.join "\n" (
         map (hostName: ''
-          Host ${hostName}.isla
+          Host builder.${hostName}.isla
+            HostName ${hostName}.isla
             User isla-builder
             IdentityFile /etc/ssh/ssh_host_ed25519_key
             IdentitiesOnly yes

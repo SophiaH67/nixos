@@ -26,6 +26,10 @@
     sophrams.gnome.blur = false;
     dconf.settings."org/gnome/desktop/screensaver".lock-enabled = false;
   };
+  users.users.sophia.extraGroups = [
+    "video"
+    "render"
+  ];
 
   networking.hostName = "schwi";
   networking.domain = "ex-machina.sophiah.gay";

@@ -37,6 +37,7 @@ in
         ++ config.services.openssh.ports
         ++ lib.optional config.services.prometheus.exporters.node.enable config.services.prometheus.exporters.node.port
         ++ lib.optional config.services.unbound.enable 53;
+      allowedUDPPorts = [ ] ++ lib.optional config.services.unbound.enable 53;
     };
     services.fail2ban.ignoreIP = map mkIp peers;
 

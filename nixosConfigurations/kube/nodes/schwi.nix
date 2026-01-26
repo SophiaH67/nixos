@@ -22,6 +22,7 @@
   # Schwi is TV Machine
   soph.base-gui.enable = true;
   powerManagement.cpuFreqGovernor = "performance";
+  sophrams.gnome.blur = false;
 
   networking.hostName = "schwi";
   networking.domain = "ex-machina.sophiah.gay";

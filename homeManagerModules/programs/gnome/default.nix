@@ -7,6 +7,11 @@
 }:
 {
   options.sophrams.gnome.enable = lib.mkEnableOption "Soph Gnome";
+  options.sophrams.gnome.blur = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Enable blur";
+  };
 
   config = lib.mkIf config.sophrams.gnome.enable {
     services.gnome-keyring.enable = true;
@@ -83,12 +88,10 @@
         enabled-extensions =
           with pkgs.gnomeExtensions;
           [
-            blur-my-shell.extensionUuid
             night-theme-switcher.extensionUuid
           ]
-          ++ lib.optionals nixos-config.sophrams.gnome.cloudflare-warp [
-            pkgs.gnomeExtensions.cloudflare-warp-toggle.extensionUuid
-          ];
+          ++ lib.optional config.sophrams.gnome.blur blur-my-shell.extensionUuid
+          ++ lib.optional nixos-config.sophrams.gnome.cloudflare-warp pkgs.gnomeExtensions.cloudflare-warp-toggle.extensionUuid;
         disabled-extensions = [ ];
         favorite-apps = [
           "code.desktop"

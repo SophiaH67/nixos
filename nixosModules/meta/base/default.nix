@@ -96,6 +96,7 @@ in
           interface = [
             "::1"
           ];
+          access-control = [ "::1/128 allow" ];
         };
       };
     };

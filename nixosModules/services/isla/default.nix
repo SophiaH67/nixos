@@ -35,7 +35,8 @@ in
       allowedTCPPorts =
         [ ]
         ++ config.services.openssh.ports
-        ++ lib.optional config.services.prometheus.exporters.node.enable config.services.prometheus.exporters.node.port;
+        ++ lib.optional config.services.prometheus.exporters.node.enable config.services.prometheus.exporters.node.port
+        ++ lib.optional config.services.unbound.enable 53;
     };
     services.fail2ban.ignoreIP = map mkIp peers;
 

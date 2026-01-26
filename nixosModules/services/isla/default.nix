@@ -30,6 +30,8 @@ in
       mode = "444";
     };
 
+    networking.search = [ "isla" ];
+
     networking.firewall.allowedUDPPorts = [ config.networking.wireguard.interfaces.isla0.listenPort ];
     networking.firewall.interfaces.isla0 = {
       allowedTCPPorts =

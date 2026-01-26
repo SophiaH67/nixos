@@ -83,11 +83,17 @@ in
     networking.firewall.enable = true;
     networking.firewall.rejectPackets = true;
     networking.firewall.allowedTCPPorts = [ 22 ];
-    environment.etc."resolv.conf".text = ''
-      search ex-machina.sophiah.gay dev.sophiah.gay${if config.sophices.isla.enable then " isla" else ""}
-      nameserver ::1
-      options edns0 trust-ad
-    '';
+    networking.nameservers = [ "::1" ];
+    networking.search = [
+      "ex-machina.sophiah.gay"
+      "dev.sophiah.gay"
+    ];
+    environment.etc."resolv.conf".text = lib.join "\n" (
+      [ ]
+      ++ lib.optional (config.networking.search != [ ]) "search ${lib.join " " config.networking.search}"
+      ++ map (ns: "nameserver ${ns}") config.networking.nameservers
+      ++ [ "options edns0 trust-ad" ]
+    );
     networking.networkmanager.dns = "none";
     services.unbound = {
       enable = true;

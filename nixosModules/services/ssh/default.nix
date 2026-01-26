@@ -20,13 +20,17 @@
         ];
       };
       allowSFTP = true;
-      banner = let shortName = lib.toUpper (builtins.substring 0 3 config.networking.hostName); in ''
-        -=-=- Establishing encrypted connection... -=-=-
-        [???]: Requesting Frontier Malitia administration for node ${lib.toUpper config.networking.hostName}
-        [${shortName}]: Receiving encrypted connection from ???...
-        [${shortName}]: Identification required for ???
-        [???]:
-      '';
+      banner =
+        let
+          shortName = lib.toUpper (builtins.substring 0 3 config.networking.hostName);
+        in
+        ''
+          -=-=- Establishing encrypted connection... -=-=-
+          [???]: Requesting Frontier Malitia administration for node ${lib.toUpper config.networking.hostName}
+          [${shortName}]: Receiving encrypted connection from ???...
+          [${shortName}]: Identification required for ???
+          [???]:
+        '';
       #TODO: Set up a jail for failure to authenticate
     };
 

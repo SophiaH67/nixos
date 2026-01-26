@@ -22,11 +22,6 @@
   # Schwi is TV Machine
   soph.base-gui.enable = true;
   powerManagement.cpuFreqGovernor = "performance";
-  sophrams.xfce.enable = true;
-  sophrams.gnome.enable = lib.mkForce false;
-  home-manager.users.sophia = {
-    sophrams.gnome.enable = lib.mkForce false;
-  };
 
   networking.hostName = "schwi";
   networking.domain = "ex-machina.sophiah.gay";

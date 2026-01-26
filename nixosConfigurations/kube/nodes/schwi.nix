@@ -18,10 +18,8 @@
     }
   ];
 
-  home-manager.users.sophia = {
-    soph.gui.enable = true;
-    sophrams.gnome.enable = true;
-  };
+  # Schwi is TV Machine
+  soph.base-gui.enable = true;
 
   networking.hostName = "schwi";
   networking.domain = "ex-machina.sophiah.gay";

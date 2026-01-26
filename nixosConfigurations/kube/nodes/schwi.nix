@@ -24,6 +24,7 @@
   powerManagement.cpuFreqGovernor = "performance";
   home-manager.users.sophia = {
     sophrams.gnome.blur = false;
+    dconf.settings."org/gnome/desktop/screensaver".lock-enabled = false;
   };
 
   networking.hostName = "schwi";

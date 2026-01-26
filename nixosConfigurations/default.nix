@@ -35,6 +35,7 @@ let
     ./kube/nodes/hardware-configuration.nix
     ./kube/nodes/disko.nix
     ../common/alice.nix
+    nixos-hardware.nixosModules.gmktec-nucbox-g3-plus
   ]
   ++ deployableModules;
 

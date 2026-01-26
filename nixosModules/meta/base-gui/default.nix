@@ -36,6 +36,21 @@
       self.packages.${system}.thirtyninec3-font
     ];
 
+    services.earlyoom.enable = true;
+    services.earlyoom.enableNotifications = true;
+    services.earlyoom.freeMemThreshold = 2;
+
+    sophrams.wallpaper.enable = true;
+
+    security.rtkit.enable = true;
+    services.pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+    services.pulseaudio.enable = false;
+
     home-manager.users.sophia = {
       soph.gui.enable = true;
       sophrams.gnome.enable = true;

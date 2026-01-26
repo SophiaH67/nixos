@@ -33,9 +33,6 @@ in
   sophices.boot-unlock.tor = true;
   soph.drawing.enable = true;
 
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "sophia";
-
   services.sunshine = {
     enable = true;
     autoStart = true;

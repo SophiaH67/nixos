@@ -10,5 +10,6 @@
     ./steam
     ./vrcx
     ./wallpaper
+    ./xfce
   ];
 }

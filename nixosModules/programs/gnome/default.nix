@@ -18,11 +18,6 @@
   };
 
   config = lib.mkIf config.sophrams.gnome.enable {
-    services.earlyoom.enable = true;
-    services.earlyoom.enableNotifications = true;
-    services.earlyoom.freeMemThreshold = 2;
-
-    sophrams.wallpaper.enable = true;
     services.desktopManager.gnome.enable = true;
     services.displayManager.gdm.enable = true;
     services.displayManager.autoLogin.user = config.sophrams.gnome.autoLogin;
@@ -57,15 +52,6 @@
       enable = true;
       enableSSHSupport = false;
     };
-
-    security.rtkit.enable = true;
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
-    services.pulseaudio.enable = false;
 
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";

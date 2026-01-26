@@ -34,6 +34,7 @@
       easyeffects
       wl-clipboard
       ffmpeg
+      spotify
     ];
     fonts.fontconfig.enable = true;
 

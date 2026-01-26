@@ -37,7 +37,6 @@
   users.users.sophia = {
     packages = with pkgs; [
       parsec-bin
-      spotify
       obsidian
       plex-desktop
     ];

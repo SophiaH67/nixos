@@ -24,7 +24,6 @@ in
   networking.domain = "dev.sophiah.gay";
 
   environment.systemPackages = [
-    pkgs.spotify
     orca-slicer
     pkgs.nvtopPackages.nvidia
   ];

@@ -16,7 +16,9 @@ let
   ];
 
   devModules = [
-    ../common/sophia-gui.nix
+    {
+      soph.base-gui.enable = true;
+    }
     ../common/apps/gaming.nix
     {
       environment.systemPackages = [ agenix.packages.x86_64-linux.default ];

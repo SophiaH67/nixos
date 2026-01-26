@@ -31,6 +31,7 @@ in
     };
 
     networking.search = [ "isla" ];
+    networking.nameservers = lib.mkOrder 2000 (map mkIp peers);
 
     networking.firewall.allowedUDPPorts = [ config.networking.wireguard.interfaces.isla0.listenPort ];
     networking.firewall.interfaces.isla0 = {

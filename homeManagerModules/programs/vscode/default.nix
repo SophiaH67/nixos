@@ -129,6 +129,12 @@
               version = "25.12.2";
               sha256 = "KxVHIi1obeXaPR8cZhExvRHNV1DyDyphuGyd8R1ee28=";
             }
+            {
+              name = "vscode-ini";
+              publisher = "leezgion";
+              version = "0.2.0";
+              sha256 = "kjXp3zCBJitYHs3/P9cM1H5NDw3wvjwwdcoIGfmBNWQ=";
+            }
           ];
       };
     };

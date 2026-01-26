@@ -7,7 +7,7 @@
 {
   options.soph.vr.enable = lib.mkEnableOption "Soph Homemanager VR Base";
 
-  config = lib.mkIf config.soph.gui.enable {
+  config = lib.mkIf config.soph.vr.enable {
     soph.dev-vr.enable = true; # All VR users rn are dev users too
 
     xdg.configFile."openvr/openvrpaths.vrpath".force = true;

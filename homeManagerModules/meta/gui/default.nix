@@ -29,12 +29,9 @@
       pwvucontrol
       cavalier
       inputs.librepods.packages.${stdenv.system}.default
-      librepcb
-      kicad
       gnupg # required until https://github.com/NixOS/nixpkgs/issues/473387 is fixed
       waypipe
       easyeffects
-      fluffychat
       wl-clipboard
       ffmpeg
     ];

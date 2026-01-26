@@ -27,6 +27,8 @@
       rustc
       github-cli
       openssl
+      librepcb
+      kicad
     ];
 
     sophrams.vscode.enable = true;

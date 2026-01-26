@@ -30,6 +30,10 @@
     "video"
     "render"
   ];
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+  };
 
   networking.hostName = "schwi";
   networking.domain = "ex-machina.sophiah.gay";

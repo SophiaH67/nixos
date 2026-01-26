@@ -110,6 +110,7 @@
 
   sophices.renovate.enable = true;
   soph.dev.enable = true;
+  soph.comms.enable = true;
 
   services.thermald.enable = true;
 }

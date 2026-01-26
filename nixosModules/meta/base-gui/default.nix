@@ -17,7 +17,6 @@
     sophrams.gnome.enable = true;
     sophrams.gnome.autoLogin = "sophia";
 
-    soph.comms.enable = true;
     sophrams.chromium.enable = true;
 
     hardware.bluetooth.enable = true;

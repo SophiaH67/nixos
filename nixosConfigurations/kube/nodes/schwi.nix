@@ -22,9 +22,11 @@
   # Schwi is TV Machine
   soph.base-gui.enable = true;
   powerManagement.cpuFreqGovernor = "performance";
+  services.displayManager.gdm.autoSuspend = false;
   home-manager.users.sophia = {
     sophrams.gnome.blur = false;
     dconf.settings."org/gnome/desktop/screensaver".lock-enabled = false;
+    dconf.settings."org/gnome/settings-daemon/plugins/power".sleep-inactive-ac-type = "nothing";
   };
   users.users.sophia.extraGroups = [
     "video"

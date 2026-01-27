@@ -25,5 +25,14 @@
       dedicatedServer.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
     };
+
+    nixpkgs.overlays = [
+      (final: prev: {
+        steam-devices-udev-rules = prev.steam-devices-udev-rules.overrideAttrs {
+          patches = [ ./add-x52-to-steam-udev.patch ];
+        };
+      })
+    ];
+    hardware.steam-hardware.enable = true;
   };
 }

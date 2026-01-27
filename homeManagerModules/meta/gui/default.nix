@@ -35,6 +35,7 @@
       wl-clipboard
       ffmpeg
       spotify
+      plex-desktop
     ];
     fonts.fontconfig.enable = true;
 

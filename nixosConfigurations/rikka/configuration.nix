@@ -105,7 +105,6 @@
   boot.loader.systemd-boot.configurationLimit = lib.mkForce 10;
 
   services.hardware.bolt.enable = true;
-  sophrams.niri.enable = true;
 
   sophices.renovate.enable = true;
   soph.dev.enable = true;

@@ -23,6 +23,7 @@
       pkiBundle = "/var/lib/sbctl";
       autoEnrollKeys = {
         includeMicrosoftKeys = false;
+        allowBrickingMyMachine = true;
         enable = true;
       };
       autoGenerateKeys.enable = true;

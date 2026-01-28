@@ -42,7 +42,6 @@
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
-    enableNvidia = true;
     autoPrune.enable = true;
     storageDriver = "overlay2";
     daemon = {
@@ -52,6 +51,7 @@
         ip6tables = true;
         ipv6 = true;
         fixed-cidr-v6 = "fd00:d0ca:2::/56";
+        features.cdi = true;
         default-address-pools = [
           {
             base = "172.17.0.0/16";

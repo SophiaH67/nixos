@@ -11,7 +11,8 @@
     programs.nixcord = {
       enable = true;
       discord.enable = false;
-      equibop.enable = true;
+      # equibop.enable = true;
+      vesktop.enable = true;
       config = {
         enableReactDevtools = true;
         autoUpdate = true;

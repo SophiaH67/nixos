@@ -56,17 +56,6 @@
     vcxproj2cmake.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  nixConfig = {
-    extra-substituters = [
-      "https://niri.cachix.org"
-      "https://cache.nixos-cuda.org"
-    ];
-    extra-trusted-public-keys = [
-      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
-      "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
-    ];
-  };
-
   outputs =
     {
       self,

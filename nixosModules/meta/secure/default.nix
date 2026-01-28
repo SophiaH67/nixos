@@ -21,6 +21,11 @@
     boot.lanzaboote = {
       enable = true;
       pkiBundle = "/var/lib/sbctl";
+      autoEnrollKeys = {
+        includeMicrosoftKeys = false;
+        enable = true;
+      };
+      autoGenerateKeys.enable = true;
     };
     boot.loader.efi.canTouchEfiVariables = true;
 

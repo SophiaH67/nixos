@@ -14,7 +14,13 @@
   };
 
   config = lib.mkIf config.sophrams.gnome.enable {
-    services.gnome-keyring.enable = true;
+    services.gnome-keyring = {
+      enable = true;
+      components = [
+        "pkcs11"
+        "secrets"
+      ];
+    };
 
     dconf.settings = {
       # Gnome backend settings

@@ -7,6 +7,7 @@
   options.sophrams.discord.enable = lib.mkEnableOption "Soph Discord";
 
   config = lib.mkIf config.sophrams.discord.enable {
+    home.file."/home/sophia/.config/vesktop/settings/settings.json".force = true;
 
     programs.nixcord = {
       enable = true;

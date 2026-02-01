@@ -88,6 +88,10 @@
         donation-reminder-enabled = false;
       };
 
+      "org/gnome/calendar" = {
+        active-view = "week";
+      };
+
       # Gnome Extensions
       "org/gnome/shell" = {
         disable-user-extensions = false;

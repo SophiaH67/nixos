@@ -27,7 +27,21 @@
     sophrams.gnome.blur = false;
     dconf.settings."org/gnome/desktop/screensaver".lock-enabled = false;
     dconf.settings."org/gnome/settings-daemon/plugins/power".sleep-inactive-ac-type = "nothing";
+
+    services.spotifyd = {
+      enable = true;
+      settings = {
+        bitrate = 320;
+        volume_normalisation = false;
+        max_cache_size = 1000000000; # 1GB
+        device_type = "car";
+        device_name = "Schwi's SpotifyD";
+        zeroconf_port = 51593;
+      };
+    };
   };
+  networking.firewall.allowedTCPPorts = [ 51593 ];
+  networking.firewall.allowedUDPPorts = [ 5353 ];
   users.users.sophia.extraGroups = [
     "video"
     "render"

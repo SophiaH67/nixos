@@ -37,6 +37,7 @@
         device_type = "car";
         device_name = "Schwi's SpotifyD";
         zeroconf_port = 51593;
+        backend = "pulseaudio";
       };
     };
   };

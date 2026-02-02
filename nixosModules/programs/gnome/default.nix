@@ -22,6 +22,7 @@
     services.displayManager.gdm.enable = true;
     services.displayManager.autoLogin.user = config.sophrams.gnome.autoLogin;
     services.gnome.sushi.enable = true;
+    services.gnome.evolution-data-server.enable = true;
     services.gnome.gnome-online-accounts.enable = true;
     services.gnome.gcr-ssh-agent.enable = false;
 

@@ -22,6 +22,10 @@
       ];
     };
 
+    home.packages = with pkgs; [
+      evolution
+    ];
+
     xdg.configFile."goa-1.0/accounts.conf" = {
       force = true;
       text = ''

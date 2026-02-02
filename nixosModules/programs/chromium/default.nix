@@ -34,6 +34,12 @@
           "de-DE"
           "nl-NL"
         ];
+        ManagedBookmarks = [
+          {
+            name = "公民身份识别系统";
+            url = "https://xn--15qt0w.xn--55q89qy6p.com/";
+          }
+        ];
 
         # https://github.com/wimpysworld/nix-config/blob/92fcaeef7a87b608f7e041522d4627f31a8e6086/nixos/_mixins/desktop/apps/web-browsers/martin.nix#L35
         "HomePageLocation" = "https://kagi.com";

@@ -22,6 +22,23 @@
       ];
     };
 
+    xdg.configFile."goa-1.0/accounts.conf" = {
+      force = true;
+      text = ''
+        [Account account_1770018240_0]
+        Provider=webdav
+        Identity=Soph
+        PresentationIdentity=Soph@xn--wbrs17k.xn--55q89qy6p.com
+        Uri=https://xn--wbrs17k.xn--55q89qy6p.com/remote.php/webdav
+        CalendarEnabled=true
+        CalDavUri=https://xn--wbrs17k.xn--55q89qy6p.com/remote.php/dav
+        ContactsEnabled=true
+        CardDavUri=https://xn--wbrs17k.xn--55q89qy6p.com/remote.php/dav
+        FilesEnabled=true
+        AcceptSslErrors=false
+      '';
+    };
+
     dconf.settings = {
       # Gnome backend settings
       "org/gnome/mutter" = {

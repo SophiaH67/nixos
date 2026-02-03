@@ -28,7 +28,9 @@ let
     };
   };
 
-  filteredFolders = lib.filterAttrs (n: v: builtins.elem nixos-config.networking.hostName v.devices) folders;
+  filteredFolders = lib.filterAttrs (
+    n: v: builtins.elem nixos-config.networking.hostName v.devices
+  ) folders;
 in
 {
   options.sophices.syncthing.enable = lib.mkEnableOption "Soph Syncthing";

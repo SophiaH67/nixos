@@ -8,6 +8,7 @@
     ./gnome
     ./gpg
     ./htop
+    ./keepassxc
     ./nvim
     ./vscode
     ./zsh

@@ -13,6 +13,7 @@
     soph.dev.enable = true;
     sophrams.ghostty.enable = true;
     sophrams.discord.enable = true;
+    sophrams.keepassxc.enable = true;
 
     home.packages = with pkgs; [
       atool

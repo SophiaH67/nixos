@@ -28,6 +28,7 @@
       x11_ssh_askpass
       unar
       gdu
+      libfido2
     ];
     home.sessionVariables = {
       SSH_ASKPASS = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";

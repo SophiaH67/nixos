@@ -2,8 +2,34 @@
   config,
   lib,
   pkgs,
+  nixos-config,
   ...
 }:
+let
+  folders = {
+    "/home/sophia/sync" = {
+      id = "nei9h-knicz";
+      devices = [
+        "alice"
+        "mococo"
+        "ayumu"
+        "rikka"
+        "schwi"
+      ];
+      label = "Soph's Nix Syncing";
+    };
+    "/home/sophia/KeePassXC" = {
+      id = "0k33p-2ssxc";
+      devices = [
+        "ayumu"
+        "rikka"
+      ];
+      label = "Keepass XC";
+    };
+  };
+
+  filteredFolders = lib.filterAttrs (n: v: builtins.elem nixos-config.networking.hostName v.devices) folders;
+in
 {
   options.sophices.syncthing.enable = lib.mkEnableOption "Soph Syncthing";
 
@@ -34,27 +60,7 @@
             id = "XHANRFQ-QYI5D4O-LX27INC-2MJUDIU-VH2HRI2-RWHZEQC-NB7XOGS-CBQCOQD";
           };
         };
-        folders = {
-          "/home/sophia/sync" = {
-            id = "nei9h-knicz";
-            devices = [
-              "alice"
-              "mococo"
-              "ayumu"
-              "rikka"
-              "schwi"
-            ];
-            label = "Soph's Nix Syncing";
-          };
-          "/home/sophia/KeePassXC" = {
-            id = "0k33p-2ssxc";
-            devices = [
-              "ayumu"
-              "rikka"
-            ];
-            label = "Keepass XC";
-          };
-        };
+        folders = filteredFolders;
       };
     };
   };

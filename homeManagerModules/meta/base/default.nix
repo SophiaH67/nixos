@@ -33,14 +33,22 @@
       SSH_ASKPASS = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
     };
 
-    programs.ssh = {
-      enable = true;
-      extraConfig = ''
-        Host muccc-broken-internet
-          Hostname 192.168.2.2
-          Port 22
-          User openfront
-      '';
+    programs = {
+      hyfetch = {
+        enable = true;
+        settings = {
+          preset = "transgender";
+          mode = "rgb";
+          auto_detect_light_dark = true;
+          lightness = 0.8;
+          color_align = {
+            mode = "horizontal";
+          };
+          backend = "neofetch";
+          pride_month_disable = false;
+
+        };
+      };
     };
 
     home.file.".ssh/id_ed25519_sk.pub".source = ../../../secrets/id_ed25519_sk.pub;

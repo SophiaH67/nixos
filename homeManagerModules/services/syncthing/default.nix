@@ -30,6 +30,9 @@
           alice = {
             id = "RXLKWVK-WRPWLP7-7ECMV7D-OJTTV6A-OTTDSX7-FFPLH7N-FDQLNBQ-FNUPGAV";
           };
+          schwi = {
+            id = "XHANRFQ-QYI5D4O-LX27INC-2MJUDIU-VH2HRI2-RWHZEQC-NB7XOGS-CBQCOQD";
+          };
         };
         folders = {
           "/home/sophia/sync" = {
@@ -39,6 +42,7 @@
               "mococo"
               "ayumu"
               "rikka"
+              "schwi"
             ];
             label = "Soph's Nix Syncing";
           };

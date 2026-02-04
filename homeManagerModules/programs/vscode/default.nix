@@ -65,10 +65,6 @@
               extensionId = "ms-dotnettools.csharp";
               path = pkgs.lib.getExe pkgs.dotnet-sdk_10;
             }
-            {
-              extensionId = "ms-dotnettools.csdevkit";
-              path = pkgs.lib.getExe pkgs.dotnet-sdk_10;
-            }
           ];
         };
         extensions =
@@ -88,7 +84,6 @@
             jnoortheen.nix-ide
             llvm-vs-code-extensions.vscode-clangd
             llvm-vs-code-extensions.lldb-dap
-            ms-dotnettools.csdevkit
             ms-dotnettools.csharp
             ms-vscode.cmake-tools
             ms-dotnettools.vscode-dotnet-runtime

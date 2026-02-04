@@ -4,6 +4,7 @@
     ./builder
     ./builder-user
     ./cloudflare-warp
+    ./docker
     ./plymouth
     ./isla
     ./renovate

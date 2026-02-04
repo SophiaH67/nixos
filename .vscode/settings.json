@@ -42,6 +42,7 @@
         "xfce",
         "secure",
         "steam",
-        "keepassxc"
+        "keepassxc",
+        "docker"
     ]
 }

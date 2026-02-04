@@ -58,6 +58,18 @@
             80
           ];
           diffEditor.ignoreTrimWhitespace = false;
+          dotnetAcquisitionExtension.sharedExistingDotnetPath = pkgs.lib.getExe pkgs.dotnet-sdk_10;
+          dotnetAcquisitionExtension.allowInvalidPaths = true;
+          dotnetAcquisitionExtension.existingDotnetPath = [
+            {
+              extensionId = "ms-dotnettools.csharp";
+              path = pkgs.lib.getExe pkgs.dotnet-sdk_10;
+            }
+            {
+              extensionId = "ms-dotnettools.csdevkit";
+              path = pkgs.lib.getExe pkgs.dotnet-sdk_10;
+            }
+          ];
         };
         extensions =
           with pkgs.vscode-extensions;

@@ -9,7 +9,10 @@
   options.sophrams.vscode.enable = lib.mkEnableOption "Soph VSCode";
 
   config = lib.mkIf config.sophrams.vscode.enable {
-    home.packages = with pkgs; [ markdownlint-cli2 ];
+    home.packages = with pkgs; [
+      markdownlint-cli2
+      dotnet-sdk_10
+    ];
 
     programs.vscode = {
       enable = true;
@@ -59,13 +62,7 @@
           ];
           diffEditor.ignoreTrimWhitespace = false;
           dotnetAcquisitionExtension.sharedExistingDotnetPath = pkgs.lib.getExe pkgs.dotnet-sdk_10;
-          dotnetAcquisitionExtension.allowInvalidPaths = true;
-          dotnetAcquisitionExtension.existingDotnetPath = [
-            {
-              extensionId = "ms-dotnettools.csharp";
-              path = pkgs.lib.getExe pkgs.dotnet-sdk_10;
-            }
-          ];
+          "csharp.suppressBuildAssetsNotification" = true;
         };
         extensions =
           with pkgs.vscode-extensions;
@@ -98,6 +95,7 @@
             rust-lang.rust-analyzer
             golang.go
             ms-python.debugpy
+            ms-azuretools.vscode-containers
           ]
           ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             {

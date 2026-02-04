@@ -12,7 +12,10 @@
 
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-    environment.systemPackages = with pkgs; [ deploy-rs ];
+    environment.systemPackages = with pkgs; [
+      deploy-rs
+      podman-compose
+    ];
 
     sophices.docker.enable = true;
     virtualisation = {

@@ -394,15 +394,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1768041607,
-        "narHash": "sha256-4OXrN1NygX/BaGErB/1k7XREEPW4EnFC/JypNWS+HE0=",
-        "owner": "sophiah67",
+        "lastModified": 1770278955,
+        "narHash": "sha256-LVOT/io0vhyxKygupVd2BrrAJVjNbNAr009xI+3mSg4=",
+        "owner": "FlameFlag",
         "repo": "nixcord",
-        "rev": "122b922f020e1a789777cdb04fcdfcdf1f528f38",
+        "rev": "c64afd178f08fcfd1a072f64e7b343f5b164ac40",
         "type": "github"
       },
       "original": {
-        "owner": "sophiah67",
+        "owner": "FlameFlag",
         "repo": "nixcord",
         "type": "github"
       }

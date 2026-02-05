@@ -1,19 +1,20 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 {
   options.sophrams.discord.enable = lib.mkEnableOption "Soph Discord";
 
   config = lib.mkIf config.sophrams.discord.enable {
-    home.file."/home/sophia/.config/vesktop/settings/settings.json".force = true;
+    # home.file."/home/sophia/.config/vesktop/settings/settings.json".force = true;
 
     programs.nixcord = {
       enable = true;
       discord.enable = false;
-      # equibop.enable = true;
-      vesktop.enable = true;
+      equibop.enable = true;
+      vesktop.enable = false;
       config = {
         enableReactDevtools = true;
         autoUpdate = true;
@@ -52,8 +53,8 @@
           messageLatency.enable = true;
           noUnblockToJump.enable = true;
           oneko.enable = true;
-          oneko.speed = 10;
-          oneko.fps = 8;
+          # oneko.speed = 10;
+          # oneko.fps = 8;
           webScreenShareFixes.enable = true;
           XSOverlay.enable = config.soph.vr.enable;
         };

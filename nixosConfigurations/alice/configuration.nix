@@ -10,10 +10,10 @@
 
   home-manager.users.sophia.programs.git.signing.key = lib.mkForce "/home/sophia/.ssh/id_ed25519.pub";
   home-manager.users.sophia.programs.git.signing.format = lib.mkForce "ssh";
-  home-manager.users.sophia.programs.git.userEmail = lib.mkForce "shage2@allegion.com";
+  home-manager.users.sophia.programs.git.settings.user.email = lib.mkForce "shage2@allegion.com";
   networking.hostName = lib.mkForce "alice";
 
-  home-manager.users.sophia.programs.git.extraConfig = {
+  home-manager.users.sophia.programs.git.settings = {
     url = {
       "git@ssh.dev.azure.com:v3/ircost/SV_FW_Drivers/SV_FW_Drivers" = {
         insteadOf = "https://ircost@dev.azure.com/ircost/SV_FW_Drivers/_git/SV_FW_Drivers";
@@ -40,7 +40,7 @@
     blender
     cura-appimage
     (azure-cli.withExtensions [ azure-cli-extensions.azure-devops ])
-    inputs.vcxproj2cmake.packages.${system}.default
+    inputs.vcxproj2cmake.packages.${stdenv.hostPlatform.system}.default
     ghidra
     gcc-arm-embedded
   ];

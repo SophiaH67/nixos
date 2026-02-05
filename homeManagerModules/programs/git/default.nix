@@ -10,19 +10,19 @@
   config = lib.mkIf config.sophrams.git.enable {
     programs.git = {
       enable = true;
-      userName = "Sophia Hage";
-      userEmail = "sophia@sophiah.gay";
       signing = {
         key = "1FB01D6AA1106525";
         signByDefault = true;
         format = "openpgp";
       };
-      extraConfig = {
+      settings = {
+        user = {
+          email = "sophia@sophiah.gay";
+          name = "Sophia Hage";
+        };
         safe.directory = [ "/etc/nixos" ];
         blame.ignoreRevsFile = ".git-blame-ignore-revs";
         gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
-      };
-      settings = {
         init.defaultBranch = "main";
         push.autoSetupRemote = true;
       };

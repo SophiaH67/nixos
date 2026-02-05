@@ -29,7 +29,7 @@
       qpwgraph
       pwvucontrol
       cavalier
-      inputs.librepods.packages.${stdenv.system}.default
+      inputs.librepods.packages.${stdenv.hostPlatform.system}.default
       gnupg # required until https://github.com/NixOS/nixpkgs/issues/473387 is fixed
       waypipe
       easyeffects
@@ -72,7 +72,7 @@
           name = "CaskaydiaCove NF Regular";
           size = 11;
         };
-        theme = "CLRS";
+        themeFile = "CLRS";
         extraConfig = ''
           allow_remote_control yes
         '';

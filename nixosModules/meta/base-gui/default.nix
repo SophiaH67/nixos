@@ -33,7 +33,7 @@
       nerd-fonts.droid-sans-mono
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
-      self.packages.${system}.thirtyninec3-font
+      self.packages.${stdenv.hostPlatform.system}.thirtyninec3-font
     ];
 
     services.earlyoom.enable = true;

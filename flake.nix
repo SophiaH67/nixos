@@ -50,6 +50,8 @@
 
     vcxproj2cmake.url = "github:SophiaH67/vcxproj2cmake";
     vcxproj2cmake.inputs.nixpkgs.follows = "nixpkgs";
+
+    robotnix.url = "github:nix-community/robotnix";
   };
 
   outputs =
@@ -59,6 +61,7 @@
       deploy-rs,
       treefmt-nix,
       systems,
+      robotnix,
       ...
     }@inputs:
     let
@@ -73,6 +76,17 @@
       homeModules.default = import ./homeManagerModules;
       nixosConfigurations = import ./nixosConfigurations { inherit inputs self; };
       packages = import ./packages inputs;
+
+      exampleSystem = robotnix.lib.robotnixSystem {
+        flavor = "grapheneos";
+
+        device = "tegu";
+
+        apps.fdroid.enable = true;
+        microg.enable = true;
+
+        ccache.enable = true;
+      };
 
       deploy.nodes = {
         yuuna = {

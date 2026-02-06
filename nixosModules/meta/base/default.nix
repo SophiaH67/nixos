@@ -205,6 +205,9 @@ in
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
       fallback = true; # For when caches are borked
+      extra-sandbox-paths = [
+        "/var/cache/ccache"
+      ];
     };
     nix.optimise.automatic = true;
     nix.gc.automatic = true;

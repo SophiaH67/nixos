@@ -37,6 +37,7 @@
       ffmpeg
       spotify
       plex-desktop
+      wifi-qr
     ];
     fonts.fontconfig.enable = true;
 

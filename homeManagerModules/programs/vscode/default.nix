@@ -96,6 +96,7 @@
             golang.go
             ms-python.debugpy
             ms-azuretools.vscode-containers
+            hashicorp.terraform
           ]
           ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
             {

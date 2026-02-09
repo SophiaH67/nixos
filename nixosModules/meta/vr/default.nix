@@ -16,8 +16,8 @@
           src = final.fetchFromGitHub {
             owner = "ImSapphire";
             repo = "xrizer";
-            rev = "7339c297b665e6292ac46115cdac0d44aab196a9";
-            hash = "sha256-9PS2xDGND+bC8jCLX+rsuDY4Epfwo+nkPRea/xDSYmM=";
+            rev = "b05146c790f573be21c80fb331c9115893b6b865";
+            hash = "sha256-uh7PbXjhWQ5oy2Z365tDDBrxzjbZnzDFyP1bVtOUo/8=";
           };
 
           cargoDeps = prev.rustPlatform.importCargoLock {

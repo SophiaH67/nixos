@@ -95,12 +95,6 @@
 
   services.snowflake-proxy.enable = true;
 
-  fileSystems = {
-    "/var/lib/tuwunel" = {
-      options = [ "bind" ];
-      device = "/Fuwawa/appdata/matrix/private/tuwunel";
-    };
-  };
   services.matrix-tuwunel = {
     enable = true;
     package = pkgs.matrix-tuwunel.overrideAttrs (old: {
@@ -126,6 +120,56 @@
         #   }
         # ];
       };
+    };
+  };
+
+  services.matrix-synapse = {
+    enable = true;
+    configurePostgres = true;
+    configureRedisLocally = true;
+    enableRegistrationScript = false;
+    domain = "soph.zip";
+    settings = {
+      server_name = "soph.zip";
+      listeners = [
+        {
+          path = "/run/matrix-synapse/matrix-synapse.sock";
+          resources = [
+            {
+              names = [
+                "client"
+                "federation"
+              ];
+              compress = false;
+            }
+          ];
+        }
+      ];
+      oidc_providers = [
+        {
+          idp_id = "taiwan_auth_system";
+          idp_name = "公民身份识别系统";
+          issuer = "https://xn--15qt0w.xn--55q89qy6p.com";
+          client_id = "82c5ed76-36b0-42b2-8458-75cefcd55e72";
+          # Marked as public client, should be fine
+          client_secret = "nMiOY8BatrgvkvNubKsypnjXPdBzXNOz";
+          pkce_method = "always";
+          scopes = [
+            "openid"
+            "profile"
+            "email"
+          ];
+          authorization_endpoint = "https://xn--15qt0w.xn--55q89qy6p.com/authorize";
+          token_endpoint = "https://xn--15qt0w.xn--55q89qy6p.com/api/oidc/token";
+          userinfo_endpoint = "https://xn--15qt0w.xn--55q89qy6p.com/api/oidc/userinfo";
+
+          user_mapping_provider.config = {
+            localpart_template = "{{ user.preferred_username }}";
+            display_name_template = "{{ user.display_name }}";
+            email_template = "{{ user.email }}";
+          };
+        }
+      ];
     };
   };
 }

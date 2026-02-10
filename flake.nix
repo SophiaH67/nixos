@@ -50,6 +50,11 @@
 
     vcxproj2cmake.url = "github:SophiaH67/vcxproj2cmake";
     vcxproj2cmake.inputs.nixpkgs.follows = "nixpkgs";
+
+    nuschtos-modules = {
+      url = "github:NuschtOS/nixos-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

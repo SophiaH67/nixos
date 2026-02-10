@@ -4,8 +4,7 @@ let
     nixpkgs
     home-manager
     agenix
-    disko
-    nixos-generators
+    nuschtos-modules
     nixos-hardware
     ;
   baseModules = [
@@ -13,6 +12,7 @@ let
     self.nixosModules.default
     home-manager.nixosModules.home-manager
     agenix.nixosModules.default
+    nuschtos-modules.nixosModule
   ];
 
   devModules = [

@@ -47,8 +47,8 @@
         settings = {
           default_server_config = {
             "m.homeserver" = {
-              base_url = "https://cat.sophiah.gay";
-              server_name = "cat.sophiah.gay";
+              base_url = "https://soph.zip";
+              server_name = "soph.zip";
             };
             "m.identity_server" = {
               base_url = "https://vector.im";

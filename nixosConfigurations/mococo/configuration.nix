@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   imports = [
     ./containers
@@ -103,11 +103,15 @@
   };
   services.matrix-tuwunel = {
     enable = true;
+    package = pkgs.matrix-tuwunel.overrideAttrs (old: {
+      buildFeatures = builtins.filter (feature: feature != "release_max_log_level") old.buildFeatures;
+    });
     settings = {
       global = {
         max_request_size = 1024 * 1024 * 1024; # 1 GiB
         server_name = "cat.sophiah.gay";
         new_user_displayname_suffix = "🩷";
+        log = "debug";
         trusted_servers = [ "matrix.org" ];
         unix_socket_path = "/run/tuwunel/tuwunel.sock";
         # identity_provider = [

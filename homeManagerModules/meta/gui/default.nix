@@ -24,7 +24,7 @@
       filezilla
       gedit
       gparted
-      xorg.xeyes
+      xeyes
       tor-browser
       qpwgraph
       pwvucontrol

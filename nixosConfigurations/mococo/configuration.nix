@@ -108,17 +108,6 @@
         log = "debug";
         trusted_servers = [ "matrix.org" ];
         unix_socket_path = "/run/tuwunel/tuwunel.sock";
-        # identity_provider = [
-        #   {
-        #     brand = "pocketid";
-        #     client_id = "82c5ed76-36b0-42b2-8458-75cefcd55e72";
-        #     client_secret = ""; # Still has to be set for some reason
-        #     client_secret_file = "/var/lib/.client-secret";
-        #     name = "公民身份识别系统";
-        #     scope = [ "matrix" ];
-        #     # discovery_url = "https://xn--15qt0w.xn--55q89qy6p.com/.well-known/openid-configuration";
-        #   }
-        # ];
       };
     };
   };

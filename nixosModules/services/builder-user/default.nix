@@ -14,8 +14,8 @@ let
     map (name: self.nixosConfigurations.${name}.config.networking.hostName) builderEnabled;
 
   speedFactors = {
-    mococo = 20;
-    ayumu = 30;
+    mococo = 10;
+    ayumu = 15;
     emir-eins = 5;
     emir-zwei = 5;
     schwi = 5;

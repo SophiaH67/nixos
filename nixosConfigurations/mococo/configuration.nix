@@ -5,6 +5,7 @@
   ];
 
   soph.base.enable = true;
+  sophices.builder.enable = true;
 
   # https://grahamc.com/blog/erase-your-darlings/
   boot.initrd.postDeviceCommands = lib.mkAfter ''

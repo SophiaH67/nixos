@@ -36,7 +36,10 @@ in
       map (hostName: {
         hostName = "builder.${hostName}.isla";
         sshUser = "isla-builder";
-        system = "x86_64-linux";
+        systems = [
+          "x86_64-linux"
+          "aarch64-linux"
+        ];
         # No ssh-ng because no support yet for builders-use-substitutes
         # https://github.com/NixOS/nix/issues/4665
         protocol = "ssh";

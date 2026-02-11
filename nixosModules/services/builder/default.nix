@@ -22,6 +22,7 @@ in
 
   config = lib.mkIf config.sophices.builder.enable {
     sophices.isla.enable = true; # We only allow builds over isla
+    boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
     users.groups.isla-builder = { };
     users.users.isla-builder = {

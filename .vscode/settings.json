@@ -45,6 +45,7 @@
         "keepassxc",
         "docker",
         "podman",
-        "matrix"
+        "matrix",
+        "hairpin"
     ]
 }

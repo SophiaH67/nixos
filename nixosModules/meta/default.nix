@@ -7,6 +7,7 @@
     ./comms
     ./dev
     ./drawing
+    ./embedded
     ./gaming
     ./secure
     ./vr

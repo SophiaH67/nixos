@@ -155,4 +155,15 @@ in
     ]
     ++ deployableModules;
   };
+
+  hairpin = nixpkgs.lib.nixosSystem {
+    specialArgs = args;
+    system = "aarch64-linux";
+    modules = [
+      ./hairpin/configuration.nix
+      ./hairpin/hardware-configuration.nix
+      ./hairpin/sdcard.nix
+    ]
+    ++ deployableModules;
+  };
 }

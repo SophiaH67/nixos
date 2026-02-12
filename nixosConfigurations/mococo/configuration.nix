@@ -161,4 +161,6 @@
       ];
     };
   };
+
+  environment.etc.cinny.source = pkgs.cinny-unwrapped;
 }

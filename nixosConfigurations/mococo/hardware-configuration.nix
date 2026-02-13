@@ -54,6 +54,10 @@
     device = "Fuwawa/local/persist/services";
     fsType = "zfs";
   };
+  fileSystems."/var/cache/ccache" = {
+    device = "Fuwawa/local/persist/ccache";
+    fsType = "zfs";
+  };
 
   fileSystems."/Fuwawa/media/music/shared/Tracks" = {
     device = "/Fuwawa/home/sophia/sync/Tracks";

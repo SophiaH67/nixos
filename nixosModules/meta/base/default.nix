@@ -157,6 +157,7 @@ in
       tree
       sbctl
       usbutils
+      binutils
     ];
 
     # -=-=- Locale -=-=-

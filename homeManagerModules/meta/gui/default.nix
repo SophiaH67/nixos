@@ -38,6 +38,7 @@
       spotify
       plex-desktop
       wifi-qr
+      ghex
     ];
     fonts.fontconfig.enable = true;
 

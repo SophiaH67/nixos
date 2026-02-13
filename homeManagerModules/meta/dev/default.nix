@@ -29,6 +29,7 @@
       openssl
       librepcb
       kicad
+      ghex
     ];
 
     sophrams.vscode.enable = true;

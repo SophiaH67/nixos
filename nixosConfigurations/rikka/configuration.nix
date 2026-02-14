@@ -33,15 +33,6 @@
     electrum
   ];
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.sophia = {
-    packages = with pkgs; [
-      parsec-bin
-      obsidian
-      plex-desktop
-    ];
-  };
-
   services.protonmail-bridge.enable = true;
   security.pam.services.sophia.enableGnomeKeyring = true;
 

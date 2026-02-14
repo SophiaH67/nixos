@@ -39,6 +39,8 @@
       plex-desktop
       wifi-qr
       ghex
+      parsec-bin
+      obsidian
     ];
     fonts.fontconfig.enable = true;
 

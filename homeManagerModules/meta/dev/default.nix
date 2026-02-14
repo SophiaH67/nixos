@@ -30,6 +30,7 @@
       librepcb
       kicad
       ghex
+      binwalk
     ];
 
     sophrams.vscode.enable = true;

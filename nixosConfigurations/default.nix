@@ -163,6 +163,6 @@ in
       ./hairpin/hardware-configuration.nix
       ./hairpin/sdcard.nix
     ]
-    ++ deployableModules;
+    ++ baseModules;
   };
 }

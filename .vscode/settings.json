@@ -46,6 +46,7 @@
         "docker",
         "podman",
         "matrix",
-        "hairpin"
+        "hairpin",
+        "yukihana-lamy"
     ]
 }

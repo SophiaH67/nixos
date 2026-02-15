@@ -55,6 +55,10 @@
       url = "github:NuschtOS/nixos-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    robotnix.url = "github:nix-community/robotnix";
+    # robotnix.inputs.nixpkgs.follows = "nixpkgs";
+    robotnix.inputs.treefmt-nix.follows = "treefmt-nix";
   };
 
   outputs =
@@ -77,6 +81,7 @@
       nixosModules.default = import ./nixosModules;
       homeModules.default = import ./homeManagerModules;
       nixosConfigurations = import ./nixosConfigurations { inherit inputs self; };
+      robotnixConfigurations = import ./robotnixConfigurations { inherit inputs self; };
       packages = import ./packages inputs;
 
       deploy.nodes = {

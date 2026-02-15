@@ -1,10 +1,10 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 {
   imports = [ ./sounds.nix ];
 
   networking.hostName = "moshimoshi";
 
-  sophices.tailscale.enable = true;
+  soph.base.enable = true;
 
   # -=-=- Asterisk -=-=-
   services.asterisk = {

@@ -33,6 +33,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    soph.base.enable = true;
+
     networking.bridges = {
       "br0" = {
         interfaces = [ "enp3s0" ];

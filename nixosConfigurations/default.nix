@@ -8,7 +8,6 @@ let
     nixos-hardware
     ;
   baseModules = [
-    { soph.base.enable = true; }
     self.nixosModules.default
     home-manager.nixosModules.home-manager
     agenix.nixosModules.default

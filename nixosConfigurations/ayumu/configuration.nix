@@ -52,4 +52,7 @@ in
   soph.dev.enable = true;
   soph.vr.enable = true;
   soph.comms.enable = true;
+
+  soph.base.enable = true;
+
 }

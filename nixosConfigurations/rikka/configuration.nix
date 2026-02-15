@@ -102,4 +102,6 @@
   soph.comms.enable = true;
 
   services.thermald.enable = true;
+
+  soph.base.enable = true;
 }

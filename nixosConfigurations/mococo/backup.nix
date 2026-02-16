@@ -21,6 +21,7 @@
 
     environment = {
       BORG_RSH = "ssh -i /persist/ssh/mococo_client_ssh -o UserKnownHostsFile=${./backup-known-hosts}";
+      BORG_BASE_DIR = "/persist/borg";
     };
 
     extraCreateArgs = [ "--stats" "--checkpoint-interval 600" ];

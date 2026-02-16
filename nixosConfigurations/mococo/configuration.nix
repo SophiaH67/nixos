@@ -112,6 +112,7 @@
     };
   };
 
+  systemd.services.matrix-synapse.requires = [ "docker.service" ];
   services.matrix-synapse = {
     enable = true;
     configurePostgres = true;

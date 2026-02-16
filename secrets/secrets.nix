@@ -75,6 +75,11 @@ with deviceKeys;
   # Prometheus
   "prometheus-oath2keyfile.age".publicKeys = [ mococo-prometheus ];
 
+  "borg-meow.age".publicKeys = [
+    deviceKeys.mococo
+    soph-main
+  ];
+
   # Desktop things
   ## Pfp
   "face.png.age".publicKeys = devices;

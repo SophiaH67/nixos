@@ -1,10 +1,13 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   age.secrets."borg-meow" = {
     file = ../../secrets/borg-meow.age;
     mode = "600";
   };
 
+  systemd.services."borgbackup-job-borg-meow".serviceConfig.ReadWritePaths = lib.mkForce [
+    "/persist/borg"
+  ];
   services.borgbackup.jobs.borg-meow = {
     repo = "ssh://u547736@u547736.your-storagebox.de:23/./borg";
     doInit = true;
@@ -24,7 +27,10 @@
       BORG_BASE_DIR = "/persist/borg";
     };
 
-    extraCreateArgs = [ "--stats" "--checkpoint-interval 600" ];
+    extraCreateArgs = [
+      "--stats"
+      "--checkpoint-interval" "600"
+    ];
 
     startAt = "daily";
     prune.keep = {

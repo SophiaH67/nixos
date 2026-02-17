@@ -9,7 +9,7 @@
     "/persist/borg"
   ];
   services.borgbackup.jobs.borg-meow = {
-    repo = "ssh://u547736@u547736.your-storagebox.de:23/./borg";
+    repo = "ssh://u547736-sub1@u547736-sub1.your-storagebox.de:23/.";
     doInit = true;
     persistentTimer = true;
 

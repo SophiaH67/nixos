@@ -49,7 +49,12 @@
     ];
   };
 
-  swapDevices = [ ];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 32 * 1024;
+    }
+  ];
 
   # Nvidia - https://nixos.wiki/wiki/Nvidia
   hardware.graphics.enable = true;

@@ -9,7 +9,7 @@
     "/persist/borg"
   ];
   services.borgbackup.jobs.borg-meow = {
-    repo = "ssh://u547736-sub1@u547736-sub1.your-storagebox.de:23/.";
+    repo = "ssh://u547736-sub1@u547736-sub1.your-storagebox.de:23/home";
     doInit = true;
     persistentTimer = true;
 
@@ -29,7 +29,8 @@
 
     extraCreateArgs = [
       "--stats"
-      "--checkpoint-interval" "600"
+      "--checkpoint-interval"
+      "600"
     ];
 
     startAt = "daily";

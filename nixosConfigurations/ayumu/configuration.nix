@@ -55,4 +55,5 @@ in
 
   soph.base.enable = true;
 
+  services.earlyoom.enable = lib.mkForce false;
 }

@@ -59,4 +59,6 @@
   sophices.renovate.enable = lib.mkForce false;
 
   security.pki.certificateFiles = [ ./emulator.crt ];
+
+  services.openssh.settings.PasswordAuthentication = lib.mkForce true;
 }

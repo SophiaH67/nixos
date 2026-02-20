@@ -43,6 +43,7 @@
     inputs.vcxproj2cmake.packages.${stdenv.hostPlatform.system}.default
     ghidra
     gcc-arm-embedded
+    terraform
   ];
 
   # For simonsvoss smartstick AX

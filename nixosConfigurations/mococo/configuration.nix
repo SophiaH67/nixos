@@ -166,4 +166,7 @@
 
   environment.etc.cinny.source = pkgs.cinny-unwrapped;
   environment.etc."cinny/config.json".source = ./cinny-config.json;
+
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 }

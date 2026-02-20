@@ -57,7 +57,8 @@ in
       ]
       ++ lib.optional config.networking.networkmanager.enable "networkmanager"
       ++ lib.optional config.virtualisation.docker.enable "docker"
-      ++ lib.optional config.virtualisation.podman.enable "podman";
+      ++ lib.optional config.virtualisation.podman.enable "podman"
+      ++ lib.optional config.virtualisation.libvirtd.enable "libvirtd";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBjPFvYoD2YSwNJguumb6DJm4pLmQob257gSxgsrChaQ sophia@sophiah.gay"
         (builtins.readFile ../../../secrets/id_ed25519_sk.pub)

@@ -18,13 +18,11 @@
       enable = true;
       # https://www.reddit.com/r/NixOS/comments/15mohek/installing_vscode_extensions_with_homemanager_not/
       mutableExtensionsDir = false;
-      # https://github.com/continuedev/continue/issues/821#issuecomment-3227673526
       package = (
         pkgs.vscode.overrideAttrs (
           final: prev: {
             preFixup =
               prev.preFixup
-              + "gappsWrapperArgs+=( --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ pkgs.gcc.cc.lib ]} )"
               + (
                 if (nixos-config.hardware.nvidia.enabled) then
                   "\nwrapProgram $out/bin/code --add-flags --ozone-platform=x11"
@@ -86,7 +84,6 @@
             ms-dotnettools.vscode-dotnet-runtime
             mkhl.direnv
             ms-vscode.hexeditor
-            continue.continue
             wakatime.vscode-wakatime
             ms-python.black-formatter
             bradlc.vscode-tailwindcss

@@ -41,11 +41,6 @@ in
 
   sophices.plymouth.enable = true;
 
-  services.ollama.enable = false;
-  services.ollama.package = pkgs.ollama-cuda;
-  services.ollama.host = "[::]";
-  services.nextjs-ollama-llm-ui.enable = true;
-
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 

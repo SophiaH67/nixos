@@ -12,8 +12,9 @@
       enable = true;
       viAlias = true;
       vimAlias = true;
-      plugins = [
-        pkgs.vimPlugins.LazyVim
+      plugins = with pkgs.vimPlugins; [
+        nvim-lspconfig
+        nvim-cmp
       ];
     };
   };

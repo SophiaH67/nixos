@@ -41,6 +41,14 @@
       ghex
       parsec-bin
       obsidian
+      # Office things
+      libreoffice
+      hyphenDicts.en_GB
+      hyphenDicts.nl_NL
+      hyphenDicts.de_DE
+      hunspellDicts.en_GB-large
+      hunspellDicts.nl_NL
+      hunspellDicts.de_DE
     ];
     fonts.fontconfig.enable = true;
 

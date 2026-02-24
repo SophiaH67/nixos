@@ -758,11 +758,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771760213,
-        "narHash": "sha256-4bspcM+6kAxm4Kk9J8jNPeaJ5FcWNltCEwGQ+Z9Qz+0=",
+        "lastModified": 1771938303,
+        "narHash": "sha256-G4i2YjRi7/amjSfNYY4CeFNjs5evysX8JNqUAO3XHgk=",
         "owner": "nix-community",
         "repo": "robotnix",
-        "rev": "4df3c9bd751f17f975b041f4b15c4921c3c82704",
+        "rev": "5b02461d7863ecc08fbb62f0711320ba81e22b27",
         "type": "github"
       },
       "original": {

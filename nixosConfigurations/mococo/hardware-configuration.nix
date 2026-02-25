@@ -83,6 +83,14 @@
     ];
   };
 
+  swapDevices = [
+    {
+      device = "/dev/disk/by-id/ata-WDC_WDS500G2B0A_20439B442903-part1";
+      randomEncryption.enable = true;
+      options = [ "discard" ];
+    }
+  ];
+
   systemd.enableEmergencyMode = false;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

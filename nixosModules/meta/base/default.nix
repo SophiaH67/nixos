@@ -217,8 +217,8 @@ in
         mode = "0770";
       };
     };
-    nix.optimise.automatic = true;
-    nix.gc.automatic = true;
+    nix.optimise.automatic = false;
+    nix.gc.automatic = false;
     nix.package = pkgs.lixPackageSets.stable.lix;
     system.stateVersion = "25.05"; # Did you read the comment?
   };

@@ -29,10 +29,7 @@
 
   bootanimation = {
     enable = true;
-    logoMask = builtins.fetchurl {
-      url = "https://codeberg.org/cyclopentane/robotnix-configs/raw/commit/3f735e02a097b719a3584d20c58d1cbd504aeacb/phobos/android-logo-mask.png";
-      sha256 = "sha256-de+smKu8Qpyaqkwa6pGAFKrq02S4AuzsSTxwwtAA30E=";
-    };
+    logoMask = ./bootmask.png;
     logoShine = builtins.fetchurl {
       url = "https://codeberg.org/cyclopentane/robotnix-configs/raw/commit/3f735e02a097b719a3584d20c58d1cbd504aeacb/phobos/android-logo-shine.png";
       sha256 = "sha256-QDAO8yyYIm6NF+JzgdOdBQ5PVvwRwVIx31GCSJEE2C4=";

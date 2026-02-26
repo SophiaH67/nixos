@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <style>
+        .container {
+            width: 448px;
+            height: 605px;
+            background-color: black;
+            position: fixed;
+
+            /* Chrome screenshot otherwise off by one :/ */
+            padding-bottom: 1px;
+        }
+
+        .mask {
+            /* High brightness filter is basically a mask right */
+            filter: brightness(999);
+        }
+        
+        .title {
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+        }
+
+        .logo {
+            position: absolute;
+            top: 0%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+        }
+        
+        button {
+            position: absolute;
+            bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="mask logo" src="https://upload.wikimedia.org/wikipedia/commons/1/19/GrapheneOS_Logo.svg">
+        <img class="mask title" src="https://sophiah.gay/assets/Sophia%20Logo%20-%20Inverted-C_bvJ8PJ.svg">
+    </div>
+</body>
+</html>

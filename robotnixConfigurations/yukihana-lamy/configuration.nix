@@ -16,6 +16,10 @@
       sha256 = "sha256-cnX9TisF+CRAGdcXo846Ztwa9gO3I+hJIe/KdVUrQWY=";
     })
   ];
+  source.dirs."packages/modules/Bluetooth".patches = [
+    # https://issuetracker.google.com/issues/371713238
+    ./librepods-fix.patch
+  ];
 
   apps.updater = {
     enable = true;

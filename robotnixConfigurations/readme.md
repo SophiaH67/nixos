@@ -12,6 +12,8 @@ that the files resolution is 448 x 605 (TODO:check if this actually matters..
 Pentanes one is like that so I'll stick to it for now, I don't wish to wait
 another 3 hours just to check rn).
 
+To finish it off, open in gimp and color to alpha the green out.
+
 ## Yukihana Lamy
 
 Stuff to set up after install;

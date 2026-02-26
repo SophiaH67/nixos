@@ -1,6 +1,7 @@
 {
   flavor = "grapheneos";
   device = "tegu";
+  stateVersion = "3";
 
   grapheneos = {
     # This setting determines which GrapheneOS release tag will be built -
@@ -40,7 +41,6 @@
 
   ccache.enable = true;
   signing = {
-    enable = true;
-    avb.size = 2048;
+    avb.size = 4096;
   };
 }

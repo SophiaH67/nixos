@@ -40,6 +40,6 @@
 
     # Rn just take mosst things from Rikka. It's my on-the-go laptop so should
     # mostly match what I want in my phone.
-    hosts = self.nixosConfigurations.rikka.config.etc.hosts.source;
+    hosts = self.nixosConfigurations.rikka.config.environment.etc.hosts.source;
   };
 }

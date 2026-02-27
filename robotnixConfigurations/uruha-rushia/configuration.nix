@@ -1,7 +1,6 @@
-let
-  lamy = import ../yukihana-lamy/configuration.nix;
-in
-lamy
-// {
-  device = "panther";
+{ lib, ... }:
+{
+  imports = [ ../yukihana-lamy/configuration.nix ];
+
+  device = lib.mkForce "panther";
 }

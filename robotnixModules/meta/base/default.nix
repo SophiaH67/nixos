@@ -10,7 +10,6 @@
   config = lib.mkIf config.soph.base.enable {
     apps = {
       fdroid.enable = true;
-      vanadium.enable = true;
     };
 
     source.dirs."packages/modules/Virtualization".patches = [

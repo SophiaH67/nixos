@@ -4,8 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <style>
         .container {
-            width: 448px;
-            height: 605px;
+            width: 1080px;
+            height: 2400px;
             background-color: black;
             position: fixed;
 
@@ -22,30 +22,50 @@
         
         .title {
             position: absolute;
-            top: 80%;
+            top: 60%;
             left: 50%;
             transform: translateX(-50%);
-            width: 90%;
+            width: 70%;
         }
 
         .logo {
             position: absolute;
-            top: 0%;
+            top: 45%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            width: 60%;
+        }
+
+        .powered-by {
+            position: absolute;
+            bottom: -2%;
             left: 50%;
             transform: translateX(-50%);
             width: 90%;
+            filter: invert();
         }
         
         button {
             position: absolute;
             bottom: 30px;
         }
+
+        h1 {
+            color: yellow;
+            text-align: center;
+            font-size: 40px;
+            bottom: -0.1em;
+            position: absolute;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <h1>UNAPPROVED TESTING FIRMWARE</h1>
         <img class="mask logo" src="https://upload.wikimedia.org/wikipedia/commons/1/19/GrapheneOS_Logo.svg">
         <img class="title" src="https://sophiah.gay/assets/Sophia%20Logo%20-%20Inverted-C_bvJ8PJ.svg">
+        <img class="powered-by" src="https://b.catgirlsare.sexy/Ae9LMckkXjDD.png">
     </div>
 </body>
 </html>

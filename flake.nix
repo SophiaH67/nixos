@@ -82,6 +82,7 @@
       homeModules.default = import ./homeManagerModules;
       nixosConfigurations = import ./nixosConfigurations { inherit inputs self; };
       robotnixConfigurations = import ./robotnixConfigurations { inherit inputs self; };
+      robotnixModules.default = import ./robotnixModules;
       packages = import ./packages inputs;
 
       deploy.nodes = {

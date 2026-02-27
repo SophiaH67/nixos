@@ -758,15 +758,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1772112759,
-        "narHash": "sha256-DkpAyEoh+ZuQsGBiK9m4LqEWqlxfOVFVpEcQCbeBsho=",
+        "lastModified": 1772212393,
+        "narHash": "sha256-/JDDGYqVZK1i4ugJXW/PBctkxVO8Pu3TPTYzuurtHpE=",
         "owner": "nix-community",
         "repo": "robotnix",
-        "rev": "7dc963b1ab315292c601a2ac980968c19750ce46",
+        "rev": "4ffba5cb8a204602795d1a1fd7590515d7e3fecc",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
+        "ref": "fix-ota-keys",
         "repo": "robotnix",
         "type": "github"
       }

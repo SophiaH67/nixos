@@ -4,13 +4,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <style>
         .container {
-            width: 1080px;
             height: 2400px;
-            background-color: black;
-            position: fixed;
+            position: relative;
 
             /* Chrome screenshot otherwise off by one :/ */
             padding-bottom: 1px;
+        }
+
+        .bootmask-container {
+            background-color: black;
+            width: 1080px;
+        }
+
+        .shine-container {
+            width: calc(1080px * 5);
         }
 
         .mask {
@@ -58,14 +65,39 @@
             position: absolute;
             width: 100%;
         }
+
+        .shine {
+            background: repeating-linear-gradient(
+                to right,
+            rgba(255, 0, 0, 1) 0%,
+            rgba(255, 154, 0, 1) 10%,
+            rgba(208, 222, 33, 1) 20%,
+            rgba(79, 220, 74, 1) 30%,
+            rgba(63, 218, 216, 1) 40%,
+            rgba(47, 201, 226, 1) 50%,
+            rgba(28, 127, 238, 1) 60%,
+            rgba(95, 21, 242, 1) 70%,
+            rgba(186, 12, 248, 1) 80%,
+            rgba(251, 7, 217, 1) 90%,
+            rgba(255, 0, 0, 1) 100%
+            );
+            width: 100%;
+            height:100%;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container bootmask-container">
         <h1>UNAPPROVED TESTING FIRMWARE</h1>
         <img class="mask logo" src="https://upload.wikimedia.org/wikipedia/commons/1/19/GrapheneOS_Logo.svg">
         <img class="title" src="https://sophiah.gay/assets/Sophia%20Logo%20-%20Inverted-C_bvJ8PJ.svg">
         <img class="powered-by" src="https://b.catgirlsare.sexy/Ae9LMckkXjDD.png">
+    </div>
+
+    <br>
+
+    <div class="container shine-container">
+        <div class="shine"></div>
     </div>
 </body>
 </html>

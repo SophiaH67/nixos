@@ -115,11 +115,10 @@ in
       mode = "0774";
     };
 
-    security.run0 = {
-      enableSudoAlias = true;
+    security.sudo = {
+      enable = true;
       wheelNeedsPassword = false;
     };
-    security.sudo.enable = false;
 
     sophices.ssh.enable = true;
 

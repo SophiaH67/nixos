@@ -11,11 +11,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771170334,
-        "narHash": "sha256-tCgoCWORfNHaRXTh2QS44LwxlV8q28jVvjN5ioMicv8=",
+        "lastModified": 1772290697,
+        "narHash": "sha256-MyLNx13P+pv1RszO1rMd3144NEeU/oU4iL+xOTpRoaU=",
         "owner": "ezKEa",
         "repo": "aagl-gtk-on-nix",
-        "rev": "821b4f92c2c0981ea5b571b03403df87d2b2e2ae",
+        "rev": "dcb53a4cb4cb09ef7f08328428ba559be5b9f01b",
         "type": "github"
       },
       "original": {
@@ -682,11 +682,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771808846,
-        "narHash": "sha256-S5yyD1R/otQ6QmKNLUd701+vOqUSMR8MSJ33uU5bOW8=",
+        "lastModified": 1772307485,
+        "narHash": "sha256-iMIrOZx8blZ5oB9NVUhEnrQLLfoD2QyGGQHQSIVyn8g=",
         "owner": "NuschtOS",
         "repo": "nixos-modules",
-        "rev": "10e5c144931207f1e762f619ebe5690af8664e0a",
+        "rev": "8cebecb2bee2db1f9ae212946c4bc2e9376a8d61",
         "type": "github"
       },
       "original": {

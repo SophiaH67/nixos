@@ -57,6 +57,13 @@
           # oneko.fps = 8;
           webScreenShareFixes.enable = true;
           XSOverlay.enable = config.soph.vr.enable;
+          clientSideBlock = {
+            enable = true;
+            hideBlockedMessages = true;
+            hideBlockedUsers = true;
+            hideEmptyRoles = true;
+            blockedReplyDisplay = "hideReply";
+          };
         };
       };
     };

@@ -4,3 +4,10 @@ master
 worker
 *-swtpm
 *.fd
+
+# Robotnix things
+panther-*.zip
+tegu-*.zip
+panther-stable
+tegu-stable
+keys/

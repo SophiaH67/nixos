@@ -16,6 +16,7 @@
     sophrams.htop.enable = true;
     sophrams.git.enable = true;
     sophrams.nvim.enable = true;
+    sophrams.tmux.enable = true;
 
     soph.vr.enable = lib.mkIf nixos-config.soph.vr.enable (lib.mkDefault true);
 
@@ -30,7 +31,6 @@
       gdu
       libfido2
       kittysay
-      tmux
     ];
     home.sessionVariables = {
       SSH_ASKPASS = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";

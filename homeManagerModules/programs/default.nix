@@ -10,6 +10,7 @@
     ./htop
     ./keepassxc
     ./nvim
+    ./tmux
     ./vscode
     ./zsh
   ];

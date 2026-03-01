@@ -38,5 +38,8 @@
 
     # For legacy reasons it's defaulted to true in nixpkgs
     boot.loader.systemd-boot.editor = lib.mkForce false;
+
+    # Have tor available for connecting to services during insecure moments
+    sophices.tor.enable = true;
   };
 }

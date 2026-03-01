@@ -46,7 +46,7 @@
               privateKeyFile = config.age.secrets."dn42-wgpriv".path;
               listenPort = 51842;
               ips = [
-                # Okay so etwas is fe80::acab, this means fe80:: is our link local, acab is her address.
+                # Okay so etwas is fe80::b0c1, this means fe80:: is our link local, acab is her address.
                 # I should be able to jut take a different address and be fine...
                 "fe80::3167/64"
               ];
@@ -54,7 +54,7 @@
                 {
                   name = "etwas";
                   allowedIPs = [
-                    "fe80::acab" # Maybe??
+                    "fe80::b0c1" # Maybe??
                     "fd00::/8"
                   ];
                   endpoint = "ncvps.dn42.etwas.me:22273";
@@ -88,7 +88,7 @@
             neighbors = [
               {
                 config = {
-                  neighbor-address = "fe80::acab%dn42";
+                  neighbor-address = "fe80::b0c1%dn42";
                   peer-as = 4242422264;
                 };
               }

@@ -22,7 +22,7 @@ in
     virtualIp = lib.mkOption {
       type = lib.types.str;
       description = "The IP address of the initial master node to join. Only used if init is false.";
-      default = "2a02:810d:6f83:ad00:acab::67";
+      default = "2a02:810d:6f83:ad00:b0c1::67";
     };
 
     nodeIp = lib.mkOption {

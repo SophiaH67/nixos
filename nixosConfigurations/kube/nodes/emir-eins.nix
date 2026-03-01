@@ -5,7 +5,7 @@
 
   networking.interfaces.br0.ipv6.addresses = [
     {
-      address = "2a02:810d:6f83:ad00:acab::2";
+      address = "2a02:810d:6f83:ad00:b0c1::2";
       prefixLength = 64;
     }
   ];

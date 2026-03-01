@@ -7,7 +7,7 @@ let
     script =
       let
         listenIPv4 = "152.53.209.71";
-        targetIPv6 = "[2a02:810d:6f83:ad00::acab]";
+        targetIPv6 = "[2a02:810d:6f83:ad00::b0c1]";
       in
       "${pkgs.socat}/bin/socat TCP4-LISTEN:${toString port},bind=${listenIPv4},reuseaddr,fork TCP6:${targetIPv6}:${toString port}";
     serviceConfig = {

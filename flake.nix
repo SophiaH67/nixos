@@ -56,7 +56,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    robotnix.url = "github:nix-community/robotnix?ref=fix-ota-keys";
+    robotnix.url = "github:nix-community/robotnix";
     # robotnix.inputs.nixpkgs.follows = "nixpkgs";
     robotnix.inputs.treefmt-nix.follows = "treefmt-nix";
   };

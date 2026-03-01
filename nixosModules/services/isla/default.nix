@@ -71,8 +71,6 @@ in
 
     services.unbound.settings = {
       local-zone = ''"isla." static'';
-    };
-    services.unbound.settings = {
       local-data = map (peer: ''"${peer}.isla. AAAA ${mkIp peer}"'') peers;
       server = {
         interface = config.networking.wireguard.interfaces.isla0.ips;

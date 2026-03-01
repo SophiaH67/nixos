@@ -42,7 +42,7 @@
       parsec-bin
       obsidian
       # Office things
-      libreoffice
+      # libreoffice
       hyphenDicts.en_GB
       hyphenDicts.nl_NL
       hyphenDicts.de_DE

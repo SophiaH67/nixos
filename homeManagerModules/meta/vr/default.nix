@@ -31,7 +31,7 @@
       }
     '';
 
-    xdg.configFile."wlxoverlay/openxr_actions.json5".force = true;
-    xdg.configFile."wlxoverlay/openxr_actions.json5".source = ./vr-overlaybinds.json5;
+    xdg.configFile."wayvr/openxr_actions.json5".force = true;
+    xdg.configFile."wayvr/openxr_actions.json5".source = ./vr-overlaybinds.json5;
   };
 }

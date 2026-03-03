@@ -31,6 +31,7 @@
       kicad
       ghex
       binwalk
+      bsdiff
     ];
 
     sophrams.vscode.enable = true;

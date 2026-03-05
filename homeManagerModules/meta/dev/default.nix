@@ -32,6 +32,7 @@
       ghex
       binwalk
       bsdiff
+      ghidra
     ];
 
     sophrams.vscode.enable = true;

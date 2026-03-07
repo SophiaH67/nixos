@@ -41,6 +41,7 @@
       ghex
       parsec-bin
       obsidian
+      gimp
       # Office things
       # libreoffice
       hyphenDicts.en_GB

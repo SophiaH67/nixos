@@ -47,6 +47,7 @@
       # Gnome backend settings
       "org/gnome/mutter" = {
         experimental-features = [ "scale-monitor-framebuffer" ];
+        workspaces-only-on-primary = false;
       };
 
       "org/gnome/desktop/peripherals/touchpad" = {

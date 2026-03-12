@@ -52,6 +52,7 @@
           workbench.preferredDarkColorTheme = "5412c41d-f76b-4488-85a7-1ae1a63bbfcc";
           editor.fontFamily = "'Cascadia Code',Consolas, 'Courier New', monospace";
           terminal.integrated.stickyScroll.enabled = false;
+          terminal.integrated.fontFamily = "Cascadia Code NF";
           chat.disableAIFeatures = true;
           nix.enableLanguageServer = true;
           nix.serverPath = "${pkgs.nixd}/bin/nixd";

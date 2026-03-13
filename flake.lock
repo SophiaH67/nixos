@@ -489,11 +489,11 @@
         "nixpkgs-nixcord": "nixpkgs-nixcord"
       },
       "locked": {
-        "lastModified": 1773418731,
-        "narHash": "sha256-pCQ6nys8q1FVk1hTPWkJHhzyI24bHCNnlg/KaCs5I1E=",
+        "lastModified": 1773426551,
+        "narHash": "sha256-xkdf5jU1HDphAFy89WQsyStYdq0EjRsYCYsz5IrDEjo=",
         "owner": "FlameFlag",
         "repo": "nixcord",
-        "rev": "6cea57cacfa299d131f88de5a560a073a99bf33d",
+        "rev": "efe6a34e34d5ab0983d26ca290e5e0dba6e1abd1",
         "type": "github"
       },
       "original": {

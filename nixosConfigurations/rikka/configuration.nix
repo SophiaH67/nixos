@@ -75,10 +75,13 @@
 
           ${lib.getExe pkgs.curlWithGnuTls} --connect-to wifi.bahn.de:443:185.109.152.241:443 'https://wifi.bahn.de/login' -H 'Content-Type: application/x-www-form-urlencoded' --data-raw 'login=oneclick'
           exit
+        elif [ "$WIFI_NAME" == "KEOLIS Nederland" ]; then
+          logger "Keoliss WiFi detected. Running CNA"
+
+          ${lib.getExe pkgs.curlWithGnuTls} --connect-to www.ombord.info:443:10.101.0.1:443 'https://www.ombord.info/hotspot/hotspot.cgi?method=login&url=https%3A%2F%2Fkeolisnederland.on.icomera.com%2F%3Fsuccess%3Dtrue%26correlationId%3Da7a6c1ae-08f0-4fb7-97a7-2055dd1551c2&onerror=https%3A%2F%2Fkeolisnederland.on.icomera.com%2F%3Ferror%3Dtrue%26correlationId%3Da7a6c1ae-08f0-4fb7-97a7-2055dd1551c2' -H 'Referer: https://keolisnederland.on.icomera.com/'
+        else
+          logger "Connected to \"$WIFI_NAME\", not any db wifi. Ignoring..."
         fi
-
-        logger "Connected to $WIFI_NAME, not any db wifi. Ignoring..."
-
       '';
       type = "basic";
     }

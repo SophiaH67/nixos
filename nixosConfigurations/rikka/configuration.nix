@@ -68,7 +68,7 @@
         if [ "$WIFI_NAME" == "WIFI@DB" ]; then
           logger "WIFI@DB detected. Running CNA logon!"
 
-          ${lib.getExe pkgs.curlWithGnuTls} --connect-to wifi.bahn.de:443:185.109.152.241:443 'https://wifi.bahn.de/cna/logon' -H 'sec-ch-ua-platform: "Linux"' -H 'X-Csrf-Token: csrf' -H 'Referer: https://wifi.bahn.de/cna/' -H 'Content-type: application/json' --data-raw '{}'
+          ${lib.getExe pkgs.curlWithGnuTls} --connect-to wifi.bahn.de:443:10.101.8.121:443 'https://wifi.bahn.de/cna/logon' -H 'sec-ch-ua-platform: "Linux"' -H 'X-Csrf-Token: csrf' -H 'Referer: https://wifi.bahn.de/cna/' -H 'Content-type: application/json' --data-raw '{}'
           exit
         elif [ "$WIFI_NAME" == "DBLounge" ]; then
           logger "DB Lounge WiFi detected. Running logon!"

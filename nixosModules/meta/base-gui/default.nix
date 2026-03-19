@@ -51,6 +51,8 @@
     };
     services.pulseaudio.enable = false;
 
+    environment.variables.QT_QPA_PLATFORM = "wayland";
+
     home-manager.users.sophia = {
       soph.gui.enable = true;
       sophrams.gnome.enable = true;

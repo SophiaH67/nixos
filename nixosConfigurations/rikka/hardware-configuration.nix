@@ -33,8 +33,11 @@
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."luks-e9d524bd-a8a6-4e75-9401-d7fde4daee05".device =
-    "/dev/disk/by-uuid/e9d524bd-a8a6-4e75-9401-d7fde4daee05";
+  boot.initrd.luks.devices."luks-e9d524bd-a8a6-4e75-9401-d7fde4daee05" = {
+    device = "/dev/disk/by-uuid/e9d524bd-a8a6-4e75-9401-d7fde4daee05";
+
+    crypttabExtraOpts = [ "fido2-device=auto" ];
+  };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/82D4-9F40";

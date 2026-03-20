@@ -37,8 +37,11 @@
     fsType = "xfs";
   };
 
-  boot.initrd.luks.devices."luks-2a8d37ad-326f-4373-b153-fbe787e9a894".device =
-    "/dev/disk/by-uuid/2a8d37ad-326f-4373-b153-fbe787e9a894";
+  boot.initrd.luks.devices."luks-2a8d37ad-326f-4373-b153-fbe787e9a894" = {
+    device = "/dev/disk/by-uuid/2a8d37ad-326f-4373-b153-fbe787e9a894";
+
+    crypttabExtraOpts = [ "fido2-device=auto" ];
+  };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/5047-F7E0";

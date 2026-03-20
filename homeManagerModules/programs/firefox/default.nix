@@ -29,7 +29,6 @@
             "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
             "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger/latest.xpi"
             "https://addons.mozilla.org/firefox/downloads/latest/deadname-remover/latest.xpi"
-            "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi"
             "https://addons.mozilla.org/firefox/downloads/latest/single-file/latest.xpi"
             "https://addons.mozilla.org/firefox/downloads/latest/vimium-c/latest.xpi"
             "https://addons.mozilla.org/firefox/downloads/latest/simplelogin/latest.xpi"

@@ -74,7 +74,6 @@
         "cjpalhdlnbpafiamejdnhcphjbkeiagm" # Ublock origin
         "gppongmhjkpfnbhagpmjfkannfbllamg" # wappalyzer
         "hlepfoohegkhhmjieoechaddaejaokhf" # refined github
-        "nngceckbapebfimnlniiiahkandclblb" # bitwarden
         "dbepggeogbaibhgnhhndojpepiihcmeb" # vimium
         "gcknhkkoolaabfmlnjonogaaifnjlfnp" # FoxyProxy
         "eninkmbmgkpkcelmohdlgldafpkfpnaf" # Reddit Untranslate

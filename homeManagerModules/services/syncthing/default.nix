@@ -25,6 +25,7 @@ let
         "rikka"
       ];
       label = "Keepass XC";
+      enable = config.sophrams.keepassxc.enable;
     };
   };
 

@@ -81,14 +81,5 @@ in
     users.groups.isla-sshable = { };
 
     services.openssh.settings.AllowGroups = [ "isla-sshable" ];
-
-    services.prometheus.exporters = {
-      node = {
-        enable = true;
-        enabledCollectors = [ "systemd" ];
-        port = 51120;
-        listenAddress = mkBracketedIp config.networking.hostName;
-      };
-    };
   };
 }

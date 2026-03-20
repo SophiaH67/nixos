@@ -25,7 +25,7 @@
       gedit
       gparted
       xeyes
-      # tor-browser
+      tor-browser
       qpwgraph
       pwvucontrol
       cavalier

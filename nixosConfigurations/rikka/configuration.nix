@@ -30,7 +30,7 @@
     openvpn
     android-tools
     monero-gui
-    # electrum
+    electrum
   ];
 
   services.protonmail-bridge.enable = true;

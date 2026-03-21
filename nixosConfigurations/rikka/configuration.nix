@@ -79,6 +79,10 @@
           logger "Keoliss WiFi detected. Running CNA"
 
           ${lib.getExe pkgs.curlWithGnuTls} --connect-to www.ombord.info:443:10.101.0.1:443 'https://www.ombord.info/hotspot/hotspot.cgi?method=login&url=https%3A%2F%2Fkeolisnederland.on.icomera.com%2F%3Fsuccess%3Dtrue%26correlationId%3Da7a6c1ae-08f0-4fb7-97a7-2055dd1551c2&onerror=https%3A%2F%2Fkeolisnederland.on.icomera.com%2F%3Ferror%3Dtrue%26correlationId%3Da7a6c1ae-08f0-4fb7-97a7-2055dd1551c2' -H 'Referer: https://keolisnederland.on.icomera.com/'
+        elif [ "$WIFI_NAME" == "OEBB" ]; then
+          logger "ÖBB WiFi detected. Asking politely in Austrian!
+
+          ${lib.getExe pkgs.curlWithGnuTls} --connect-to railnet.oebb.at:443:172.19.5.2:443 'https://railnet.oebb.at/en/connecttoweb' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Origin: https://railnet.oebb.at' --data-raw '_token=SVlTuLVs9GQmlQW7xfg0w9OqsRKLyWqYSgndjx63&_ceid=1245&checkit=on&form_type=registration'
         else
           logger "Connected to \"$WIFI_NAME\", not any db wifi. Ignoring..."
         fi

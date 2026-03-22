@@ -36,6 +36,7 @@
       [
         blur-my-shell
         night-theme-switcher
+        argos
       ]
       ++ lib.optionals config.sophrams.gnome.cloudflare-warp [
         pkgs.gnomeExtensions.cloudflare-warp-toggle

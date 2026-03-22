@@ -43,6 +43,36 @@
       '';
     };
 
+    xdg.configFile."argos/10-ice-speed.5s.sh" = {
+      force = true;
+      executable = true;
+      # See https://github.com/klegul/train-scripts-argos/blob/main/LICENSE for
+      # license of script
+      text = ''
+        #!/usr/bin/env bash
+        nmcli connection show --active | grep "WIFIonICE" > /dev/null 
+        if  [ $? -eq 0 ]; 
+        then
+          output=$(${pkgs.lib.getExe pkgs.curlWithGnuTls} --connect-to iceportal.de:443:172.18.1.110:443 -s https://iceportal.de/api1/rs/status)
+
+          if [ $(echo $output | wc -c) -gt 1 ];
+          then	
+            ice_speed=$(echo $output | ${pkgs.lib.getExe pkgs.jq} --raw-output ".speed")
+            ice_speed="''${ice_speed%??}"
+            internet=$(echo $output | ${pkgs.lib.getExe pkgs.jq} --raw-output ".internet")
+        	 
+            echo "$ice_speed km/h"
+            echo "---"
+            echo "Internet: $internet"
+          else
+            echo "---"
+          fi
+        else
+          echo "---"
+        fi
+      '';
+    };
+
     dconf.settings = {
       # Gnome backend settings
       "org/gnome/mutter" = {
@@ -121,6 +151,7 @@
           with pkgs.gnomeExtensions;
           [
             night-theme-switcher.extensionUuid
+            argos.extensionUuid
           ]
           ++ lib.optional config.sophrams.gnome.blur blur-my-shell.extensionUuid
           ++ lib.optional nixos-config.sophrams.gnome.cloudflare-warp pkgs.gnomeExtensions.cloudflare-warp-toggle.extensionUuid;

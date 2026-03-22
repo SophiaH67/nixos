@@ -46,7 +46,7 @@
   networking.extraHosts = ''
     127.0.0.1     fritz.box
     # Generated from asking 172.18.0.1 on an ice
-    10.101.64.121 login.wifionice.de
+    100.64.1.2 login.wifionice.de
     172.18.1.110  iceportal.de
     172.18.1.110  zugportal.de
     172.18.1.110  www.iceportal.de

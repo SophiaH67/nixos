@@ -27,7 +27,7 @@
       rustc
       github-cli
       openssl
-      librepcb
+      # librepcb
       kicad
       ghex
       binwalk

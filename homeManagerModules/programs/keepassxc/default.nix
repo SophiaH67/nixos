@@ -16,6 +16,7 @@
       devices = [
         "ayumu"
         "rikka"
+        "Yukihana Lamy"
       ];
       label = "Keepass XC";
     };

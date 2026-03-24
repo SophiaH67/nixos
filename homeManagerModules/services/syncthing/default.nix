@@ -44,15 +44,13 @@ in
           ayumu = {
             id = "3WOL2NN-YEMHJEJ-KQ3NWIZ-2ZVEK6S-N3ADXL3-VNPJCKB-3ZLFBEY-FIFYQQX";
           };
-          tyrants_eye = {
-            id = "A3QLL5C-ARZUF27-VKUT5OY-6ZAVJS4-55VGXZ6-EGKH2AB-OVQZSUU-GCXGVQX";
-          };
           alice = {
             id = "RXLKWVK-WRPWLP7-7ECMV7D-OJTTV6A-OTTDSX7-FFPLH7N-FDQLNBQ-FNUPGAV";
           };
           schwi = {
             id = "XHANRFQ-QYI5D4O-LX27INC-2MJUDIU-VH2HRI2-RWHZEQC-NB7XOGS-CBQCOQD";
           };
+          "Yukihana Lamy".id = "RJR7AQT-7JBT6WJ-GXS2CHJ-5SVOIER-KNO2RJL-BYTHJOD-PTH3KJG-JGFDIAV";
         };
         folders = filteredFolders;
       };

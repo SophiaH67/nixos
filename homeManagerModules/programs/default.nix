@@ -10,6 +10,7 @@
     ./htop
     ./keepassxc
     ./nvim
+    ./prismlauncher
     ./tmux
     ./vscode
     ./zsh

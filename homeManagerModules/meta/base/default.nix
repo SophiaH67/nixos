@@ -19,6 +19,7 @@
     sophrams.tmux.enable = true;
 
     soph.vr.enable = lib.mkIf nixos-config.soph.vr.enable (lib.mkDefault true);
+    soph.gaming.enable = lib.mkIf nixos-config.soph.gaming.enable (lib.mkDefault true);
 
     age.identityPaths = [
       "${config.home.homeDirectory}/.ssh/id_rsa"
